@@ -346,6 +346,20 @@ PILLARS
                     elif rectangle['bgColor'] == 'yellow':
                         cell.fill = mat_yellow
 
+            # テキスト（があれば）
+            if 'text' in rectangle:
+                text = rectangle['text']
+
+                if 'indent' in rectangle:
+                    indent = rectangle['indent']
+                else:
+                    indent = 0
+                
+                column_th = (left + 1) * 3 + 2 * indent + 1
+                column_letter = xl.utils.get_column_letter(column_th)
+                cell = ws[f'{column_letter}{row_th + 1}']
+                cell.value = rectangle['text']
+
             row_th += 3
 
 
