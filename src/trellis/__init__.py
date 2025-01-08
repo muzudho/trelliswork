@@ -325,8 +325,28 @@ PILLARS
             cell = ws[f'{column_letter}{row_th}']
             cell.border = black_right_border
 
+        # 柱のヘッダーの背景色
+        mat_blue = PatternFill(patternType='solid', fgColor='DDEBF7')
+        mat_yellow = PatternFill(patternType='solid', fgColor='FFF2CC')
+        row_th = top * 3 + 1
         for rectangle in header_stack_array:
-            pass
+            for column_th in range(left * 3 + 1, (left + width) * 3 + 1):
+                column_letter = xl.utils.get_column_letter(column_th)
+
+                # 厚みが３セルある
+                cell_list = [
+                    ws[f'{column_letter}{row_th}'],
+                    ws[f'{column_letter}{row_th + 1}'],
+                    ws[f'{column_letter}{row_th + 2}']
+                ]
+
+                for cell in cell_list:
+                    if rectangle['bgColor'] == 'blue':
+                        cell.fill = mat_blue
+                    elif rectangle['bgColor'] == 'yellow':
+                        cell.fill = mat_yellow
+
+            row_th += 3
 
 
 
