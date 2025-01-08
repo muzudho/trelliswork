@@ -42,7 +42,10 @@ for column_th in range(1, length_of_columns + 1):
 for row_th in range(1, length_of_rows + 1):
     ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
-# 上記の着色
+# ウィンドウ枠の固定
+ws.freeze_panes = 'B2'
+
+# 定規の着色
 dark_gray = PatternFill(patternType='solid', fgColor='808080')
 light_gray = PatternFill(patternType='solid', fgColor='F2F2F2')
 dark_gray_font = Font(color='808080')
