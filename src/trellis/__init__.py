@@ -10,8 +10,8 @@ def render_ruler(document, ws):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    length_of_columns = document['canvas']['width'] * 3 + 2
-    length_of_rows    = document['canvas']['height'] * 3 + 2
+    length_of_columns = document['canvas']['width'] * 3
+    length_of_rows    = document['canvas']['height'] * 3
 
     print(f"""\
     canvas
@@ -41,7 +41,7 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　上辺
     row_th = 1
-    for column_th in range(4, length_of_columns - 4, 3):
+    for column_th in range(4, length_of_columns - 2, 3):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -97,7 +97,7 @@ def render_ruler(document, ws):
     # 定規の着色　＞　上側の両端の１セルの隙間
     column_th_list = [
         3,                      # 定規の着色　＞　左上の１セルの隙間
-        length_of_columns - 4   # 定規の着色　＞　右上の１セルの隙間
+        length_of_columns - 2   # 定規の着色　＞　右上の１セルの隙間
     ]
     for column_th in column_th_list:
         unit_cell = (column_th - 1) // 3
@@ -111,7 +111,7 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左辺
     column_th = 1
-    for row_th in range(1, length_of_rows - 3, 3):
+    for row_th in range(1, length_of_rows - 1, 3):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         unit_cell = (row_th - 1) // 3
@@ -137,9 +137,9 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　下辺
-    row_th = length_of_rows - 2
+    row_th = length_of_rows
     bottom_is_dark_gray = (row_th - 1) // 3 % 2 == 0
-    for column_th in range(4, length_of_columns - 4, 3):
+    for column_th in range(4, length_of_columns - 2, 3):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -178,7 +178,7 @@ def render_ruler(document, ws):
     # 定規の着色　＞　下側の両端の１セルの隙間
     column_th_list = [
         3,                      # 定規の着色　＞　左下の１セルの隙間
-        length_of_columns - 4   # 定規の着色　＞　右下の１セルの隙間
+        length_of_columns - 2   # 定規の着色　＞　右下の１セルの隙間
     ]
     for column_th in column_th_list:
         unit_cell = (column_th - 1) // 3
@@ -197,9 +197,9 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　右辺
-    column_th = length_of_columns - 3
+    column_th = length_of_columns - 1
     rightest_is_dark_gray = (column_th - 1) // 3 % 2 == 0
-    for row_th in range(1, length_of_rows - 3, 3):
+    for row_th in range(1, length_of_rows - 1, 3):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         unit_cell = (row_th - 1) // 3
@@ -230,11 +230,23 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
+def render_pillar_header(document, ws):
+    """柱の頭の描画
+    """
+    pass
+
+
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
         global render_ruler
         render_ruler(document, ws)
+
+
+    @staticmethod
+    def render_pillar_header(document, ws):
+        global render_pillar_header
+        render_pillar_header(document, ws)
 
 
 ######################

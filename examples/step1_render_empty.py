@@ -11,7 +11,7 @@ from src.trellis import trellis_in_src as tr
 
 
 # ソースファイル（JSON形式）を読込
-json_file_name = './examples/data/new_paper.json'
+json_file_name = './examples/data/battle_sequence_of_unfair_cointoss.json'
 print(f"json_file_name = {json_file_name}")
 with open(json_file_name, encoding='utf-8') as f:
     document = json.load(f)
