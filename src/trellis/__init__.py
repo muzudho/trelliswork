@@ -1,6 +1,7 @@
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
+from openpyxl.styles.borders import Border, Side
 import json
 
 
@@ -234,6 +235,28 @@ def render_pillar_header(document, ws):
     """柱の頭の描画
     """
 
+    # 赤はデバッグ用
+    red_side = Side(style='thick', color='FF0000')
+    black_side = Side(style='thick', color='000000')
+
+    red_top_border = Border(top=red_side)
+    red_top_right_border = Border(top=red_side, right=red_side)
+    red_right_border = Border(right=red_side)
+    red_bottom_right_border = Border(bottom=red_side, right=red_side)
+    red_bottom_border = Border(bottom=red_side)
+    red_bottom_left_border = Border(bottom=red_side, left=red_side)
+    red_left_border = Border(left=red_side)
+    red_top_left_border = Border(top=red_side, left=red_side)
+
+    black_top_border = Border(top=black_side)
+    black_top_right_border = Border(top=black_side, right=black_side)
+    black_right_border = Border(right=black_side)
+    black_bottom_right_border = Border(bottom=black_side, right=black_side)
+    black_bottom_border = Border(bottom=black_side)
+    black_bottom_left_border = Border(bottom=black_side, left=black_side)
+    black_left_border = Border(left=black_side)
+    black_top_left_border = Border(top=black_side, left=black_side)
+
     # Pillars の辞書があるはず。
     pillars_dict = document['pillars']
 
@@ -242,11 +265,70 @@ PILLARS
 -------
 """)
     for pillar_id, pillar_body in pillars_dict.items():
-        header_stack_array = pillar_body['header']['stack']
+        pillar_header = pillar_body['header']
+        left = pillar_header['left']
+        top = pillar_header['top']
+        width = pillar_header['width']
+
+        header_stack_array = pillar_header['stack']
         print(f"""\
 {pillar_id}:
     len(header_stack_array) = {len(header_stack_array)}
 """)
+        height = len(header_stack_array)
+
+        # 罫線で四角を作る　＞　左上
+        column_th = left * 3 + 1
+        column_letter = xl.utils.get_column_letter(column_th)
+        row_th = top * 3 + 1
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_top_left_border
+
+        # 罫線で四角を作る　＞　上辺
+        for column_th in range(left * 3 + 2, (left + width) * 3):
+            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+            cell.border = black_top_border
+
+        # 罫線で四角を作る　＞　右上
+        column_th = (left + width) * 3
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_top_right_border
+
+        # 罫線で四角を作る　＞　左辺
+        column_th = left * 3 + 1
+        for row_th in range(top * 3 + 2, (top + height) * 3):
+            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+            cell.border = black_left_border
+
+        # 罫線で四角を作る　＞　左下
+        row_th = (top + height) * 3
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_bottom_left_border
+
+        # 罫線で四角を作る　＞　下辺
+        for column_th in range(left * 3 + 2, (left + width) * 3):
+            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+            cell.border = black_bottom_border
+
+        # 罫線で四角を作る　＞　右下
+        column_th = (left + width) * 3
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_bottom_right_border
+
+        # 罫線で四角を作る　＞　右辺
+        for row_th in range(top * 3 + 2, (top + height) * 3):
+            cell = ws[f'{column_letter}{row_th}']
+            cell.border = black_right_border
+
+        for rectangle in header_stack_array:
+            pass
+
+
 
 
 class TrellisInSrc():

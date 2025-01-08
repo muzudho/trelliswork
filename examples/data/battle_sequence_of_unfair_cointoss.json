@@ -6,13 +6,16 @@
     "pillars" : {
         "battleMapEventMaster" : {
             "header" : {
+                "left" : 4,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
                     {
-                        "matColor" : "blue",
+                        "bgColor" : "blue",
                         "text" : "戦闘マップ"
                     },
                     {
-                        "matColor" : "blue",
+                        "bgColor" : "blue",
                         "indent" : 1,
                         "icon" : "whiteEvent",
                         "text" : "イベントマスター　戦闘マップ"
@@ -22,14 +25,17 @@
         },
         "encounterMapEventMaster" : {
             "header" : {
+                "left" : 21,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
                     {
-                        "matColor" : "yellow",
+                        "bgColor" : "yellow",
                         "icon" : "commonEventList",
                         "text" : "コモンイベント一覧"
                     },
                     {
-                        "matColor" : "yellow",
+                        "bgColor" : "yellow",
                         "indent" : 1,
                         "icon" : "folder",
                         "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
@@ -39,20 +45,23 @@
         },
         "inBattle" : {
             "header" : {
+                "left" : 38,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
                     {
-                        "matColor" : "yellow",
+                        "bgColor" : "yellow",
                         "icon" : "commonEventList",
                         "text" : "コモンイベント一覧"
                     },
                     {
-                        "matColor" : "yellow",
+                        "bgColor" : "yellow",
                         "indent" : 1,
                         "icon" : "folder",
                         "text" : "共通イベント／自作戦闘"
                     },
                     {
-                        "matColor" : "blue",
+                        "bgColor" : "blue",
                         "indent" : 2,
                         "icon" : "globalGameObject",
                         "text" : "戦闘中"
@@ -62,29 +71,81 @@
         },
         "alice" : {
             "header" : {
+                "left" : 55,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
-
+                    {
+                        "bgColor" : "blue",
+                        "icon" : null,
+                        "text" : "戦闘マップ"
+                    },
+                    {
+                        "bgColor" : "blue",
+                        "indent" : 1,
+                        "icon" : "blueEvent",
+                        "text" : "Alice戦闘者"
+                    }
                 ]                
             }
         },
         "bob" : {
             "header" : {
+                "left" : 72,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
-
+                    {
+                        "bgColor" : "blue",
+                        "icon" : null,
+                        "text" : "戦闘マップ"
+                    },
+                    {
+                        "bgColor" : "blue",
+                        "indent" : 1,
+                        "icon" : "blueEvent",
+                        "text" : "Bob戦闘者"
+                    }
                 ]                
             }
         },
         "coin" : {
             "header" : {
+                "left" : 89,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
-
+                    {
+                        "bgColor" : "blue",
+                        "icon" : null,
+                        "text" : "戦闘マップ"
+                    },
+                    {
+                        "bgColor" : "blue",
+                        "indent" : 1,
+                        "icon" : "yellowGreenEvent",
+                        "text" : "コイン"
+                    }
                 ]                
             }
         },
         "battler" : {
             "header" : {
+                "left" : 106,
+                "top" : 1,
+                "width" : 9,
                 "stack" : [
-
+                    {
+                        "bgColor" : "yellow",
+                        "icon" : "commonEventList",
+                        "text" : "コモンイベント一覧"
+                    },
+                    {
+                        "bgColor" : "yellow",
+                        "indent" : 1,
+                        "icon" : "folder",
+                        "text" : "共通イベント／自作戦闘／戦闘者"
+                    }
                 ]                
             }
         }
