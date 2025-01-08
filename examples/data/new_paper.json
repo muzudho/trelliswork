@@ -1,6 +1,92 @@
 {
     "canvas" : {
-        "width" : 10,
-        "height" : 10
+        "width" : 119,
+        "height" : 149
+    },
+    "pillars" : {
+        "battleMapEventMaster" : {
+            "header" : {
+                "stack" : [
+                    {
+                        "matColor" : "blue",
+                        "text" : "戦闘マップ"
+                    },
+                    {
+                        "matColor" : "blue",
+                        "indent" : 1,
+                        "icon" : "whiteEvent",
+                        "text" : "イベントマスター　戦闘マップ"
+                    }
+                ]
+            }
+        },
+        "encounterMapEventMaster" : {
+            "header" : {
+                "stack" : [
+                    {
+                        "matColor" : "yellow",
+                        "icon" : "commonEventList",
+                        "text" : "コモンイベント一覧"
+                    },
+                    {
+                        "matColor" : "yellow",
+                        "indent" : 1,
+                        "icon" : "folder",
+                        "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
+                    }
+                ]
+            }
+        },
+        "inBattle" : {
+            "header" : {
+                "stack" : [
+                    {
+                        "matColor" : "yellow",
+                        "icon" : "commonEventList",
+                        "text" : "コモンイベント一覧"
+                    },
+                    {
+                        "matColor" : "yellow",
+                        "indent" : 1,
+                        "icon" : "folder",
+                        "text" : "共通イベント／自作戦闘"
+                    },
+                    {
+                        "matColor" : "blue",
+                        "indent" : 2,
+                        "icon" : "globalGameObject",
+                        "text" : "戦闘中"
+                    }
+                ]
+            }
+        },
+        "alice" : {
+            "header" : {
+                "stack" : [
+
+                ]                
+            }
+        },
+        "bob" : {
+            "header" : {
+                "stack" : [
+
+                ]                
+            }
+        },
+        "coin" : {
+            "header" : {
+                "stack" : [
+
+                ]                
+            }
+        },
+        "battler" : {
+            "header" : {
+                "stack" : [
+
+                ]                
+            }
+        }
     }
 }
