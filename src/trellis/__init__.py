@@ -233,7 +233,20 @@ def render_ruler(document, ws):
 def render_pillar_header(document, ws):
     """柱の頭の描画
     """
-    pass
+
+    # Pillars の辞書があるはず。
+    pillars_dict = document['pillars']
+
+    print(f"""\
+PILLARS
+-------
+""")
+    for pillar_id, pillar_body in pillars_dict.items():
+        header_stack_array = pillar_body['header']['stack']
+        print(f"""\
+{pillar_id}:
+    len(header_stack_array) = {len(header_stack_array)}
+""")
 
 
 class TrellisInSrc():
