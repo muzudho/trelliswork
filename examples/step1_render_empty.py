@@ -3,7 +3,8 @@
 """
 
 import openpyxl as xl
-from openpyxl.styles import PatternFill
+from openpyxl.styles import PatternFill, Font
+from openpyxl.styles.alignment import Alignment
 import json
 
 
@@ -42,8 +43,11 @@ for row_th in range(1, length_of_rows + 1):
     ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
 # 上記の着色
-dark_gray = PatternFill(patternType='solid', fgColor="808080")
-light_gray = PatternFill(patternType='solid', fgColor="F2F2F2")
+dark_gray = PatternFill(patternType='solid', fgColor='808080')
+light_gray = PatternFill(patternType='solid', fgColor='F2F2F2')
+dark_gray_font = Font(color='808080')
+light_gray_font = Font(color='F2F2F2')
+center_center_alignment = Alignment(horizontal='center', vertical='center')
 # 定規の着色　＞　上辺
 row_th = 1
 for column_th in range(1, length_of_columns + 1):
@@ -78,7 +82,18 @@ for column_th in range(1, length_of_columns + 1):
 # (column_th + 1) // 3={(column_th + 1) // 3}
 # (column_th + 1) // 3 % 2={(column_th + 1) // 3 % 2}
 # """)
-    if (column_th + 1) // 3 % 2 == 0:
+    unit_cell = (column_th + 1) // 3
+
+    is_number_display = (column_th + 1) % 3 == 1
+    if is_number_display:
+        cell.value = unit_cell
+        cell.alignment = center_center_alignment
+        if unit_cell % 2 == 0:
+            cell.font = light_gray_font
+        else:
+            cell.font = dark_gray_font
+
+    if unit_cell % 2 == 0:
         cell.fill = dark_gray
     else:
         cell.fill = light_gray
@@ -89,7 +104,18 @@ for row_th in range(1, length_of_rows + 1):
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     
-    if (row_th + 1) // 3 % 2 == 0:
+    unit_cell = (row_th + 1) // 3
+
+    is_number_display = (row_th + 1) % 3 == 1
+    if is_number_display:
+        cell.value = unit_cell
+        cell.alignment = center_center_alignment
+        if unit_cell % 2 == 0:
+            cell.font = light_gray_font
+        else:
+            cell.font = dark_gray_font
+
+    if unit_cell % 2 == 0:
         cell.fill = dark_gray
     else:
         cell.fill = light_gray
@@ -101,7 +127,18 @@ for column_th in range(1, length_of_columns + 1):
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     
-    if (column_th + 1) // 3 % 2 == 0:
+    unit_cell = (column_th + 1) // 3
+
+    is_number_display = (column_th + 1) % 3 == 1
+    if is_number_display:
+        cell.value = unit_cell
+        cell.alignment = center_center_alignment
+        if unit_cell % 2 == 0:
+            cell.font = dark_gray_font
+        else:
+            cell.font = light_gray_font
+
+    if unit_cell % 2 == 0:
         if bottom_is_dark_gray:
             cell.fill = dark_gray
         else:
@@ -119,7 +156,18 @@ for row_th in range(1, length_of_rows + 1):
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     
-    if (row_th + 1) // 3 % 2 == 0:
+    unit_cell = (row_th + 1) // 3
+
+    is_number_display = (row_th + 1) % 3 == 1
+    if is_number_display:
+        cell.value = unit_cell
+        cell.alignment = center_center_alignment
+        if unit_cell % 2 == 0:
+            cell.font = dark_gray_font
+        else:
+            cell.font = light_gray_font
+
+    if unit_cell % 2 == 0:
         if rightest_is_dark_gray:
             cell.fill = dark_gray
         else:
