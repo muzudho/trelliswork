@@ -17,7 +17,7 @@
                     {
                         "bgColor" : "blue",
                         "indent" : 1,
-                        "icon" : "whiteEvent",
+                        "icon" : "white-game-object.png",
                         "text" : "イベントマスター　戦闘マップ"
                     }
                 ]
@@ -31,13 +31,13 @@
                 "stack" : [
                     {
                         "bgColor" : "yellow",
-                        "icon" : "commonEventList",
+                        "icon" : "common-event-list.png",
                         "text" : "コモンイベント一覧"
                     },
                     {
                         "bgColor" : "yellow",
                         "indent" : 1,
-                        "icon" : "folder",
+                        "icon" : "open-folder.png",
                         "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
                     }
                 ]
@@ -51,19 +51,19 @@
                 "stack" : [
                     {
                         "bgColor" : "yellow",
-                        "icon" : "commonEventList",
+                        "icon" : "common-event-list.png",
                         "text" : "コモンイベント一覧"
                     },
                     {
                         "bgColor" : "yellow",
                         "indent" : 1,
-                        "icon" : "folder",
+                        "icon" : "open-folder.png",
                         "text" : "共通イベント／自作戦闘"
                     },
                     {
                         "bgColor" : "blue",
                         "indent" : 2,
-                        "icon" : "globalGameObject",
+                        "icon" : "global-game-object.png",
                         "text" : "戦闘中"
                     }
                 ]
@@ -77,13 +77,12 @@
                 "stack" : [
                     {
                         "bgColor" : "blue",
-                        "icon" : null,
                         "text" : "戦闘マップ"
                     },
                     {
                         "bgColor" : "blue",
                         "indent" : 1,
-                        "icon" : "blueEvent",
+                        "icon" : "skyblue-game-object.png",
                         "text" : "Alice戦闘者"
                     }
                 ]                
@@ -97,13 +96,12 @@
                 "stack" : [
                     {
                         "bgColor" : "blue",
-                        "icon" : null,
                         "text" : "戦闘マップ"
                     },
                     {
                         "bgColor" : "blue",
                         "indent" : 1,
-                        "icon" : "blueEvent",
+                        "icon" : "skyblue-game-object.png",
                         "text" : "Bob戦闘者"
                     }
                 ]                
@@ -117,13 +115,12 @@
                 "stack" : [
                     {
                         "bgColor" : "blue",
-                        "icon" : null,
                         "text" : "戦闘マップ"
                     },
                     {
                         "bgColor" : "blue",
                         "indent" : 1,
-                        "icon" : "yellowGreenEvent",
+                        "icon" : "skyblue-game-object.png",
                         "text" : "コイン"
                     }
                 ]                
@@ -137,13 +134,13 @@
                 "stack" : [
                     {
                         "bgColor" : "yellow",
-                        "icon" : "commonEventList",
+                        "icon" : "common-event-list.png",
                         "text" : "コモンイベント一覧"
                     },
                     {
                         "bgColor" : "yellow",
                         "indent" : 1,
-                        "icon" : "folder",
+                        "icon" : "open-folder.png",
                         "text" : "共通イベント／自作戦闘／戦闘者"
                     }
                 ]                

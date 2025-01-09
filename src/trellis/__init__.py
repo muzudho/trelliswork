@@ -1,7 +1,9 @@
+import os
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
+from openpyxl.drawing.image import Image as XlImage
 import json
 
 
@@ -346,23 +348,38 @@ PILLARS
                     elif rectangle['bgColor'] == 'yellow':
                         cell.fill = mat_yellow
 
+            # インデント
+            if 'indent' in rectangle:
+                indent = rectangle['indent']
+            else:
+                indent = 0
+
+            # アイコン（があれば画像をワークシートのセルに挿入）
+            if 'icon' in rectangle:
+                image_basename = rectangle['icon']  # 例： 'white-game-object.png'
+                print(f'image_basename=[{image_basename}]')
+
+                column_th = left * 3 + 3 * indent + 1
+                column_letter = xl.utils.get_column_letter(column_th)
+                #
+                # NOTE 元の画像サイズで貼り付けられるわけではないの、何でだろう？ 60x60pixels の画像にしておくと、90x90pixels のセルに合う？
+                #
+                # TODO 📖 [PythonでExcelファイルに画像を挿入する/列の幅を調整する](https://qiita.com/kaba_san/items/b231a41891ebc240efc7)
+                # 難しい
+                #
+                ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
+
             # テキスト（があれば）
             if 'text' in rectangle:
                 text = rectangle['text']
-
-                if 'indent' in rectangle:
-                    indent = rectangle['indent']
-                else:
-                    indent = 0
                 
-                column_th = (left + 1) * 3 + 2 * indent + 1
+                column_th = (left + 1) * 3 + 3 * indent + 1
                 column_letter = xl.utils.get_column_letter(column_th)
                 cell = ws[f'{column_letter}{row_th + 1}']
                 cell.value = rectangle['text']
+                 
 
             row_th += 3
-
-
 
 
 class TrellisInSrc():
