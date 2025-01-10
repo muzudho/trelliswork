@@ -24,8 +24,11 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
-# 柱の頭の描画
-tr.render_pillar_header(document, ws)
+# 全ての柱の頭の描画
+tr.render_pillar_headers(document, ws)
+
+# 全ての端子の描画
+tr.render_terminals(document, ws)
 
 # 定規の描画
 #       柱を上から塗りつぶすように描きます

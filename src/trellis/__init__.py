@@ -246,8 +246,74 @@ def render_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
             cell.fill = fill_obj
 
 
-def render_pillar_header(document, ws):
-    """柱の頭の描画
+def render_pixel_art(ws, column_th, row_th, columns, rows, pixels):
+    """ドット絵を描きます
+    """
+    # 背景色
+    mat_black = PatternFill(patternType='solid', fgColor='080808')
+    mat_white = PatternFill(patternType='solid', fgColor='E8E8E8')
+    
+    # 横へ
+    for cur_column_th in range(column_th, column_th + columns):
+        for cur_row_th in range(row_th, row_th + rows):
+            column_letter = xl.utils.get_column_letter(cur_column_th)
+            cell = ws[f'{column_letter}{cur_row_th}']
+
+            pixel = pixels[cur_row_th - row_th][cur_column_th - column_th]
+            if pixel == 1:
+                cell.fill = mat_black
+            else:
+                cell.fill = mat_white
+
+
+def render_start_terminal(ws, column_th, row_th):
+    """始端を描きます
+    """
+    # ドット絵を描きます
+    render_pixel_art(
+            ws=ws,
+            column_th=column_th,
+            row_th=row_th,
+            columns=9,
+            rows=9,
+            pixels=[
+                [1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                [1, 0, 0, 1, 1, 1, 0, 0, 1],
+                [1, 1, 0, 1, 1, 1, 1, 0, 1],
+                [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                [1, 0, 1, 1, 1, 1, 0, 1, 1],
+                [1, 0, 0, 1, 1, 1, 0, 0, 1],
+                [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1],
+            ])
+
+
+def render_end_terminal(ws, column_th, row_th):
+    """終端を描きます
+    """
+    # ドット絵を描きます
+    render_pixel_art(
+            ws=ws,
+            column_th=column_th,
+            row_th=row_th,
+            columns=9,
+            rows=9,
+            pixels=[
+                [1, 1, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1, 1],
+            ])
+
+
+def render_pillar_headers(document, ws):
+    """全ての柱の頭の描画
     """
 
     # 赤はデバッグ用
@@ -272,7 +338,7 @@ def render_pillar_header(document, ws):
     black_left_border = Border(left=black_side)
     black_top_left_border = Border(top=black_side, left=black_side)
 
-    # Pillars の辞書があるはず。
+    # 柱の辞書があるはず。
     pillars_dict = document['pillars']
 
     # 背景色
@@ -412,6 +478,36 @@ PILLARS
             row_th += 3
 
 
+def render_terminals(document, ws):
+    """全ての端子の描画
+    """
+    # 柱の辞書があるはず。
+    pillars_dict = document['pillars']
+
+    for pillar_id, pillar_dict in pillars_dict.items():
+
+        # もし、端子の辞書があれば
+        if 'terminals' in pillar_dict:
+            terminals_dict = pillar_dict['terminals']
+
+            for terminal_id, terminal_dict in terminals_dict.items():
+                terminal_left = terminal_dict['left']
+                terminal_top = terminal_dict['top']
+
+                if terminal_id == 'start':
+                    # 始端のドット絵を描く
+                    render_start_terminal(
+                        ws=ws,
+                        column_th=terminal_left * 3,
+                        row_th=terminal_top * 3)
+                elif terminal_id == 'end':
+                    # 終端のドット絵を描く
+                    render_end_terminal(
+                        ws=ws,
+                        column_th=terminal_left * 3,
+                        row_th=terminal_top * 3)
+
+
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
@@ -420,9 +516,15 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_pillar_header(document, ws):
-        global render_pillar_header
-        render_pillar_header(document, ws)
+    def render_pillar_headers(document, ws):
+        global render_pillar_headers
+        render_pillar_headers(document, ws)
+
+
+    @staticmethod
+    def render_terminals(document, ws):
+        global render_terminals
+        render_terminals(document, ws)
 
 
 ######################

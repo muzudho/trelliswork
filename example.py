@@ -21,7 +21,7 @@ if __name__ == '__main__':
         if 1 < len(args):
             if args[1] == 'all':
                 from examples.step1_render_empty import *
-                from examples.step2_render_pillar_header import *
+                from examples.step2_render_pillar_headers import *
 
             else:
                 raise ValueError(f'unsupported {args[1]=}')
