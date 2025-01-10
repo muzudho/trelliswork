@@ -275,6 +275,18 @@ def render_pillar_header(document, ws):
     # Pillars の辞書があるはず。
     pillars_dict = document['pillars']
 
+    # 背景色
+    mat_blue = PatternFill(patternType='solid', fgColor='DDEBF7')
+    mat_yellow = PatternFill(patternType='solid', fgColor='FFF2CC')
+
+    def color_name_to_fill_obj(color_name):
+        if color_name == 'blue':
+            return mat_blue
+        elif color_name == 'yellow':
+            return mat_yellow
+        else:
+            return None
+
     print(f"""\
 PILLARS
 -------
@@ -283,7 +295,17 @@ PILLARS
         left = whole_pillar['left']
         top = whole_pillar['top']
         width = whole_pillar['width']
-        heght = whole_pillar['height']
+        height = whole_pillar['height']
+        baseColor = whole_pillar['baseColor']
+
+        # 矩形を塗りつぶす
+        render_rectangle(
+                ws=ws,
+                column_th=left * 3 + 1,
+                row_th=top * 3 + 1,
+                columns=width * 3,
+                rows=height * 3,
+                fill_obj=color_name_to_fill_obj(baseColor))
 
         pillar_header = whole_pillar['header']
 
@@ -342,26 +364,19 @@ PILLARS
             cell = ws[f'{column_letter}{row_th}']
             cell.border = black_right_border
 
-        # 柱のヘッダーの背景色
-        mat_blue = PatternFill(patternType='solid', fgColor='DDEBF7')
-        mat_yellow = PatternFill(patternType='solid', fgColor='FFF2CC')
         row_th = top * 3 + 1
         for rectangle in header_stack_array:
 
-            rectangl_bg_color = rectangle['bgColor']
-            if rectangl_bg_color == 'blue':
-                fill_obj = mat_blue
-            elif rectangl_bg_color == 'yellow':
-                fill_obj = mat_yellow
-
-            # 矩形を塗りつぶす
-            render_rectangle(
-                    ws=ws,
-                    column_th=left * 3 + 1,
-                    row_th=row_th,
-                    columns=width * 3,
-                    rows=3,
-                    fill_obj=fill_obj)
+            # 柱のヘッダーの背景色
+            if 'bgColor' in rectangle and rectangle['bgColor']:
+                # 矩形を塗りつぶす
+                render_rectangle(
+                        ws=ws,
+                        column_th=left * 3 + 1,
+                        row_th=row_th,
+                        columns=width * 3,
+                        rows=3,
+                        fill_obj=color_name_to_fill_obj(rectangle['bgColor']))
 
             # インデント
             if 'indent' in rectangle:

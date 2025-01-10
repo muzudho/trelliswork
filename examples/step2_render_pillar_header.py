@@ -24,11 +24,12 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
-# 定規の描画
-tr.render_ruler(document, ws)
-
 # 柱の頭の描画
 tr.render_pillar_header(document, ws)
+
+# 定規の描画
+#       柱を上から塗りつぶすように描きます
+tr.render_ruler(document, ws)
 
 # ワークブックの保存            
 wb.save('./temp/examples/step2_pillar_header.xlsx')
