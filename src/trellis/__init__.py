@@ -312,6 +312,52 @@ def render_end_terminal(ws, column_th, row_th):
             ])
 
 
+# 背景色
+fill_palette = {
+    'light' : {
+        'blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
+        'yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
+    },
+    'dull' : {
+        'blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
+        'yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
+    }
+}
+
+
+def color_name_to_fill_obj(tone, color_name):
+    if tone in fill_palette:
+        if color_name in fill_palette[tone]:
+            return fill_palette[tone][color_name]
+        
+    print(f'color_name_to_fill_obj: 色がない {tone=} {color_name=}')
+    return None
+
+
+def render_pillar_mat(document, ws):
+    """全ての柱の敷物の描画
+    """
+
+    # 柱の辞書があるはず。
+    pillars_dict = document['pillars']
+
+    for pillar_id, whole_pillar in pillars_dict.items():
+        left = whole_pillar['left']
+        top = whole_pillar['top']
+        width = whole_pillar['width']
+        height = whole_pillar['height']
+        baseColor = whole_pillar['baseColor']
+
+        # 矩形を塗りつぶす
+        render_rectangle(
+                ws=ws,
+                column_th=left * 3 + 1,
+                row_th=top * 3 + 1,
+                columns=width * 3,
+                rows=height * 3,
+                fill_obj=color_name_to_fill_obj(tone='light', color_name=baseColor))
+
+
 def render_pillar_headers(document, ws):
     """全ての柱の頭の描画
     """
@@ -341,45 +387,14 @@ def render_pillar_headers(document, ws):
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
 
-    # 背景色
-    mat_blue = PatternFill(patternType='solid', fgColor='DDEBF7')
-    mat_yellow = PatternFill(patternType='solid', fgColor='FFF2CC')
-
-    def color_name_to_fill_obj(color_name):
-        if color_name == 'blue':
-            return mat_blue
-        elif color_name == 'yellow':
-            return mat_yellow
-        else:
-            return None
-
-    print(f"""\
-PILLARS
--------
-""")
     for pillar_id, whole_pillar in pillars_dict.items():
         left = whole_pillar['left']
         top = whole_pillar['top']
         width = whole_pillar['width']
         height = whole_pillar['height']
         baseColor = whole_pillar['baseColor']
-
-        # 矩形を塗りつぶす
-        render_rectangle(
-                ws=ws,
-                column_th=left * 3 + 1,
-                row_th=top * 3 + 1,
-                columns=width * 3,
-                rows=height * 3,
-                fill_obj=color_name_to_fill_obj(baseColor))
-
         pillar_header = whole_pillar['header']
-
         header_stack_array = pillar_header['stack']
-        print(f"""\
-{pillar_id}:
-    len(header_stack_array) = {len(header_stack_array)}
-""")
         height = len(header_stack_array)
 
         # 罫線で四角を作る　＞　左上
@@ -442,7 +457,7 @@ PILLARS
                         row_th=row_th,
                         columns=width * 3,
                         rows=3,
-                        fill_obj=color_name_to_fill_obj(rectangle['bgColor']))
+                        fill_obj=color_name_to_fill_obj(tone='light', color_name=rectangle['bgColor']))
 
             # インデント
             if 'indent' in rectangle:
@@ -478,6 +493,37 @@ PILLARS
             row_th += 3
 
 
+def render_terminal_shadows(document, ws):
+    """全ての端子の影の描画
+    """
+    # 柱の辞書があるはず。
+    pillars_dict = document['pillars']
+    print(f'len(pillars_dict)={len(pillars_dict)}')
+
+    for pillar_id, pillar_dict in pillars_dict.items():
+        baseColor = pillar_dict['baseColor']
+        print(f'pillar_id={pillar_id} len(pillar_dict)={len(pillar_dict)} baseColor={baseColor}')
+
+        # もし、端子の辞書があれば
+        if 'terminals' in pillar_dict:
+            terminals_dict = pillar_dict['terminals']
+            print(f'len(terminals_dict)={len(terminals_dict)}')
+
+            for terminal_id, terminal_dict in terminals_dict.items():
+                terminal_left = terminal_dict['left']
+                terminal_top = terminal_dict['top']
+                print(f'terminal_id={terminal_id} len(terminal_dict)={len(terminal_dict)} terminal_left={terminal_left} terminal_top={terminal_top}')
+
+                # 端子の影を描く
+                render_rectangle(
+                        ws=ws,
+                        column_th=(terminal_left + 1) * 3 + 1,
+                        row_th=(terminal_top + 1) * 3 + 1,
+                        columns=9,
+                        rows=9,
+                        fill_obj=color_name_to_fill_obj(tone='dull', color_name=baseColor))
+
+
 def render_terminals(document, ws):
     """全ての端子の描画
     """
@@ -498,14 +544,14 @@ def render_terminals(document, ws):
                     # 始端のドット絵を描く
                     render_start_terminal(
                         ws=ws,
-                        column_th=terminal_left * 3,
-                        row_th=terminal_top * 3)
+                        column_th=terminal_left * 3 + 1,
+                        row_th=terminal_top * 3 + 1)
                 elif terminal_id == 'end':
                     # 終端のドット絵を描く
                     render_end_terminal(
                         ws=ws,
-                        column_th=terminal_left * 3,
-                        row_th=terminal_top * 3)
+                        column_th=terminal_left * 3 + 1,
+                        row_th=terminal_top * 3 + 1)
 
 
 class TrellisInSrc():
@@ -513,6 +559,18 @@ class TrellisInSrc():
     def render_ruler(document, ws):
         global render_ruler
         render_ruler(document, ws)
+
+
+    @staticmethod
+    def render_terminal_shadows(document, ws):
+        global render_terminal_shadows
+        render_terminal_shadows(document, ws)
+
+
+    @staticmethod
+    def render_pillar_mat(document, ws):
+        global render_pillar_mat
+        render_pillar_mat(document, ws)
 
 
     @staticmethod

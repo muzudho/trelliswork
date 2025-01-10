@@ -24,6 +24,12 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
+# 全ての柱の敷物の描画
+tr.render_pillar_mat(document, ws)
+
+# 全ての端子の影の描画
+tr.render_terminal_shadows(document, ws)
+
 # 全ての柱の頭の描画
 tr.render_pillar_headers(document, ws)
 
