@@ -233,6 +233,19 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
+def render_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
+    """矩形を塗りつぶします
+    """
+    # 横へ
+    for cur_column_th in range(column_th, column_th + columns):
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+
+        # 縦へ
+        for cur_row_th in range(row_th, row_th + rows):
+            cell = ws[f'{column_letter}{cur_row_th}']
+            cell.fill = fill_obj
+
+
 def render_pillar_header(document, ws):
     """柱の頭の描画
     """
@@ -266,11 +279,13 @@ def render_pillar_header(document, ws):
 PILLARS
 -------
 """)
-    for pillar_id, pillar_body in pillars_dict.items():
-        pillar_header = pillar_body['header']
-        left = pillar_header['left']
-        top = pillar_header['top']
-        width = pillar_header['width']
+    for pillar_id, whole_pillar in pillars_dict.items():
+        left = whole_pillar['left']
+        top = whole_pillar['top']
+        width = whole_pillar['width']
+        heght = whole_pillar['height']
+
+        pillar_header = whole_pillar['header']
 
         header_stack_array = pillar_header['stack']
         print(f"""\
@@ -332,21 +347,21 @@ PILLARS
         mat_yellow = PatternFill(patternType='solid', fgColor='FFF2CC')
         row_th = top * 3 + 1
         for rectangle in header_stack_array:
-            for column_th in range(left * 3 + 1, (left + width) * 3 + 1):
-                column_letter = xl.utils.get_column_letter(column_th)
 
-                # 厚みが３セルある
-                cell_list = [
-                    ws[f'{column_letter}{row_th}'],
-                    ws[f'{column_letter}{row_th + 1}'],
-                    ws[f'{column_letter}{row_th + 2}']
-                ]
+            rectangl_bg_color = rectangle['bgColor']
+            if rectangl_bg_color == 'blue':
+                fill_obj = mat_blue
+            elif rectangl_bg_color == 'yellow':
+                fill_obj = mat_yellow
 
-                for cell in cell_list:
-                    if rectangle['bgColor'] == 'blue':
-                        cell.fill = mat_blue
-                    elif rectangle['bgColor'] == 'yellow':
-                        cell.fill = mat_yellow
+            # 矩形を塗りつぶす
+            render_rectangle(
+                    ws=ws,
+                    column_th=left * 3 + 1,
+                    row_th=row_th,
+                    columns=width * 3,
+                    rows=3,
+                    fill_obj=fill_obj)
 
             # インデント
             if 'indent' in rectangle:

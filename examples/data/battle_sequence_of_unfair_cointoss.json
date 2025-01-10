@@ -5,10 +5,12 @@
     },
     "pillars" : {
         "battleMapEventMaster" : {
+            "left" : 4,
+            "top" : 1,
+            "width" : 9,
+            "height" : 148,
             "header" : {
-                "left" : 4,
                 "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -21,13 +23,19 @@
                         "text" : "イベントマスター　戦闘マップ"
                     }
                 ]
+            },
+            "body" : {
+                "top" : 10,
+                "height" : 437,
+                "baseColor" : "blue"
             }
         },
         "encounterMapEventMaster" : {
+            "left" : 21,
+            "top" : 1,
+            "width" : 9,
+            "height" : 148,
             "header" : {
-                "left" : 21,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
@@ -44,10 +52,11 @@
             }
         },
         "inBattle" : {
+            "left" : 38,
+            "width" : 9,
+            "top" : 1,
+            "height" : 148,
             "header" : {
-                "left" : 38,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
@@ -70,10 +79,11 @@
             }
         },
         "alice" : {
+            "left" : 55,
+            "width" : 9,
+            "top" : 1,
+            "height" : 148,
             "header" : {
-                "left" : 55,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -89,10 +99,11 @@
             }
         },
         "bob" : {
+            "left" : 72,
+            "width" : 9,
+            "top" : 1,
+            "height" : 148,
             "header" : {
-                "left" : 72,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -108,10 +119,11 @@
             }
         },
         "coin" : {
+            "left" : 89,
+            "width" : 9,
+            "top" : 1,
+            "height" : 148,
             "header" : {
-                "left" : 89,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -127,10 +139,11 @@
             }
         },
         "battler" : {
+            "left" : 106,
+            "width" : 9,
+            "top" : 1,
+            "height" : 148,
             "header" : {
-                "left" : 106,
-                "top" : 1,
-                "width" : 9,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
