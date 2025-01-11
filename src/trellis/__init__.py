@@ -10,17 +10,12 @@ import json
 def render_ruler(document, ws):
     """定規の描画
     """
+    print("定規の描画")
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
     length_of_columns = document['canvas']['width'] * 3
     length_of_rows    = document['canvas']['height'] * 3
-
-    print(f"""\
-    canvas
-        length_of_columns = {length_of_columns}
-        length_of_rows    = {length_of_rows}
-    """)
 
     # 行の横幅
     for column_th in range(1, length_of_columns + 1):
@@ -233,8 +228,8 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
-def render_draw_rectangle(ws, column_th, row_th, columns, rows):
-    """矩形の枠線を描きます
+def draw_rectangle(ws, column_th, row_th, columns, rows):
+    """矩形の枠線の描画
     """
 
     # 赤はデバッグ用
@@ -308,7 +303,7 @@ def render_draw_rectangle(ws, column_th, row_th, columns, rows):
         cell.border = black_right_border
 
 
-def render_fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
+def fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
     """矩形を塗りつぶします
     """
     # 横へ
@@ -321,7 +316,7 @@ def render_fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
             cell.fill = fill_obj
 
 
-def render_pixel_art(ws, column_th, row_th, columns, rows, pixels):
+def fill_pixel_art(ws, column_th, row_th, columns, rows, pixels):
     """ドット絵を描きます
     """
     # 背景色
@@ -341,11 +336,11 @@ def render_pixel_art(ws, column_th, row_th, columns, rows, pixels):
                 cell.fill = mat_white
 
 
-def render_start_terminal(ws, column_th, row_th):
+def fill_start_terminal(ws, column_th, row_th):
     """始端を描きます
     """
     # ドット絵を描きます
-    render_pixel_art(
+    fill_pixel_art(
             ws=ws,
             column_th=column_th,
             row_th=row_th,
@@ -364,11 +359,11 @@ def render_start_terminal(ws, column_th, row_th):
             ])
 
 
-def render_end_terminal(ws, column_th, row_th):
+def fill_end_terminal(ws, column_th, row_th):
     """終端を描きます
     """
     # ドット絵を描きます
-    render_pixel_art(
+    fill_pixel_art(
             ws=ws,
             column_th=column_th,
             row_th=row_th,
@@ -412,6 +407,7 @@ def color_name_to_fill_obj(tone, color_name):
 def render_all_pillar_rugs(document, ws):
     """全ての柱の敷物の描画
     """
+    print('全ての柱の敷物の描画')
 
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
@@ -424,7 +420,7 @@ def render_all_pillar_rugs(document, ws):
         baseColor = whole_pillar['baseColor']
 
         # 矩形を塗りつぶす
-        render_fill_rectangle(
+        fill_rectangle(
                 ws=ws,
                 column_th=left * 3 + 1,
                 row_th=top * 3 + 1,
@@ -436,6 +432,7 @@ def render_all_pillar_rugs(document, ws):
 def render_all_pillar_headers(document, ws):
     """全ての柱の頭の描画
     """
+    print('全ての柱の頭の描画')
 
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
@@ -451,7 +448,7 @@ def render_all_pillar_headers(document, ws):
         height = len(header_stack_array)
 
         # 矩形の枠線を描きます
-        render_draw_rectangle(
+        draw_rectangle(
                 ws=ws,
                 column_th=left * 3,
                 row_th=top * 3,
@@ -464,7 +461,7 @@ def render_all_pillar_headers(document, ws):
             # 柱のヘッダーの背景色
             if 'bgColor' in rectangle and rectangle['bgColor']:
                 # 矩形を塗りつぶす
-                render_fill_rectangle(
+                fill_rectangle(
                         ws=ws,
                         column_th=left * 3 + 1,
                         row_th=row_th,
@@ -481,7 +478,6 @@ def render_all_pillar_headers(document, ws):
             # アイコン（があれば画像をワークシートのセルに挿入）
             if 'icon' in rectangle:
                 image_basename = rectangle['icon']  # 例： 'white-game-object.png'
-                print(f'image_basename=[{image_basename}]')
 
                 column_th = left * 3 + 3 * indent + 1
                 column_letter = xl.utils.get_column_letter(column_th)
@@ -509,26 +505,24 @@ def render_all_pillar_headers(document, ws):
 def render_all_terminal_shadows(document, ws):
     """全ての端子の影の描画
     """
+    print('全ての端子の影の描画')
+
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
-    print(f'len(pillars_dict)={len(pillars_dict)}')
 
     for pillar_id, pillar_dict in pillars_dict.items():
         baseColor = pillar_dict['baseColor']
-        print(f'pillar_id={pillar_id} len(pillar_dict)={len(pillar_dict)} baseColor={baseColor}')
 
         # もし、端子の辞書があれば
         if 'terminals' in pillar_dict:
             terminals_dict = pillar_dict['terminals']
-            print(f'len(terminals_dict)={len(terminals_dict)}')
 
             for terminal_id, terminal_dict in terminals_dict.items():
                 terminal_left = terminal_dict['left']
                 terminal_top = terminal_dict['top']
-                print(f'terminal_id={terminal_id} len(terminal_dict)={len(terminal_dict)} terminal_left={terminal_left} terminal_top={terminal_top}')
 
                 # 端子の影を描く
-                render_fill_rectangle(
+                fill_rectangle(
                         ws=ws,
                         column_th=(terminal_left + 1) * 3 + 1,
                         row_th=(terminal_top + 1) * 3 + 1,
@@ -540,6 +534,8 @@ def render_all_terminal_shadows(document, ws):
 def render_all_terminals(document, ws):
     """全ての端子の描画
     """
+    print('全ての端子の描画')
+
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
 
@@ -555,13 +551,13 @@ def render_all_terminals(document, ws):
 
                 if terminal_id == 'start':
                     # 始端のドット絵を描く
-                    render_start_terminal(
+                    fill_start_terminal(
                         ws=ws,
                         column_th=terminal_left * 3 + 1,
                         row_th=terminal_top * 3 + 1)
                 elif terminal_id == 'end':
                     # 終端のドット絵を描く
-                    render_end_terminal(
+                    fill_end_terminal(
                         ws=ws,
                         column_th=terminal_left * 3 + 1,
                         row_th=terminal_top * 3 + 1)
@@ -570,6 +566,8 @@ def render_all_terminals(document, ws):
 def render_all_cards(document, ws):
     """全てのカードの描画
     """
+    print('全てのカードの描画')
+
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
 
@@ -586,7 +584,7 @@ def render_all_cards(document, ws):
                 card_height = card_dict['height']
 
                 # カードの枠線を引く
-                render_draw_rectangle(
+                draw_rectangle(
                         ws=ws,
                         column_th=card_left * 3,
                         row_th=card_top * 3,
