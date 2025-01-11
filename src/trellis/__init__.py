@@ -766,6 +766,30 @@ def render_all_line_tapes(document, ws):
     """
     print('全てのラインテープの描画')
 
+    # もし、ラインテープの配列があれば
+    if 'lineTapes' in document:
+        line_tape_list = document['lineTapes']
+
+        for line_tape_dict in line_tape_list:
+            if 'color' in line_tape_dict:
+                line_tape_color = line_tape_dict['color']
+                segments_dict = line_tape_dict['segments']
+
+                for segment_dict in segments_dict:
+                    line_tape_left = segment_dict['left']
+                    line_tape_top = segment_dict['top']
+                    line_tape_width = segment_dict['width']
+                    line_tape_height = segment_dict['height']
+
+                    # 端子の影を描く
+                    fill_rectangle(
+                            ws=ws,
+                            column_th=line_tape_left * square_unit + 1,
+                            row_th=line_tape_top * square_unit + 1,
+                            columns=line_tape_width * square_unit,
+                            rows=line_tape_height * square_unit,
+                            fill_obj=tone_and_color_name_to_fill_obj(line_tape_color))
+
 
 class TrellisInSrc():
     @staticmethod
