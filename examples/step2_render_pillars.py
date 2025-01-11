@@ -43,4 +43,4 @@ tr.render_all_cards(document, ws)
 tr.render_ruler(document, ws)
 
 # ワークブックの保存            
-wb.save('./temp/examples/step2_pillar_header.xlsx')
+wb.save('./temp/examples/step2_pillars.xlsx')

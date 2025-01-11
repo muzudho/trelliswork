@@ -7,6 +7,10 @@ from openpyxl.drawing.image import Image as XlImage
 import json
 
 
+# Trellis では、3x3cells で１マスとします
+square_unit = 3
+
+
 def render_ruler(document, ws):
     """定規の描画
     """
@@ -14,8 +18,8 @@ def render_ruler(document, ws):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    length_of_columns = document['canvas']['width'] * 3
-    length_of_rows    = document['canvas']['height'] * 3
+    length_of_columns = document['canvas']['width'] * square_unit
+    length_of_rows    = document['canvas']['height'] * square_unit
 
     # 行の横幅
     for column_th in range(1, length_of_columns + 1):
@@ -39,7 +43,7 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　上辺
     row_th = 1
-    for column_th in range(4, length_of_columns - 2, 3):
+    for column_th in range(4, length_of_columns - 2, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -69,11 +73,11 @@ def render_ruler(document, ws):
     #     print(f"""\
     # column_th={column_th}
     # (column_th - 1)={(column_th - 1)}
-    # (column_th - 1) // 3={(column_th - 1) // 3}
-    # (column_th - 1) // 3 % 2={(column_th - 1) // 3 % 2}
+    # (column_th - 1) // square_unit={(column_th - 1) // square_unit}
+    # (column_th - 1) // square_unit % 2={(column_th - 1) // square_unit % 2}
     # """)
-        unit_cell = (column_th - 1) // 3
-        is_left_end = (column_th - 1) % 3 == 0
+        unit_cell = (column_th - 1) // square_unit
+        is_left_end = (column_th - 1) % square_unit == 0
 
         if is_left_end:
             cell.value = unit_cell
@@ -94,11 +98,11 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　上側の両端の１セルの隙間
     column_th_list = [
-        3,                      # 定規の着色　＞　左上の１セルの隙間
-        length_of_columns - 2   # 定規の着色　＞　右上の１セルの隙間
+        square_unit,                            # 定規の着色　＞　左上の１セルの隙間
+        length_of_columns - (square_unit - 1)   # 定規の着色　＞　右上の１セルの隙間
     ]
     for column_th in column_th_list:
-        unit_cell = (column_th - 1) // 3
+        unit_cell = (column_th - 1) // square_unit
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         if unit_cell % 2 == 0:
@@ -109,11 +113,11 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左辺
     column_th = 1
-    for row_th in range(1, length_of_rows - 1, 3):
+    for row_th in range(1, length_of_rows - 1, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        unit_cell = (row_th - 1) // 3
-        is_top_end = (row_th - 1) % 3 == 0
+        unit_cell = (row_th - 1) // square_unit
+        is_top_end = (row_th - 1) % square_unit == 0
 
         cell = ws[f'{column_letter}{row_th}']
         
@@ -136,13 +140,13 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　下辺
     row_th = length_of_rows
-    bottom_is_dark_gray = (row_th - 1) // 3 % 2 == 0
-    for column_th in range(4, length_of_columns - 2, 3):
+    bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
+    for column_th in range(4, length_of_columns - 2, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
-        unit_cell = (column_th - 1) // 3
-        is_left_end = (column_th - 1) % 3 == 0
+        unit_cell = (column_th - 1) // square_unit
+        is_left_end = (column_th - 1) % square_unit == 0
 
         if is_left_end:
             cell.value = unit_cell
@@ -175,11 +179,11 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　下側の両端の１セルの隙間
     column_th_list = [
-        3,                      # 定規の着色　＞　左下の１セルの隙間
-        length_of_columns - 2   # 定規の着色　＞　右下の１セルの隙間
+        square_unit,                            # 定規の着色　＞　左下の１セルの隙間
+        length_of_columns - (square_unit - 1)   # 定規の着色　＞　右下の１セルの隙間
     ]
     for column_th in column_th_list:
-        unit_cell = (column_th - 1) // 3
+        unit_cell = (column_th - 1) // square_unit
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         if unit_cell % 2 == 0:
@@ -196,12 +200,12 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　右辺
     column_th = length_of_columns - 1
-    rightest_is_dark_gray = (column_th - 1) // 3 % 2 == 0
-    for row_th in range(1, length_of_rows - 1, 3):
+    rightest_is_dark_gray = (column_th - 1) // square_unit % 2 == 0
+    for row_th in range(1, length_of_rows - 1, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        unit_cell = (row_th - 1) // 3
-        is_top_end = (row_th - 1) % 3 == 0
+        unit_cell = (row_th - 1) // square_unit
+        is_top_end = (row_th - 1) % square_unit == 0
 
         cell = ws[f'{column_letter}{row_th}']
         
@@ -255,50 +259,50 @@ def draw_rectangle(ws, column_th, row_th, columns, rows):
     black_top_left_border = Border(top=black_side, left=black_side)
 
     # 罫線で四角を作る　＞　左上
-    cur_column_th = column_th + 1
+    cur_column_th = column_th
     column_letter = xl.utils.get_column_letter(cur_column_th)
-    cur_row_th = row_th + 1
+    cur_row_th = row_th
     cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_top_left_border
 
     # 罫線で四角を作る　＞　上辺
-    for cur_column_th in range(column_th + 2, column_th + columns):
+    for cur_column_th in range(column_th + 1, column_th + columns - 1):
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_top_border
 
     # 罫線で四角を作る　＞　右上
-    cur_column_th = column_th + columns
+    cur_column_th = column_th + columns - 1
     column_letter = xl.utils.get_column_letter(cur_column_th)
     cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_top_right_border
 
     # 罫線で四角を作る　＞　左辺
-    cur_column_th = column_th + 1
-    for cur_row_th in range(row_th + 2, row_th + rows):
+    cur_column_th = column_th
+    for cur_row_th in range(row_th + 1, row_th + rows - 1):
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_left_border
 
     # 罫線で四角を作る　＞　左下
-    cur_row_th = row_th + rows
+    cur_row_th = row_th + rows - 1
     cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_bottom_left_border
 
     # 罫線で四角を作る　＞　下辺
-    for cur_column_th in range(column_th + 2, column_th + columns):
+    for cur_column_th in range(column_th + 1, column_th + columns - 1):
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_bottom_border
 
     # 罫線で四角を作る　＞　右下
-    cur_column_th = column_th + columns
+    cur_column_th = column_th + columns - 1
     column_letter = xl.utils.get_column_letter(cur_column_th)
     cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_bottom_right_border
 
     # 罫線で四角を作る　＞　右辺
-    for cur_row_th in range(row_th + 2, row_th + rows):
+    for cur_row_th in range(row_th + 1, row_th + rows - 1):
         cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_right_border
 
@@ -314,6 +318,7 @@ def fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
         for cur_row_th in range(row_th, row_th + rows):
             cell = ws[f'{column_letter}{cur_row_th}']
             cell.fill = fill_obj
+    
 
 
 def fill_pixel_art(ws, column_th, row_th, columns, rows, pixels):
@@ -422,11 +427,58 @@ def render_all_pillar_rugs(document, ws):
         # 矩形を塗りつぶす
         fill_rectangle(
                 ws=ws,
-                column_th=left * 3 + 1,
-                row_th=top * 3 + 1,
-                columns=width * 3,
-                rows=height * 3,
+                column_th=left * square_unit + 1,
+                row_th=top * square_unit + 1,
+                columns=width * square_unit,
+                rows=height * square_unit,
                 fill_obj=color_name_to_fill_obj(tone='light', color_name=baseColor))
+
+
+def render_pillar_header_line(ws, rectangle, column_th, row_th, columns, rows):
+    """柱のヘッダーの１行の描画
+    """
+
+    # 柱のヘッダーの背景色
+    if 'bgColor' in rectangle and rectangle['bgColor']:
+        # 矩形を塗りつぶす
+        fill_rectangle(
+                ws=ws,
+                column_th=column_th,
+                row_th=row_th,
+                columns=columns,
+                rows=1 * square_unit,   # １行分
+                fill_obj=color_name_to_fill_obj(tone='light', color_name=rectangle['bgColor']))
+
+    # インデント
+    if 'indent' in rectangle:
+        indent = rectangle['indent']
+    else:
+        indent = 0
+
+    # アイコン（があれば画像をワークシートのセルに挿入）
+    if 'icon' in rectangle:
+        image_basename = rectangle['icon']  # 例： 'white-game-object.png'
+
+        cur_column_th = column_th + (indent * square_unit)
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        #
+        # NOTE 元の画像サイズで貼り付けられるわけではないの、何でだろう？ 60x60pixels の画像にしておくと、90x90pixels のセルに合う？
+        #
+        # TODO 📖 [PythonでExcelファイルに画像を挿入する/列の幅を調整する](https://qiita.com/kaba_san/items/b231a41891ebc240efc7)
+        # 難しい
+        #
+        ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
+
+    # テキスト（があれば）
+    if 'text' in rectangle:
+        text = rectangle['text']
+        
+        # 左に１マス分のアイコンを置く前提
+        icon_columns = square_unit
+        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{row_th + 1}']
+        cell.value = rectangle['text']
 
 
 def render_all_pillar_headers(document, ws):
@@ -447,59 +499,31 @@ def render_all_pillar_headers(document, ws):
         header_height = pillar_header['height']
         header_stack_array = pillar_header['stack']
 
+        column_th = header_left * square_unit + 1
+        row_th = header_top * square_unit + 1
+        columns = header_width * square_unit
+        rows = header_height * square_unit
+
         # ヘッダーの矩形の枠線を描きます
         draw_rectangle(
                 ws=ws,
-                column_th=header_left * 3,
-                row_th=header_top * 3,
-                columns=header_width * 3,
-                rows=header_height * 3)
+                column_th=column_th,
+                row_th=row_th,
+                columns=columns,
+                rows=rows)
 
-        row_th = header_top * 3 + 1
         for rectangle in header_stack_array:
 
-            # 柱のヘッダーの背景色
-            if 'bgColor' in rectangle and rectangle['bgColor']:
-                # 矩形を塗りつぶす
-                fill_rectangle(
-                        ws=ws,
-                        column_th=header_left * 3 + 1,
-                        row_th=row_th,
-                        columns=header_width * 3,
-                        rows=3,
-                        fill_obj=color_name_to_fill_obj(tone='light', color_name=rectangle['bgColor']))
-
-            # インデント
-            if 'indent' in rectangle:
-                indent = rectangle['indent']
-            else:
-                indent = 0
-
-            # アイコン（があれば画像をワークシートのセルに挿入）
-            if 'icon' in rectangle:
-                image_basename = rectangle['icon']  # 例： 'white-game-object.png'
-
-                column_th = header_left * 3 + 3 * indent + 1
-                column_letter = xl.utils.get_column_letter(column_th)
-                #
-                # NOTE 元の画像サイズで貼り付けられるわけではないの、何でだろう？ 60x60pixels の画像にしておくと、90x90pixels のセルに合う？
-                #
-                # TODO 📖 [PythonでExcelファイルに画像を挿入する/列の幅を調整する](https://qiita.com/kaba_san/items/b231a41891ebc240efc7)
-                # 難しい
-                #
-                ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
-
-            # テキスト（があれば）
-            if 'text' in rectangle:
-                text = rectangle['text']
-                
-                column_th = (header_left + 1) * 3 + 3 * indent + 1
-                column_letter = xl.utils.get_column_letter(column_th)
-                cell = ws[f'{column_letter}{row_th + 1}']
-                cell.value = rectangle['text']
-                 
-
-            row_th += 3
+            # 柱のヘッダーの１行の描画
+            render_pillar_header_line(
+                    ws=ws,
+                    rectangle=rectangle,
+                    column_th=column_th,
+                    row_th=row_th,
+                    columns=columns,
+                    rows=rows)
+            
+            row_th += square_unit
 
 
 def render_all_terminal_shadows(document, ws):
@@ -524,8 +548,8 @@ def render_all_terminal_shadows(document, ws):
                 # 端子の影を描く
                 fill_rectangle(
                         ws=ws,
-                        column_th=(terminal_left + 1) * 3 + 1,
-                        row_th=(terminal_top + 1) * 3 + 1,
+                        column_th=(terminal_left + 1) * square_unit + 1,
+                        row_th=(terminal_top + 1) * square_unit + 1,
                         columns=9,
                         rows=9,
                         fill_obj=color_name_to_fill_obj(tone='dull', color_name=baseColor))
@@ -553,14 +577,14 @@ def render_all_terminals(document, ws):
                     # 始端のドット絵を描く
                     fill_start_terminal(
                         ws=ws,
-                        column_th=terminal_left * 3 + 1,
-                        row_th=terminal_top * 3 + 1)
+                        column_th=terminal_left * square_unit + 1,
+                        row_th=terminal_top * square_unit + 1)
                 elif terminal_id == 'end':
                     # 終端のドット絵を描く
                     fill_end_terminal(
                         ws=ws,
-                        column_th=terminal_left * 3 + 1,
-                        row_th=terminal_top * 3 + 1)
+                        column_th=terminal_left * square_unit + 1,
+                        row_th=terminal_top * square_unit + 1)
 
 
 def render_all_cards(document, ws):
@@ -586,10 +610,10 @@ def render_all_cards(document, ws):
                 # カードの枠線を引く
                 draw_rectangle(
                         ws=ws,
-                        column_th=card_left * 3,
-                        row_th=card_top * 3,
-                        columns=card_width * 3,
-                        rows=card_height * 3)
+                        column_th=card_left * square_unit + 1,
+                        row_th=card_top * square_unit + 1,
+                        columns=card_width * square_unit,
+                        rows=card_height * square_unit)
 
 
 class TrellisInSrc():
