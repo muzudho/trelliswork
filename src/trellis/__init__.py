@@ -11,6 +11,39 @@ import json
 square_unit = 3
 
 
+# 背景色
+fill_palette = {
+    'light' : {
+        'black' : PatternFill(patternType='solid', fgColor='000000'),
+        'blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
+        'white' : PatternFill(patternType='solid', fgColor='FFFFFF'),
+        'yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
+    },
+    'dull' : {
+        'black' : PatternFill(patternType='solid', fgColor='111111'),
+        'blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
+        'white' : PatternFill(patternType='solid', fgColor='F2F2F2'),
+        'yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
+    }
+}
+
+
+def tone_and_color_name_to_fill_obj(tone_and_color_name):
+    """トーン名・色名を FillPattern オブジェクトに変換します
+    """
+
+    tone, color = tone_and_color_name.split('.', 2)
+
+    if tone in fill_palette:
+        tone = tone.strip()
+        if color in fill_palette[tone]:
+            color = color.strip()
+            return fill_palette[tone][color]
+        
+    print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
+    return None
+
+
 def render_ruler(document, ws):
     """定規の描画
     """
@@ -387,28 +420,6 @@ def fill_end_terminal(ws, column_th, row_th):
             ])
 
 
-# 背景色
-fill_palette = {
-    'light' : {
-        'blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
-        'yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
-    },
-    'dull' : {
-        'blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
-        'yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
-    }
-}
-
-
-def color_name_to_fill_obj(tone, color_name):
-    if tone in fill_palette:
-        if color_name in fill_palette[tone]:
-            return fill_palette[tone][color_name]
-        
-    print(f'color_name_to_fill_obj: 色がない {tone=} {color_name=}')
-    return None
-
-
 def render_all_pillar_rugs(document, ws):
     """全ての柱の敷物の描画
     """
@@ -431,7 +442,7 @@ def render_all_pillar_rugs(document, ws):
                 row_th=top * square_unit + 1,
                 columns=width * square_unit,
                 rows=height * square_unit,
-                fill_obj=color_name_to_fill_obj(tone='light', color_name=baseColor))
+                fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
 
 def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
@@ -447,7 +458,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
                 row_th=row_th,
                 columns=columns,
                 rows=1 * square_unit,   # １行分
-                fill_obj=color_name_to_fill_obj(tone='light', color_name=paper_strip['bgColor']))
+                fill_obj=tone_and_color_name_to_fill_obj(paper_strip['bgColor']))
 
     # インデント
     if 'indent' in paper_strip:
@@ -538,8 +549,6 @@ def render_all_terminal_shadows(document, ws):
     pillars_dict = document['pillars']
 
     for pillar_id, pillar_dict in pillars_dict.items():
-        baseColor = pillar_dict['baseColor']
-
         # もし、端子の辞書があれば
         if 'terminals' in pillar_dict:
             terminals_dict = pillar_dict['terminals']
@@ -547,6 +556,7 @@ def render_all_terminal_shadows(document, ws):
             for terminal_id, terminal_dict in terminals_dict.items():
                 terminal_left = terminal_dict['left']
                 terminal_top = terminal_dict['top']
+                terminal_shadow_color = terminal_dict['shadowColor']
 
                 # 端子の影を描く
                 fill_rectangle(
@@ -555,7 +565,7 @@ def render_all_terminal_shadows(document, ws):
                         row_th=(terminal_top + 1) * square_unit + 1,
                         columns=9,
                         rows=9,
-                        fill_obj=color_name_to_fill_obj(tone='dull', color_name=baseColor))
+                        fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
 
 
 def render_all_terminals(document, ws):
@@ -582,6 +592,7 @@ def render_all_terminals(document, ws):
                         ws=ws,
                         column_th=terminal_left * square_unit + 1,
                         row_th=terminal_top * square_unit + 1)
+                
                 elif terminal_id == 'end':
                     # 終端のドット絵を描く
                     fill_end_terminal(
