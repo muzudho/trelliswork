@@ -134,7 +134,6 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_yellow",
@@ -526,7 +525,7 @@
                             "text2" : "［戦闘者　＞　「当たった」］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue"
+                            "bgColor" : "xl_soft.xl_blue"
                         }
                     ]
                 },
@@ -554,7 +553,7 @@
                             "text2" : "［戦闘者　＞　「ハズレかあ」］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue"
+                            "bgColor" : "xl_soft.xl_blue"
                         }
                     ]
                 },
@@ -582,7 +581,7 @@
                             "text2" : "［戦闘者　＞　優勝を宣言する］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue"
+                            "bgColor" : "xl_soft.xl_blue"
                         }
                     ]
                 },
@@ -631,7 +630,6 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 2,
-                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -725,6 +723,9 @@
                         {
                             "bgColor" : "xl_pale.xl_white",
                             "text2" : "※ %Alice戦闘者% と同様"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white"
                         }
                     ]
                 },
@@ -749,6 +750,9 @@
                         {
                             "bgColor" : "xl_pale.xl_white",
                             "text2" : "※ %Alice戦闘者% と同様"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white"
                         }
                     ]
                 },
@@ -797,7 +801,6 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 2,
-                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -923,7 +926,7 @@
                             "text2" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
+                            "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "overview.png",
                             "text2" : "「やったぜ！　当たった！」"
                         },
@@ -955,7 +958,7 @@
                             "text2" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
+                            "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "overview.png",
                             "text2" : "「ハズレかあ」"
                         },
@@ -987,7 +990,7 @@
                             "text2" : "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
+                            "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "overview.png",
                             "text2" : "「【戦闘．設定　＞　優勝span】 点取ったから、わたしの優勝だな」"
                         },
