@@ -9,7 +9,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.blue",
+            "baseColor" : "pale.blue",
             "cards" : [
                 {
                     "left" : 4,
@@ -18,11 +18,11 @@
                     "height" : 2,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "text" : "戦闘マップ"
                         },
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "indent" : 1,
                             "icon" : "white-game-object.png",
                             "text" : "イベントマスター　戦闘マップ"
@@ -35,6 +35,25 @@
                     "width" : 9,
                     "height" : 4,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "pale.white",
+                            "icon" : "false-flag.png",
+                            "text" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグがＯｆｆのとき"
+                        },
+                        {
+                            "bgColor" : "pale.white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text" : "♠戦闘入後　＞　戦闘マップに入っている"
+                        },
+                        {
+                            "bgColor" : "pale.blue",
+                            "icon" : "function-call.png",
+                            "text" : "［♠戦闘入後　＞　戦闘マップに入っている］"
+                        },
+                        {
+                            "bgColor" : "pale.blue"
+                        }
                     ]
                 }
             ],
@@ -51,7 +70,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.yellow",
+            "baseColor" : "pale.yellow",
             "cards" : [
                 {
                     "left" : 21,
@@ -60,12 +79,12 @@
                     "height" : 2,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "icon" : "common-event-list.png",
                             "text" : "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
                             "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
@@ -87,7 +106,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.blue",
+            "baseColor" : "pale.blue",
             "cards" : [
                 {
                     "left" : 38,
@@ -96,18 +115,18 @@
                     "height" : 3,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "icon" : "common-event-list.png",
                             "text" : "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
                             "text" : "共通イベント／自作戦闘"
                         },
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "indent" : 2,
                             "icon" : "global-game-object.png",
                             "text" : "戦闘中"
@@ -168,7 +187,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.blue",
+            "baseColor" : "pale.blue",
             "cards" : [
                 {
                     "left" : 55,
@@ -177,11 +196,11 @@
                     "height" : 2,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "text" : "戦闘マップ"
                         },
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
                             "text" : "Alice戦闘者"
@@ -242,7 +261,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.blue",
+            "baseColor" : "pale.blue",
             "cards" : [
                 {
                     "left" : 72,
@@ -251,11 +270,11 @@
                     "height" : 2,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "text" : "戦闘マップ"
                         },
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
                             "text" : "Bob戦闘者"
@@ -316,7 +335,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.blue",
+            "baseColor" : "pale.blue",
             "cards" : [
                 {
                     "left" : 89,
@@ -325,11 +344,11 @@
                     "height" : 2,    
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "text" : "戦闘マップ"
                         },
                         {
-                            "bgColor" : "light.blue",
+                            "bgColor" : "pale.blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
                             "text" : "コイン"
@@ -351,7 +370,7 @@
             "top" : 1,
             "width" : 9,
             "height" : 148,
-            "baseColor" : "light.yellow",
+            "baseColor" : "pale.yellow",
             "cards" : [
                 {
                     "left" : 106,
@@ -360,12 +379,12 @@
                     "height" : 2,
                     "paperStrips" : [
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "icon" : "common-event-list.png",
                             "text" : "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "light.yellow",
+                            "bgColor" : "pale.yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
                             "text" : "共通イベント／自作戦闘／戦闘者"

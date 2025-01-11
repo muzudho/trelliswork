@@ -13,7 +13,7 @@ square_unit = 3
 
 # 背景色
 fill_palette = {
-    'light' : {
+    'pale' : {
         'black' : PatternFill(patternType='solid', fgColor='000000'),
         'blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
         'white' : PatternFill(patternType='solid', fgColor='FFFFFF'),
@@ -478,7 +478,11 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         # TODO 📖 [PythonでExcelファイルに画像を挿入する/列の幅を調整する](https://qiita.com/kaba_san/items/b231a41891ebc240efc7)
         # 難しい
         #
-        ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
+        try:
+            ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
+        except FileNotFoundError as e:
+            print(f'FileNotFoundError {e=} {image_basename=}')
+
 
     # テキスト（があれば）
     if 'text' in paper_strip:
