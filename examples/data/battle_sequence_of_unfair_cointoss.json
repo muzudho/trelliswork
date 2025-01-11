@@ -28,6 +28,12 @@
                             "text" : "イベントマスター　戦闘マップ"
                         }
                     ]
+                },
+                {
+                    "left" : 3,
+                    "top" : 10,
+                    "width" : 9,
+                    "height" : 4
                 }
             ],
             "terminals" : {
@@ -35,15 +41,7 @@
                     "left" : 6,
                     "top" : 5
                 }
-            },
-            "cards" : [
-                {
-                    "left" : 3,
-                    "top" : 10,
-                    "width" : 9,
-                    "height" : 4
-                }
-            ]
+            }
         },
         "encounterMapEventMaster" : {
             "left" : 21,
@@ -70,9 +68,7 @@
                             "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
                         }
                     ]
-                }
-            ],
-            "cards" : [
+                },
                 {
                     "left" : 21,
                     "top" :15,
@@ -112,15 +108,7 @@
                             "text" : "戦闘中"
                         }
                     ]
-                }
-            ],
-            "terminals" : {
-                "end" : {
-                    "left" : 40,
-                    "top" : 138
-                }
-            },
-            "cards" : [
+                },
                 {
                     "left" : 37,
                     "top" : 25,
@@ -151,7 +139,13 @@
                     "width" : 9,
                     "height" : 6
                 }
-            ]
+            ],
+            "terminals" : {
+                "end" : {
+                    "left" : 40,
+                    "top" : 138
+                }
+            }
         },
         "alice" : {
             "left" : 55,
@@ -177,15 +171,7 @@
                             "text" : "Alice戦闘者"
                         }
                     ]                
-                }
-            ],
-            "terminals" : {
-                "start" : {
-                    "left" : 57,
-                    "top" : 5
-                }
-            },
-            "cards" : [
+                },
                 {
                     "left" : 54,
                     "top" : 10,
@@ -216,7 +202,13 @@
                     "width" : 9,
                     "height" : 3
                 }
-            ]
+            ],
+            "terminals" : {
+                "start" : {
+                    "left" : 57,
+                    "top" : 5
+                }
+            }
         },
         "bob" : {
             "left" : 72,
@@ -242,15 +234,7 @@
                             "text" : "Bob戦闘者"
                         }
                     ]                
-                }
-            ],
-            "terminals" : {
-                "start" : {
-                    "left" : 74,
-                    "top" : 5
-                }
-            },
-            "cards" : [
+                },
                 {
                     "left" : 71,
                     "top" : 10,
@@ -281,7 +265,13 @@
                     "width" : 9,
                     "height" : 3
                 }
-            ]
+            ],
+            "terminals" : {
+                "start" : {
+                    "left" : 74,
+                    "top" : 5
+                }
+            }
         },
         "coin" : {
             "left" : 89,
@@ -307,9 +297,7 @@
                             "text" : "コイン"
                         }
                     ]
-                }
-            ],
-            "cards" : [
+                },
                 {
                     "left" : 88,
                     "top" : 52,
@@ -343,9 +331,7 @@
                             "text" : "共通イベント／自作戦闘／戦闘者"
                         }
                     ]                
-                }
-            ],
-            "cards" : [
+                },
                 {
                     "left" : 106,
                     "top" : 15,

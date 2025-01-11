@@ -498,7 +498,6 @@ def render_all_pillar_headers(document, ws):
             header_top = pillar_header['top']
             header_width = pillar_header['width']
             header_height = pillar_header['height']
-            paper_strip_list = pillar_header['paperStrips']
 
             column_th = header_left * square_unit + 1
             row_th = header_top * square_unit + 1
@@ -513,18 +512,21 @@ def render_all_pillar_headers(document, ws):
                     columns=columns,
                     rows=rows)
 
-            for paper_strip in paper_strip_list:
+            if 'paperStrips' in pillar_header:
+                paper_strip_list = pillar_header['paperStrips']
 
-                # 短冊１行の描画
-                render_paper_strip(
-                        ws=ws,
-                        paper_strip=paper_strip,
-                        column_th=column_th,
-                        row_th=row_th,
-                        columns=columns,
-                        rows=rows)
-                
-                row_th += square_unit
+                for paper_strip in paper_strip_list:
+
+                    # 短冊１行の描画
+                    render_paper_strip(
+                            ws=ws,
+                            paper_strip=paper_strip,
+                            column_th=column_th,
+                            row_th=row_th,
+                            columns=columns,
+                            rows=rows)
+                    
+                    row_th += square_unit
 
 
 def render_all_terminal_shadows(document, ws):
