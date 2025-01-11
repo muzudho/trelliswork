@@ -11,19 +11,92 @@ import json
 square_unit = 3
 
 
-# 背景色
+# エクセルの色システム（勝手に作ったったもの）
+fill_palette_none = PatternFill(patternType=None)
 fill_palette = {
-    'pale' : {
-        'black' : PatternFill(patternType='solid', fgColor='000000'),
-        'blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
-        'white' : PatternFill(patternType='solid', fgColor='FFFFFF'),
-        'yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
+    'xl_theme' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='FFFFFF'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='000000'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='E7E6E6'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='44546A'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='5B9BD5'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='ED7D31'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='A5A5A5'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFC000'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='4472C4'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='70AD47'),
     },
-    'dull' : {
-        'black' : PatternFill(patternType='solid', fgColor='111111'),
-        'blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
-        'white' : PatternFill(patternType='solid', fgColor='F2F2F2'),
-        'yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
+    'xl_pale' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='F2F2F2'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='808080'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='AEAAAA'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='D6DCE4'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='FCE4D6'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='EDEDED'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='D9E1F2'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='E2EFDA'),
+    },
+    'xl_light' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='D9D9D9'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='595959'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='757171'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='ACB9CA'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='F8CBAD'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='DBDBDB'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='B4C6E7'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='C6E0B4'),
+    },
+    'xl_soft' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='BFBFBF'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='404040'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='3A3838'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='8497B0'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='9BC2E6'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='F4B084'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='C9C9C9'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFD966'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='8EA9DB'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='A9D08E'),
+    },
+    'xl_strong' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='A6A6A6'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='262626'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='3A3838'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='333F4F'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='2F75B5'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='C65911'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='7B7B7B'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='BF8F00'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='305496'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='548235'),
+    },
+    'xl_deep' : {
+        'xl_white' : PatternFill(patternType='solid', fgColor='808080'),
+        'xl_black' : PatternFill(patternType='solid', fgColor='0D0D0D'),
+        'xl_red_gray' : PatternFill(patternType='solid', fgColor='161616'),
+        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='161616'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='1F4E78'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='833C0C'),
+        'xl_gray' : PatternFill(patternType='solid', fgColor='525252'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='806000'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='203764'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='375623'),
+    },
+    'xl_standard' : {
+        'xl_brown' : PatternFill(patternType='solid', fgColor='808080'),
+        'xl_red' : PatternFill(patternType='solid', fgColor='0D0D0D'),
+        'xl_orange' : PatternFill(patternType='solid', fgColor='161616'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='161616'),
+        'xl_yellow_green' : PatternFill(patternType='solid', fgColor='1F4E78'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='833C0C'),
+        'xl_dodger_blue' : PatternFill(patternType='solid', fgColor='525252'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='806000'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='203764'),
+        'xl_violet' : PatternFill(patternType='solid', fgColor='375623'),
     }
 }
 
@@ -41,7 +114,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
             return fill_palette[tone][color]
         
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
-    return None
+    return fill_palette_none
 
 
 def render_ruler(document, ws):
