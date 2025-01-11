@@ -590,35 +590,6 @@ def render_all_terminals(document, ws):
                         row_th=terminal_top * square_unit + 1)
 
 
-def render_all_cards(document, ws):
-    """全てのカードの描画
-    """
-    print('全てのカードの描画')
-
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
-
-    for pillar_id, pillar_dict in pillars_dict.items():
-
-        # もし、カードの配列があれば
-        if 'cards' in pillar_dict:
-            card_list = pillar_dict['cards']
-
-            for card_dict in card_list:
-                card_left = card_dict['left']
-                card_top = card_dict['top']
-                card_width = card_dict['width']
-                card_height = card_dict['height']
-
-                # カードの枠線を引く
-                draw_rectangle(
-                        ws=ws,
-                        column_th=card_left * square_unit + 1,
-                        row_th=card_top * square_unit + 1,
-                        columns=card_width * square_unit,
-                        rows=card_height * square_unit)
-
-
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
@@ -648,12 +619,6 @@ class TrellisInSrc():
     def render_all_terminals(document, ws):
         global render_all_terminals
         render_all_terminals(document, ws)
-
-
-    @staticmethod
-    def render_all_cards(document, ws):
-        global render_all_cards
-        render_all_cards(document, ws)
 
 
 ######################

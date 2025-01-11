@@ -35,9 +35,6 @@ tr.render_all_pillar_headers(document, ws)
 # 全ての端子の描画
 tr.render_all_terminals(document, ws)
 
-# 全てのカードの描画
-tr.render_all_cards(document, ws)
-
 # 定規の描画
 #       柱を上から塗りつぶすように描きます
 tr.render_ruler(document, ws)
