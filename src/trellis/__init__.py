@@ -233,7 +233,82 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
-def render_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
+def render_draw_rectangle(ws, left, top, width, height):
+    """矩形の枠線を描きます
+    """
+
+    # 赤はデバッグ用
+    red_side = Side(style='thick', color='FF0000')
+    black_side = Side(style='thick', color='000000')
+
+    red_top_border = Border(top=red_side)
+    red_top_right_border = Border(top=red_side, right=red_side)
+    red_right_border = Border(right=red_side)
+    red_bottom_right_border = Border(bottom=red_side, right=red_side)
+    red_bottom_border = Border(bottom=red_side)
+    red_bottom_left_border = Border(bottom=red_side, left=red_side)
+    red_left_border = Border(left=red_side)
+    red_top_left_border = Border(top=red_side, left=red_side)
+
+    black_top_border = Border(top=black_side)
+    black_top_right_border = Border(top=black_side, right=black_side)
+    black_right_border = Border(right=black_side)
+    black_bottom_right_border = Border(bottom=black_side, right=black_side)
+    black_bottom_border = Border(bottom=black_side)
+    black_bottom_left_border = Border(bottom=black_side, left=black_side)
+    black_left_border = Border(left=black_side)
+    black_top_left_border = Border(top=black_side, left=black_side)
+
+    # 罫線で四角を作る　＞　左上
+    column_th = left * 3 + 1
+    column_letter = xl.utils.get_column_letter(column_th)
+    row_th = top * 3 + 1
+    cell = ws[f'{column_letter}{row_th}']
+    cell.border = black_top_left_border
+
+    # 罫線で四角を作る　＞　上辺
+    for column_th in range(left * 3 + 2, (left + width) * 3):
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_top_border
+
+    # 罫線で四角を作る　＞　右上
+    column_th = (left + width) * 3
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    cell.border = black_top_right_border
+
+    # 罫線で四角を作る　＞　左辺
+    column_th = left * 3 + 1
+    for row_th in range(top * 3 + 2, (top + height) * 3):
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_left_border
+
+    # 罫線で四角を作る　＞　左下
+    row_th = (top + height) * 3
+    cell = ws[f'{column_letter}{row_th}']
+    cell.border = black_bottom_left_border
+
+    # 罫線で四角を作る　＞　下辺
+    for column_th in range(left * 3 + 2, (left + width) * 3):
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_bottom_border
+
+    # 罫線で四角を作る　＞　右下
+    column_th = (left + width) * 3
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    cell.border = black_bottom_right_border
+
+    # 罫線で四角を作る　＞　右辺
+    for row_th in range(top * 3 + 2, (top + height) * 3):
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = black_right_border
+
+
+def render_fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
     """矩形を塗りつぶします
     """
     # 横へ
@@ -349,7 +424,7 @@ def render_pillar_mat(document, ws):
         baseColor = whole_pillar['baseColor']
 
         # 矩形を塗りつぶす
-        render_rectangle(
+        render_fill_rectangle(
                 ws=ws,
                 column_th=left * 3 + 1,
                 row_th=top * 3 + 1,
@@ -361,28 +436,6 @@ def render_pillar_mat(document, ws):
 def render_pillar_headers(document, ws):
     """全ての柱の頭の描画
     """
-
-    # 赤はデバッグ用
-    red_side = Side(style='thick', color='FF0000')
-    black_side = Side(style='thick', color='000000')
-
-    red_top_border = Border(top=red_side)
-    red_top_right_border = Border(top=red_side, right=red_side)
-    red_right_border = Border(right=red_side)
-    red_bottom_right_border = Border(bottom=red_side, right=red_side)
-    red_bottom_border = Border(bottom=red_side)
-    red_bottom_left_border = Border(bottom=red_side, left=red_side)
-    red_left_border = Border(left=red_side)
-    red_top_left_border = Border(top=red_side, left=red_side)
-
-    black_top_border = Border(top=black_side)
-    black_top_right_border = Border(top=black_side, right=black_side)
-    black_right_border = Border(right=black_side)
-    black_bottom_right_border = Border(bottom=black_side, right=black_side)
-    black_bottom_border = Border(bottom=black_side)
-    black_bottom_left_border = Border(bottom=black_side, left=black_side)
-    black_left_border = Border(left=black_side)
-    black_top_left_border = Border(top=black_side, left=black_side)
 
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
@@ -397,53 +450,13 @@ def render_pillar_headers(document, ws):
         header_stack_array = pillar_header['stack']
         height = len(header_stack_array)
 
-        # 罫線で四角を作る　＞　左上
-        column_th = left * 3 + 1
-        column_letter = xl.utils.get_column_letter(column_th)
-        row_th = top * 3 + 1
-        cell = ws[f'{column_letter}{row_th}']
-        cell.border = black_top_left_border
-
-        # 罫線で四角を作る　＞　上辺
-        for column_th in range(left * 3 + 2, (left + width) * 3):
-            column_letter = xl.utils.get_column_letter(column_th)
-            cell = ws[f'{column_letter}{row_th}']
-            cell.border = black_top_border
-
-        # 罫線で四角を作る　＞　右上
-        column_th = (left + width) * 3
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
-        cell.border = black_top_right_border
-
-        # 罫線で四角を作る　＞　左辺
-        column_th = left * 3 + 1
-        for row_th in range(top * 3 + 2, (top + height) * 3):
-            column_letter = xl.utils.get_column_letter(column_th)
-            cell = ws[f'{column_letter}{row_th}']
-            cell.border = black_left_border
-
-        # 罫線で四角を作る　＞　左下
-        row_th = (top + height) * 3
-        cell = ws[f'{column_letter}{row_th}']
-        cell.border = black_bottom_left_border
-
-        # 罫線で四角を作る　＞　下辺
-        for column_th in range(left * 3 + 2, (left + width) * 3):
-            column_letter = xl.utils.get_column_letter(column_th)
-            cell = ws[f'{column_letter}{row_th}']
-            cell.border = black_bottom_border
-
-        # 罫線で四角を作る　＞　右下
-        column_th = (left + width) * 3
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
-        cell.border = black_bottom_right_border
-
-        # 罫線で四角を作る　＞　右辺
-        for row_th in range(top * 3 + 2, (top + height) * 3):
-            cell = ws[f'{column_letter}{row_th}']
-            cell.border = black_right_border
+        # 矩形の枠線を描きます
+        render_draw_rectangle(
+                ws=ws,
+                left=left,
+                top=top,
+                width=width,
+                height=height)
 
         row_th = top * 3 + 1
         for rectangle in header_stack_array:
@@ -451,7 +464,7 @@ def render_pillar_headers(document, ws):
             # 柱のヘッダーの背景色
             if 'bgColor' in rectangle and rectangle['bgColor']:
                 # 矩形を塗りつぶす
-                render_rectangle(
+                render_fill_rectangle(
                         ws=ws,
                         column_th=left * 3 + 1,
                         row_th=row_th,
@@ -515,7 +528,7 @@ def render_terminal_shadows(document, ws):
                 print(f'terminal_id={terminal_id} len(terminal_dict)={len(terminal_dict)} terminal_left={terminal_left} terminal_top={terminal_top}')
 
                 # 端子の影を描く
-                render_rectangle(
+                render_fill_rectangle(
                         ws=ws,
                         column_th=(terminal_left + 1) * 3 + 1,
                         row_th=(terminal_top + 1) * 3 + 1,
