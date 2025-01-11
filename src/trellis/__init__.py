@@ -434,12 +434,12 @@ def render_all_pillar_rugs(document, ws):
                 fill_obj=color_name_to_fill_obj(tone='light', color_name=baseColor))
 
 
-def render_pillar_header_line(ws, rectangle, column_th, row_th, columns, rows):
-    """柱のヘッダーの１行の描画
+def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
+    """短冊１行の描画
     """
 
     # 柱のヘッダーの背景色
-    if 'bgColor' in rectangle and rectangle['bgColor']:
+    if 'bgColor' in paper_strip and paper_strip['bgColor']:
         # 矩形を塗りつぶす
         fill_rectangle(
                 ws=ws,
@@ -447,17 +447,17 @@ def render_pillar_header_line(ws, rectangle, column_th, row_th, columns, rows):
                 row_th=row_th,
                 columns=columns,
                 rows=1 * square_unit,   # １行分
-                fill_obj=color_name_to_fill_obj(tone='light', color_name=rectangle['bgColor']))
+                fill_obj=color_name_to_fill_obj(tone='light', color_name=paper_strip['bgColor']))
 
     # インデント
-    if 'indent' in rectangle:
-        indent = rectangle['indent']
+    if 'indent' in paper_strip:
+        indent = paper_strip['indent']
     else:
         indent = 0
 
     # アイコン（があれば画像をワークシートのセルに挿入）
-    if 'icon' in rectangle:
-        image_basename = rectangle['icon']  # 例： 'white-game-object.png'
+    if 'icon' in paper_strip:
+        image_basename = paper_strip['icon']  # 例： 'white-game-object.png'
 
         cur_column_th = column_th + (indent * square_unit)
         column_letter = xl.utils.get_column_letter(cur_column_th)
@@ -470,15 +470,15 @@ def render_pillar_header_line(ws, rectangle, column_th, row_th, columns, rows):
         ws.add_image(XlImage(os.path.join('./assets/icons', image_basename)), f"{column_letter}{row_th}")
 
     # テキスト（があれば）
-    if 'text' in rectangle:
-        text = rectangle['text']
+    if 'text' in paper_strip:
+        text = paper_strip['text']
         
         # 左に１マス分のアイコンを置く前提
         icon_columns = square_unit
         cur_column_th = column_th + icon_columns + (indent * square_unit)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{row_th + 1}']
-        cell.value = rectangle['text']
+        cell.value = paper_strip['text']
 
 
 def render_all_pillar_headers(document, ws):
@@ -497,7 +497,7 @@ def render_all_pillar_headers(document, ws):
         header_top = pillar_header['top']
         header_width = pillar_header['width']
         header_height = pillar_header['height']
-        header_stack_array = pillar_header['stack']
+        paper_strip_list = pillar_header['paperStrips']
 
         column_th = header_left * square_unit + 1
         row_th = header_top * square_unit + 1
@@ -512,12 +512,12 @@ def render_all_pillar_headers(document, ws):
                 columns=columns,
                 rows=rows)
 
-        for rectangle in header_stack_array:
+        for paper_strip in paper_strip_list:
 
-            # 柱のヘッダーの１行の描画
-            render_pillar_header_line(
+            # 短冊１行の描画
+            render_paper_strip(
                     ws=ws,
-                    rectangle=rectangle,
+                    paper_strip=paper_strip,
                     column_th=column_th,
                     row_th=row_th,
                     columns=columns,

@@ -15,7 +15,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "blue",
                         "text" : "戦闘マップ"
@@ -54,7 +54,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "yellow",
                         "icon" : "common-event-list.png",
@@ -88,7 +88,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 3,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "yellow",
                         "icon" : "common-event-list.png",
@@ -158,7 +158,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "blue",
                         "text" : "戦闘マップ"
@@ -221,7 +221,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "blue",
                         "text" : "戦闘マップ"
@@ -284,7 +284,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,    
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "blue",
                         "text" : "戦闘マップ"
@@ -317,7 +317,7 @@
                 "top" : 1,
                 "width" : 9,
                 "height" : 2,
-                "stack" : [
+                "paperStrips" : [
                     {
                         "bgColor" : "yellow",
                         "icon" : "common-event-list.png",
