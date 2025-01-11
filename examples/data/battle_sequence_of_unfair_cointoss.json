@@ -19,13 +19,13 @@
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
-                            "text" : "戦闘マップ"
+                            "text2" : "戦闘マップ"
                         },
                         {
                             "bgColor" : "xl_pale.xl_blue",
                             "indent" : 1,
                             "icon" : "white-game-object.png",
-                            "text" : "イベントマスター　戦闘マップ"
+                            "text2" : "イベントマスター　戦闘マップ"
                         }
                     ]
                 },
@@ -38,18 +38,18 @@
                         {
                             "bgColor" : "xl_theme.xl_white",
                             "icon" : "false-flag.png",
-                            "text" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグがＯｆｆのとき"
+                            "text2" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグがＯｆｆのとき"
                         },
                         {
                             "bgColor" : "xl_theme.xl_white",
                             "indent" : 1,
                             "icon" : "event-sheet.png",
-                            "text" : "♠戦闘入後　＞　戦闘マップに入っている"
+                            "text2" : "♠戦闘入後　＞　戦闘マップに入っている"
                         },
                         {
                             "bgColor" : "xl_soft.xl_blue",
                             "icon" : "function-call.png",
-                            "text" : "［♠戦闘入後　＞　戦闘マップに入っている］"
+                            "text2" : "［♠戦闘入後　＞　戦闘マップに入っている］"
                         },
                         {
                             "bgColor" : "xl_soft.xl_blue"
@@ -81,13 +81,13 @@
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "common-event-list.png",
-                            "text" : "コモンイベント一覧"
+                            "text2" : "コモンイベント一覧"
                         },
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
-                            "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
+                            "text2" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
                         }
                     ]
                 },
@@ -97,6 +97,26 @@
                     "width" : 9,
                     "height" : 4,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "icon" : "state-on-global-game-object.png",
+                            "text2" : "♠戦闘入後　＞　戦闘マップに入っている"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "無条件　1: イベントシート"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値を",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］にする"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_yellow",
+                            "icon" : "true-flag.png",
+                            "text2" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグをＯｎにする"
+                        }
                     ]
                 }
             ]
@@ -117,19 +137,19 @@
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "common-event-list.png",
-                            "text" : "コモンイベント一覧"
+                            "text2" : "コモンイベント一覧"
                         },
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
-                            "text" : "共通イベント／自作戦闘"
+                            "text2" : "共通イベント／自作戦闘"
                         },
                         {
                             "bgColor" : "xl_pale.xl_blue",
                             "indent" : 2,
                             "icon" : "global-game-object.png",
-                            "text" : "戦闘中"
+                            "text2" : "戦闘中"
                         }
                     ]
                 },
@@ -197,13 +217,13 @@
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
-                            "text" : "戦闘マップ"
+                            "text2" : "戦闘マップ"
                         },
                         {
                             "bgColor" : "xl_pale.xl_blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
-                            "text" : "Alice戦闘者"
+                            "text2" : "Alice戦闘者"
                         }
                     ]                
                 },
@@ -271,13 +291,13 @@
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
-                            "text" : "戦闘マップ"
+                            "text2" : "戦闘マップ"
                         },
                         {
                             "bgColor" : "xl_pale.xl_blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
-                            "text" : "Bob戦闘者"
+                            "text2" : "Bob戦闘者"
                         }
                     ]                
                 },
@@ -345,13 +365,13 @@
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
-                            "text" : "戦闘マップ"
+                            "text2" : "戦闘マップ"
                         },
                         {
                             "bgColor" : "xl_pale.xl_blue",
                             "indent" : 1,
                             "icon" : "skyblue-game-object.png",
-                            "text" : "コイン"
+                            "text2" : "コイン"
                         }
                     ]
                 },
@@ -381,13 +401,13 @@
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "icon" : "common-event-list.png",
-                            "text" : "コモンイベント一覧"
+                            "text2" : "コモンイベント一覧"
                         },
                         {
                             "bgColor" : "xl_pale.xl_yellow",
                             "indent" : 1,
                             "icon" : "open-folder.png",
-                            "text" : "共通イベント／自作戦闘／戦闘者"
+                            "text2" : "共通イベント／自作戦闘／戦闘者"
                         }
                     ]                
                 },

@@ -558,15 +558,35 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 
 
     # テキスト（があれば）
-    if 'text' in paper_strip:
-        text = paper_strip['text']
+    if 'text1' in paper_strip:
+        text = paper_strip['text1']
+        
+        # 左に１マス分のアイコンを置く前提
+        icon_columns = square_unit
+        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.value = text
+
+    if 'text2' in paper_strip:
+        text = paper_strip['text2']
         
         # 左に１マス分のアイコンを置く前提
         icon_columns = square_unit
         cur_column_th = column_th + icon_columns + (indent * square_unit)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{row_th + 1}']
-        cell.value = paper_strip['text']
+        cell.value = text
+
+    if 'text3' in paper_strip:
+        text = paper_strip['text3']
+        
+        # 左に１マス分のアイコンを置く前提
+        icon_columns = square_unit
+        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{row_th + 2}']
+        cell.value = text
 
 
 def render_all_cards(document, ws):
