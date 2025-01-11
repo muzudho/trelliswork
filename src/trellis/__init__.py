@@ -731,6 +731,42 @@ def render_all_terminals(document, ws):
                         row_th=terminal_top * square_unit + 1)
 
 
+def render_all_line_tape_shadows(document, ws):
+    """全てのラインテープの影の描画
+    """
+    print('全てのラインテープの影の描画')
+
+    # もし、ラインテープの配列があれば
+    if 'lineTapes' in document:
+        line_tape_list = document['lineTapes']
+
+        for line_tape_dict in line_tape_list:
+            if 'shadowColor' in line_tape_dict:
+                line_tape_shadow_color = line_tape_dict['shadowColor']
+                segments_dict = line_tape_dict['segments']
+
+                for segment_dict in segments_dict:
+                    line_tape_left = segment_dict['left']
+                    line_tape_top = segment_dict['top']
+                    line_tape_width = segment_dict['width']
+                    line_tape_height = segment_dict['height']
+
+                    # 端子の影を描く
+                    fill_rectangle(
+                            ws=ws,
+                            column_th=(line_tape_left + 1) * square_unit + 1,
+                            row_th=(line_tape_top + 1) * square_unit + 1,
+                            columns=line_tape_width * square_unit,
+                            rows=line_tape_height * square_unit,
+                            fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
+
+
+def render_all_line_tapes(document, ws):
+    """全てのラインテープの描画
+    """
+    print('全てのラインテープの描画')
+
+
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
@@ -766,6 +802,18 @@ class TrellisInSrc():
     def render_all_terminals(document, ws):
         global render_all_terminals
         render_all_terminals(document, ws)
+
+
+    @staticmethod
+    def render_all_line_tape_shadows(document, ws):
+        global render_all_line_tape_shadows
+        render_all_line_tape_shadows(document, ws)
+
+
+    @staticmethod
+    def render_all_line_tapes(document, ws):
+        global render_all_line_tapes
+        render_all_line_tapes(document, ws)
 
 
 ######################

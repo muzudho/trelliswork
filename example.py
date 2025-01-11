@@ -22,6 +22,7 @@ if __name__ == '__main__':
             if args[1] == 'all':
                 from examples.step1_render_empty import *
                 from examples.step2_render_pillars import *
+                from examples.step3_render_line_tapes import *
 
             else:
                 raise ValueError(f'unsupported {args[1]=}')

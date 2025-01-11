@@ -1003,5 +1003,19 @@
                 }
             ]
         }
-    }
+    },
+    "lineTapes" : [
+        {
+            "color" : "xl_strong.xl_naviy",
+            "shadowColor" : "xl_light.xl_blue",
+            "segments" : [
+                {
+                    "left" : 7,
+                    "top" : 8,
+                    "width" : 1,
+                    "height" : 2
+                }
+            ]
+        }
+    ]
 }
