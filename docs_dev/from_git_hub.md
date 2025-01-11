@@ -12,6 +12,8 @@ pip install openpyxl
 
 ## 動作確認
 
+動作確認用のエグザンプル・ファイルが入っています。  
+
 ```shell
 py example.py all
 ```
