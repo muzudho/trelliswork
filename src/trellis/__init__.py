@@ -491,39 +491,40 @@ def render_all_pillar_headers(document, ws):
 
     for pillar_id, whole_pillar in pillars_dict.items():
         baseColor = whole_pillar['baseColor']
-        pillar_header = whole_pillar['header']
+        pillar_header_list = whole_pillar['header']
 
-        header_left = pillar_header['left']
-        header_top = pillar_header['top']
-        header_width = pillar_header['width']
-        header_height = pillar_header['height']
-        paper_strip_list = pillar_header['paperStrips']
+        for pillar_header in pillar_header_list:
+            header_left = pillar_header['left']
+            header_top = pillar_header['top']
+            header_width = pillar_header['width']
+            header_height = pillar_header['height']
+            paper_strip_list = pillar_header['paperStrips']
 
-        column_th = header_left * square_unit + 1
-        row_th = header_top * square_unit + 1
-        columns = header_width * square_unit
-        rows = header_height * square_unit
+            column_th = header_left * square_unit + 1
+            row_th = header_top * square_unit + 1
+            columns = header_width * square_unit
+            rows = header_height * square_unit
 
-        # ヘッダーの矩形の枠線を描きます
-        draw_rectangle(
-                ws=ws,
-                column_th=column_th,
-                row_th=row_th,
-                columns=columns,
-                rows=rows)
-
-        for paper_strip in paper_strip_list:
-
-            # 短冊１行の描画
-            render_paper_strip(
+            # ヘッダーの矩形の枠線を描きます
+            draw_rectangle(
                     ws=ws,
-                    paper_strip=paper_strip,
                     column_th=column_th,
                     row_th=row_th,
                     columns=columns,
                     rows=rows)
-            
-            row_th += square_unit
+
+            for paper_strip in paper_strip_list:
+
+                # 短冊１行の描画
+                render_paper_strip(
+                        ws=ws,
+                        paper_strip=paper_strip,
+                        column_th=column_th,
+                        row_th=row_th,
+                        columns=columns,
+                        rows=rows)
+                
+                row_th += square_unit
 
 
 def render_all_terminal_shadows(document, ws):
