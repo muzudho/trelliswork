@@ -134,6 +134,7 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 3,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_yellow",
@@ -159,7 +160,71 @@
                     "top" : 25,
                     "width" : 9,
                     "height" : 12,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値が",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］のとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "戦闘入後　＞　戦闘開始の合図をする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "プレイヤーを透明にし、操作禁止、画面端に移動"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型を　３　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［戦闘入前～出前　＞　%Alice戦闘者%のpts］を　０　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［戦闘入前～出前　＞　%Bob戦闘者%のpts］を　０　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "「〇〇が現れた！」"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "「表が出る確率が 〇〇のコインです。さあ、どっちが出るか！？」"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "（雑魚戦なら）表ｳﾗ選択肢表示"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘．設定　＞　%Alice戦闘者%が選んだコインの上面（0:未設定、1:表、2:ｳﾗ）］列挙型に　１か２　を"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［戦闘．設定　＞　ｎ投目］に　０　を入れる"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値を",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
+                        }
                     ]
                 },
                 {
@@ -167,7 +232,47 @@
                     "top" : 42,
                     "width" : 9,
                     "height" : 7,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値が",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］のとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「ｎ投目」と言う"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘．設定　＞　ｎ投目］変数に　１　を足す"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text1" : "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
+                            "text2" : "［■戦闘中　＞　%Alice戦闘者%　＞　ステート］列挙型値を　0　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text1" : "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
+                            "text2" : "［■戦闘中　＞　%Bob戦闘者%　＞　ステート］列挙型値を　0　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "「〇投目」"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　コインをトスする］フラグを　On　にする"
+                        }
                     ]
                 },
                 {
@@ -175,7 +280,47 @@
                     "top" : 61,
                     "width" : 9,
                     "height" : 7,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値が",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］のとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "地面に落ちたコインの結果を発表する"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "「表が出た」、「ｳﾗが出た」、「コインが立った！　失敗！」のいずれか"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "（%Alice戦闘者%の勝ちか否かで）［戦闘中　＞　%Alice戦闘者%の当たり］フラグを　On　または　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text1" : "（コイントス失敗時）",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値を",
+                            "text3" : "［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "（%Alice戦闘者%の勝ちなら）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　On　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "（%Bob戦闘者%の勝ちなら）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　On　にする"
+                        }
                     ]
                 },
                 {
@@ -183,7 +328,67 @@
                     "top" : 100,
                     "width" : 9,
                     "height" : 11,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値が",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］のとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "シリーズの結果を集計する"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "「〇に勝ち点 〇 が入って合計 〇 だ」"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型に　１か２　を入れる"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグを　On　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグを　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグを　On　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグを　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text1" : "（勝者なし時）",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値を",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
+                        }
                     ]
                 },
                 {
@@ -191,7 +396,40 @@
                     "top" : 129,
                     "width" : 9,
                     "height" : 6,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値が",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_5_呼出元マップへ戻る］のとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "呼出元マップへ戻る"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "ＢＧＭ切替、フェードアウト、マップ転換、プレイヤーの非表示解除"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘出前～出後　＞　戦闘マップから戻った］フラグを　On　にする"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグを　Off　にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値値を　Off　にする"
+                        }
                     ]
                 }
             ],
