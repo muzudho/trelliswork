@@ -747,17 +747,54 @@ def render_all_line_tape_shadows(document, ws):
 
                 for segment_dict in segments_dict:
                     line_tape_left = segment_dict['left']
+                    line_tape_sub_left = 0
+                    if isinstance(line_tape_left, str):
+                        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
+                    
                     line_tape_top = segment_dict['top']
-                    line_tape_width = segment_dict['width']
-                    line_tape_height = segment_dict['height']
+                    line_tape_sub_top = 0
+                    if isinstance(line_tape_top, str):
+                        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
+
+                    # right は、その数を含まない
+                    if 'right' in segment_dict:
+                        line_tape_right = segment_dict['right']
+                        line_tape_sub_right = 0
+                        if isinstance(line_tape_right, str):
+                            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
+
+                        line_tape_width = line_tape_right - line_tape_left
+                        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
+
+                    else:
+                        line_tape_width = segment_dict['width']
+                        line_tape_sub_width = 0
+                        if isinstance(line_tape_width, str):
+                            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
+
+                    # bottom は、その数を含まない
+                    if 'bottom' in segment_dict:
+                        line_tape_bottom = segment_dict['bottom']
+                        line_tape_sub_bottom = 0
+                        if isinstance(line_tape_bottom, str):
+                            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
+
+                        line_tape_height = line_tape_bottom - line_tape_top
+                        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
+
+                    else:
+                        line_tape_height = segment_dict['height']
+                        line_tape_sub_height = 0
+                        if isinstance(line_tape_height, str):
+                            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=(line_tape_left + 1) * square_unit + 1,
-                            row_th=(line_tape_top + 1) * square_unit + 1,
-                            columns=line_tape_width * square_unit,
-                            rows=line_tape_height * square_unit,
+                            column_th=(line_tape_left + 1) * square_unit + line_tape_sub_left + 1,
+                            row_th=(line_tape_top + 1) * square_unit + line_tape_sub_top + 1,
+                            columns=line_tape_width * square_unit + line_tape_sub_width,
+                            rows=line_tape_height * square_unit + line_tape_sub_height,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
@@ -777,17 +814,54 @@ def render_all_line_tapes(document, ws):
 
                 for segment_dict in segments_dict:
                     line_tape_left = segment_dict['left']
+                    line_tape_sub_left = 0
+                    if isinstance(line_tape_left, str):
+                        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
+                    
                     line_tape_top = segment_dict['top']
-                    line_tape_width = segment_dict['width']
-                    line_tape_height = segment_dict['height']
+                    line_tape_sub_top = 0
+                    if isinstance(line_tape_top, str):
+                        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
+
+                    # right は、その数を含まない
+                    if 'right' in segment_dict:
+                        line_tape_right = segment_dict['right']
+                        line_tape_sub_right = 0
+                        if isinstance(line_tape_right, str):
+                            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
+
+                        line_tape_width = line_tape_right - line_tape_left
+                        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
+
+                    else:
+                        line_tape_width = segment_dict['width']
+                        line_tape_sub_width = 0
+                        if isinstance(line_tape_width, str):
+                            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
+
+                    # bottom は、その数を含まない
+                    if 'bottom' in segment_dict:
+                        line_tape_bottom = segment_dict['bottom']
+                        line_tape_sub_bottom = 0
+                        if isinstance(line_tape_bottom, str):
+                            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
+
+                        line_tape_height = line_tape_bottom - line_tape_top
+                        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
+
+                    else:
+                        line_tape_height = segment_dict['height']
+                        line_tape_sub_height = 0
+                        if isinstance(line_tape_height, str):
+                            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=line_tape_left * square_unit + 1,
-                            row_th=line_tape_top * square_unit + 1,
-                            columns=line_tape_width * square_unit,
-                            rows=line_tape_height * square_unit,
+                            column_th=line_tape_left * square_unit + line_tape_sub_left + 1,
+                            row_th=line_tape_top * square_unit + line_tape_sub_top + 1,
+                            columns=line_tape_width * square_unit + line_tape_sub_width,
+                            rows=line_tape_height * square_unit + line_tape_sub_height,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_color))
 
 
