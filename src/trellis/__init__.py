@@ -233,7 +233,7 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
-def render_draw_rectangle(ws, left, top, width, height):
+def render_draw_rectangle(ws, column_th, row_th, columns, rows):
     """矩形の枠線を描きます
     """
 
@@ -260,51 +260,51 @@ def render_draw_rectangle(ws, left, top, width, height):
     black_top_left_border = Border(top=black_side, left=black_side)
 
     # 罫線で四角を作る　＞　左上
-    column_th = left * 3 + 1
-    column_letter = xl.utils.get_column_letter(column_th)
-    row_th = top * 3 + 1
-    cell = ws[f'{column_letter}{row_th}']
+    cur_column_th = column_th + 1
+    column_letter = xl.utils.get_column_letter(cur_column_th)
+    cur_row_th = row_th + 1
+    cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_top_left_border
 
     # 罫線で四角を作る　＞　上辺
-    for column_th in range(left * 3 + 2, (left + width) * 3):
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
+    for cur_column_th in range(column_th + 2, column_th + columns):
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_top_border
 
     # 罫線で四角を作る　＞　右上
-    column_th = (left + width) * 3
-    column_letter = xl.utils.get_column_letter(column_th)
-    cell = ws[f'{column_letter}{row_th}']
+    cur_column_th = column_th + columns
+    column_letter = xl.utils.get_column_letter(cur_column_th)
+    cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_top_right_border
 
     # 罫線で四角を作る　＞　左辺
-    column_th = left * 3 + 1
-    for row_th in range(top * 3 + 2, (top + height) * 3):
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
+    cur_column_th = column_th + 1
+    for cur_row_th in range(row_th + 2, row_th + rows):
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_left_border
 
     # 罫線で四角を作る　＞　左下
-    row_th = (top + height) * 3
-    cell = ws[f'{column_letter}{row_th}']
+    cur_row_th = row_th + rows
+    cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_bottom_left_border
 
     # 罫線で四角を作る　＞　下辺
-    for column_th in range(left * 3 + 2, (left + width) * 3):
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
+    for cur_column_th in range(column_th + 2, column_th + columns):
+        column_letter = xl.utils.get_column_letter(cur_column_th)
+        cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_bottom_border
 
     # 罫線で四角を作る　＞　右下
-    column_th = (left + width) * 3
-    column_letter = xl.utils.get_column_letter(column_th)
-    cell = ws[f'{column_letter}{row_th}']
+    cur_column_th = column_th + columns
+    column_letter = xl.utils.get_column_letter(cur_column_th)
+    cell = ws[f'{column_letter}{cur_row_th}']
     cell.border = black_bottom_right_border
 
     # 罫線で四角を作る　＞　右辺
-    for row_th in range(top * 3 + 2, (top + height) * 3):
-        cell = ws[f'{column_letter}{row_th}']
+    for cur_row_th in range(row_th + 2, row_th + rows):
+        cell = ws[f'{column_letter}{cur_row_th}']
         cell.border = black_right_border
 
 
@@ -409,7 +409,7 @@ def color_name_to_fill_obj(tone, color_name):
     return None
 
 
-def render_pillar_mat(document, ws):
+def render_all_pillar_rugs(document, ws):
     """全ての柱の敷物の描画
     """
 
@@ -433,7 +433,7 @@ def render_pillar_mat(document, ws):
                 fill_obj=color_name_to_fill_obj(tone='light', color_name=baseColor))
 
 
-def render_pillar_headers(document, ws):
+def render_all_pillar_headers(document, ws):
     """全ての柱の頭の描画
     """
 
@@ -453,10 +453,10 @@ def render_pillar_headers(document, ws):
         # 矩形の枠線を描きます
         render_draw_rectangle(
                 ws=ws,
-                left=left,
-                top=top,
-                width=width,
-                height=height)
+                column_th=left * 3,
+                row_th=top * 3,
+                columns=width * 3,
+                rows=height * 3)
 
         row_th = top * 3 + 1
         for rectangle in header_stack_array:
@@ -506,7 +506,7 @@ def render_pillar_headers(document, ws):
             row_th += 3
 
 
-def render_terminal_shadows(document, ws):
+def render_all_terminal_shadows(document, ws):
     """全ての端子の影の描画
     """
     # 柱の辞書があるはず。
@@ -537,7 +537,7 @@ def render_terminal_shadows(document, ws):
                         fill_obj=color_name_to_fill_obj(tone='dull', color_name=baseColor))
 
 
-def render_terminals(document, ws):
+def render_all_terminals(document, ws):
     """全ての端子の描画
     """
     # 柱の辞書があるはず。
@@ -567,6 +567,33 @@ def render_terminals(document, ws):
                         row_th=terminal_top * 3 + 1)
 
 
+def render_all_cards(document, ws):
+    """全てのカードの描画
+    """
+    # 柱の辞書があるはず。
+    pillars_dict = document['pillars']
+
+    for pillar_id, pillar_dict in pillars_dict.items():
+
+        # もし、カードの配列があれば
+        if 'cards' in pillar_dict:
+            card_list = pillar_dict['cards']
+
+            for card_dict in card_list:
+                card_left = card_dict['left']
+                card_top = card_dict['top']
+                card_width = card_dict['width']
+                card_height = card_dict['height']
+
+                # カードの枠線を引く
+                render_draw_rectangle(
+                        ws=ws,
+                        column_th=card_left * 3,
+                        row_th=card_top * 3,
+                        columns=card_width * 3,
+                        rows=card_height * 3)
+
+
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
@@ -575,27 +602,33 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_terminal_shadows(document, ws):
-        global render_terminal_shadows
-        render_terminal_shadows(document, ws)
+    def render_all_terminal_shadows(document, ws):
+        global render_all_terminal_shadows
+        render_all_terminal_shadows(document, ws)
 
 
     @staticmethod
-    def render_pillar_mat(document, ws):
-        global render_pillar_mat
-        render_pillar_mat(document, ws)
+    def render_all_pillar_rugs(document, ws):
+        global render_all_pillar_rugs
+        render_all_pillar_rugs(document, ws)
 
 
     @staticmethod
-    def render_pillar_headers(document, ws):
-        global render_pillar_headers
-        render_pillar_headers(document, ws)
+    def render_all_pillar_headers(document, ws):
+        global render_all_pillar_headers
+        render_all_pillar_headers(document, ws)
 
 
     @staticmethod
-    def render_terminals(document, ws):
-        global render_terminals
-        render_terminals(document, ws)
+    def render_all_terminals(document, ws):
+        global render_all_terminals
+        render_all_terminals(document, ws)
+
+
+    @staticmethod
+    def render_all_cards(document, ws):
+        global render_all_cards
+        render_all_cards(document, ws)
 
 
 ######################

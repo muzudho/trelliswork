@@ -31,10 +31,14 @@
                     "top" : 5
                 }
             },
-            "body" : {
-                "top" : 10,
-                "height" : 437
-            }
+            "cards" : [
+                {
+                    "left" : 3,
+                    "top" : 10,
+                    "width" : 9,
+                    "height" : 4
+                }
+            ]
         },
         "encounterMapEventMaster" : {
             "left" : 21,
@@ -56,7 +60,15 @@
                         "text" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
                     }
                 ]
-            }
+            },
+            "cards" : [
+                {
+                    "left" : 21,
+                    "top" :15,
+                    "width" : 9,
+                    "height" : 4
+                }
+            ]
         },
         "inBattle" : {
             "left" : 38,
@@ -90,7 +102,39 @@
                     "left" : 40,
                     "top" : 138
                 }
-            }
+            },
+            "cards" : [
+                {
+                    "left" : 37,
+                    "top" : 25,
+                    "width" : 9,
+                    "height" : 12
+                },
+                {
+                    "left" : 37,
+                    "top" : 42,
+                    "width" : 9,
+                    "height" : 7
+                },
+                {
+                    "left" : 37,
+                    "top" : 61,
+                    "width" : 9,
+                    "height" : 7
+                },
+                {
+                    "left" : 37,
+                    "top" : 100,
+                    "width" : 9,
+                    "height" : 11
+                },
+                {
+                    "left" : 37,
+                    "top" : 129,
+                    "width" : 9,
+                    "height" : 6
+                }
+            ]
         },
         "alice" : {
             "left" : 55,
@@ -117,7 +161,39 @@
                     "left" : 57,
                     "top" : 5
                 }
-            }
+            },
+            "cards" : [
+                {
+                    "left" : 54,
+                    "top" : 10,
+                    "width" : 9,
+                    "height" : 5
+                },
+                {
+                    "left" : 54,
+                    "top" : 72,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 54,
+                    "top" : 86,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 54,
+                    "top" : 117,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 54,
+                    "top" : 134,
+                    "width" : 9,
+                    "height" : 3
+                }
+            ]
         },
         "bob" : {
             "left" : 72,
@@ -144,7 +220,39 @@
                     "left" : 74,
                     "top" : 5
                 }
-            }
+            },
+            "cards" : [
+                {
+                    "left" : 71,
+                    "top" : 10,
+                    "width" : 9,
+                    "height" : 5
+                },
+                {
+                    "left" : 71,
+                    "top" : 72,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 71,
+                    "top" : 86,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 71,
+                    "top" : 117,
+                    "width" : 9,
+                    "height" : 4
+                },
+                {
+                    "left" : 71,
+                    "top" : 134,
+                    "width" : 9,
+                    "height" : 3
+                }
+            ]
         },
         "coin" : {
             "left" : 89,
@@ -164,8 +272,16 @@
                         "icon" : "skyblue-game-object.png",
                         "text" : "コイン"
                     }
-                ]                
-            }
+                ]
+            },
+            "cards" : [
+                {
+                    "left" : 88,
+                    "top" : 52,
+                    "width" : 9,
+                    "height" : 6
+                }
+            ]
         },
         "battler" : {
             "left" : 106,
@@ -187,7 +303,33 @@
                         "text" : "共通イベント／自作戦闘／戦闘者"
                     }
                 ]                
-            }
+            },
+            "cards" : [
+                {
+                    "left" : 106,
+                    "top" : 15,
+                    "width" : 9,
+                    "height" : 3
+                },
+                {
+                    "left" : 106,
+                    "top" : 77,
+                    "width" : 9,
+                    "height" : 5
+                },
+                {
+                    "left" : 106,
+                    "top" : 91,
+                    "width" : 9,
+                    "height" : 5
+                },
+                {
+                    "left" : 106,
+                    "top" : 122,
+                    "width" : 9,
+                    "height" : 5
+                }
+            ]
         }
     }
 }
