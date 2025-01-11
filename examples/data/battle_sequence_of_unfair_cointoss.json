@@ -453,6 +453,7 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 2,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -471,7 +472,34 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 5,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "false-flag.png",
+                            "text2" : "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグがＯｆｆのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "♠戦闘入後　＞　前に出る"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "このゲームオブジェクトはフレームインし、定位置に向かって走る"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグをＯｎにする"
+                        }
                     ]
                 },
                 {
@@ -479,7 +507,27 @@
                     "top" : 72,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「当たった」"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　「当たった」］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue"
+                        }
                     ]
                 },
                 {
@@ -487,7 +535,27 @@
                     "top" : 86,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「ハズレかあ」"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　「ハズレかあ」］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue"
+                        }
                     ]
                 },
                 {
@@ -495,7 +563,27 @@
                     "top" : 117,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "優勝を宣言する"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　優勝を宣言する］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue"
+                        }
                     ]
                 },
                 {
@@ -503,7 +591,23 @@
                     "top" : 134,
                     "width" : 9,
                     "height" : 3,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "text2" : "無条件"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "ニュートラル時"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "ニュートラル時に表示されるグラフィックを設定しておく"
+                        }
                     ]
                 }
             ],
@@ -527,6 +631,7 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 2,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -545,7 +650,34 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 5,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "false-flag.png",
+                            "text2" : "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグがＯｆｆのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "♠戦闘入後　＞　グラフィックを変更し、前に出る"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "このゲームオブジェクトはフレームインし、定位置に向かって走る"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグをＯｎにする"
+                        }
                     ]
                 },
                 {
@@ -553,7 +685,23 @@
                     "top" : 72,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「当たった」"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "※ %Alice戦闘者% と同様"
+                        }
                     ]
                 },
                 {
@@ -561,7 +709,23 @@
                     "top" : 86,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「ハズレかあ」"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "※ %Alice戦闘者% と同様"
+                        }
                     ]
                 },
                 {
@@ -569,7 +733,23 @@
                     "top" : 117,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "「優勝を宣言する"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "※ %Alice戦闘者% と同様"
+                        }
                     ]
                 },
                 {
@@ -577,7 +757,23 @@
                     "top" : 134,
                     "width" : 9,
                     "height" : 3,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "text2" : "無条件"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "ニュートラル時"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "ニュートラル時に表示されるグラフィックを設定しておく"
+                        }
                     ]
                 }
             ],
@@ -600,7 +796,8 @@
                     "left" : 89,
                     "top" : 1,
                     "width" : 9,
-                    "height" : 2,    
+                    "height" : 2,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -619,7 +816,40 @@
                     "top" : 52,
                     "width" : 9,
                     "height" : 6,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　コインをトスする］フラグがＯｎのとき"
+                        },
+                        {
+                            "bgColor" : "xl_theme.xl_white",
+                            "indent" : 1,
+                            "icon" : "event-sheet.png",
+                            "text2" : "戦闘中　＞　コインが投げられて落ちるまで"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "overview.png",
+                            "text2" : "視覚的演出、そしてコインの表ｳﾗの確定"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　コインの上面（1:表、2:裏、3:失敗）］に 1 か 2 を入れる"
+                        },
+                        {
+                            "bgColor" : "xl_soft.xl_blue",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値を",
+                            "text3" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］にする"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_blue",
+                            "icon" : "false-flag.png",
+                            "text2" : "［戦闘中　＞　コインをトスする］フラグを　Off　にする"
+                        }
                     ]
                 }
             ]
@@ -656,6 +886,20 @@
                     "width" : 9,
                     "height" : 3,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "icon" : "state-on-global-game-object.png",
+                            "text2" : "戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更（競合状態）"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "無条件　1: イベントシート"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "overview.png",
+                            "text2" : "このゲームオブジェクトのグラフィックを変更する"
+                        }
                     ]
                 },
                 {
@@ -664,6 +908,30 @@
                     "width" : 9,
                     "height" : 5,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "icon" : "state-on-global-game-object.png",
+                            "text2" : "戦闘者　＞　「当たった」"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "無条件　1: イベントシート"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "overview.png",
+                            "text2" : "「やったぜ！　当たった！」"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "true-flag.png",
+                            "text2" : "［戦闘中　＞　%相対する戦闘者%の「ハズレかあ」］フラグをＯｎにする"
+                        }
                     ]
                 },
                 {
@@ -672,6 +940,30 @@
                     "width" : 9,
                     "height" : 5,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "icon" : "state-on-global-game-object.png",
+                            "text2" : "戦闘者　＞　「ハズレかあ」"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "無条件　1: イベントシート"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "overview.png",
+                            "text2" : "「ハズレかあ」"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
+                        }
                     ]
                 },
                 {
@@ -680,6 +972,30 @@
                     "width" : 9,
                     "height" : 5,
                     "paperStrips" : [
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "icon" : "state-on-global-game-object.png",
+                            "text2" : "戦闘者　＞　優勝を宣言する"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white",
+                            "text2" : "無条件　1: イベントシート"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "function-call.png",
+                            "text2" : "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "overview.png",
+                            "text2" : "「【戦闘．設定　＞　優勝span】 点取ったから、わたしの優勝だな」"
+                        },
+                        {
+                            "bgColor" : "xl_light.xl_yellow",
+                            "icon" : "true-flag.png",
+                            "text2" : "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
+                        }
                     ]
                 }
             ]
