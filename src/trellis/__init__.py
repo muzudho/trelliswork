@@ -438,24 +438,24 @@ def render_all_pillar_headers(document, ws):
     pillars_dict = document['pillars']
 
     for pillar_id, whole_pillar in pillars_dict.items():
-        left = whole_pillar['left']
-        top = whole_pillar['top']
-        width = whole_pillar['width']
-        height = whole_pillar['height']
         baseColor = whole_pillar['baseColor']
         pillar_header = whole_pillar['header']
-        header_stack_array = pillar_header['stack']
-        height = len(header_stack_array)
 
-        # 矩形の枠線を描きます
+        header_left = pillar_header['left']
+        header_top = pillar_header['top']
+        header_width = pillar_header['width']
+        header_height = pillar_header['height']
+        header_stack_array = pillar_header['stack']
+
+        # ヘッダーの矩形の枠線を描きます
         draw_rectangle(
                 ws=ws,
-                column_th=left * 3,
-                row_th=top * 3,
-                columns=width * 3,
-                rows=height * 3)
+                column_th=header_left * 3,
+                row_th=header_top * 3,
+                columns=header_width * 3,
+                rows=header_height * 3)
 
-        row_th = top * 3 + 1
+        row_th = header_top * 3 + 1
         for rectangle in header_stack_array:
 
             # 柱のヘッダーの背景色
@@ -463,9 +463,9 @@ def render_all_pillar_headers(document, ws):
                 # 矩形を塗りつぶす
                 fill_rectangle(
                         ws=ws,
-                        column_th=left * 3 + 1,
+                        column_th=header_left * 3 + 1,
                         row_th=row_th,
-                        columns=width * 3,
+                        columns=header_width * 3,
                         rows=3,
                         fill_obj=color_name_to_fill_obj(tone='light', color_name=rectangle['bgColor']))
 
@@ -479,7 +479,7 @@ def render_all_pillar_headers(document, ws):
             if 'icon' in rectangle:
                 image_basename = rectangle['icon']  # 例： 'white-game-object.png'
 
-                column_th = left * 3 + 3 * indent + 1
+                column_th = header_left * 3 + 3 * indent + 1
                 column_letter = xl.utils.get_column_letter(column_th)
                 #
                 # NOTE 元の画像サイズで貼り付けられるわけではないの、何でだろう？ 60x60pixels の画像にしておくと、90x90pixels のセルに合う？
@@ -493,7 +493,7 @@ def render_all_pillar_headers(document, ws):
             if 'text' in rectangle:
                 text = rectangle['text']
                 
-                column_th = (left + 1) * 3 + 3 * indent + 1
+                column_th = (header_left + 1) * 3 + 3 * indent + 1
                 column_letter = xl.utils.get_column_letter(column_th)
                 cell = ws[f'{column_letter}{row_th + 1}']
                 cell.value = rectangle['text']

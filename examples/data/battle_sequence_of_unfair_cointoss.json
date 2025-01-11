@@ -11,7 +11,10 @@
             "height" : 148,
             "baseColor" : "blue",
             "header" : {
+                "left" : 4,
                 "top" : 1,
+                "width" : 9,
+                "height" : 2,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -47,6 +50,10 @@
             "height" : 148,
             "baseColor" : "yellow",
             "header" : {
+                "left" : 21,
+                "top" : 1,
+                "width" : 9,
+                "height" : 2,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
@@ -72,11 +79,15 @@
         },
         "inBattle" : {
             "left" : 38,
-            "width" : 9,
             "top" : 1,
+            "width" : 9,
             "height" : 148,
             "baseColor" : "blue",
             "header" : {
+                "left" : 38,
+                "top" : 1,
+                "width" : 9,
+                "height" : 3,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
@@ -138,11 +149,15 @@
         },
         "alice" : {
             "left" : 55,
-            "width" : 9,
             "top" : 1,
+            "width" : 9,
             "height" : 148,
             "baseColor" : "blue",
             "header" : {
+                "left" : 55,
+                "top" : 1,
+                "width" : 9,
+                "height" : 2,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -197,11 +212,15 @@
         },
         "bob" : {
             "left" : 72,
-            "width" : 9,
             "top" : 1,
+            "width" : 9,
             "height" : 148,
             "baseColor" : "blue",
             "header" : {
+                "left" : 72,
+                "top" : 1,
+                "width" : 9,
+                "height" : 2,
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -256,11 +275,15 @@
         },
         "coin" : {
             "left" : 89,
-            "width" : 9,
             "top" : 1,
+            "width" : 9,
             "height" : 148,
             "baseColor" : "blue",
             "header" : {
+                "left" : 89,
+                "top" : 1,
+                "width" : 9,
+                "height" : 2,    
                 "stack" : [
                     {
                         "bgColor" : "blue",
@@ -285,11 +308,15 @@
         },
         "battler" : {
             "left" : 106,
-            "width" : 9,
             "top" : 1,
+            "width" : 9,
             "height" : 148,
             "baseColor" : "yellow",
             "header" : {
+                "left" : 106,
+                "top" : 1,
+                "width" : 9,
+                "height" : 2,
                 "stack" : [
                     {
                         "bgColor" : "yellow",
