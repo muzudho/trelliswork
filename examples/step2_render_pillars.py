@@ -29,8 +29,8 @@ tr.render_all_pillar_rugs(document, ws)
 # 全ての端子の影の描画
 tr.render_all_terminal_shadows(document, ws)
 
-# 全ての柱の頭の描画
-tr.render_all_pillar_headers(document, ws)
+# 全てのカードの描画
+tr.render_all_cards(document, ws)
 
 # 全ての端子の描画
 tr.render_all_terminals(document, ws)

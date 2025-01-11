@@ -481,28 +481,28 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell.value = paper_strip['text']
 
 
-def render_all_pillar_headers(document, ws):
-    """全ての柱の頭の描画
+def render_all_cards(document, ws):
+    """全てのカードの描画
     """
-    print('全ての柱の頭の描画')
+    print('全てのカードの描画')
 
     # 柱の辞書があるはず。
     pillars_dict = document['pillars']
 
     for pillar_id, whole_pillar in pillars_dict.items():
         baseColor = whole_pillar['baseColor']
-        pillar_header_list = whole_pillar['header']
+        card_list = whole_pillar['cards']
 
-        for pillar_header in pillar_header_list:
-            header_left = pillar_header['left']
-            header_top = pillar_header['top']
-            header_width = pillar_header['width']
-            header_height = pillar_header['height']
+        for card in card_list:
+            card_left = card['left']
+            card_top = card['top']
+            card_width = card['width']
+            card_height = card['height']
 
-            column_th = header_left * square_unit + 1
-            row_th = header_top * square_unit + 1
-            columns = header_width * square_unit
-            rows = header_height * square_unit
+            column_th = card_left * square_unit + 1
+            row_th = card_top * square_unit + 1
+            columns = card_width * square_unit
+            rows = card_height * square_unit
 
             # ヘッダーの矩形の枠線を描きます
             draw_rectangle(
@@ -512,8 +512,8 @@ def render_all_pillar_headers(document, ws):
                     columns=columns,
                     rows=rows)
 
-            if 'paperStrips' in pillar_header:
-                paper_strip_list = pillar_header['paperStrips']
+            if 'paperStrips' in card:
+                paper_strip_list = card['paperStrips']
 
                 for paper_strip in paper_strip_list:
 
@@ -610,9 +610,9 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_all_pillar_headers(document, ws):
-        global render_all_pillar_headers
-        render_all_pillar_headers(document, ws)
+    def render_all_cards(document, ws):
+        global render_all_cards
+        render_all_cards(document, ws)
 
 
     @staticmethod
