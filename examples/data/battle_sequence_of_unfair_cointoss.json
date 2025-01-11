@@ -34,6 +34,7 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 4,
+                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",

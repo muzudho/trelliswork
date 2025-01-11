@@ -26,6 +26,9 @@ ws = wb['Sheet']
 # 全ての柱の敷物の描画
 tr.render_all_pillar_rugs(document, ws)
 
+# 全てのカードの影の描画
+tr.render_all_card_shadows(document, ws)
+
 # 全ての端子の影の描画
 tr.render_all_terminal_shadows(document, ws)
 

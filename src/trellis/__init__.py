@@ -589,6 +589,39 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell.value = text
 
 
+def render_all_card_shadows(document, ws):
+    """全てのカードの影の描画
+    """
+    print('全てのカードの影の描画')
+
+    # 柱の辞書があるはず。
+    pillars_dict = document['pillars']
+
+    for pillar_id, pillar_dict in pillars_dict.items():
+        # もし、端子の辞書があれば
+        if 'cards' in pillar_dict:
+            card_dict_list = pillar_dict['cards']
+
+            for card_dict in card_dict_list:
+                if 'shadowColor' in card_dict:
+                    card_shadow_color = card_dict['shadowColor']
+
+
+                    card_left = card_dict['left']
+                    card_top = card_dict['top']
+                    card_width = card_dict['width']
+                    card_height = card_dict['height']
+
+                    # 端子の影を描く
+                    fill_rectangle(
+                            ws=ws,
+                            column_th=(card_left + 1) * square_unit + 1,
+                            row_th=(card_top + 1) * square_unit + 1,
+                            columns=card_width * square_unit,
+                            rows=card_height * square_unit,
+                            fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
+
+
 def render_all_cards(document, ws):
     """全てのカードの描画
     """
@@ -715,6 +748,12 @@ class TrellisInSrc():
     def render_all_pillar_rugs(document, ws):
         global render_all_pillar_rugs
         render_all_pillar_rugs(document, ws)
+
+
+    @staticmethod
+    def render_all_card_shadows(document, ws):
+        global render_all_card_shadows
+        render_all_card_shadows(document, ws)
 
 
     @staticmethod
