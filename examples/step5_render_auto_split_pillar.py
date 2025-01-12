@@ -12,7 +12,7 @@ from src.trellis import trellis_in_src as tr
 print('step 5: auto split pillar')
 
 # ソースファイル（JSON形式）を読込
-json_file_name = './examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_pillar.json'
+json_file_name = './examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json'
 print(f"json_file_name = {json_file_name}")
 with open(json_file_name, encoding='utf-8') as f:
     document = json.load(f)
@@ -20,7 +20,7 @@ with open(json_file_name, encoding='utf-8') as f:
 
 # ドキュメントに対して、自動ピラー分割の編集を行います
 tr.edit_document_and_solve_auto_split_pillar(document)
-json_file_name_3 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step5.auto_split_pillar_done.json'
+json_file_name_3 = './temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar_done.json'
 print(f"write json_file_name_3 = {json_file_name_3}")
 with open(json_file_name_3, mode='w', encoding='utf-8') as f:
     f.write(json.dumps(document, indent=4, ensure_ascii=False))
@@ -32,7 +32,7 @@ with open(json_file_name_3, mode='r', encoding='utf-8') as f:
 
 # ドキュメントに対して、影の自動設定の編集を行います
 tr.edit_document_and_solve_auto_shadow(document)
-json_file_name_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step5.auto_shadow_done.json'
+json_file_name_2 = './temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step4_auto_shadow_done.json'
 print(f"write json_file_name_2 = {json_file_name_2}")
 with open(json_file_name_2, mode='w', encoding='utf-8') as f:
     f.write(json.dumps(document, indent=4, ensure_ascii=False))
