@@ -512,6 +512,7 @@ def render_all_pillar_rugs(document, ws):
 
     # もし、柱の辞書があれば
     if 'pillars' in document and (pillars_dict := document['pillars']):
+
         for pillar_id, whole_pillar in pillars_dict.items():
             if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
                 left = whole_pillar['left']
@@ -605,32 +606,31 @@ def render_all_card_shadows(document, ws):
     """
     print('全てのカードの影の描画')
 
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
 
-    for pillar_id, pillar_dict in pillars_dict.items():
-        # もし、端子の辞書があれば
-        if 'cards' in pillar_dict:
-            card_dict_list = pillar_dict['cards']
+        for pillar_id, pillar_dict in pillars_dict.items():
+            # もし、カードの辞書があれば
+            if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
-            for card_dict in card_dict_list:
-                if 'shadowColor' in card_dict:
-                    card_shadow_color = card_dict['shadowColor']
+                for card_dict in card_dict_list:
+                    if 'shadowColor' in card_dict:
+                        card_shadow_color = card_dict['shadowColor']
 
 
-                    card_left = card_dict['left']
-                    card_top = card_dict['top']
-                    card_width = card_dict['width']
-                    card_height = card_dict['height']
+                        card_left = card_dict['left']
+                        card_top = card_dict['top']
+                        card_width = card_dict['width']
+                        card_height = card_dict['height']
 
-                    # 端子の影を描く
-                    fill_rectangle(
-                            ws=ws,
-                            column_th=(card_left + 1) * square_unit + 1,
-                            row_th=(card_top + 1) * square_unit + 1,
-                            columns=card_width * square_unit,
-                            rows=card_height * square_unit,
-                            fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
+                        # 端子の影を描く
+                        fill_rectangle(
+                                ws=ws,
+                                column_th=(card_left + 1) * square_unit + 1,
+                                row_th=(card_top + 1) * square_unit + 1,
+                                columns=card_width * square_unit,
+                                rows=card_height * square_unit,
+                                fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
 def render_all_cards(document, ws):
@@ -638,47 +638,47 @@ def render_all_cards(document, ws):
     """
     print('全てのカードの描画')
 
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
 
-    for pillar_id, whole_pillar in pillars_dict.items():
-        baseColor = whole_pillar['baseColor']
-        card_list = whole_pillar['cards']
+        for pillar_id, whole_pillar in pillars_dict.items():
+            baseColor = whole_pillar['baseColor']
+            card_list = whole_pillar['cards']
 
-        for card in card_list:
-            card_left = card['left']
-            card_top = card['top']
-            card_width = card['width']
-            card_height = card['height']
+            for card in card_list:
+                card_left = card['left']
+                card_top = card['top']
+                card_width = card['width']
+                card_height = card['height']
 
-            column_th = card_left * square_unit + 1
-            row_th = card_top * square_unit + 1
-            columns = card_width * square_unit
-            rows = card_height * square_unit
+                column_th = card_left * square_unit + 1
+                row_th = card_top * square_unit + 1
+                columns = card_width * square_unit
+                rows = card_height * square_unit
 
-            # ヘッダーの矩形の枠線を描きます
-            draw_rectangle(
-                    ws=ws,
-                    column_th=column_th,
-                    row_th=row_th,
-                    columns=columns,
-                    rows=rows)
+                # ヘッダーの矩形の枠線を描きます
+                draw_rectangle(
+                        ws=ws,
+                        column_th=column_th,
+                        row_th=row_th,
+                        columns=columns,
+                        rows=rows)
 
-            if 'paperStrips' in card:
-                paper_strip_list = card['paperStrips']
+                if 'paperStrips' in card:
+                    paper_strip_list = card['paperStrips']
 
-                for paper_strip in paper_strip_list:
+                    for paper_strip in paper_strip_list:
 
-                    # 短冊１行の描画
-                    render_paper_strip(
-                            ws=ws,
-                            paper_strip=paper_strip,
-                            column_th=column_th,
-                            row_th=row_th,
-                            columns=columns,
-                            rows=rows)
-                    
-                    row_th += square_unit
+                        # 短冊１行の描画
+                        render_paper_strip(
+                                ws=ws,
+                                paper_strip=paper_strip,
+                                column_th=column_th,
+                                row_th=row_th,
+                                columns=columns,
+                                rows=rows)
+                        
+                        row_th += square_unit
 
 
 def render_all_terminal_shadows(document, ws):
@@ -686,27 +686,26 @@ def render_all_terminal_shadows(document, ws):
     """
     print('全ての端子の影の描画')
 
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
 
-    for pillar_id, pillar_dict in pillars_dict.items():
-        # もし、端子の辞書があれば
-        if 'terminals' in pillar_dict:
-            terminals_dict = pillar_dict['terminals']
+        for pillar_id, pillar_dict in pillars_dict.items():
+            # もし、端子の辞書があれば
+            if 'terminals' in pillar_dict and (terminals_dict := pillar_dict['terminals']):
 
-            for terminal_id, terminal_dict in terminals_dict.items():
-                terminal_left = terminal_dict['left']
-                terminal_top = terminal_dict['top']
-                terminal_shadow_color = terminal_dict['shadowColor']
+                for terminal_id, terminal_dict in terminals_dict.items():
+                    terminal_left = terminal_dict['left']
+                    terminal_top = terminal_dict['top']
+                    terminal_shadow_color = terminal_dict['shadowColor']
 
-                # 端子の影を描く
-                fill_rectangle(
-                        ws=ws,
-                        column_th=(terminal_left + 1) * square_unit + 1,
-                        row_th=(terminal_top + 1) * square_unit + 1,
-                        columns=9,
-                        rows=9,
-                        fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
+                    # 端子の影を描く
+                    fill_rectangle(
+                            ws=ws,
+                            column_th=(terminal_left + 1) * square_unit + 1,
+                            row_th=(terminal_top + 1) * square_unit + 1,
+                            columns=9,
+                            rows=9,
+                            fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
 
 
 def render_all_terminals(document, ws):
@@ -714,32 +713,30 @@ def render_all_terminals(document, ws):
     """
     print('全ての端子の描画')
 
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
 
-    for pillar_id, pillar_dict in pillars_dict.items():
+        for pillar_id, pillar_dict in pillars_dict.items():
+            # もし、端子の辞書があれば
+            if 'terminals' in pillar_dict and (terminals_dict := pillar_dict['terminals']):
 
-        # もし、端子の辞書があれば
-        if 'terminals' in pillar_dict:
-            terminals_dict = pillar_dict['terminals']
+                for terminal_id, terminal_dict in terminals_dict.items():
+                    terminal_left = terminal_dict['left']
+                    terminal_top = terminal_dict['top']
 
-            for terminal_id, terminal_dict in terminals_dict.items():
-                terminal_left = terminal_dict['left']
-                terminal_top = terminal_dict['top']
-
-                if terminal_id == 'start':
-                    # 始端のドット絵を描く
-                    fill_start_terminal(
-                        ws=ws,
-                        column_th=terminal_left * square_unit + 1,
-                        row_th=terminal_top * square_unit + 1)
-                
-                elif terminal_id == 'end':
-                    # 終端のドット絵を描く
-                    fill_end_terminal(
-                        ws=ws,
-                        column_th=terminal_left * square_unit + 1,
-                        row_th=terminal_top * square_unit + 1)
+                    if terminal_id == 'start':
+                        # 始端のドット絵を描く
+                        fill_start_terminal(
+                            ws=ws,
+                            column_th=terminal_left * square_unit + 1,
+                            row_th=terminal_top * square_unit + 1)
+                    
+                    elif terminal_id == 'end':
+                        # 終端のドット絵を描く
+                        fill_end_terminal(
+                            ws=ws,
+                            column_th=terminal_left * square_unit + 1,
+                            row_th=terminal_top * square_unit + 1)
 
 
 def render_all_line_tape_shadows(document, ws):
@@ -748,8 +745,7 @@ def render_all_line_tape_shadows(document, ws):
     print('全てのラインテープの影の描画')
 
     # もし、ラインテープの配列があれば
-    if 'lineTapes' in document:
-        line_tape_list = document['lineTapes']
+    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
 
         for line_tape_dict in line_tape_list:
             segments_dict = line_tape_dict['segments']
@@ -814,8 +810,7 @@ def render_all_line_tapes(document, ws):
     print('全てのラインテープの描画')
 
     # もし、ラインテープの配列があれば
-    if 'lineTapes' in document:
-        line_tape_list = document['lineTapes']
+    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
 
         for line_tape_dict in line_tape_list:
             line_tape_outline_color = None
@@ -1160,9 +1155,64 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
 
-def compile_auto_shadow(document):
+def resolve_auto_shadow(document, column_th, row_th):
+    """TODO 影の自動設定を解決したい"""
+
+    # もし、影の色の対応付けがあれば
+    if 'shadowColorMappings' in document and (shadow_color_dict := document['shadowColorMappings']):
+
+        # もし、柱の辞書があれば
+        if 'pillars' in document and (pillars_dict := document['pillars']):
+
+            for pillar_id, pillars_dict in pillars_dict.items():
+                pillar_left = pillars_dict['left']
+                pillar_top = pillars_dict['top']
+                pillar_width = pillars_dict['width']
+                pillar_height = pillars_dict['height']
+                base_color = pillars_dict['baseColor']
+
+                pillar_column_th = pillar_left * square_unit + 1
+                pillar_row_th = pillar_top * square_unit + 1
+                pillar_columns = pillar_width * square_unit
+                pillar_rows = pillar_height * square_unit
+
+                # 矩形の中に、指定の点は含まれるか？
+                if pillar_column_th <= column_th and column_th <= pillar_column_th + pillar_columns and \
+                    pillar_row_th <= row_th and row_th <= pillar_row_th + pillar_rows:
+
+                    return shadow_color_dict[base_color]
+
+    # 該当なし
+    return None
+
+
+def solve_auto_shadow(document):
     """ドキュメントに対して、影の自動設定の編集を行います
     """
+
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
+
+        for pillar_id, pillar_dict in pillars_dict.items():
+            # もし、カードの辞書があれば
+            if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
+
+                for card_dict in card_dict_list:
+                    if 'shadowColor' in card_dict and (card_shadow_color := card_dict['shadowColor']):
+
+                        card_left = card_dict['left']
+                        card_top = card_dict['top']
+                        card_width = card_dict['width']
+                        card_height = card_dict['height']
+
+                        column_th = (card_left + 1) * square_unit + 1
+                        row_th = (card_top + 1) * square_unit + 1
+
+                        # TODO 影に自動が設定されていたら、解決したい
+                        solved_tone_and_color_name = resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th)
+                        if solved_tone_and_color_name:
+                            card_dict['shadowColor'] = solved_tone_and_color_name
+
     return document
 
 
@@ -1216,9 +1266,9 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def compile_auto_shadow(document):
-        global compile_auto_shadow
-        return compile_auto_shadow(document)
+    def solve_auto_shadow(document):
+        global solve_auto_shadow
+        return solve_auto_shadow(document)
 
 
 ######################

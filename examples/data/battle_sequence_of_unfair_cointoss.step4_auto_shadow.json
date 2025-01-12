@@ -3,6 +3,11 @@
         "width" : 119,
         "height" : 149
     },
+    "shadowColorMappings" : {
+        "paper_color" : "xl_pale.xl_white",
+        "xl_pale.xl_blue" : "xl_light.xl_blue",
+        "xl_pale.xl_yellow" : "xl_light.xl_yellow"        
+    },
     "pillars" : {
         "battleMapEventMaster" : {
             "left" : 4,
