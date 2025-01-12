@@ -1006,9 +1006,10 @@
     },
     "lineTapes" : [
         {
+            "outlineColor" : "xl_theme.xl_white",
             "segments" : [
                 {
-                    "direction" : "to_down",
+                    "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
                     "shadowColor" : "xl_light.xl_blue",
                     "left" : 7,
@@ -1019,9 +1020,10 @@
             ]
         },
         {
+            "outlineColor" : "xl_theme.xl_white",
             "segments" : [
                 {
-                    "direction" : "to_down",
+                    "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_light.xl_blue",
                     "left" : 7,
@@ -1030,7 +1032,7 @@
                     "bottom" : "22o1"
                 },
                 {
-                    "direction" : "to_right",
+                    "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_light.xl_blue",
                     "left" : 7,
@@ -1039,7 +1041,7 @@
                     "height" : "0o1"
                 },
                 {
-                    "direction" : "to_right",
+                    "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_pale.xl_white",
                     "left" : 12,
@@ -1048,7 +1050,7 @@
                     "height" : "0o1"
                 },
                 {
-                    "direction" : "to_down",
+                    "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_light.xl_yellow",
                     "left" : 20,
@@ -1057,7 +1059,7 @@
                     "height" : "0o1"
                 },
                 {
-                    "direction" : "to_down",
+                    "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_pale.xl_white",
                     "left" : 29,
@@ -1066,7 +1068,7 @@
                     "height" : "0o1"
                 },
                 {
-                    "direction" : "to_right",
+                    "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_light.xl_blue",
                     "left" : 37,
@@ -1075,7 +1077,7 @@
                     "height" : "0o1"
                 },
                 {
-                    "direction" : "to_down",
+                    "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
                     "shadowColor" : "xl_light.xl_blue",
                     "left" : 41,
@@ -1083,6 +1085,11 @@
                     "width" : 1,
                     "bottom" : 25
                 }
+            ]
+        },
+        {
+            "segments" : [
+
             ]
         }
     ]

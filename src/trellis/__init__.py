@@ -809,9 +809,17 @@ def render_all_line_tapes(document, ws):
         line_tape_list = document['lineTapes']
 
         for line_tape_dict in line_tape_list:
+            line_tape_outline_color = None
+            if 'outlineColor' in line_tape_dict:
+                line_tape_outline_color = line_tape_dict['outlineColor']
+
             segments_dict = line_tape_dict['segments']
 
             for segment_dict in segments_dict:
+                line_tape_direction = None
+                if 'direction' in segment_dict:
+                    line_tape_direction = segment_dict['direction']
+
                 if 'color' in segment_dict:
                     line_tape_color = segment_dict['color']
 
@@ -857,14 +865,154 @@ def render_all_line_tapes(document, ws):
                         if isinstance(line_tape_height, str):
                             line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
 
-                    # 端子の影を描く
+                    # ラインテープを描く
+                    column_th = line_tape_left * square_unit + line_tape_sub_left + 1
+                    row_th = line_tape_top * square_unit + line_tape_sub_top + 1
+                    columns = line_tape_width * square_unit + line_tape_sub_width
+                    rows = line_tape_height * square_unit + line_tape_sub_height
+                    fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
-                            column_th=line_tape_left * square_unit + line_tape_sub_left + 1,
-                            row_th=line_tape_top * square_unit + line_tape_sub_top + 1,
-                            columns=line_tape_width * square_unit + line_tape_sub_width,
-                            rows=line_tape_height * square_unit + line_tape_sub_height,
-                            fill_obj=tone_and_color_name_to_fill_obj(line_tape_color))
+                            column_th=column_th,
+                            row_th=row_th,
+                            columns=columns,
+                            rows=rows,
+                            fill_obj=fill_obj)
+
+                    # （あれば）アウトラインを描く
+                    if line_tape_outline_color and line_tape_direction:
+                        outline_fill_obj = tone_and_color_name_to_fill_obj(line_tape_outline_color)
+
+                        # （共通処理）垂直方向
+                        if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down']:
+                            # 左辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th + 1,
+                                    columns=1,
+                                    rows=rows - 2,
+                                    fill_obj=outline_fill_obj)
+
+                            # 右辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + columns,
+                                    row_th=row_th + 1,
+                                    columns=1,
+                                    rows=rows - 2,
+                                    fill_obj=outline_fill_obj)
+                        
+                        # （共通処理）水平方向
+                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right']:
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit,
+                                    row_th=row_th - 1,
+                                    columns=columns - 2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit,
+                                    row_th=row_th + rows,
+                                    columns=columns - 2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                        # ここから落ちていく
+                        if line_tape_direction == 'from_here.falling_down':
+                            # 左辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th,
+                                    columns=1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 右辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + columns,
+                                    row_th=row_th,
+                                    columns=1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                        # 落ちたあと、右折
+                        if line_tape_direction == 'after_falling_down.turn_right':
+                            # 左辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th - 1,
+                                    columns=1,
+                                    rows=2,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th + 1,
+                                    columns=square_unit + 1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                        # そのまま右進
+                        if line_tape_direction == 'continue.go_right':
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - square_unit,
+                                    row_th=row_th - 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - square_unit,
+                                    row_th=row_th + 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                        # 右進から落ちていく
+                        if line_tape_direction == 'after_go_right.turn_falling_down':
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - square_unit,
+                                    row_th=row_th - 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - square_unit,
+                                    row_th=row_th + 1,
+                                    columns=square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 右辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + columns,
+                                    row_th=row_th - 1,
+                                    columns=1,
+                                    rows=2,
+                                    fill_obj=outline_fill_obj)
+
+
 
 
 class TrellisInSrc():
