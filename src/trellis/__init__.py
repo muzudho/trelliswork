@@ -617,19 +617,15 @@ def render_all_card_shadows(document, ws):
                     if 'shadowColor' in card_dict:
                         card_shadow_color = card_dict['shadowColor']
 
-
-                        card_left = card_dict['left']
-                        card_top = card_dict['top']
-                        card_width = card_dict['width']
-                        card_height = card_dict['height']
+                        card_rect = get_rectangle(rectangle_dict=card_dict)
 
                         # 端子の影を描く
                         fill_rectangle(
                                 ws=ws,
-                                column_th=(card_left + 1) * square_unit + 1,
-                                row_th=(card_top + 1) * square_unit + 1,
-                                columns=card_width * square_unit,
-                                rows=card_height * square_unit,
+                                column_th=(card_rect.left + 1) * square_unit + 1,
+                                row_th=(card_rect.top + 1) * square_unit + 1,
+                                columns=card_rect.width * square_unit,
+                                rows=card_rect.height * square_unit,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
@@ -650,16 +646,14 @@ def render_all_cards(document, ws):
             baseColor = pillar_dict['baseColor']
             card_list = pillar_dict['cards']
 
-            for card in card_list:
-                card_left = card['left']
-                card_top = card['top']
-                card_width = card['width']
-                card_height = card['height']
+            for card_dict in card_list:
 
-                column_th = card_left * square_unit + 1
-                row_th = card_top * square_unit + 1
-                columns = card_width * square_unit
-                rows = card_height * square_unit
+                card_rect = get_rectangle(rectangle_dict=card_dict)
+
+                column_th = card_rect.left * square_unit + 1
+                row_th = card_rect.top * square_unit + 1
+                columns = card_rect.width * square_unit
+                rows = card_rect.height * square_unit
 
                 # ヘッダーの矩形の枠線を描きます
                 draw_rectangle(
@@ -669,8 +663,8 @@ def render_all_cards(document, ws):
                         columns=columns,
                         rows=rows)
 
-                if 'paperStrips' in card:
-                    paper_strip_list = card['paperStrips']
+                if 'paperStrips' in card_dict:
+                    paper_strip_list = card_dict['paperStrips']
 
                     for paper_strip in paper_strip_list:
 
@@ -699,15 +693,15 @@ def render_all_terminal_shadows(document, ws):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
-                    terminal_left = terminal_dict['left']
-                    terminal_top = terminal_dict['top']
+
+                    terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
                     terminal_shadow_color = terminal_dict['shadowColor']
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=(terminal_left + 1) * square_unit + 1,
-                            row_th=(terminal_top + 1) * square_unit + 1,
+                            column_th=(terminal_rect.left + 1) * square_unit + 1,
+                            row_th=(terminal_rect.top + 1) * square_unit + 1,
                             columns=9,
                             rows=9,
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
@@ -726,23 +720,23 @@ def render_all_terminals(document, ws):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
+
                     terminal_pixel_art = terminal_dict['pixelArt']
-                    terminal_left = terminal_dict['left']
-                    terminal_top = terminal_dict['top']
+                    terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
 
                     if terminal_pixel_art == 'start':
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
-                            column_th=terminal_left * square_unit + 1,
-                            row_th=terminal_top * square_unit + 1)
+                            column_th=terminal_rect.left * square_unit + 1,
+                            row_th=terminal_rect.top * square_unit + 1)
                     
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
-                            column_th=terminal_left * square_unit + 1,
-                            row_th=terminal_top * square_unit + 1)
+                            column_th=terminal_rect.left * square_unit + 1,
+                            row_th=terminal_rect.top * square_unit + 1)
 
 
 class Rectangle():
@@ -930,13 +924,13 @@ def render_all_line_tapes(document, ws):
                 if 'color' in segment_dict:
                     line_tape_color = segment_dict['color']
 
-                    rect = get_rectangle(rectangle_dict=segment_dict)
+                    segment_rect = get_rectangle(rectangle_dict=segment_dict)
 
                     # ラインテープを描く
-                    column_th = rect.left * square_unit + rect.sub_left + 1
-                    row_th = rect.top * square_unit + rect.sub_top + 1
-                    columns = rect.width * square_unit + rect.sub_width
-                    rows = rect.height * square_unit + rect.sub_height
+                    column_th = segment_rect.left * square_unit + segment_rect.sub_left + 1
+                    row_th = segment_rect.top * square_unit + segment_rect.sub_top + 1
+                    columns = segment_rect.width * square_unit + segment_rect.sub_width
+                    rows = segment_rect.height * square_unit + segment_rect.sub_height
                     fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
@@ -1233,16 +1227,13 @@ def resolve_auto_shadow(document, column_th, row_th):
                 if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                     continue
 
-                pillar_left = pillar_dict['left']
-                pillar_top = pillar_dict['top']
-                pillar_width = pillar_dict['width']
-                pillar_height = pillar_dict['height']
+                pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
                 base_color = pillar_dict['baseColor']
 
-                pillar_column_th = pillar_left * square_unit + 1
-                pillar_row_th = pillar_top * square_unit + 1
-                pillar_columns = pillar_width * square_unit
-                pillar_rows = pillar_height * square_unit
+                pillar_column_th = pillar_rect.left * square_unit + 1
+                pillar_row_th = pillar_rect.top * square_unit + 1
+                pillar_columns = pillar_rect.width * square_unit
+                pillar_rows = pillar_rect.height * square_unit
 
                 # もし、矩形の中に、指定の点が含まれたなら
                 if pillar_column_th <= column_th and column_th < pillar_column_th + pillar_columns and \
@@ -1269,11 +1260,10 @@ def edit_document_and_solve_auto_shadow(document):
                     if 'shadowColor' in card_dict and (card_shadow_color := card_dict['shadowColor']):
 
                         if card_shadow_color == 'auto':
-                            card_left = card_dict['left']
-                            card_top = card_dict['top']
+                            card_rect = get_rectangle(rectangle_dict=card_dict)
 
-                            column_th = (card_left + 1) * square_unit + 1
-                            row_th = (card_top + 1) * square_unit + 1
+                            column_th = (card_rect.left + 1) * square_unit + 1
+                            row_th = (card_rect.top + 1) * square_unit + 1
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
@@ -1286,10 +1276,10 @@ def edit_document_and_solve_auto_shadow(document):
                     if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
 
                         if terminal_shadow_color == 'auto':
-                            rect = get_rectangle(rectangle_dict=terminal_dict)
+                            terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
 
-                            column_th = (rect.left + 1) * square_unit + 1
-                            row_th = (rect.top + 1) * square_unit + 1
+                            column_th = (terminal_rect.left + 1) * square_unit + 1
+                            row_th = (terminal_rect.top + 1) * square_unit + 1
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
@@ -1304,12 +1294,12 @@ def edit_document_and_solve_auto_shadow(document):
 
                 for segment_dict in segment_list:
                     if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']) and segment_shadow_color == 'auto':
-                        rect = get_rectangle(rectangle_dict=segment_dict)
+                        segment_rect = get_rectangle(rectangle_dict=segment_dict)
 
                         # 影が指定されているということは、浮いているということでもある
                         hover = square_unit
-                        column_th = rect.left * square_unit + rect.sub_left + hover + 1
-                        row_th = rect.top * square_unit + rect.sub_top + hover + 1
+                        column_th = segment_rect.left * square_unit + segment_rect.sub_left + hover + 1
+                        row_th = segment_rect.top * square_unit + segment_rect.sub_top + hover + 1
 
                         # 影に自動が設定されていたら、解決する
                         if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
