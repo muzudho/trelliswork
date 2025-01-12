@@ -9,7 +9,7 @@ import json
 from src.trellis import trellis_in_src as tr
 
 
-print('step 3: line tapes')
+print('step 4: auto shadow')
 
 # ソースファイル（JSON形式）を読込
 json_file_name = './examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json'
@@ -19,7 +19,7 @@ with open(json_file_name, encoding='utf-8') as f:
 
 
 # ドキュメントに対して、影の自動設定の編集を行います
-document = tr.solve_auto_shadow(document)
+tr.edit_document_and_solve_auto_shadow(document)
 
 json_file_name_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 print(f"write json_file_name_2 = {json_file_name_2}")

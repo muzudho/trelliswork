@@ -638,7 +638,7 @@ def render_all_cards(document, ws):
     """
     print('全てのカードの描画')
 
-    # もし、柱の辞書があれば
+    # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for whole_pillar in pillars_list:
@@ -686,7 +686,7 @@ def render_all_terminal_shadows(document, ws):
     """
     print('全ての端子の影の描画')
 
-    # もし、柱の辞書があれば
+    # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
@@ -713,7 +713,7 @@ def render_all_terminals(document, ws):
     """
     print('全ての端子の描画')
 
-    # もし、柱の辞書があれば
+    # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
@@ -1162,7 +1162,7 @@ def resolve_auto_shadow(document, column_th, row_th):
     # もし、影の色の対応付けがあれば
     if 'shadowColorMappings' in document and (shadow_color_dict := document['shadowColorMappings']):
 
-        # もし、柱の辞書があれば
+        # もし、柱のリストがあれば
         if 'pillars' in document and (pillars_list := document['pillars']):
 
             for pillars_dict in pillars_list:
@@ -1187,11 +1187,11 @@ def resolve_auto_shadow(document, column_th, row_th):
     return None
 
 
-def solve_auto_shadow(document):
+def edit_document_and_solve_auto_shadow(document):
     """ドキュメントに対して、影の自動設定の編集を行います
     """
 
-    # もし、柱の辞書があれば
+    # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
@@ -1201,20 +1201,33 @@ def solve_auto_shadow(document):
                 for card_dict in card_dict_list:
                     if 'shadowColor' in card_dict and (card_shadow_color := card_dict['shadowColor']):
 
-                        card_left = card_dict['left']
-                        card_top = card_dict['top']
-                        card_width = card_dict['width']
-                        card_height = card_dict['height']
+                        if card_shadow_color == 'auto':
+                            card_left = card_dict['left']
+                            card_top = card_dict['top']
 
-                        column_th = (card_left + 1) * square_unit + 1
-                        row_th = (card_top + 1) * square_unit + 1
+                            column_th = (card_left + 1) * square_unit + 1
+                            row_th = (card_top + 1) * square_unit + 1
 
-                        # 影に自動が設定されていたら、解決する
-                        solved_tone_and_color_name = resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th)
-                        if solved_tone_and_color_name:
-                            card_dict['shadowColor'] = solved_tone_and_color_name
+                            # 影に自動が設定されていたら、解決する
+                            if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
+                                card_dict['shadowColor'] = solved_tone_and_color_name
 
-    return document
+            # もし、端子のリストがあれば
+            if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
+
+                for terminal_dict in terminals_list:
+                    if 'shadowColor' in terminal_dict and (card_shadow_color := terminal_dict['shadowColor']):
+
+                        if card_shadow_color == 'auto':
+                            terminal_left = terminal_dict['left']
+                            terminal_top = terminal_dict['top']
+
+                            column_th = (terminal_left + 1) * square_unit + 1
+                            row_th = (terminal_top + 1) * square_unit + 1
+
+                            # 影に自動が設定されていたら、解決する
+                            if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
+                                terminal_dict['shadowColor'] = solved_tone_and_color_name
 
 
 class TrellisInSrc():
@@ -1267,9 +1280,9 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def solve_auto_shadow(document):
-        global solve_auto_shadow
-        return solve_auto_shadow(document)
+    def edit_document_and_solve_auto_shadow(document):
+        global edit_document_and_solve_auto_shadow
+        return edit_document_and_solve_auto_shadow(document)
 
 
 ######################
