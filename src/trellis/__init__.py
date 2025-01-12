@@ -625,7 +625,7 @@ def render_all_card_shadows(document, ws):
                                 column_th=card_rect.left_obj.cell_th + square_unit,
                                 row_th=card_rect.top_obj.cell_th + square_unit,
                                 columns=card_rect.width_obj.cell_num,
-                                rows=card_rect.height_rows,
+                                rows=card_rect.height_obj.cell_num,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
@@ -656,7 +656,7 @@ def render_all_cards(document, ws):
                         column_th=card_rect.left_obj.cell_th,
                         row_th=card_rect.top_obj.cell_th,
                         columns=card_rect.width_obj.cell_num,
-                        rows=card_rect.height_rows)
+                        rows=card_rect.height_obj.cell_num)
 
                 if 'paperStrips' in card_dict:
                     paper_strip_list = card_dict['paperStrips']
@@ -670,7 +670,7 @@ def render_all_cards(document, ws):
                                 column_th=card_rect.left_obj.cell_th,
                                 row_th=index * square_unit + card_rect.top_obj.cell_th,
                                 columns=card_rect.width_obj.cell_num,
-                                rows=card_rect.height_rows)
+                                rows=card_rect.height_obj.cell_num)
 
 
 def render_all_terminal_shadows(document, ws):
@@ -811,16 +811,9 @@ class Rectangle():
         """
         self._left_obj = Square.from_main_and_sub(main_number=left, sub_number=sub_left)
         self._width_obj = Square.from_main_and_sub(main_number=width, sub_number=sub_width)
-
-        self._width_columns = None
-        self._right_obj = None
-
         self._top_obj = Square.from_main_and_sub(main_number=top, sub_number=sub_top)
-        self._height = height
-        self._sub_height = sub_height
-
-        self._top_row_th = None
-        self._height_rows = None
+        self._height_obj = Square.from_main_and_sub(main_number=height, sub_number=sub_height)
+        self._right_obj = None
 
 
     def _calculate_right(self):
@@ -856,21 +849,8 @@ class Rectangle():
 
 
     @property
-    def height(self):
-        return self._height
-
-
-    @property
-    def height_rows(self):
-        if not self._height_rows:
-            self._height_rows = self._height * square_unit + self._sub_height
-        
-        return self._height_rows
-
-
-    @property
-    def sub_height(self):
-        return self._sub_height
+    def height_obj(self):
+        return self._height_obj
 
 
 def get_rectangle(rectangle_dict):
@@ -948,7 +928,7 @@ def render_all_line_tape_shadows(document, ws):
                             column_th=segment_rect.left_obj.cell_th + square_unit,
                             row_th=segment_rect.top_obj.cell_th + square_unit,
                             columns=segment_rect.width_obj.cell_num,
-                            rows=segment_rect.height_rows,
+                            rows=segment_rect.height_obj.cell_num,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
@@ -986,7 +966,7 @@ def render_all_line_tapes(document, ws):
                             column_th=segment_rect.left_obj.cell_th,
                             row_th=segment_rect.top_obj.cell_th,
                             columns=segment_rect.width_obj.cell_num,
-                            rows=segment_rect.height_rows,
+                            rows=segment_rect.height_obj.cell_num,
                             fill_obj=fill_obj)
 
                     # （あれば）アウトラインを描く
@@ -1001,7 +981,7 @@ def render_all_line_tapes(document, ws):
                                     column_th=segment_rect.left_obj.cell_th - 1,
                                     row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=1,
-                                    rows=segment_rect.height_rows - 2,
+                                    rows=segment_rect.height_obj.cell_num - 2,
                                     fill_obj=outline_fill_obj)
 
                             # 右辺を描く
@@ -1010,7 +990,7 @@ def render_all_line_tapes(document, ws):
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num,
                                     row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=1,
-                                    rows=segment_rect.height_rows - 2,
+                                    rows=segment_rect.height_obj.cell_num - 2,
                                     fill_obj=outline_fill_obj)
                         
                         # （共通処理）水平方向
@@ -1028,7 +1008,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num,
                                     columns=segment_rect.width_obj.cell_num - 2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1168,7 +1148,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1177,7 +1157,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows - 2,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num - 2,
                                     columns=1,
                                     rows=3,
                                     fill_obj=outline_fill_obj)
@@ -1186,7 +1166,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows - 2,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num - 2,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1228,7 +1208,7 @@ def render_all_line_tapes(document, ws):
                                     column_th=segment_rect.left_obj.cell_th - 1,
                                     row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=1,
-                                    rows=segment_rect.height_rows,
+                                    rows=segment_rect.height_obj.cell_num,
                                     fill_obj=outline_fill_obj)
 
                             # 右辺（横長）を描く
@@ -1281,7 +1261,7 @@ def resolve_auto_shadow(document, column_th, row_th):
 
                 # もし、矩形の中に、指定の点が含まれたなら
                 if pillar_rect.left_obj.cell_th <= column_th and column_th < pillar_rect.left_obj.cell_th + pillar_rect.width_obj.cell_num and \
-                    pillar_rect.top_obj.cell_th <= row_th and row_th < pillar_rect.top_obj.cell_th + pillar_rect.height_rows:
+                    pillar_rect.top_obj.cell_th <= row_th and row_th < pillar_rect.top_obj.cell_th + pillar_rect.height_obj.cell_num:
 
                     return shadow_color_dict[base_color]
 
