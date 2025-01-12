@@ -578,7 +578,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell = ws[f'{column_letter}{row_th + 1}']
         cell.value = text
 
-    if 'text2' in paper_strip:
+    if 'text3' in paper_strip:
         text = paper_strip['text2']
         
         # 左に１マス分のアイコンを置く前提
@@ -884,7 +884,7 @@ def render_all_line_tapes(document, ws):
                         outline_fill_obj = tone_and_color_name_to_fill_obj(line_tape_outline_color)
 
                         # （共通処理）垂直方向
-                        if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up']:
+                        if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up', 'after_go_left.turn_falling_down']:
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -944,7 +944,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # 落ちたあと、右折
-                        if line_tape_direction == 'after_falling_down.turn_right':
+                        elif line_tape_direction == 'after_falling_down.turn_right':
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -964,7 +964,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # そのまま右進
-                        if line_tape_direction == 'continue.go_right':
+                        elif line_tape_direction == 'continue.go_right':
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -984,7 +984,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # 右進から落ちていく
-                        if line_tape_direction == 'after_go_right.turn_falling_down':
+                        elif line_tape_direction == 'after_go_right.turn_falling_down':
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1013,7 +1013,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # 落ちたあと左折
-                        if line_tape_direction == 'after_falling_down.turn_left':
+                        elif line_tape_direction == 'after_falling_down.turn_left':
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1033,13 +1033,13 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # そのまま左進
-                        if line_tape_direction == 'continue.go_left':
+                        elif line_tape_direction == 'continue.go_left':
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
                                     column_th=column_th + square_unit,
                                     row_th=row_th - 1,
-                                    columns=2 * square_unit,
+                                    columns=columns,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1048,12 +1048,12 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=column_th + square_unit,
                                     row_th=row_th + 1,
-                                    columns=2 * square_unit,
+                                    columns=columns,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
                         
                         # 左進から上っていく
-                        if line_tape_direction == 'after_go_left.turn_up':
+                        elif line_tape_direction == 'after_go_left.turn_up':
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1082,7 +1082,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
                         # 上がってきて右折
-                        if line_tape_direction == 'after_up.turn_right':
+                        elif line_tape_direction == 'after_up.turn_right':
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1100,6 +1100,36 @@ def render_all_line_tapes(document, ws):
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
+
+                        # 左進から落ちていく
+                        elif line_tape_direction == 'after_go_left.turn_falling_down':
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th,
+                                    row_th=row_th - 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 左辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th - 1,
+                                    columns=1,
+                                    rows=rows,
+                                    fill_obj=outline_fill_obj)
+
+                            # 右辺（横長）を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit + 1,
+                                    row_th=row_th + 1,
+                                    columns=square_unit - 1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
 
 
 class TrellisInSrc():

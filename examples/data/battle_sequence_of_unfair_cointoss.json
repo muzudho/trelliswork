@@ -1156,7 +1156,7 @@
                     "shadowColor" : "xl_light.xl_white",
                     "left" : 35,
                     "top" : "112o1",
-                    "width" : 2,
+                    "right" : 37,
                     "height" :"0o1"
                 },
                 {
@@ -1235,7 +1235,737 @@
                     "left" : 41,
                     "top" : "48o1",
                     "width" : 1,
-                    "bottom" : "50o2"
+                    "bottom" : "50o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "50o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "50o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "50o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "50o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "50o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 80,
+                    "top" : "50o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "50o1",
+                    "right" : 92,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 92,
+                    "top" : "50o1",
+                    "width" : 1,
+                    "bottom" : 52
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 92,
+                    "top" : "56o1",
+                    "width" : 1,
+                    "bottom" : "59o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "59o1",
+                    "right" : 93,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 80,
+                    "top" : "59o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "59o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "59o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "59o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "59o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 42,
+                    "top" : "59o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "59o1",
+                    "width" : 1,
+                    "bottom" : 61
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 39,
+                    "top" : "66o1",
+                    "width" : 1,
+                    "bottom" : "70o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 39,
+                    "top" : "70o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "70o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "70o1",
+                    "right" : 58,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "70o1",
+                    "width" : 1,
+                    "bottom" : 72
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 43,
+                    "top" : "67o1",
+                    "width" : 1,
+                    "bottom" : "69o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 43,
+                    "top" : "69o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "69o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "69o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "69o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "69o1",
+                    "right" : 75,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 75,
+                    "top" : "69o1",
+                    "width" : 1,
+                    "bottom" : 72
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "75o1",
+                    "width" : 1,
+                    "bottom" : "77o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "77o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "77o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "77o1",
+                    "right" : 75,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 75,
+                    "top" : "77o1",
+                    "width" : 1,
+                    "bottom" : 86
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 73,
+                    "top" : "75o1",
+                    "width" : 1,
+                    "bottom" : "78o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "78o1",
+                    "right" : 74,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "78o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 59,
+                    "top" : "78o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "78o1",
+                    "width" : 1,
+                    "bottom" : 86
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "89o1",
+                    "width" : 1,
+                    "bottom" : "97o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "97o1",
+                    "right" : 59,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "97o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "97o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "97o1",
+                    "width" : 1,
+                    "bottom" : 100
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 75,
+                    "top" : "89o1",
+                    "width" : 1,
+                    "bottom" : "98o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "98o1",
+                    "right" : 76,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "98o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "98o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "98o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "98o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "98o1",
+                    "width" : 1,
+                    "bottom" : 100
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 42,
+                    "top" : "104o1",
+                    "width" : 1,
+                    "bottom" : "115o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 42,
+                    "top" : "115o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "115o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "115o1",
+                    "right" : 58,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "115o1",
+                    "width" : 1,
+                    "bottom" : 117
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 44,
+                    "top" : "107o1",
+                    "width" : 1,
+                    "bottom" : "114o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 44,
+                    "top" : "114o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "114o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "114o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "114o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "114o1",
+                    "right" : 75,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 75,
+                    "top" : "114o1",
+                    "width" : 1,
+                    "bottom" : 117
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 58,
+                    "top" : "120o1",
+                    "width" : 1,
+                    "bottom" : "125o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "125o1",
+                    "right" : 59,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "125o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "125o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "125o1",
+                    "width" : 1,
+                    "bottom" : 129
+                }
+            ]
+        },
+        {
+            "outlineColor" : "xl_theme.xl_white",
+            "segments" : [
+                {
+                    "direction" : "from_here.falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 75,
+                    "top" : "120o1",
+                    "width" : 1,
+                    "bottom" : "127o1"
+                },
+                {
+                    "direction" : "after_falling_down.turn_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "127o1",
+                    "right" : 76,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 63,
+                    "top" : "127o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 54,
+                    "top" : "127o1",
+                    "right" : 63,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_white",
+                    "left" : 46,
+                    "top" : "127o1",
+                    "right" : 54,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_left",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 42,
+                    "top" : "127o1",
+                    "right" : 46,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_left.turn_falling_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "127o1",
+                    "width" : 1,
+                    "bottom" : 129
                 }
             ]
         }
