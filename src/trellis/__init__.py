@@ -113,6 +113,10 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     if tone_and_color_name == 'paper_color':
         return fill_palette_none
 
+    # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
+    if tone_and_color_name == 'auto':
+        return fill_palette['xl_theme']['xl_black']
+
     tone, color = tone_and_color_name.split('.', 2)
 
     if tone in fill_palette:

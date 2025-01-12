@@ -34,7 +34,7 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -62,7 +62,7 @@
                 "start" : {
                     "left" : 6,
                     "top" : 5,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "shadowColor" : "auto"
                 }
             }
         },
@@ -159,7 +159,7 @@
                     "top" : 25,
                     "width" : 9,
                     "height" : 12,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -231,7 +231,7 @@
                     "top" : 42,
                     "width" : 9,
                     "height" : 7,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -279,7 +279,7 @@
                     "top" : 61,
                     "width" : 9,
                     "height" : 7,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -327,7 +327,7 @@
                     "top" : 100,
                     "width" : 9,
                     "height" : 11,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -395,7 +395,7 @@
                     "top" : 129,
                     "width" : 9,
                     "height" : 6,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -436,7 +436,7 @@
                 "end" : {
                     "left" : 40,
                     "top" : 138,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "shadowColor" : "auto"
                 }
             }
         },
@@ -452,7 +452,6 @@
                     "top" : 1,
                     "width" : 9,
                     "height" : 2,
-                    "shadowColor" : "xl_light.xl_blue",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_pale.xl_blue",
@@ -471,7 +470,7 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 5,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -506,7 +505,7 @@
                     "top" : 72,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -534,7 +533,7 @@
                     "top" : 86,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -562,7 +561,7 @@
                     "top" : 117,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -590,7 +589,7 @@
                     "top" : 134,
                     "width" : 9,
                     "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -614,7 +613,7 @@
                 "start" : {
                     "left" : 57,
                     "top" : 5,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "shadowColor" : "auto"
                 }
             }
         },
@@ -648,7 +647,7 @@
                     "top" : 10,
                     "width" : 9,
                     "height" : 5,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -683,7 +682,7 @@
                     "top" : 72,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -710,7 +709,7 @@
                     "top" : 86,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -737,7 +736,7 @@
                     "top" : 117,
                     "width" : 9,
                     "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -764,7 +763,7 @@
                     "top" : 134,
                     "width" : 9,
                     "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -788,7 +787,7 @@
                 "start" : {
                     "left" : 74,
                     "top" : 5,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "shadowColor" : "auto"
                 }
             }
         },
@@ -822,7 +821,7 @@
                     "top" : 52,
                     "width" : 9,
                     "height" : 6,
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "paperStrips" : [
                         {
                             "bgColor" : "xl_theme.xl_white",
@@ -1014,7 +1013,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 7,
                     "top" : 8,
                     "width" : 1,
@@ -1028,7 +1027,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : 8,
                     "width" : 1,
@@ -1042,7 +1041,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : 8,
                     "width" : 1,
@@ -1056,7 +1055,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 7,
                     "top" : "13o1",
                     "width" : 1,
@@ -1065,7 +1064,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 7,
                     "top" : "22o1",
                     "right" : 12,
@@ -1074,7 +1073,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 12,
                     "top" : "22o1",
                     "right" : 20,
@@ -1083,7 +1082,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 20,
                     "top" : "22o1",
                     "right" : 29,
@@ -1092,7 +1091,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 29,
                     "top" : "22o1",
                     "right" : 37,
@@ -1101,7 +1100,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 37,
                     "top" : "22o1",
                     "right" : 41,
@@ -1110,7 +1109,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "22o1",
                     "width" : 1,
@@ -1124,7 +1123,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "36o1",
                     "width" : 1,
@@ -1138,7 +1137,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 40,
                     "top" : "110o1",
                     "width" : 1,
@@ -1147,7 +1146,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 37,
                     "top" : "112o1",
                     "width" : 4,
@@ -1156,7 +1155,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 35,
                     "top" : "112o1",
                     "right" : 37,
@@ -1165,7 +1164,7 @@
                 {
                     "direction" : "after_go_left.turn_up",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 34,
                     "top" : "40o2",
                     "width" : 1,
@@ -1174,7 +1173,7 @@
                 {
                     "direction" : "after_up.turn_right",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 34,
                     "top" : "40o1",
                     "right" : 37,
@@ -1183,7 +1182,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 37,
                     "top" : "40o1",
                     "right" : 41,
@@ -1192,7 +1191,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "40o1",
                     "width" : 1,
@@ -1206,7 +1205,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "65o1",
                     "width" : 1,
@@ -1220,7 +1219,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "132o1",
                     "width" : 1,
@@ -1234,7 +1233,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "48o1",
                     "width" : 1,
@@ -1243,7 +1242,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "50o1",
                     "right" : 46,
@@ -1252,7 +1251,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "50o1",
                     "right" : 54,
@@ -1261,7 +1260,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "50o1",
                     "right" : 63,
@@ -1270,7 +1269,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "50o1",
                     "right" : 71,
@@ -1279,7 +1278,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "50o1",
                     "right" : 80,
@@ -1288,7 +1287,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "50o1",
                     "right" : 88,
@@ -1297,7 +1296,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "50o1",
                     "right" : 92,
@@ -1306,7 +1305,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 92,
                     "top" : "50o1",
                     "width" : 1,
@@ -1320,7 +1319,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 92,
                     "top" : "56o1",
                     "width" : 1,
@@ -1329,7 +1328,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "59o1",
                     "right" : 93,
@@ -1338,7 +1337,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "59o1",
                     "right" : 88,
@@ -1347,7 +1346,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "59o1",
                     "right" : 80,
@@ -1356,7 +1355,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "59o1",
                     "right" : 71,
@@ -1365,7 +1364,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "59o1",
                     "right" : 63,
@@ -1374,7 +1373,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "59o1",
                     "right" : 54,
@@ -1383,7 +1382,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 42,
                     "top" : "59o1",
                     "right" : 46,
@@ -1392,7 +1391,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "59o1",
                     "width" : 1,
@@ -1406,7 +1405,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 39,
                     "top" : "66o1",
                     "width" : 1,
@@ -1415,7 +1414,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 39,
                     "top" : "70o1",
                     "right" : 46,
@@ -1424,7 +1423,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "70o1",
                     "right" : 54,
@@ -1433,7 +1432,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "70o1",
                     "right" : 58,
@@ -1442,7 +1441,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "70o1",
                     "width" : 1,
@@ -1456,7 +1455,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 43,
                     "top" : "67o1",
                     "width" : 1,
@@ -1465,7 +1464,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 43,
                     "top" : "69o1",
                     "right" : 46,
@@ -1474,7 +1473,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "69o1",
                     "right" : 54,
@@ -1483,7 +1482,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "69o1",
                     "right" : 63,
@@ -1492,7 +1491,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "69o1",
                     "right" : 71,
@@ -1501,7 +1500,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "69o1",
                     "right" : 75,
@@ -1510,7 +1509,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : "69o1",
                     "width" : 1,
@@ -1524,7 +1523,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "75o1",
                     "width" : 1,
@@ -1533,7 +1532,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "77o1",
                     "right" : 63,
@@ -1542,7 +1541,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "77o1",
                     "right" : 71,
@@ -1551,7 +1550,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "77o1",
                     "right" : 75,
@@ -1560,7 +1559,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : "77o1",
                     "width" : 1,
@@ -1574,7 +1573,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 73,
                     "top" : "75o1",
                     "width" : 1,
@@ -1583,7 +1582,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "78o1",
                     "right" : 74,
@@ -1592,7 +1591,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "78o1",
                     "right" : 71,
@@ -1601,7 +1600,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 59,
                     "top" : "78o1",
                     "right" : 63,
@@ -1610,7 +1609,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "78o1",
                     "width" : 1,
@@ -1624,7 +1623,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "89o1",
                     "width" : 1,
@@ -1633,7 +1632,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "97o1",
                     "right" : 59,
@@ -1642,7 +1641,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "97o1",
                     "right" : 54,
@@ -1651,7 +1650,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "97o1",
                     "right" : 46,
@@ -1660,7 +1659,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "97o1",
                     "width" : 1,
@@ -1674,7 +1673,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : "89o1",
                     "width" : 1,
@@ -1683,7 +1682,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "98o1",
                     "right" : 76,
@@ -1692,7 +1691,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "98o1",
                     "right" : 71,
@@ -1701,7 +1700,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "98o1",
                     "right" : 63,
@@ -1710,7 +1709,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "98o1",
                     "right" : 54,
@@ -1719,7 +1718,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "98o1",
                     "right" : 46,
@@ -1728,7 +1727,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "98o1",
                     "width" : 1,
@@ -1742,7 +1741,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 42,
                     "top" : "104o1",
                     "width" : 1,
@@ -1751,7 +1750,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 42,
                     "top" : "115o1",
                     "right" : 46,
@@ -1760,7 +1759,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "115o1",
                     "right" : 54,
@@ -1769,7 +1768,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "115o1",
                     "right" : 58,
@@ -1778,7 +1777,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "115o1",
                     "width" : 1,
@@ -1792,7 +1791,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 44,
                     "top" : "107o1",
                     "width" : 1,
@@ -1801,7 +1800,7 @@
                 {
                     "direction" : "after_falling_down.turn_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 44,
                     "top" : "114o1",
                     "right" : 46,
@@ -1810,7 +1809,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "114o1",
                     "right" : 54,
@@ -1819,7 +1818,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "114o1",
                     "right" : 63,
@@ -1828,7 +1827,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "114o1",
                     "right" : 71,
@@ -1837,7 +1836,7 @@
                 {
                     "direction" : "continue.go_right",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "114o1",
                     "right" : 75,
@@ -1846,7 +1845,7 @@
                 {
                     "direction" : "after_go_right.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : "114o1",
                     "width" : 1,
@@ -1860,7 +1859,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 58,
                     "top" : "120o1",
                     "width" : 1,
@@ -1869,7 +1868,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "125o1",
                     "right" : 59,
@@ -1878,7 +1877,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "125o1",
                     "right" : 54,
@@ -1887,7 +1886,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "125o1",
                     "right" : 46,
@@ -1896,7 +1895,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "125o1",
                     "width" : 1,
@@ -1910,7 +1909,7 @@
                 {
                     "direction" : "from_here.falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 75,
                     "top" : "120o1",
                     "width" : 1,
@@ -1919,7 +1918,7 @@
                 {
                     "direction" : "after_falling_down.turn_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "127o1",
                     "right" : 76,
@@ -1928,7 +1927,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "127o1",
                     "right" : 71,
@@ -1937,7 +1936,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 54,
                     "top" : "127o1",
                     "right" : 63,
@@ -1946,7 +1945,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 46,
                     "top" : "127o1",
                     "right" : 54,
@@ -1955,7 +1954,7 @@
                 {
                     "direction" : "continue.go_left",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 42,
                     "top" : "127o1",
                     "right" : 46,
@@ -1964,7 +1963,7 @@
                 {
                     "direction" : "after_go_left.turn_falling_down",
                     "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 41,
                     "top" : "127o1",
                     "width" : 1,
@@ -1976,7 +1975,7 @@
             "segments" : [
                 {
                     "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 12,
                     "top" : "12o1",
                     "right" : 20,
@@ -1984,7 +1983,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 20,
                     "top" : "12o1",
                     "right" : 25,
@@ -1992,7 +1991,7 @@
                 },
                 {
                     "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 25,
                     "top" : "12o1",
                     "width" : 1,
@@ -2004,7 +2003,7 @@
             "segments" : [
                 {
                     "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "12o1",
                     "right" : 70,
@@ -2012,7 +2011,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 70,
                     "top" : "12o1",
                     "right" : 80,
@@ -2020,7 +2019,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "12o1",
                     "right" : 88,
@@ -2028,7 +2027,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "12o1",
                     "right" : 97,
@@ -2036,7 +2035,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 97,
                     "top" : "12o1",
                     "right" : 105,
@@ -2044,7 +2043,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 105,
                     "top" : "12o1",
                     "right" : 110,
@@ -2052,7 +2051,7 @@
                 },
                 {
                     "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 110,
                     "top" : "12o1",
                     "width" : 1,
@@ -2064,7 +2063,7 @@
             "segments" : [
                 {
                     "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "74o1",
                     "right" : 71,
@@ -2072,7 +2071,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "74o1",
                     "right" : 80,
@@ -2080,7 +2079,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "74o1",
                     "right" : 88,
@@ -2088,7 +2087,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "74o1",
                     "right" : 97,
@@ -2096,7 +2095,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 97,
                     "top" : "74o1",
                     "right" : 105,
@@ -2104,7 +2103,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 105,
                     "top" : "74o1",
                     "right" : 110,
@@ -2112,7 +2111,7 @@
                 },
                 {
                     "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 110,
                     "top" : "74o1",
                     "width" : 1,
@@ -2124,7 +2123,7 @@
             "segments" : [
                 {
                     "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "88o1",
                     "right" : 71,
@@ -2132,7 +2131,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "88o1",
                     "right" : 80,
@@ -2140,7 +2139,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "88o1",
                     "right" : 88,
@@ -2148,7 +2147,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "88o1",
                     "right" : 97,
@@ -2156,7 +2155,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 97,
                     "top" : "88o1",
                     "right" : 105,
@@ -2164,7 +2163,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 105,
                     "top" : "88o1",
                     "right" : 110,
@@ -2172,7 +2171,7 @@
                 },
                 {
                     "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 110,
                     "top" : "88o1",
                     "width" : 1,
@@ -2184,7 +2183,7 @@
             "segments" : [
                 {
                     "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "119o1",
                     "right" : 71,
@@ -2192,7 +2191,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 71,
                     "top" : "119o1",
                     "right" : 80,
@@ -2200,7 +2199,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 80,
                     "top" : "119o1",
                     "right" : 88,
@@ -2208,7 +2207,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
+                    "shadowColor" : "auto",
                     "left" : 88,
                     "top" : "119o1",
                     "right" : 97,
@@ -2216,7 +2215,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
+                    "shadowColor" : "auto",
                     "left" : 97,
                     "top" : "119o1",
                     "right" : 105,
@@ -2224,7 +2223,7 @@
                 },
                 {
                     "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 105,
                     "top" : "119o1",
                     "right" : 110,
@@ -2232,11 +2231,11 @@
                 },
                 {
                     "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
+                    "shadowColor" : "auto",
                     "left" : 110,
                     "top" : "119o1",
                     "width" : 1,
-                    "bottom" : 91
+                    "bottom" : 122
                 }
             ]
         }

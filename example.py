@@ -23,6 +23,7 @@ if __name__ == '__main__':
                 from examples.step1_render_empty import *
                 from examples.step2_render_pillars import *
                 from examples.step3_render_line_tapes import *
+                from examples.step4_render_auto_shadow import *
 
             else:
                 raise ValueError(f'unsupported {args[1]=}')
