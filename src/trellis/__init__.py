@@ -1333,6 +1333,9 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
     NOTE 柱の縦幅は十分に広いものとする
     NOTE 柱にサブ位置はない
     """
+
+    new_segment_list = []
+
     #print('柱を跨ぐとき、ラインテープを分割します')
     segment_rect = get_rectangle(rectangle_dict=segment_dict)
 
@@ -1342,7 +1345,8 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
 
 
     # TODO とりあえず、落下後の左折だけ考える。他は後で考える
-    if direction == 'after_falling_down.turn_left':
+    # 左進より、右進の方がプログラムが簡単
+    if direction == 'after_falling_down.turn_right':
         #print('とりあえず、落下後の左折だけ考える。他は後で考える')
 
         # もし、柱のリストがあれば
@@ -1356,62 +1360,51 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
 
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
                 if segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の左端がある')
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 if segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の右端がある')
 
+                    # TODO 既存のセグメントを削除
+                    segment_list.remove(segment_dict)
 
-                    # # 既存のセグメントを削除
-                    # segment_list.remove(segment_dict)
-
-                    # # TODO 左側のセグメントを新規作成
-                    # left_segment_dict = dict(segment_dict)
-                    # left_segment_dict.remove('width')
-                    # left_segment_dict.remove('right')
-                    # left_segment_dict['right'] = pillar_rect.left
+                    # TODO 左側のセグメントを新規作成
+                    # （計算を簡単にするため）width は使わず right を使う
+                    left_segment_dict = dict(segment_dict)
+                    left_segment_dict.pop('width', None)
+                    left_segment_dict['right'] = pillar_rect.right      # TODO サブ位置も入れたい
+                    left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
+                    new_segment_list.append(left_segment_dict)
 
                     # # TODO 右側のセグメントを新規作成
+                    # # （計算を簡単にするため）width は使わず right を使う
                     # right_segment_dict = dict(segment_dict)
-                    # right_segment_dict.remove('left')
-                    # right_segment_dict.remove('width')
-                    # right_segment_dict.remove('right')
-                    # right_segment_dict['left'] = pillar_rect.left
+                    # right_segment_dict.pop('width', None)
+                    # right_segment_dict['left'] = pillar_rect.right
+                    # right_segment_dict['right'] = segment_rect.right
+                    # left_segment_dict['color'] = 'xl_standard.xl_green'   # FIXME 動作テスト
+                    # new_segment_list.append(right_segment_dict)
 
-                    # if pillar_rect.right < segment_rect.left_column_th
-                    # max_right_th = max(pillar_rect.right, )
-
-                    # if pillar_sub_left_th == 0:
-                    #     right_segment_dict['right'] = pillar_rect.left
-                    # else:
-                    #     right_segment_dict['right'] = f'{pillar_rect.left}{pillar_sub_left_th}'
-
-                    # segment_list.append(left_segment_dict)
-                    # segment_list.append(right_segment_dict)
-
-                    # # return shadow_color_dict[base_color]
-                    # # if splitting_segments:
-                    # #     segment_list.extend(splitting_segments)
-
-                    # pass
-
-    elif direction == 'after_falling_down.turn_right':
-        pass
 
     elif direction == 'after_up.turn_right':
         pass
 
+    elif direction == 'after_falling_down.turn_left':
+        pass
 
+    
+    return new_segment_list
 
 
 def edit_document_and_solve_auto_split_pillar(document):
     """ドキュメントに対して、影の自動設定の編集を行います
     """
+    new_splitting_segments = []
 
     # もし、ラインテープのリストがあれば
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
@@ -1424,10 +1417,14 @@ def edit_document_and_solve_auto_split_pillar(document):
                     # もし、影があれば
                     if 'shadowColor' in segment_dict and (shadow_color := segment_dict['shadowColor']):
                         # 柱を跨ぐとき、ラインテープを分割します
-                        splitting_segments = split_segment_by_pillar(
+                        new_splitting_segments.extend(split_segment_by_pillar(
                                 document=document,
                                 segment_list=segment_list,
-                                segment_dict=segment_dict)
+                                segment_dict=segment_dict))
+
+    # 削除用ループが終わってから追加する。そうしないと無限ループしてしまう
+    for splitting_segments in new_splitting_segments:
+        segment_list.append(splitting_segments)
 
 
 class TrellisInSrc():
