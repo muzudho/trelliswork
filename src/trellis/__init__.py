@@ -732,9 +732,64 @@ def render_all_terminals(document, ws):
                             row_th=terminal_rect.top_row_th)
 
 
+class Square():
+    """マス
+    """
+
+
+    @staticmethod
+    def from_main_and_sub(main_number, sub_number):
+        if sub_number == 0:
+            return Square(main_number)
+        
+        else:
+            return Square(f'{main_number}o{sub_number}')
+
+
+    def __init__(self, value):
+
+
+        if isinstance(value, str):
+            main_number, sub_number = map(int, value.split('o', 2))
+            self._sub_number = sub_number
+            self._main_number = main_number
+        else:
+            self._sub_number = 0
+            self._main_number = value
+
+        if self._sub_number == 0:
+            self._var_value = self._main_number
+        else:
+            self._var_value = f'{self._main_number}o{self._sub_number}'
+
+
+    @property
+    def var_value(self):
+        return self._var_value
+
+
+    @property
+    def main_number(self):
+        return self._main_number
+
+
+    @property
+    def sub_number(self):
+        return self._sub_number
+
+
+    def offset(self, var_value):
+        square = Square(var_value)
+        sub_number = self._sub_number + square.sub_number
+        main_number = self._main_number + square.main_number + sub_number // square_unit
+        sub_number = sub_number % square_unit
+        return Square.from_main_and_sub(main_number=main_number, sub_number=sub_number)
+
+
 class Rectangle():
     """矩形
     """
+
 
     def __init__(self, left, sub_left, top, sub_top, width, sub_width, height, sub_height):
         """初期化
@@ -1346,7 +1401,7 @@ def edit_document_and_solve_auto_shadow(document):
                             segment_dict['shadowColor'] = solved_tone_and_color_name
 
 
-def split_segment_by_pillar(document, segment_list, segment_dict):
+def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_dict):
     """柱を跨ぐとき、ラインテープを分割します
     NOTE 柱は左から並んでいるものとする
     NOTE 柱の縦幅は十分に広いものとする
@@ -1356,9 +1411,9 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
     new_segment_list = []
 
     #print('柱を跨ぐとき、ラインテープを分割します')
-    segment_rect = get_rectangle(rectangle_dict=segment_dict)
+    segment_rect = get_rectangle(rectangle_dict=line_tape_segment_dict)
 
-    direction = segment_dict['direction']
+    direction = line_tape_segment_dict['direction']
 
     splitting_segments = []
 
@@ -1372,11 +1427,8 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
         if 'pillars' in document and (pillars_list := document['pillars']):
             #print(f'{len(pillars_list)=}')
 
-            # とりあえず、左端の柱だけ考える
-            # TODO あとで全ての柱を考える
-            if 0 < len(pillars_list) and (pillar_dict := pillars_list[5]):
-                print(f'とりあえず、左から[5]本目の柱・隙間柱だけ考える')
-
+            # 各柱
+            for pillar_dict in pillars_list:
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
                 #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
@@ -1384,31 +1436,33 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                 if segment_rect.left < pillar_rect.left and pillar_rect.left < segment_rect.right:
                     print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
+                # NOTE テープは浮いています
                 #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
+                # FIXME Square を四則演算できるようにしたい
                 if segment_rect.left < pillar_rect.right and pillar_rect.right < segment_rect.right:
-                    print(f'（判定）ラインテープの左端より右と右端の内側に、柱の右端がある')
+                    print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
 
-                    # TODO 既存のセグメントを削除
-                    segment_list.remove(segment_dict)
+                    # 既存のセグメントを削除
+                    line_tape_segment_list.remove(line_tape_segment_dict)
 
-                    # TODO 左側のセグメントを新規作成し、新リストに追加
+                    # 左側のセグメントを新規作成し、新リストに追加
                     # （計算を簡単にするため）width は使わず right を使う
-                    left_segment_dict = dict(segment_dict)
+                    left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = pillar_rect.exact_right
+                    left_segment_dict['right'] = Square(pillar_rect.exact_right).offset(-1).var_value
                     left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
                     new_segment_list.append(left_segment_dict)
 
-                    # TODO 右側のセグメントを新規作成し、既存リストに追加
+                    # 右側のセグメントを新規作成し、既存リストに追加
                     # （計算を簡単にするため）width は使わず right を使う
-                    right_segment_dict = dict(segment_dict)
+                    right_segment_dict = dict(line_tape_segment_dict)
                     right_segment_dict.pop('width', None)
                     right_segment_dict['left'] = pillar_rect.exact_right
-                    right_segment_dict['right'] = segment_rect.right
+                    right_segment_dict['right'] = Square(segment_rect.right).offset(-1).var_value
                     right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
-                    segment_list.append(right_segment_dict)
-                    #new_segment_list.append(right_segment_dict)
+                    line_tape_segment_list.append(right_segment_dict)
+                    line_tape_segment_dict = right_segment_dict          # 入れ替え
 
 
     elif direction == 'after_up.turn_right':
@@ -1431,20 +1485,20 @@ def edit_document_and_solve_auto_split_pillar(document):
 
         for line_tape_dict in line_tape_list:
             # もし、セグメントのリストがあれば
-            if 'segments' in line_tape_dict and (segment_list := line_tape_dict['segments']):
+            if 'segments' in line_tape_dict and (line_tape_segment_list := line_tape_dict['segments']):
 
-                for segment_dict in segment_list:
+                for line_tape_segment_dict in line_tape_segment_list:
                     # もし、影があれば
-                    if 'shadowColor' in segment_dict and (shadow_color := segment_dict['shadowColor']):
+                    if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
                         # 柱を跨ぐとき、ラインテープを分割します
                         new_splitting_segments.extend(split_segment_by_pillar(
                                 document=document,
-                                segment_list=segment_list,
-                                segment_dict=segment_dict))
+                                line_tape_segment_list=line_tape_segment_list,
+                                line_tape_segment_dict=line_tape_segment_dict))
 
     # 削除用ループが終わってから追加する。そうしないと無限ループしてしまう
     for splitting_segments in new_splitting_segments:
-        segment_list.append(splitting_segments)
+        line_tape_segment_list.append(splitting_segments)
 
 
 class TrellisInSrc():
