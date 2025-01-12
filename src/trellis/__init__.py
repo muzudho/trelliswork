@@ -513,12 +513,12 @@ def render_all_pillar_rugs(document, ws):
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillars_dict in pillars_list:
-            if 'baseColor' in pillars_dict and (baseColor := pillars_dict['baseColor']):
-                left = pillars_dict['left']
-                top = pillars_dict['top']
-                width = pillars_dict['width']
-                height = pillars_dict['height']
+        for pillar_dict in pillars_list:
+            if 'baseColor' in pillar_dict and (baseColor := pillar_dict['baseColor']):
+                left = pillar_dict['left']
+                top = pillar_dict['top']
+                width = pillar_dict['width']
+                height = pillar_dict['height']
 
                 # 矩形を塗りつぶす
                 fill_rectangle(
@@ -641,14 +641,14 @@ def render_all_cards(document, ws):
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillars_dict in pillars_list:
+        for pillar_dict in pillars_list:
 
             # 柱と柱の隙間（隙間柱）は無視する
-            if 'baseColor' not in pillars_dict or not pillars_dict['baseColor']:
+            if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                 continue
 
-            baseColor = pillars_dict['baseColor']
-            card_list = pillars_dict['cards']
+            baseColor = pillar_dict['baseColor']
+            card_list = pillar_dict['cards']
 
             for card in card_list:
                 card_left = card['left']
@@ -1227,17 +1227,17 @@ def resolve_auto_shadow(document, column_th, row_th):
         # もし、柱のリストがあれば
         if 'pillars' in document and (pillars_list := document['pillars']):
 
-            for pillars_dict in pillars_list:
+            for pillar_dict in pillars_list:
 
                 # 柱と柱の隙間（隙間柱）は無視する
-                if 'baseColor' not in pillars_dict or not pillars_dict['baseColor']:
+                if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                     continue
 
-                pillar_left = pillars_dict['left']
-                pillar_top = pillars_dict['top']
-                pillar_width = pillars_dict['width']
-                pillar_height = pillars_dict['height']
-                base_color = pillars_dict['baseColor']
+                pillar_left = pillar_dict['left']
+                pillar_top = pillar_dict['top']
+                pillar_width = pillar_dict['width']
+                pillar_height = pillar_dict['height']
+                base_color = pillar_dict['baseColor']
 
                 pillar_column_th = pillar_left * square_unit + 1
                 pillar_row_th = pillar_top * square_unit + 1
@@ -1344,21 +1344,19 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
 
             # とりあえず、左端の柱だけ考える
             # TODO あとで全ての柱を考える
-            if 0 < len(pillars_list) and (pillars_dict := pillars_list[5]):
+            if 0 < len(pillars_list) and (pillar_dict := pillars_list[5]):
                 print(f'とりあえず、左から[5]本目の柱・隙間柱だけ考える')
 
-                pillar_left = pillars_dict['left']
-                pillar_width = pillars_dict['width']
-                pillar_right = pillar_left + pillar_width
+                pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_left and pillar_left < segment_rect.right}')
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left <= pillar_left and pillar_left < segment_rect.right:
+                if segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の左端がある')
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_right and pillar_right < segment_rect.right}')
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                if segment_rect.left <= pillar_right and pillar_right < segment_rect.right:
+                if segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の右端がある')
 
 
@@ -1369,22 +1367,22 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                     # left_segment_dict = dict(segment_dict)
                     # left_segment_dict.remove('width')
                     # left_segment_dict.remove('right')
-                    # left_segment_dict['right'] = pillar_left
+                    # left_segment_dict['right'] = pillar_rect.left
 
                     # # TODO 右側のセグメントを新規作成
                     # right_segment_dict = dict(segment_dict)
                     # right_segment_dict.remove('left')
                     # right_segment_dict.remove('width')
                     # right_segment_dict.remove('right')
-                    # right_segment_dict['left'] = pillar_left
+                    # right_segment_dict['left'] = pillar_rect.left
 
-                    # if pillar_right < segment_column_th
-                    # max_right_th = max(pillar_right, )
+                    # if pillar_rect.right < segment_column_th
+                    # max_right_th = max(pillar_rect.right, )
 
                     # if pillar_sub_left_th == 0:
-                    #     right_segment_dict['right'] = pillar_left
+                    #     right_segment_dict['right'] = pillar_rect.left
                     # else:
-                    #     right_segment_dict['right'] = f'{pillar_left}{pillar_sub_left_th}'
+                    #     right_segment_dict['right'] = f'{pillar_rect.left}{pillar_sub_left_th}'
 
                     # segment_list.append(left_segment_dict)
                     # segment_list.append(right_segment_dict)
