@@ -1147,14 +1147,14 @@ def resolve_auto_shadow(document, column_th, row_th):
                 pillar_columns = pillar_width * square_unit
                 pillar_rows = pillar_height * square_unit
 
-                # 矩形の中に、指定の点は含まれるか？
-                if pillar_column_th <= column_th and column_th <= pillar_column_th + pillar_columns and \
-                    pillar_row_th <= row_th and row_th <= pillar_row_th + pillar_rows:
+                # もし、矩形の中に、指定の点が含まれたなら
+                if pillar_column_th <= column_th and column_th < pillar_column_th + pillar_columns and \
+                    pillar_row_th <= row_th and row_th < pillar_row_th + pillar_rows:
 
                     return shadow_color_dict[base_color]
 
     # 該当なし
-    return None
+    return shadow_color_dict['paper_color']
 
 
 def edit_document_and_solve_auto_shadow(document):
@@ -1213,8 +1213,15 @@ def edit_document_and_solve_auto_shadow(document):
                             segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
                                     rectangle_dict=segment_dict)
 
-                            column_th = (segment_left + 1) * square_unit + 1
-                            row_th = (segment_top + 1) * square_unit + 1
+                            # 影が指定されているということは、浮いているということでもある
+                            hover = square_unit
+                            column_th = segment_left * square_unit + segment_sub_left + hover + 1
+                            row_th = segment_top * square_unit + segment_sub_top + hover + 1
+#                             print(f'''ラインテープ
+# {column_th=} = ({segment_left=} * {square_unit=} + {segment_sub_left=} + {hover=} + 1)
+# {row_th=   } = ({segment_top =} * {square_unit=} + {segment_sub_top= } + {hover=} + 1)
+# {segment_dict=}
+# ''')
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):

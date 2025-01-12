@@ -2023,13 +2023,13 @@
                     "shadowColor" : "auto",
                     "left" : 63,
                     "top" : "12o1",
-                    "right" : 70,
+                    "right" : 71,
                     "height" : "0o1"
                 },
                 {
                     "direction" : "continue.go_right",
                     "shadowColor" : "auto",
-                    "left" : 70,
+                    "left" : 71,
                     "top" : "12o1",
                     "right" : 80,
                     "height" : "0o1"
