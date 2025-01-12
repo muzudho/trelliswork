@@ -800,9 +800,7 @@ class Rectangle():
 
         self._left_column_th = None
         self._width_columns = None
-        self._right = None
-        self._sub_right = None
-        self._exact_right = None
+        self._right_obj = None
 
         self._top = top
         self._sub_top = sub_top
@@ -814,14 +812,11 @@ class Rectangle():
 
 
     def _calculate_right(self):
-        self._sub_right = self._left_obj._sub_number + self._sub_width
-        self._right = self._left_obj.main_number + self._width + self._sub_right // square_unit
-        self._sub_right %= square_unit
-
-        if self._sub_right == 0:
-            self._exact_right = self._right
-        else:
-            self._exact_right = f'{self._right}o{self._sub_right}'
+        # サブ右＝サブ左＋サブ幅
+        sum_sub_right = self._left_obj.sub_number + self._sub_width
+        self._right_obj = Square.from_main_and_sub(
+                main_number=self._left_obj.main_number + self._width + sum_sub_right // square_unit,
+                sub_number=sum_sub_right % square_unit)
 
 
     @property
@@ -838,30 +833,12 @@ class Rectangle():
 
 
     @property
-    def exact_right(self):
-        """矩形の右位置。
-        サブ右位置が含まれた場合、文字列型になることに注意してください
+    def right_obj(self):
+        """矩形の右位置
         """
-        if not self._right:
+        if not self._right_obj:
             self._calculate_right()
-        return self._right
-
-
-    @property
-    def right(self):
-        """矩形の右位置。
-        サブ右位置が含まれていないことに注意してください
-        """
-        if not self._right:
-            self._calculate_right()
-        return self._right
-
-
-    @property
-    def sub_right(self):
-        if not self._right:
-            self._calculate_right()
-        return self._sub_right
+        return self._right_obj
 
 
     @property
@@ -1425,16 +1402,16 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
             for pillar_dict in pillars_list:
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.left_obj.main_number=} <  {segment_rect.right=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.left_obj.main_number=} <  {segment_rect.right_obj.main_number=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right_obj.main_number}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left_obj.main_number < pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right:
+                if segment_rect.left_obj.main_number < pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right_obj.main_number:
                     print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
                 # NOTE テープは浮いています
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.right_obj.main_number=} <  {segment_rect.right_obj.main_number=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.right_obj.main_number and pillar_rect.right_obj.main_number < segment_rect.right_obj.main_number}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 # FIXME Square を四則演算できるようにしたい
-                if segment_rect.left_obj.main_number < pillar_rect.right and pillar_rect.right < segment_rect.right:
+                if segment_rect.left_obj.main_number < pillar_rect.right_obj.main_number and pillar_rect.right_obj.main_number < segment_rect.right_obj.main_number:
                     print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
 
                     # 既存のセグメントを削除
@@ -1444,7 +1421,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = Square(pillar_rect.exact_right).offset(-1).var_value
+                    left_segment_dict['right'] = Square(pillar_rect.right_obj.var_value).offset(-1).var_value
                     left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
                     new_segment_list.append(left_segment_dict)
 
@@ -1452,8 +1429,8 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     right_segment_dict = dict(line_tape_segment_dict)
                     right_segment_dict.pop('width', None)
-                    right_segment_dict['left'] = pillar_rect.exact_right
-                    right_segment_dict['right'] = Square(segment_rect.right).offset(-1).var_value
+                    right_segment_dict['left'] = pillar_rect.right_obj.var_value
+                    right_segment_dict['right'] = Square(segment_rect.right_obj.main_number).offset(-1).var_value
                     right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
