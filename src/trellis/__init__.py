@@ -777,7 +777,7 @@ class Rectangle():
     @property
     def left_column_th(self):
         if not self._left_column_th:
-            self._left_column_th = self._left * square_unit + 1
+            self._left_column_th = self._left * square_unit + self._sub_left + 1
 
         return self._left_column_th
 
@@ -809,7 +809,7 @@ class Rectangle():
     @property
     def top_row_th(self):
         if not self._top_row_th:
-            self._top_row_th = self._top * square_unit + 1
+            self._top_row_th = self._top * square_unit + self._sub_top + 1
 
         return self._top_row_th
 
@@ -915,9 +915,7 @@ def render_all_line_tape_shadows(document, ws):
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
 
         for line_tape_dict in line_tape_list:
-            segments_dict = line_tape_dict['segments']
-
-            for segment_dict in segments_dict:
+            for segment_dict in line_tape_dict['segments']:
                 if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
                     segment_rect = get_rectangle(rectangle_dict=segment_dict)
 
@@ -939,14 +937,16 @@ def render_all_line_tapes(document, ws):
     # もし、ラインテープの配列があれば
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
 
+        # 各ラインテープ
         for line_tape_dict in line_tape_list:
+
             line_tape_outline_color = None
             if 'outlineColor' in line_tape_dict:
                 line_tape_outline_color = line_tape_dict['outlineColor']
 
-            segments_dict = line_tape_dict['segments']
+            # 各セグメント
+            for segment_dict in line_tape_dict['segments']:
 
-            for segment_dict in segments_dict:
                 line_tape_direction = None
                 if 'direction' in segment_dict:
                     line_tape_direction = segment_dict['direction']
@@ -1141,15 +1141,6 @@ def render_all_line_tapes(document, ws):
                         
                         # 左進から上っていく
                         elif line_tape_direction == 'after_go_left.turn_up':
-                            # 右辺（横長）を描く
-                            fill_rectangle(
-                                    ws=ws,
-                                    column_th=segment_rect.left_column_th + square_unit,
-                                    row_th=segment_rect.top_row_th + segment_rect.height_rows - 2,
-                                    columns=square_unit,
-                                    rows=1,
-                                    fill_obj=outline_fill_obj)
-
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1166,6 +1157,15 @@ def render_all_line_tapes(document, ws):
                                     row_th=segment_rect.top_row_th + segment_rect.height_rows - 2,
                                     columns=1,
                                     rows=3,
+                                    fill_obj=outline_fill_obj)
+                            
+                            # 右辺（横長）を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=segment_rect.left_column_th + square_unit,
+                                    row_th=segment_rect.top_row_th + segment_rect.height_rows - 2,
+                                    columns=square_unit,
+                                    rows=1,
                                     fill_obj=outline_fill_obj)
 
                         # 上がってきて右折
