@@ -623,7 +623,7 @@ def render_all_card_shadows(document, ws):
                         fill_rectangle(
                                 ws=ws,
                                 column_th=card_rect.left_obj.cell_th + square_unit,
-                                row_th=card_rect.top_row_th + square_unit,
+                                row_th=card_rect.top_obj.cell_th + square_unit,
                                 columns=card_rect.width_columns,
                                 rows=card_rect.height_rows,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
@@ -654,7 +654,7 @@ def render_all_cards(document, ws):
                 draw_rectangle(
                         ws=ws,
                         column_th=card_rect.left_obj.cell_th,
-                        row_th=card_rect.top_row_th,
+                        row_th=card_rect.top_obj.cell_th,
                         columns=card_rect.width_columns,
                         rows=card_rect.height_rows)
 
@@ -668,7 +668,7 @@ def render_all_cards(document, ws):
                                 ws=ws,
                                 paper_strip=paper_strip,
                                 column_th=card_rect.left_obj.cell_th,
-                                row_th=index * square_unit + card_rect.top_row_th,
+                                row_th=index * square_unit + card_rect.top_obj.cell_th,
                                 columns=card_rect.width_columns,
                                 rows=card_rect.height_rows)
 
@@ -694,7 +694,7 @@ def render_all_terminal_shadows(document, ws):
                     fill_rectangle(
                             ws=ws,
                             column_th=terminal_rect.left_obj.cell_th + square_unit,
-                            row_th=terminal_rect.top_row_th + square_unit,
+                            row_th=terminal_rect.top_obj.cell_th + square_unit,
                             columns=9,
                             rows=9,
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
@@ -722,14 +722,14 @@ def render_all_terminals(document, ws):
                         fill_start_terminal(
                             ws=ws,
                             column_th=terminal_rect.left_obj.cell_th,
-                            row_th=terminal_rect.top_row_th)
+                            row_th=terminal_rect.top_obj.cell_th)
                     
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
                             column_th=terminal_rect.left_obj.cell_th,
-                            row_th=terminal_rect.top_row_th)
+                            row_th=terminal_rect.top_obj.cell_th)
 
 
 class Square():
@@ -813,8 +813,7 @@ class Rectangle():
         self._width_columns = None
         self._right_obj = None
 
-        self._top = top
-        self._sub_top = sub_top
+        self._top_obj = Square.from_main_and_sub(main_number=top, sub_number=sub_top)
         self._height = height
         self._sub_height = sub_height
 
@@ -845,21 +844,8 @@ class Rectangle():
 
 
     @property
-    def top(self):
-        return self._top
-
-
-    @property
-    def sub_top(self):
-        return self._sub_top
-
-
-    @property
-    def top_row_th(self):
-        if not self._top_row_th:
-            self._top_row_th = self._top * square_unit + self._sub_top + 1
-
-        return self._top_row_th
+    def top_obj(self):
+        return self._top_obj
 
 
     @property
@@ -971,7 +957,7 @@ def render_all_line_tape_shadows(document, ws):
                     fill_rectangle(
                             ws=ws,
                             column_th=segment_rect.left_obj.cell_th + square_unit,
-                            row_th=segment_rect.top_row_th + square_unit,
+                            row_th=segment_rect.top_obj.cell_th + square_unit,
                             columns=segment_rect.width_columns,
                             rows=segment_rect.height_rows,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
@@ -1009,7 +995,7 @@ def render_all_line_tapes(document, ws):
                     fill_rectangle(
                             ws=ws,
                             column_th=segment_rect.left_obj.cell_th,
-                            row_th=segment_rect.top_row_th,
+                            row_th=segment_rect.top_obj.cell_th,
                             columns=segment_rect.width_columns,
                             rows=segment_rect.height_rows,
                             fill_obj=fill_obj)
@@ -1024,7 +1010,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=1,
                                     rows=segment_rect.height_rows - 2,
                                     fill_obj=outline_fill_obj)
@@ -1033,7 +1019,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_columns,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=1,
                                     rows=segment_rect.height_rows - 2,
                                     fill_obj=outline_fill_obj)
@@ -1044,7 +1030,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=segment_rect.width_columns - 2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1053,7 +1039,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_row_th + segment_rect.height_rows,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows,
                                     columns=segment_rect.width_columns - 2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1064,7 +1050,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th,
+                                    row_th=segment_rect.top_obj.cell_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1073,7 +1059,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_columns,
-                                    row_th=segment_rect.top_row_th,
+                                    row_th=segment_rect.top_obj.cell_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1084,7 +1070,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1093,7 +1079,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1104,7 +1090,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1113,7 +1099,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1124,7 +1110,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1133,7 +1119,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1142,7 +1128,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_columns,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1153,7 +1139,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_columns,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1162,7 +1148,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + segment_rect.width_columns - square_unit,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1173,7 +1159,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=segment_rect.width_columns,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1182,7 +1168,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=segment_rect.width_columns,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1193,7 +1179,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_row_th + segment_rect.height_rows,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1202,7 +1188,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th + segment_rect.height_rows - 2,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows - 2,
                                     columns=1,
                                     rows=3,
                                     fill_obj=outline_fill_obj)
@@ -1211,7 +1197,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_row_th + segment_rect.height_rows - 2,
+                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_rows - 2,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1222,7 +1208,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th,
+                                    row_th=segment_rect.top_obj.cell_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1231,7 +1217,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1242,7 +1228,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1251,7 +1237,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=1,
                                     rows=segment_rect.height_rows,
                                     fill_obj=outline_fill_obj)
@@ -1260,7 +1246,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th + square_unit + 1,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=square_unit - 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1271,7 +1257,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_row_th - 1,
+                                    row_th=segment_rect.top_obj.cell_th - 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1280,7 +1266,7 @@ def render_all_line_tapes(document, ws):
                             fill_rectangle(
                                     ws=ws,
                                     column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_row_th + 1,
+                                    row_th=segment_rect.top_obj.cell_th + 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1306,7 +1292,7 @@ def resolve_auto_shadow(document, column_th, row_th):
 
                 # もし、矩形の中に、指定の点が含まれたなら
                 if pillar_rect.left_obj.cell_th <= column_th and column_th < pillar_rect.left_obj.cell_th + pillar_rect.width_columns and \
-                    pillar_rect.top_row_th <= row_th and row_th < pillar_rect.top_row_th + pillar_rect.height_rows:
+                    pillar_rect.top_obj.cell_th <= row_th and row_th < pillar_rect.top_obj.cell_th + pillar_rect.height_rows:
 
                     return shadow_color_dict[base_color]
 
@@ -1335,7 +1321,7 @@ def edit_document_and_solve_auto_shadow(document):
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
                                     column_th=card_rect.left_obj.cell_th + square_unit,
-                                    row_th=card_rect.top_row_th + square_unit):
+                                    row_th=card_rect.top_obj.cell_th + square_unit):
                                 card_dict['shadowColor'] = solved_tone_and_color_name
 
             # もし、端子のリストがあれば
@@ -1351,7 +1337,7 @@ def edit_document_and_solve_auto_shadow(document):
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
                                     column_th=terminal_rect.left_obj.cell_th + square_unit,
-                                    row_th=terminal_rect.top_row_th + square_unit):
+                                    row_th=terminal_rect.top_obj.cell_th + square_unit):
                                 terminal_dict['shadowColor'] = solved_tone_and_color_name
 
     # もし、ラインテープのリストがあれば
@@ -1371,7 +1357,7 @@ def edit_document_and_solve_auto_shadow(document):
                         if solved_tone_and_color_name := resolve_auto_shadow(
                                 document=document,
                                 column_th=segment_rect.left_obj.cell_th + square_unit,
-                                row_th=segment_rect.top_row_th + square_unit):
+                                row_th=segment_rect.top_obj.cell_th + square_unit):
                             segment_dict['shadowColor'] = solved_tone_and_color_name
 
 
