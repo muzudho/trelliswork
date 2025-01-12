@@ -745,52 +745,141 @@ def render_all_terminals(document, ws):
                             row_th=terminal_top * square_unit + 1)
 
 
+class Rectangle():
+    """矩形
+    """
+
+    def __init__(self, left, sub_left, top, sub_top, width, sub_width, height, sub_height):
+        """初期化
+        """
+        self._left = left
+        self._sub_left = sub_left
+        self._width = width
+        self._sub_width = sub_width
+
+        self._right = None
+        self._sub_right = None
+
+        self._top = top
+        self._sub_top = sub_top
+        self._height = height
+        self._sub_height = sub_height
+
+
+    def _calculate_right(self):
+        self._sub_right = self._sub_left + self._sub_width
+        self._right = self._left + self._width + self._sub_right // square_unit
+        self._sub_right %= square_unit
+
+
+    @property
+    def left(self):
+        return self._left
+
+
+    @property
+    def sub_left(self):
+        return self._sub_left
+
+
+    @property
+    def right(self):
+        if not self._right:
+            self._calculate_right()
+        return self._right
+
+
+    @property
+    def sub_right(self):
+        if not self._right:
+            self._calculate_right()
+        return self._sub_right
+
+
+    @property
+    def top(self):
+        return self._top
+
+
+    @property
+    def sub_top(self):
+        return self._sub_top
+
+
+    @property
+    def width(self):
+        return self._width
+
+
+    @property
+    def sub_width(self):
+        return self._sub_width
+
+
+    @property
+    def height(self):
+        return self._height
+
+
+    @property
+    def sub_height(self):
+        return self._sub_height
+
+
 def get_rectangle(rectangle_dict):
     """ラインテープのセグメントの矩形情報を取得
     """
-    line_tape_left = rectangle_dict['left']
-    line_tape_sub_left = 0
-    if isinstance(line_tape_left, str):
-        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
+    left = rectangle_dict['left']
+    sub_left = 0
+    if isinstance(left, str):
+        left, sub_left = map(int, left.split('o', 2))
     
-    line_tape_top = rectangle_dict['top']
-    line_tape_sub_top = 0
-    if isinstance(line_tape_top, str):
-        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
+    top = rectangle_dict['top']
+    sub_top = 0
+    if isinstance(top, str):
+        top, sub_top = map(int, top.split('o', 2))
 
     # right は、その数を含まない
     if 'right' in rectangle_dict:
-        line_tape_right = rectangle_dict['right']
-        line_tape_sub_right = 0
-        if isinstance(line_tape_right, str):
-            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
+        right = rectangle_dict['right']
+        sub_right = 0
+        if isinstance(right, str):
+            right, sub_right = map(int, right.split('o', 2))
 
-        line_tape_width = line_tape_right - line_tape_left
-        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
+        width = right - left
+        sub_width = sub_right - sub_left
 
     else:
-        line_tape_width = rectangle_dict['width']
-        line_tape_sub_width = 0
-        if isinstance(line_tape_width, str):
-            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
+        width = rectangle_dict['width']
+        sub_width = 0
+        if isinstance(width, str):
+            width, sub_width = map(int, width.split('o', 2))
 
     # bottom は、その数を含まない
     if 'bottom' in rectangle_dict:
-        line_tape_bottom = rectangle_dict['bottom']
-        line_tape_sub_bottom = 0
-        if isinstance(line_tape_bottom, str):
-            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
+        bottom = rectangle_dict['bottom']
+        sub_bottom = 0
+        if isinstance(bottom, str):
+            bottom, sub_bottom = map(int, bottom.split('o', 2))
 
-        line_tape_height = line_tape_bottom - line_tape_top
-        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
+        height = bottom - top
+        sub_height = sub_bottom - sub_top
 
     else:
-        line_tape_height = rectangle_dict['height']
-        line_tape_sub_height = 0
-        if isinstance(line_tape_height, str):
-            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
+        height = rectangle_dict['height']
+        sub_height = 0
+        if isinstance(height, str):
+            height, sub_height = map(int, height.split('o', 2))
 
-    return line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height
+    return Rectangle(
+            left=left,
+            sub_left=sub_left,
+            top=top,
+            sub_top=sub_top,
+            width=width,
+            sub_width=sub_width,
+            height=height,
+            sub_height=sub_height)
 
 
 def render_all_line_tape_shadows(document, ws):
@@ -806,16 +895,15 @@ def render_all_line_tape_shadows(document, ws):
 
             for segment_dict in segments_dict:
                 if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
-                    line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height = get_rectangle(
-                            rectangle_dict=segment_dict)
+                    rect = get_rectangle(rectangle_dict=segment_dict)
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=(line_tape_left + 1) * square_unit + line_tape_sub_left + 1,
-                            row_th=(line_tape_top + 1) * square_unit + line_tape_sub_top + 1,
-                            columns=line_tape_width * square_unit + line_tape_sub_width,
-                            rows=line_tape_height * square_unit + line_tape_sub_height,
+                            column_th=(rect.left + 1) * square_unit + rect.sub_left + 1,
+                            row_th=(rect.top + 1) * square_unit + rect.sub_top + 1,
+                            columns=rect.width * square_unit + rect.sub_width,
+                            rows=rect.height * square_unit + rect.sub_height,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
@@ -842,14 +930,13 @@ def render_all_line_tapes(document, ws):
                 if 'color' in segment_dict:
                     line_tape_color = segment_dict['color']
 
-                    line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height = get_rectangle(
-                            rectangle_dict=segment_dict)
+                    rect = get_rectangle(rectangle_dict=segment_dict)
 
                     # ラインテープを描く
-                    column_th = line_tape_left * square_unit + line_tape_sub_left + 1
-                    row_th = line_tape_top * square_unit + line_tape_sub_top + 1
-                    columns = line_tape_width * square_unit + line_tape_sub_width
-                    rows = line_tape_height * square_unit + line_tape_sub_height
+                    column_th = rect.left * square_unit + rect.sub_left + 1
+                    row_th = rect.top * square_unit + rect.sub_top + 1
+                    columns = rect.width * square_unit + rect.sub_width
+                    rows = rect.height * square_unit + rect.sub_height
                     fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
@@ -1199,11 +1286,10 @@ def edit_document_and_solve_auto_shadow(document):
                     if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
 
                         if terminal_shadow_color == 'auto':
-                            terminal_left, terminal_sub_left, terminal_top, terminal_sub_top, terminal_width, terminal_sub_width, terminal_height, terminal_sub_height = get_rectangle(
-                                    rectangle_dict=terminal_dict)
+                            rect = get_rectangle(rectangle_dict=terminal_dict)
 
-                            column_th = (terminal_left + 1) * square_unit + 1
-                            row_th = (terminal_top + 1) * square_unit + 1
+                            column_th = (rect.left + 1) * square_unit + 1
+                            row_th = (rect.top + 1) * square_unit + 1
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
@@ -1218,13 +1304,12 @@ def edit_document_and_solve_auto_shadow(document):
 
                 for segment_dict in segment_list:
                     if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']) and segment_shadow_color == 'auto':
-                        segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
-                                rectangle_dict=segment_dict)
+                        rect = get_rectangle(rectangle_dict=segment_dict)
 
                         # 影が指定されているということは、浮いているということでもある
                         hover = square_unit
-                        column_th = segment_left * square_unit + segment_sub_left + hover + 1
-                        row_th = segment_top * square_unit + segment_sub_top + hover + 1
+                        column_th = rect.left * square_unit + rect.sub_left + hover + 1
+                        row_th = rect.top * square_unit + rect.sub_top + hover + 1
 
                         # 影に自動が設定されていたら、解決する
                         if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
@@ -1238,14 +1323,11 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
     NOTE 柱にサブ位置はない
     """
     #print('柱を跨ぐとき、ラインテープを分割します')
+    segment_rect = get_rectangle(rectangle_dict=segment_dict)
 
-    segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
-            rectangle_dict=segment_dict)
-
-    segment_column_th = segment_left * square_unit + segment_sub_left + 1
-    segment_columns = segment_width * square_unit + segment_sub_width
+    segment_column_th = segment_rect.left * square_unit + segment_rect.sub_left + 1
+    segment_columns = segment_rect.width * square_unit + segment_rect.sub_width
     segment_right_column_th = segment_column_th + segment_columns   # 右端は、この数を含まない
-    segment_right = segment_right_column_th // square_unit
 
     direction = segment_dict['direction']
 
@@ -1269,14 +1351,14 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                 pillar_width = pillars_dict['width']
                 pillar_right = pillar_left + pillar_width
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_left=} <= {pillar_left=} <  {segment_right=} 判定：{segment_left <= pillar_left and pillar_left < segment_right}')
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_left and pillar_left < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_left <= pillar_left and pillar_left < segment_right:
+                if segment_rect.left <= pillar_left and pillar_left < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の左端がある')
 
-                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_left=} <= {pillar_right=} <  {segment_right=} 判定：{segment_left <= pillar_right and pillar_right < segment_right}')
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_right and pillar_right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                if segment_left <= pillar_right and pillar_right < segment_right:
+                if segment_rect.left <= pillar_right and pillar_right < segment_rect.right:
                     print(f'（判定）ラインテープの左端と右端の内側に、柱の右端がある')
 
 
