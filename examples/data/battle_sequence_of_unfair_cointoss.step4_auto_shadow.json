@@ -63,13 +63,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 6,
                     "top" : 5,
                     "shadowColor" : "auto"
                 }
-            }
+            ]
         },
         "encounterMapEventMaster" : {
             "left" : 21,
@@ -437,13 +438,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "end" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "end",
                     "left" : 40,
                     "top" : 138,
                     "shadowColor" : "auto"
                 }
-            }
+            ]
         },
         "alice" : {
             "left" : 55,
@@ -614,13 +616,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 57,
                     "top" : 5,
                     "shadowColor" : "auto"
                 }
-            }
+            ]
         },
         "bob" : {
             "left" : 72,
@@ -788,13 +791,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 74,
                     "top" : 5,
                     "shadowColor" : "auto"
                 }
-            }
+            ]
         },
         "coin" : {
             "left" : 89,

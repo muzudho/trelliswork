@@ -690,10 +690,10 @@ def render_all_terminal_shadows(document, ws):
     if 'pillars' in document and (pillars_dict := document['pillars']):
 
         for pillar_id, pillar_dict in pillars_dict.items():
-            # もし、端子の辞書があれば
-            if 'terminals' in pillar_dict and (terminals_dict := pillar_dict['terminals']):
+            # もし、端子のリストがあれば
+            if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
-                for terminal_id, terminal_dict in terminals_dict.items():
+                for terminal_dict in terminals_list:
                     terminal_left = terminal_dict['left']
                     terminal_top = terminal_dict['top']
                     terminal_shadow_color = terminal_dict['shadowColor']
@@ -717,21 +717,22 @@ def render_all_terminals(document, ws):
     if 'pillars' in document and (pillars_dict := document['pillars']):
 
         for pillar_id, pillar_dict in pillars_dict.items():
-            # もし、端子の辞書があれば
-            if 'terminals' in pillar_dict and (terminals_dict := pillar_dict['terminals']):
+            # もし、端子のリストがあれば
+            if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
-                for terminal_id, terminal_dict in terminals_dict.items():
+                for terminal_dict in terminals_list:
+                    terminal_pixel_art = terminal_dict['pixelArt']
                     terminal_left = terminal_dict['left']
                     terminal_top = terminal_dict['top']
 
-                    if terminal_id == 'start':
+                    if terminal_pixel_art == 'start':
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
                             column_th=terminal_left * square_unit + 1,
                             row_th=terminal_top * square_unit + 1)
                     
-                    elif terminal_id == 'end':
+                    elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
@@ -1156,7 +1157,7 @@ def render_all_line_tapes(document, ws):
 
 
 def resolve_auto_shadow(document, column_th, row_th):
-    """TODO 影の自動設定を解決したい"""
+    """影の自動設定を解決する"""
 
     # もし、影の色の対応付けがあれば
     if 'shadowColorMappings' in document and (shadow_color_dict := document['shadowColorMappings']):
@@ -1208,7 +1209,7 @@ def solve_auto_shadow(document):
                         column_th = (card_left + 1) * square_unit + 1
                         row_th = (card_top + 1) * square_unit + 1
 
-                        # TODO 影に自動が設定されていたら、解決したい
+                        # 影に自動が設定されていたら、解決する
                         solved_tone_and_color_name = resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th)
                         if solved_tone_and_color_name:
                             card_dict['shadowColor'] = solved_tone_and_color_name

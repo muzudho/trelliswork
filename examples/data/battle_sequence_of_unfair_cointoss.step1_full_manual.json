@@ -58,13 +58,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 6,
                     "top" : 5,
                     "shadowColor" : "xl_light.xl_blue"
                 }
-            }
+            ]
         },
         "encounterMapEventMaster" : {
             "left" : 21,
@@ -432,13 +433,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "end" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "end",
                     "left" : 40,
                     "top" : 138,
                     "shadowColor" : "xl_light.xl_blue"
                 }
-            }
+            ]
         },
         "alice" : {
             "left" : 55,
@@ -609,13 +611,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 57,
                     "top" : 5,
                     "shadowColor" : "xl_light.xl_blue"
                 }
-            }
+            ]
         },
         "bob" : {
             "left" : 72,
@@ -783,13 +786,14 @@
                     ]
                 }
             ],
-            "terminals" : {
-                "start" : {
+            "terminals" : [
+                {
+                    "pixelArt" : "start",
                     "left" : 74,
                     "top" : 5,
                     "shadowColor" : "xl_light.xl_blue"
                 }
-            }
+            ]
         },
         "coin" : {
             "left" : 89,
