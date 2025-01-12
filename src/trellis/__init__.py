@@ -1360,16 +1360,14 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
             for pillar_dict in pillars_list:
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.left_obj.main_number=} <  {segment_rect.right_obj.main_number=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right_obj.main_number}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left_obj.main_number < pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right_obj.main_number:
+                if segment_rect.left_obj.cell_th < pillar_rect.left_obj.cell_th and pillar_rect.left_obj.cell_th < segment_rect.right_obj.cell_th:
                     print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
                 # NOTE テープは浮いています
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.right_obj.main_number=} <  {segment_rect.right_obj.main_number=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.right_obj.main_number and pillar_rect.right_obj.main_number < segment_rect.right_obj.main_number}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 # FIXME Square を四則演算できるようにしたい
-                if segment_rect.left_obj.main_number < pillar_rect.right_obj.main_number and pillar_rect.right_obj.main_number < segment_rect.right_obj.main_number:
+                if segment_rect.left_obj.cell_th < pillar_rect.right_obj.cell_th and pillar_rect.right_obj.cell_th < segment_rect.right_obj.cell_th:
                     print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
 
                     # 既存のセグメントを削除
@@ -1387,7 +1385,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     right_segment_dict = dict(line_tape_segment_dict)
                     right_segment_dict.pop('width', None)
-                    right_segment_dict['left'] = pillar_rect.right_obj.var_value
+                    right_segment_dict['left'] = pillar_rect.right_obj.offset(-1).var_value
                     right_segment_dict['right'] = Square(segment_rect.right_obj.main_number).offset(-1).var_value
                     right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
                     line_tape_segment_list.append(right_segment_dict)
