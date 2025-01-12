@@ -748,6 +748,7 @@ class Rectangle():
         self._width_columns = None
         self._right = None
         self._sub_right = None
+        self._exact_right = None
 
         self._top = top
         self._sub_top = sub_top
@@ -762,6 +763,11 @@ class Rectangle():
         self._sub_right = self._sub_left + self._sub_width
         self._right = self._left + self._width + self._sub_right // square_unit
         self._sub_right %= square_unit
+
+        if self._sub_right == 0:
+            self._exact_right = self._right
+        else:
+            self._exact_right = f'{self._right}o{self._sub_right}'
 
 
     @property
@@ -783,7 +789,20 @@ class Rectangle():
 
 
     @property
+    def exact_right(self):
+        """矩形の右位置。
+        サブ右位置が含まれた場合、文字列型になることに注意してください
+        """
+        if not self._right:
+            self._calculate_right()
+        return self._right
+
+
+    @property
     def right(self):
+        """矩形の右位置。
+        サブ右位置が含まれていないことに注意してください
+        """
         if not self._right:
             self._calculate_right()
         return self._right
@@ -1377,7 +1396,7 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = pillar_rect.right      # TODO サブ位置も入れたい
+                    left_segment_dict['right'] = pillar_rect.exact_right
                     left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
                     new_segment_list.append(left_segment_dict)
 
@@ -1385,7 +1404,7 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                     # # （計算を簡単にするため）width は使わず right を使う
                     # right_segment_dict = dict(segment_dict)
                     # right_segment_dict.pop('width', None)
-                    # right_segment_dict['left'] = pillar_rect.right
+                    # right_segment_dict['left'] = pillar_rect.exact_right
                     # right_segment_dict['right'] = segment_rect.right
                     # left_segment_dict['color'] = 'xl_standard.xl_green'   # FIXME 動作テスト
                     # new_segment_list.append(right_segment_dict)
