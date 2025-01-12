@@ -1381,13 +1381,13 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
 
                 #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right:
-                    print(f'（判定）ラインテープの左端と右端の内側に、柱の左端がある')
+                if segment_rect.left < pillar_rect.left and pillar_rect.left < segment_rect.right:
+                    print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
                 #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                if segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right:
-                    print(f'（判定）ラインテープの左端と右端の内側に、柱の右端がある')
+                if segment_rect.left < pillar_rect.right and pillar_rect.right < segment_rect.right:
+                    print(f'（判定）ラインテープの左端より右と右端の内側に、柱の右端がある')
 
                     # TODO 既存のセグメントを削除
                     segment_list.remove(segment_dict)
