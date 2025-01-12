@@ -1386,7 +1386,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     right_segment_dict = dict(line_tape_segment_dict)
                     right_segment_dict.pop('width', None)
                     right_segment_dict['left'] = pillar_rect.right_obj.offset(-1).var_value
-                    right_segment_dict['right'] = Square(segment_rect.right_obj.main_number).offset(-1).var_value
+                    right_segment_dict['right'] = segment_rect.right_obj.var_value
                     right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
