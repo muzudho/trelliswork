@@ -10,6 +10,12 @@
     },
     "pillars": [
         {
+            "left": 0,
+            "top": 1,
+            "width": 4,
+            "height": 148
+        },
+        {
             "left": 4,
             "top": 1,
             "width": 9,
@@ -75,6 +81,12 @@
             ]
         },
         {
+            "left": 13,
+            "top": 1,
+            "width": 8,
+            "height": 148
+        },
+        {
             "left": 21,
             "top": 1,
             "width": 9,
@@ -129,6 +141,12 @@
                     ]
                 }
             ]
+        },
+        {
+            "left": 30,
+            "top": 1,
+            "width": 8,
+            "height": 148
         },
         {
             "left": 38,
@@ -452,6 +470,12 @@
             ]
         },
         {
+            "left": 47,
+            "top": 1,
+            "width": 8,
+            "height": 148
+        },
+        {
             "left": 55,
             "top": 1,
             "width": 9,
@@ -632,6 +656,12 @@
             ]
         },
         {
+            "left": 64,
+            "top": 1,
+            "width": 8,
+            "height": 148
+        },
+        {
             "left": 72,
             "top": 1,
             "width": 9,
@@ -809,6 +839,12 @@
             ]
         },
         {
+            "left": 81,
+            "top": 1,
+            "width": 8,
+            "height": 148
+        },
+        {
             "left": 89,
             "top": 1,
             "width": 9,
@@ -875,6 +911,12 @@
                     ]
                 }
             ]
+        },
+        {
+            "left": 98,
+            "top": 1,
+            "width": 8,
+            "height": 148
         },
         {
             "left": 106,
@@ -1021,6 +1063,12 @@
                     ]
                 }
             ]
+        },
+        {
+            "left": 115,
+            "top": 1,
+            "width": 4,
+            "height": 148
         }
     ],
     "lineTapes": [

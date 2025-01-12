@@ -513,12 +513,12 @@ def render_all_pillar_rugs(document, ws):
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for whole_pillar in pillars_list:
-            if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
-                left = whole_pillar['left']
-                top = whole_pillar['top']
-                width = whole_pillar['width']
-                height = whole_pillar['height']
+        for pillars_dict in pillars_list:
+            if 'baseColor' in pillars_dict and (baseColor := pillars_dict['baseColor']):
+                left = pillars_dict['left']
+                top = pillars_dict['top']
+                width = pillars_dict['width']
+                height = pillars_dict['height']
 
                 # 矩形を塗りつぶす
                 fill_rectangle(
@@ -641,9 +641,14 @@ def render_all_cards(document, ws):
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for whole_pillar in pillars_list:
-            baseColor = whole_pillar['baseColor']
-            card_list = whole_pillar['cards']
+        for pillars_dict in pillars_list:
+
+            # 柱と柱の隙間（隙間柱）は無視する
+            if 'baseColor' not in pillars_dict or not pillars_dict['baseColor']:
+                continue
+
+            baseColor = pillars_dict['baseColor']
+            card_list = pillars_dict['cards']
 
             for card in card_list:
                 card_left = card['left']
@@ -1136,6 +1141,11 @@ def resolve_auto_shadow(document, column_th, row_th):
         if 'pillars' in document and (pillars_list := document['pillars']):
 
             for pillars_dict in pillars_list:
+
+                # 柱と柱の隙間（隙間柱）は無視する
+                if 'baseColor' not in pillars_dict or not pillars_dict['baseColor']:
+                    continue
+
                 pillar_left = pillars_dict['left']
                 pillar_top = pillars_dict['top']
                 pillar_width = pillars_dict['width']
@@ -1207,26 +1217,130 @@ def edit_document_and_solve_auto_shadow(document):
             if 'segments' in line_tape_dict and (segment_list := line_tape_dict['segments']):
 
                 for segment_dict in segment_list:
-                    if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']):
+                    if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']) and segment_shadow_color == 'auto':
+                        segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
+                                rectangle_dict=segment_dict)
 
-                        if segment_shadow_color == 'auto':
-                            segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
-                                    rectangle_dict=segment_dict)
+                        # 影が指定されているということは、浮いているということでもある
+                        hover = square_unit
+                        column_th = segment_left * square_unit + segment_sub_left + hover + 1
+                        row_th = segment_top * square_unit + segment_sub_top + hover + 1
 
-                            # 影が指定されているということは、浮いているということでもある
-                            hover = square_unit
-                            column_th = segment_left * square_unit + segment_sub_left + hover + 1
-                            row_th = segment_top * square_unit + segment_sub_top + hover + 1
+                        # 影に自動が設定されていたら、解決する
+                        if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
+                            segment_dict['shadowColor'] = solved_tone_and_color_name
 
-                            # 影に自動が設定されていたら、解決する
-                            if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
-                                segment_dict['shadowColor'] = solved_tone_and_color_name
+
+def split_segment_by_pillar(document, segment_list, segment_dict):
+    """柱を跨ぐとき、ラインテープを分割します
+    NOTE 柱は左から並んでいるものとする
+    NOTE 柱の縦幅は十分に広いものとする
+    NOTE 柱にサブ位置はない
+    """
+    #print('柱を跨ぐとき、ラインテープを分割します')
+
+    segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
+            rectangle_dict=segment_dict)
+
+    segment_column_th = segment_left * square_unit + segment_sub_left + 1
+    segment_columns = segment_width * square_unit + segment_sub_width
+    segment_right_column_th = segment_column_th + segment_columns   # 右端は、この数を含まない
+    segment_right = segment_right_column_th // square_unit
+
+    direction = segment_dict['direction']
+
+    splitting_segments = []
+
+
+    # TODO とりあえず、落下後の左折だけ考える。他は後で考える
+    if direction == 'after_falling_down.turn_left':
+        #print('とりあえず、落下後の左折だけ考える。他は後で考える')
+
+        # もし、柱のリストがあれば
+        if 'pillars' in document and (pillars_list := document['pillars']):
+            #print(f'{len(pillars_list)=}')
+
+            # とりあえず、左端の柱だけ考える
+            # TODO あとで全ての柱を考える
+            if 0 < len(pillars_list) and (pillars_dict := pillars_list[5]):
+                print(f'とりあえず、左から[5]本目の柱・隙間柱だけ考える')
+
+                pillar_left = pillars_dict['left']
+                pillar_width = pillars_dict['width']
+                pillar_right = pillar_left + pillar_width
+
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_left=} <= {pillar_left=} <  {segment_right=} 判定：{segment_left <= pillar_left and pillar_left < segment_right}')
+                # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
+                if segment_left <= pillar_left and pillar_left < segment_right:
+                    print(f'（判定）ラインテープの左端と右端の内側に、柱の左端がある')
+
+                print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_left=} <= {pillar_right=} <  {segment_right=} 判定：{segment_left <= pillar_right and pillar_right < segment_right}')
+                # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
+                if segment_left <= pillar_right and pillar_right < segment_right:
+                    print(f'（判定）ラインテープの左端と右端の内側に、柱の右端がある')
+
+
+                    # # 既存のセグメントを削除
+                    # segment_list.remove(segment_dict)
+
+                    # # TODO 左側のセグメントを新規作成
+                    # left_segment_dict = dict(segment_dict)
+                    # left_segment_dict.remove('width')
+                    # left_segment_dict.remove('right')
+                    # left_segment_dict['right'] = pillar_left
+
+                    # # TODO 右側のセグメントを新規作成
+                    # right_segment_dict = dict(segment_dict)
+                    # right_segment_dict.remove('left')
+                    # right_segment_dict.remove('width')
+                    # right_segment_dict.remove('right')
+                    # right_segment_dict['left'] = pillar_left
+
+                    # if pillar_right < segment_column_th
+                    # max_right_th = max(pillar_right, )
+
+                    # if pillar_sub_left_th == 0:
+                    #     right_segment_dict['right'] = pillar_left
+                    # else:
+                    #     right_segment_dict['right'] = f'{pillar_left}{pillar_sub_left_th}'
+
+                    # segment_list.append(left_segment_dict)
+                    # segment_list.append(right_segment_dict)
+
+                    # # return shadow_color_dict[base_color]
+                    # # if splitting_segments:
+                    # #     segment_list.extend(splitting_segments)
+
+                    # pass
+
+    elif direction == 'after_falling_down.turn_right':
+        pass
+
+    elif direction == 'after_up.turn_right':
+        pass
+
+
 
 
 def edit_document_and_solve_auto_split_pillar(document):
     """ドキュメントに対して、影の自動設定の編集を行います
     """
-    pass
+
+    # もし、ラインテープのリストがあれば
+    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+
+        for line_tape_dict in line_tape_list:
+            # もし、セグメントのリストがあれば
+            if 'segments' in line_tape_dict and (segment_list := line_tape_dict['segments']):
+
+                for segment_dict in segment_list:
+                    # もし、影があれば
+                    if 'shadowColor' in segment_dict and (shadow_color := segment_dict['shadowColor']):
+                        # 柱を跨ぐとき、ラインテープを分割します
+                        splitting_segments = split_segment_by_pillar(
+                                document=document,
+                                segment_list=segment_list,
+                                segment_dict=segment_dict)
 
 
 class TrellisInSrc():
