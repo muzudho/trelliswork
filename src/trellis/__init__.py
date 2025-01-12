@@ -1334,7 +1334,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
     """柱を跨ぐとき、ラインテープを分割します
     NOTE 柱は左から並んでいるものとする
     NOTE 柱の縦幅は十分に広いものとする
-    NOTE 柱にサブ位置はない
+    NOTE テープは浮いています
     """
 
     new_segment_list = []
@@ -1349,7 +1349,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
     # TODO とりあえず、落下後の左折だけ考える。他は後で考える
     # 左進より、右進の方がプログラムが簡単
-    if direction == 'after_falling_down.turn_right':
+    if direction in ['after_falling_down.turn_right', 'after_up.turn_right']:
         #print('とりあえず、落下後の左折だけ考える。他は後で考える')
 
         # もし、柱のリストがあれば
@@ -1364,9 +1364,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                 if segment_rect.left_obj.cell_th < pillar_rect.left_obj.cell_th and pillar_rect.left_obj.cell_th < segment_rect.right_obj.cell_th:
                     print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
-                # NOTE テープは浮いています
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                # FIXME Square を四則演算できるようにしたい
                 if segment_rect.left_obj.cell_th < pillar_rect.right_obj.cell_th and pillar_rect.right_obj.cell_th < segment_rect.right_obj.cell_th:
                     print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
 
@@ -1391,9 +1389,6 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
 
-
-    elif direction == 'after_up.turn_right':
-        pass
 
     elif direction == 'after_falling_down.turn_left':
         pass
