@@ -740,6 +740,54 @@ def render_all_terminals(document, ws):
                             row_th=terminal_top * square_unit + 1)
 
 
+def get_rectangle(rectangle_dict):
+    """ラインテープのセグメントの矩形情報を取得
+    """
+    line_tape_left = rectangle_dict['left']
+    line_tape_sub_left = 0
+    if isinstance(line_tape_left, str):
+        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
+    
+    line_tape_top = rectangle_dict['top']
+    line_tape_sub_top = 0
+    if isinstance(line_tape_top, str):
+        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
+
+    # right は、その数を含まない
+    if 'right' in rectangle_dict:
+        line_tape_right = rectangle_dict['right']
+        line_tape_sub_right = 0
+        if isinstance(line_tape_right, str):
+            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
+
+        line_tape_width = line_tape_right - line_tape_left
+        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
+
+    else:
+        line_tape_width = rectangle_dict['width']
+        line_tape_sub_width = 0
+        if isinstance(line_tape_width, str):
+            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
+
+    # bottom は、その数を含まない
+    if 'bottom' in rectangle_dict:
+        line_tape_bottom = rectangle_dict['bottom']
+        line_tape_sub_bottom = 0
+        if isinstance(line_tape_bottom, str):
+            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
+
+        line_tape_height = line_tape_bottom - line_tape_top
+        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
+
+    else:
+        line_tape_height = rectangle_dict['height']
+        line_tape_sub_height = 0
+        if isinstance(line_tape_height, str):
+            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
+
+    return line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height
+
+
 def render_all_line_tape_shadows(document, ws):
     """全てのラインテープの影の描画
     """
@@ -753,47 +801,8 @@ def render_all_line_tape_shadows(document, ws):
 
             for segment_dict in segments_dict:
                 if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
-                    line_tape_left = segment_dict['left']
-                    line_tape_sub_left = 0
-                    if isinstance(line_tape_left, str):
-                        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
-                    
-                    line_tape_top = segment_dict['top']
-                    line_tape_sub_top = 0
-                    if isinstance(line_tape_top, str):
-                        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
-
-                    # right は、その数を含まない
-                    if 'right' in segment_dict:
-                        line_tape_right = segment_dict['right']
-                        line_tape_sub_right = 0
-                        if isinstance(line_tape_right, str):
-                            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
-
-                        line_tape_width = line_tape_right - line_tape_left
-                        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
-
-                    else:
-                        line_tape_width = segment_dict['width']
-                        line_tape_sub_width = 0
-                        if isinstance(line_tape_width, str):
-                            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
-
-                    # bottom は、その数を含まない
-                    if 'bottom' in segment_dict:
-                        line_tape_bottom = segment_dict['bottom']
-                        line_tape_sub_bottom = 0
-                        if isinstance(line_tape_bottom, str):
-                            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
-
-                        line_tape_height = line_tape_bottom - line_tape_top
-                        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
-
-                    else:
-                        line_tape_height = segment_dict['height']
-                        line_tape_sub_height = 0
-                        if isinstance(line_tape_height, str):
-                            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
+                    line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height = get_rectangle(
+                            rectangle_dict=segment_dict)
 
                     # 端子の影を描く
                     fill_rectangle(
@@ -828,47 +837,8 @@ def render_all_line_tapes(document, ws):
                 if 'color' in segment_dict:
                     line_tape_color = segment_dict['color']
 
-                    line_tape_left = segment_dict['left']
-                    line_tape_sub_left = 0
-                    if isinstance(line_tape_left, str):
-                        line_tape_left, line_tape_sub_left = map(int, line_tape_left.split('o', 2))
-                    
-                    line_tape_top = segment_dict['top']
-                    line_tape_sub_top = 0
-                    if isinstance(line_tape_top, str):
-                        line_tape_top, line_tape_sub_top = map(int, line_tape_top.split('o', 2))
-
-                    # right は、その数を含まない
-                    if 'right' in segment_dict:
-                        line_tape_right = segment_dict['right']
-                        line_tape_sub_right = 0
-                        if isinstance(line_tape_right, str):
-                            line_tape_right, line_tape_sub_right = map(int, line_tape_right.split('o', 2))
-
-                        line_tape_width = line_tape_right - line_tape_left
-                        line_tape_sub_width = line_tape_sub_right - line_tape_sub_left
-
-                    else:
-                        line_tape_width = segment_dict['width']
-                        line_tape_sub_width = 0
-                        if isinstance(line_tape_width, str):
-                            line_tape_width, line_tape_sub_width = map(int, line_tape_width.split('o', 2))
-
-                    # bottom は、その数を含まない
-                    if 'bottom' in segment_dict:
-                        line_tape_bottom = segment_dict['bottom']
-                        line_tape_sub_bottom = 0
-                        if isinstance(line_tape_bottom, str):
-                            line_tape_bottom, line_tape_sub_bottom = map(int, line_tape_bottom.split('o', 2))
-
-                        line_tape_height = line_tape_bottom - line_tape_top
-                        line_tape_sub_height = line_tape_sub_bottom - line_tape_sub_top
-
-                    else:
-                        line_tape_height = segment_dict['height']
-                        line_tape_sub_height = 0
-                        if isinstance(line_tape_height, str):
-                            line_tape_height, line_tape_sub_height = map(int, line_tape_height.split('o', 2))
+                    line_tape_left, line_tape_sub_left, line_tape_top, line_tape_sub_top, line_tape_width, line_tape_sub_width, line_tape_height, line_tape_sub_height = get_rectangle(
+                            rectangle_dict=segment_dict)
 
                     # ラインテープを描く
                     column_th = line_tape_left * square_unit + line_tape_sub_left + 1
@@ -1216,11 +1186,11 @@ def edit_document_and_solve_auto_shadow(document):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
-                    if 'shadowColor' in terminal_dict and (card_shadow_color := terminal_dict['shadowColor']):
+                    if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
 
-                        if card_shadow_color == 'auto':
-                            terminal_left = terminal_dict['left']
-                            terminal_top = terminal_dict['top']
+                        if terminal_shadow_color == 'auto':
+                            terminal_left, terminal_sub_left, terminal_top, terminal_sub_top, terminal_width, terminal_sub_width, terminal_height, terminal_sub_height = get_rectangle(
+                                    rectangle_dict=terminal_dict)
 
                             column_th = (terminal_left + 1) * square_unit + 1
                             row_th = (terminal_top + 1) * square_unit + 1
@@ -1228,6 +1198,27 @@ def edit_document_and_solve_auto_shadow(document):
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
                                 terminal_dict['shadowColor'] = solved_tone_and_color_name
+
+    # もし、ラインテープのリストがあれば
+    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+
+        for line_tape_dict in line_tape_list:
+            # もし、セグメントのリストがあれば
+            if 'segments' in line_tape_dict and (segment_list := line_tape_dict['segments']):
+
+                for segment_dict in segment_list:
+                    if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']):
+
+                        if segment_shadow_color == 'auto':
+                            segment_left, segment_sub_left, segment_top, segment_sub_top, segment_width, segment_sub_width, segment_height, segment_sub_height = get_rectangle(
+                                    rectangle_dict=segment_dict)
+
+                            column_th = (segment_left + 1) * square_unit + 1
+                            row_th = (segment_top + 1) * square_unit + 1
+
+                            # 影に自動が設定されていたら、解決する
+                            if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
+                                segment_dict['shadowColor'] = solved_tone_and_color_name
 
 
 class TrellisInSrc():

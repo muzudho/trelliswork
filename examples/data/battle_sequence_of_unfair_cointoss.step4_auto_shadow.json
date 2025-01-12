@@ -68,6 +68,8 @@
                     "pixelArt" : "start",
                     "left" : 6,
                     "top" : 5,
+                    "width" : 3,
+                    "height" : 3,
                     "shadowColor" : "auto"
                 }
             ]
@@ -443,6 +445,8 @@
                     "pixelArt" : "end",
                     "left" : 40,
                     "top" : 138,
+                    "width" : 3,
+                    "height" : 3,
                     "shadowColor" : "auto"
                 }
             ]
@@ -621,6 +625,8 @@
                     "pixelArt" : "start",
                     "left" : 57,
                     "top" : 5,
+                    "width" : 3,
+                    "height" : 3,
                     "shadowColor" : "auto"
                 }
             ]
@@ -796,6 +802,8 @@
                     "pixelArt" : "start",
                     "left" : 74,
                     "top" : 5,
+                    "width" : 3,
+                    "height" : 3,
                     "shadowColor" : "auto"
                 }
             ]
