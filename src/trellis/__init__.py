@@ -1359,8 +1359,6 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 if segment_rect.left_obj.cell_th < pillar_rect.right_obj.cell_th and pillar_rect.right_obj.cell_th < segment_rect.right_obj.cell_th:
-                    print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
-
                     # 既存のセグメントを削除
                     line_tape_segment_list.remove(line_tape_segment_dict)
 
