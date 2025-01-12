@@ -1348,7 +1348,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
 
     # 右進でも、左進でも、同じコードでいけるようだ
-    if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'after_falling_down.turn_left']:
+    if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'from_here.go_right', 'after_falling_down.turn_left']:
 
         # もし、柱のリストがあれば
         if 'pillars' in document and (pillars_list := document['pillars']):
