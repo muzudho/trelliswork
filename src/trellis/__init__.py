@@ -794,8 +794,7 @@ class Rectangle():
     def __init__(self, left, sub_left, top, sub_top, width, sub_width, height, sub_height):
         """初期化
         """
-        self._left = left
-        self._sub_left = sub_left
+        self._left_obj = Square.from_main_and_sub(main_number=left, sub_number=sub_left)
         self._width = width
         self._sub_width = sub_width
 
@@ -815,8 +814,8 @@ class Rectangle():
 
 
     def _calculate_right(self):
-        self._sub_right = self._sub_left + self._sub_width
-        self._right = self._left + self._width + self._sub_right // square_unit
+        self._sub_right = self._left_obj._sub_number + self._sub_width
+        self._right = self._left_obj.main_number + self._width + self._sub_right // square_unit
         self._sub_right %= square_unit
 
         if self._sub_right == 0:
@@ -826,19 +825,14 @@ class Rectangle():
 
 
     @property
-    def left(self):
-        return self._left
-
-
-    @property
-    def sub_left(self):
-        return self._sub_left
+    def left_obj(self):
+        return self._left_obj
 
 
     @property
     def left_column_th(self):
         if not self._left_column_th:
-            self._left_column_th = self._left * square_unit + self._sub_left + 1
+            self._left_column_th = self._left_obj.main_number * square_unit + self._left_obj._sub_number + 1
 
         return self._left_column_th
 
@@ -1431,16 +1425,16 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
             for pillar_dict in pillars_list:
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left=} <= {pillar_rect.left=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.left and pillar_rect.left < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の左端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.left_obj.main_number=} <  {segment_rect.right=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left < pillar_rect.left and pillar_rect.left < segment_rect.right:
+                if segment_rect.left_obj.main_number < pillar_rect.left_obj.main_number and pillar_rect.left_obj.main_number < segment_rect.right:
                     print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
                 # NOTE テープは浮いています
-                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
+                #print(f'（条件）ラインテープの左端と右端の内側に、柱の右端があるか判定 {segment_rect.left_obj.main_number=} <= {pillar_rect.right=} <  {segment_rect.right=} 判定：{segment_rect.left_obj.main_number <= pillar_rect.right and pillar_rect.right < segment_rect.right}')
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 # FIXME Square を四則演算できるようにしたい
-                if segment_rect.left < pillar_rect.right and pillar_rect.right < segment_rect.right:
+                if segment_rect.left_obj.main_number < pillar_rect.right and pillar_rect.right < segment_rect.right:
                     print(f'（判定）ラインテープの（左端－１マス）より右と（右端－１マス）の内側に、柱の右端がある')
 
                     # 既存のセグメントを削除
