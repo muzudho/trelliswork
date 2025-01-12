@@ -74,4 +74,4 @@ tr.render_all_line_tapes(document, ws)
 tr.render_ruler(document, ws)
 
 # ワークブックの保存            
-wb.save('./temp/examples/step4_auto_shadow.xlsx')
+wb.save('./temp/examples/step5_auto_split_pillar.xlsx')

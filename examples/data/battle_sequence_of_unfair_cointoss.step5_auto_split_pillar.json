@@ -1084,42 +1084,6 @@
                     "shadowColor": "auto",
                     "left": 7,
                     "top": "22o1",
-                    "right": 12,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 12,
-                    "top": "22o1",
-                    "right": 20,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 20,
-                    "top": "22o1",
-                    "right": 29,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 29,
-                    "top": "22o1",
-                    "right": 37,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 37,
-                    "top": "22o1",
                     "right": 41,
                     "height": "0o1"
                 },
@@ -1193,15 +1157,6 @@
                     "shadowColor": "auto",
                     "left": 34,
                     "top": "40o1",
-                    "right": 37,
-                    "height":"0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_brown",
-                    "shadowColor": "auto",
-                    "left": 37,
-                    "top": "40o1",
                     "right": 41,
                     "height":"0o1"
                 },
@@ -1261,60 +1216,6 @@
                     "color": "xl_strong.xl_green",
                     "shadowColor": "auto",
                     "left": 41,
-                    "top": "50o1",
-                    "right": 46,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 46,
-                    "top": "50o1",
-                    "right": 54,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 54,
-                    "top": "50o1",
-                    "right": 63,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 63,
-                    "top": "50o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "50o1",
-                    "right": 80,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 80,
-                    "top": "50o1",
-                    "right": 88,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 88,
                     "top": "50o1",
                     "right": 92,
                     "height": "0o1"
@@ -1434,24 +1335,6 @@
                     "shadowColor": "auto",
                     "left": 39,
                     "top": "70o1",
-                    "right": 46,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 46,
-                    "top": "70o1",
-                    "right": 54,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 54,
-                    "top": "70o1",
                     "right": 58,
                     "height": "0o1"
                 },
@@ -1484,42 +1367,6 @@
                     "shadowColor": "auto",
                     "left": 43,
                     "top": "69o1",
-                    "right": 46,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 46,
-                    "top": "69o1",
-                    "right": 54,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 54,
-                    "top": "69o1",
-                    "right": 63,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 63,
-                    "top": "69o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "69o1",
                     "right": 75,
                     "height": "0o1"
                 },
@@ -1551,24 +1398,6 @@
                     "color": "xl_strong.xl_green",
                     "shadowColor": "auto",
                     "left": 58,
-                    "top": "77o1",
-                    "right": 63,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 63,
-                    "top": "77o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 71,
                     "top": "77o1",
                     "right": 75,
                     "height": "0o1"
@@ -1770,24 +1599,6 @@
                     "shadowColor": "auto",
                     "left": 42,
                     "top": "115o1",
-                    "right": 46,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 46,
-                    "top": "115o1",
-                    "right": 54,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 54,
-                    "top": "115o1",
                     "right": 58,
                     "height": "0o1"
                 },
@@ -1819,42 +1630,6 @@
                     "color": "xl_strong.xl_green",
                     "shadowColor": "auto",
                     "left": 44,
-                    "top": "114o1",
-                    "right": 46,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 46,
-                    "top": "114o1",
-                    "right": 54,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 54,
-                    "top": "114o1",
-                    "right": 63,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 63,
-                    "top": "114o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "color": "xl_strong.xl_green",
-                    "shadowColor": "auto",
-                    "left": 71,
                     "top": "114o1",
                     "right": 75,
                     "height": "0o1"
@@ -1995,14 +1770,6 @@
                     "shadowColor": "auto",
                     "left": 12,
                     "top": "12o1",
-                    "right": 20,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 20,
-                    "top": "12o1",
                     "right": 25,
                     "height": "0o1"
                 },
@@ -2023,46 +1790,6 @@
                     "shadowColor": "auto",
                     "left": 63,
                     "top": "12o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "12o1",
-                    "right": 80,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 80,
-                    "top": "12o1",
-                    "right": 88,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 88,
-                    "top": "12o1",
-                    "right": 97,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 97,
-                    "top": "12o1",
-                    "right": 105,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 105,
-                    "top": "12o1",
                     "right": 110,
                     "height": "0o1"
                 },
@@ -2082,46 +1809,6 @@
                     "direction": "from_here.go_right",
                     "shadowColor": "auto",
                     "left": 63,
-                    "top": "74o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "74o1",
-                    "right": 80,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 80,
-                    "top": "74o1",
-                    "right": 88,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 88,
-                    "top": "74o1",
-                    "right": 97,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 97,
-                    "top": "74o1",
-                    "right": 105,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 105,
                     "top": "74o1",
                     "right": 110,
                     "height": "0o1"
@@ -2143,46 +1830,6 @@
                     "shadowColor": "auto",
                     "left": 63,
                     "top": "88o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "88o1",
-                    "right": 80,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 80,
-                    "top": "88o1",
-                    "right": 88,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 88,
-                    "top": "88o1",
-                    "right": 97,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 97,
-                    "top": "88o1",
-                    "right": 105,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 105,
-                    "top": "88o1",
                     "right": 110,
                     "height": "0o1"
                 },
@@ -2202,46 +1849,6 @@
                     "direction": "from_here.go_right",
                     "shadowColor": "auto",
                     "left": 63,
-                    "top": "119o1",
-                    "right": 71,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 71,
-                    "top": "119o1",
-                    "right": 80,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 80,
-                    "top": "119o1",
-                    "right": 88,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 88,
-                    "top": "119o1",
-                    "right": 97,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 97,
-                    "top": "119o1",
-                    "right": 105,
-                    "height": "0o1"
-                },
-                {
-                    "direction": "continue.go_right",
-                    "shadowColor": "auto",
-                    "left": 105,
                     "top": "119o1",
                     "right": 110,
                     "height": "0o1"
