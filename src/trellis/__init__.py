@@ -510,24 +510,23 @@ def render_all_pillar_rugs(document, ws):
     """
     print('全ての柱の敷物の描画')
 
-    # 柱の辞書があるはず。
-    pillars_dict = document['pillars']
+    # もし、柱の辞書があれば
+    if 'pillars' in document and (pillars_dict := document['pillars']):
+        for pillar_id, whole_pillar in pillars_dict.items():
+            if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
+                left = whole_pillar['left']
+                top = whole_pillar['top']
+                width = whole_pillar['width']
+                height = whole_pillar['height']
 
-    for pillar_id, whole_pillar in pillars_dict.items():
-        if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
-            left = whole_pillar['left']
-            top = whole_pillar['top']
-            width = whole_pillar['width']
-            height = whole_pillar['height']
-
-            # 矩形を塗りつぶす
-            fill_rectangle(
-                    ws=ws,
-                    column_th=left * square_unit + 1,
-                    row_th=top * square_unit + 1,
-                    columns=width * square_unit,
-                    rows=height * square_unit,
-                    fill_obj=tone_and_color_name_to_fill_obj(baseColor))
+                # 矩形を塗りつぶす
+                fill_rectangle(
+                        ws=ws,
+                        column_th=left * square_unit + 1,
+                        row_th=top * square_unit + 1,
+                        columns=width * square_unit,
+                        rows=height * square_unit,
+                        fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
 
 def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
@@ -1161,6 +1160,12 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
 
 
+def compile_auto_shadow(document):
+    """ドキュメントに対して、影の自動設定の編集を行います
+    """
+    return document
+
+
 class TrellisInSrc():
     @staticmethod
     def render_ruler(document, ws):
@@ -1208,6 +1213,12 @@ class TrellisInSrc():
     def render_all_line_tapes(document, ws):
         global render_all_line_tapes
         render_all_line_tapes(document, ws)
+
+
+    @staticmethod
+    def compile_auto_shadow(document):
+        global compile_auto_shadow
+        return compile_auto_shadow(document)
 
 
 ######################
