@@ -1217,15 +1217,16 @@ def edit_document_and_solve_auto_shadow(document):
                             hover = square_unit
                             column_th = segment_left * square_unit + segment_sub_left + hover + 1
                             row_th = segment_top * square_unit + segment_sub_top + hover + 1
-#                             print(f'''ラインテープ
-# {column_th=} = ({segment_left=} * {square_unit=} + {segment_sub_left=} + {hover=} + 1)
-# {row_th=   } = ({segment_top =} * {square_unit=} + {segment_sub_top= } + {hover=} + 1)
-# {segment_dict=}
-# ''')
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(document=document, column_th=column_th, row_th=row_th):
                                 segment_dict['shadowColor'] = solved_tone_and_color_name
+
+
+def edit_document_and_solve_auto_split_pillar(document):
+    """ドキュメントに対して、影の自動設定の編集を行います
+    """
+    pass
 
 
 class TrellisInSrc():
@@ -1281,6 +1282,12 @@ class TrellisInSrc():
     def edit_document_and_solve_auto_shadow(document):
         global edit_document_and_solve_auto_shadow
         return edit_document_and_solve_auto_shadow(document)
+
+
+    @staticmethod
+    def edit_document_and_solve_auto_split_pillar(document):
+        global edit_document_and_solve_auto_split_pillar
+        return edit_document_and_solve_auto_split_pillar(document)
 
 
 ######################

@@ -1,2253 +1,2253 @@
 {
-    "canvas" : {
-        "width" : 119,
-        "height" : 149
+    "canvas": {
+        "width": 119,
+        "height": 149
     },
-    "pillars" : [
+    "pillars": [
         {
-            "left" : 4,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_blue",
-            "cards" : [
+            "left": 4,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_blue",
+            "cards": [
                 {
-                    "left" : 4,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 4,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "text1" : "戦闘マップ"
+                            "bgColor": "xl_pale.xl_blue",
+                            "text1": "戦闘マップ"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "indent" : 1,
-                            "icon" : "white-game-object.png",
-                            "text1" : "イベントマスター　戦闘マップ"
+                            "bgColor": "xl_pale.xl_blue",
+                            "indent": 1,
+                            "icon": "white-game-object.png",
+                            "text1": "イベントマスター　戦闘マップ"
                         }
                     ]
                 },
                 {
-                    "left" : 3,
-                    "top" : 10,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 3,
+                    "top": 10,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "false-flag.png",
-                            "text1" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグがＯｆｆのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "false-flag.png",
+                            "text1": "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグがＯｆｆのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "♠戦闘入後　＞　戦闘マップに入っている"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "♠戦闘入後　＞　戦闘マップに入っている"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［♠戦闘入後　＞　戦闘マップに入っている］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［♠戦闘入後　＞　戦闘マップに入っている］"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue"
+                            "bgColor": "xl_soft.xl_blue"
                         }
                     ]
                 }
             ],
-            "terminals" : [
+            "terminals": [
                 {
-                    "pixelArt" : "start",
-                    "left" : 6,
-                    "top" : 5,
-                    "width" : 3,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "pixelArt": "start",
+                    "left": 6,
+                    "top": 5,
+                    "width": 3,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue"
                 }
             ]
         },
         {
-            "left" : 21,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_yellow",
-            "cards" : [
+            "left": 21,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_yellow",
+            "cards": [
                 {
-                    "left" : 21,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 21,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "common-event-list.png",
-                            "text1" : "コモンイベント一覧"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "common-event-list.png",
+                            "text1": "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "indent" : 1,
-                            "icon" : "open-folder.png",
-                            "text1" : "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "indent": 1,
+                            "icon": "open-folder.png",
+                            "text1": "共通イベント／歩行マップ／敵出現マップ／イベントマスター"
                         }
                     ]
                 },
                 {
-                    "left" : 21,
-                    "top" :15,
-                    "width" : 9,
-                    "height" : 4,
-                    "paperStrips" : [
+                    "left": 21,
+                    "top":15,
+                    "width": 9,
+                    "height": 4,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "icon" : "state-on-global-game-object.png",
-                            "text1" : "♠戦闘入後　＞　戦闘マップに入っている"
+                            "bgColor": "xl_pale.xl_white",
+                            "icon": "state-on-global-game-object.png",
+                            "text1": "♠戦闘入後　＞　戦闘マップに入っている"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "無条件　1: イベントシート"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "無条件　1: イベントシート"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値を",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］にする"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値を",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］にする"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "true-flag.png",
-                            "text1" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグをＯｎにする"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "true-flag.png",
+                            "text1": "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグをＯｎにする"
                         }
                     ]
                 }
             ]
         },
         {
-            "left" : 38,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_blue",
-            "cards" : [
+            "left": 38,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_blue",
+            "cards": [
                 {
-                    "left" : 38,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 3,
-                    "paperStrips" : [
+                    "left": 38,
+                    "top": 1,
+                    "width": 9,
+                    "height": 3,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "common-event-list.png",
-                            "text1" : "コモンイベント一覧"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "common-event-list.png",
+                            "text1": "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "indent" : 1,
-                            "icon" : "open-folder.png",
-                            "text1" : "共通イベント／自作戦闘"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "indent": 1,
+                            "icon": "open-folder.png",
+                            "text1": "共通イベント／自作戦闘"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "indent" : 2,
-                            "icon" : "global-game-object.png",
-                            "text1" : "戦闘中"
+                            "bgColor": "xl_pale.xl_blue",
+                            "indent": 2,
+                            "icon": "global-game-object.png",
+                            "text1": "戦闘中"
                         }
                     ]
                 },
                 {
-                    "left" : 37,
-                    "top" : 25,
-                    "width" : 9,
-                    "height" : 12,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 37,
+                    "top": 25,
+                    "width": 9,
+                    "height": 12,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値が",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］のとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値が",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_1_戦闘開始の合図をする］のとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "戦闘入後　＞　戦闘開始の合図をする"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "戦闘入後　＞　戦闘開始の合図をする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "プレイヤーを透明にし、操作禁止、画面端に移動"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "プレイヤーを透明にし、操作禁止、画面端に移動"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型を　３　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型を　３　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［戦闘入前～出前　＞　%Alice戦闘者%のpts］を　０　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［戦闘入前～出前　＞　%Alice戦闘者%のpts］を　０　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［戦闘入前～出前　＞　%Bob戦闘者%のpts］を　０　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［戦闘入前～出前　＞　%Bob戦闘者%のpts］を　０　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "「〇〇が現れた！」"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "「〇〇が現れた！」"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "「表が出る確率が 〇〇のコインです。さあ、どっちが出るか！？」"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "「表が出る確率が 〇〇のコインです。さあ、どっちが出るか！？」"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "（雑魚戦なら）表ｳﾗ選択肢表示"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "（雑魚戦なら）表ｳﾗ選択肢表示"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘．設定　＞　%Alice戦闘者%が選んだコインの上面（0:未設定、1:表、2:ｳﾗ）］列挙型に　１か２　を"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘．設定　＞　%Alice戦闘者%が選んだコインの上面（0:未設定、1:表、2:ｳﾗ）］列挙型に　１か２　を"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［戦闘．設定　＞　ｎ投目］に　０　を入れる"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［戦闘．設定　＞　ｎ投目］に　０　を入れる"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値を",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値を",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
                         }
                     ]
                 },
                 {
-                    "left" : 37,
-                    "top" : 42,
-                    "width" : 9,
-                    "height" : 7,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 37,
+                    "top": 42,
+                    "width": 9,
+                    "height": 7,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値が",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］のとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値が",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］のとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「ｎ投目」と言う"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「ｎ投目」と言う"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘．設定　＞　ｎ投目］変数に　１　を足す"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘．設定　＞　ｎ投目］変数に　１　を足す"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text0" : "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
-                            "text1" : "［■戦闘中　＞　%Alice戦闘者%　＞　ステート］列挙型値を　0　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text0": "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
+                            "text1": "［■戦闘中　＞　%Alice戦闘者%　＞　ステート］列挙型値を　0　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text0" : "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
-                            "text1" : "［■戦闘中　＞　%Bob戦闘者%　＞　ステート］列挙型値を　0　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text0": "（Bakinでは自己遷移できないので、いったんニュートラルに戻します）",
+                            "text1": "［■戦闘中　＞　%Bob戦闘者%　＞　ステート］列挙型値を　0　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "「〇投目」"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "「〇投目」"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　コインをトスする］フラグを　On　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　コインをトスする］フラグを　On　にする"
                         }
                     ]
                 },
                 {
-                    "left" : 37,
-                    "top" : 61,
-                    "width" : 9,
-                    "height" : 7,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 37,
+                    "top": 61,
+                    "width": 9,
+                    "height": 7,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値が",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］のとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値が",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］のとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "地面に落ちたコインの結果を発表する"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "地面に落ちたコインの結果を発表する"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "「表が出た」、「ｳﾗが出た」、「コインが立った！　失敗！」のいずれか"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "「表が出た」、「ｳﾗが出た」、「コインが立った！　失敗！」のいずれか"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "（%Alice戦闘者%の勝ちか否かで）［戦闘中　＞　%Alice戦闘者%の当たり］フラグを　On　または　Off　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "（%Alice戦闘者%の勝ちか否かで）［戦闘中　＞　%Alice戦闘者%の当たり］フラグを　On　または　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text0" : "（コイントス失敗時）",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値を",
-                            "text2" : "［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text0": "（コイントス失敗時）",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値を",
+                            "text2": "［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "（%Alice戦闘者%の勝ちなら）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　On　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "（%Alice戦闘者%の勝ちなら）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　On　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "（%Bob戦闘者%の勝ちなら）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　On　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "（%Bob戦闘者%の勝ちなら）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　On　にする"
                         }
                     ]
                 },
                 {
-                    "left" : 37,
-                    "top" : 100,
-                    "width" : 9,
-                    "height" : 11,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 37,
+                    "top": 100,
+                    "width": 9,
+                    "height": 11,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値が",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］のとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値が",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_4_シリーズの結果を集計する］のとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "シリーズの結果を集計する"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "シリーズの結果を集計する"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "「〇に勝ち点 〇 が入って合計 〇 だ」"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "「〇に勝ち点 〇 が入って合計 〇 だ」"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型に　１か２　を入れる"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　勝者（1:%Alice戦闘者%、2:%Bob戦闘者%、3:なし）］列挙型に　１か２　を入れる"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグを　On　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグを　On　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　Off　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグを　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグを　Off　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "（%Alice戦闘者%勝利時）［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグを　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグを　On　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグを　On　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　Off　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグを　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグを　Off　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "（%Bob戦闘者%勝利時）［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグを　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text0" : "（勝者なし時）",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値を",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text0": "（勝者なし時）",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値を",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_2_「ｎ投目開始」と言う］にする"
                         }
                     ]
                 },
                 {
-                    "left" : 37,
-                    "top" : 129,
-                    "width" : 9,
-                    "height" : 6,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 37,
+                    "top": 129,
+                    "width": 9,
+                    "height": 6,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値が",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_5_呼出元マップへ戻る］のとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値が",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_5_呼出元マップへ戻る］のとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "呼出元マップへ戻る"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "呼出元マップへ戻る"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "ＢＧＭ切替、フェードアウト、マップ転換、プレイヤーの非表示解除"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "ＢＧＭ切替、フェードアウト、マップ転換、プレイヤーの非表示解除"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘出前～出後　＞　戦闘マップから戻った］フラグを　On　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘出前～出後　＞　戦闘マップから戻った］フラグを　On　にする"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグを　Off　にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［♠戦闘入後／出後　＞　戦闘マップに入っている］フラグを　Off　にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値値を　Off　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値値を　Off　にする"
                         }
                     ]
                 }
             ],
-            "terminals" : [
+            "terminals": [
                 {
-                    "pixelArt" : "end",
-                    "left" : 40,
-                    "top" : 138,
-                    "width" : 3,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "pixelArt": "end",
+                    "left": 40,
+                    "top": 138,
+                    "width": 3,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue"
                 }
             ]
         },
         {
-            "left" : 55,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_blue",
-            "cards" : [
+            "left": 55,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_blue",
+            "cards": [
                 {
-                    "left" : 55,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 55,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "text1" : "戦闘マップ"
+                            "bgColor": "xl_pale.xl_blue",
+                            "text1": "戦闘マップ"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "indent" : 1,
-                            "icon" : "skyblue-game-object.png",
-                            "text1" : "Alice戦闘者"
+                            "bgColor": "xl_pale.xl_blue",
+                            "indent": 1,
+                            "icon": "skyblue-game-object.png",
+                            "text1": "Alice戦闘者"
                         }
                     ]                
                 },
                 {
-                    "left" : 54,
-                    "top" : 10,
-                    "width" : 9,
-                    "height" : 5,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 54,
+                    "top": 10,
+                    "width": 9,
+                    "height": 5,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "false-flag.png",
-                            "text1" : "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグがＯｆｆのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "false-flag.png",
+                            "text1": "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグがＯｆｆのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "♠戦闘入後　＞　前に出る"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "♠戦闘入後　＞　前に出る"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "このゲームオブジェクトはフレームインし、定位置に向かって走る"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "このゲームオブジェクトはフレームインし、定位置に向かって走る"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグをＯｎにする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［♠戦闘中　＞　%Alice戦闘者%の開始］フラグをＯｎにする"
                         }
                     ]
                 },
                 {
-                    "left" : 54,
-                    "top" : 72,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 54,
+                    "top": 72,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Alice戦闘者%の「当たった」］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「当たった」"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「当たった」"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　「当たった」］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　「当たった」］"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue"
+                            "bgColor": "xl_soft.xl_blue"
                         }
                     ]
                 },
                 {
-                    "left" : 54,
-                    "top" : 86,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 54,
+                    "top": 86,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Alice戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「ハズレかあ」"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「ハズレかあ」"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　「ハズレかあ」］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　「ハズレかあ」］"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue"
+                            "bgColor": "xl_soft.xl_blue"
                         }
                     ]
                 },
                 {
-                    "left" : 54,
-                    "top" : 117,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 54,
+                    "top": 117,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Alice戦闘者%は優勝を宣言する］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "優勝を宣言する"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "優勝を宣言する"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　優勝を宣言する］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　優勝を宣言する］"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue"
+                            "bgColor": "xl_soft.xl_blue"
                         }
                     ]
                 },
                 {
-                    "left" : 54,
-                    "top" : 134,
-                    "width" : 9,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 54,
+                    "top": 134,
+                    "width": 9,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "text1" : "無条件"
+                            "bgColor": "xl_theme.xl_white",
+                            "text1": "無条件"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "ニュートラル時"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "ニュートラル時"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "ニュートラル時に表示されるグラフィックを設定しておく"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "ニュートラル時に表示されるグラフィックを設定しておく"
                         }
                     ]
                 }
             ],
-            "terminals" : [
+            "terminals": [
                 {
-                    "pixelArt" : "start",
-                    "left" : 57,
-                    "top" : 5,
-                    "width" : 3,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "pixelArt": "start",
+                    "left": 57,
+                    "top": 5,
+                    "width": 3,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue"
                 }
             ]
         },
         {
-            "left" : 72,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_blue",
-            "cards" : [
+            "left": 72,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_blue",
+            "cards": [
                 {
-                    "left" : 72,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 72,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "text1" : "戦闘マップ"
+                            "bgColor": "xl_pale.xl_blue",
+                            "text1": "戦闘マップ"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "indent" : 1,
-                            "icon" : "skyblue-game-object.png",
-                            "text1" : "Bob戦闘者"
+                            "bgColor": "xl_pale.xl_blue",
+                            "indent": 1,
+                            "icon": "skyblue-game-object.png",
+                            "text1": "Bob戦闘者"
                         }
                     ]                
                 },
                 {
-                    "left" : 71,
-                    "top" : 10,
-                    "width" : 9,
-                    "height" : 5,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 71,
+                    "top": 10,
+                    "width": 9,
+                    "height": 5,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "false-flag.png",
-                            "text1" : "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグがＯｆｆのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "false-flag.png",
+                            "text1": "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグがＯｆｆのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "♠戦闘入後　＞　グラフィックを変更し、前に出る"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "♠戦闘入後　＞　グラフィックを変更し、前に出る"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "このゲームオブジェクトはフレームインし、定位置に向かって走る"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "このゲームオブジェクトはフレームインし、定位置に向かって走る"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグをＯｎにする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［♠戦闘中　＞　%Bob戦闘者%の開始］フラグをＯｎにする"
                         }
                     ]
                 },
                 {
-                    "left" : 71,
-                    "top" : 72,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 71,
+                    "top": 72,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Bob戦闘者%の「当たった」］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「当たった」"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「当たった」"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "※ %Alice戦闘者% と同様"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "※ %Alice戦闘者% と同様"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white"
+                            "bgColor": "xl_pale.xl_white"
                         }
                     ]
                 },
                 {
-                    "left" : 71,
-                    "top" : 86,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 71,
+                    "top": 86,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Bob戦闘者%の「ハズレかあ」］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「ハズレかあ」"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「ハズレかあ」"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "※ %Alice戦闘者% と同様"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "※ %Alice戦闘者% と同様"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white"
+                            "bgColor": "xl_pale.xl_white"
                         }
                     ]
                 },
                 {
-                    "left" : 71,
-                    "top" : 117,
-                    "width" : 9,
-                    "height" : 4,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 71,
+                    "top": 117,
+                    "width": 9,
+                    "height": 4,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%Bob戦闘者%は優勝を宣言する］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "「優勝を宣言する"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "「優勝を宣言する"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "※ %Alice戦闘者% と同様"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "※ %Alice戦闘者% と同様"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white"
+                            "bgColor": "xl_pale.xl_white"
                         }
                     ]
                 },
                 {
-                    "left" : 71,
-                    "top" : 134,
-                    "width" : 9,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 71,
+                    "top": 134,
+                    "width": 9,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "text1" : "無条件"
+                            "bgColor": "xl_theme.xl_white",
+                            "text1": "無条件"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "ニュートラル時"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "ニュートラル時"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "ニュートラル時に表示されるグラフィックを設定しておく"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "ニュートラル時に表示されるグラフィックを設定しておく"
                         }
                     ]
                 }
             ],
-            "terminals" : [
+            "terminals": [
                 {
-                    "pixelArt" : "start",
-                    "left" : 74,
-                    "top" : 5,
-                    "width" : 3,
-                    "height" : 3,
-                    "shadowColor" : "xl_light.xl_blue"
+                    "pixelArt": "start",
+                    "left": 74,
+                    "top": 5,
+                    "width": 3,
+                    "height": 3,
+                    "shadowColor": "xl_light.xl_blue"
                 }
             ]
         },
         {
-            "left" : 89,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_blue",
-            "cards" : [
+            "left": 89,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_blue",
+            "cards": [
                 {
-                    "left" : 89,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 89,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "text1" : "戦闘マップ"
+                            "bgColor": "xl_pale.xl_blue",
+                            "text1": "戦闘マップ"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_blue",
-                            "indent" : 1,
-                            "icon" : "skyblue-game-object.png",
-                            "text1" : "コイン"
+                            "bgColor": "xl_pale.xl_blue",
+                            "indent": 1,
+                            "icon": "skyblue-game-object.png",
+                            "text1": "コイン"
                         }
                     ]
                 },
                 {
-                    "left" : 88,
-                    "top" : 52,
-                    "width" : 9,
-                    "height" : 6,
-                    "shadowColor" : "xl_light.xl_blue",
-                    "paperStrips" : [
+                    "left": 88,
+                    "top": 52,
+                    "width": 9,
+                    "height": 6,
+                    "shadowColor": "xl_light.xl_blue",
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　コインをトスする］フラグがＯｎのとき"
+                            "bgColor": "xl_theme.xl_white",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　コインをトスする］フラグがＯｎのとき"
                         },
                         {
-                            "bgColor" : "xl_theme.xl_white",
-                            "indent" : 1,
-                            "icon" : "event-sheet.png",
-                            "text1" : "戦闘中　＞　コインが投げられて落ちるまで"
+                            "bgColor": "xl_theme.xl_white",
+                            "indent": 1,
+                            "icon": "event-sheet.png",
+                            "text1": "戦闘中　＞　コインが投げられて落ちるまで"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "overview.png",
-                            "text1" : "視覚的演出、そしてコインの表ｳﾗの確定"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "overview.png",
+                            "text1": "視覚的演出、そしてコインの表ｳﾗの確定"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　コインの上面（1:表、2:裏、3:失敗）］に 1 か 2 を入れる"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　コインの上面（1:表、2:裏、3:失敗）］に 1 か 2 を入れる"
                         },
                         {
-                            "bgColor" : "xl_soft.xl_blue",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値を",
-                            "text2" : "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］にする"
+                            "bgColor": "xl_soft.xl_blue",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値を",
+                            "text2": "　［□戦闘　＞　列挙型　＞　戦闘中ステート　＞　_3_コインが地面に落ちた］にする"
                         },
                         {
-                            "bgColor" : "xl_light.xl_blue",
-                            "icon" : "false-flag.png",
-                            "text1" : "［戦闘中　＞　コインをトスする］フラグを　Off　にする"
+                            "bgColor": "xl_light.xl_blue",
+                            "icon": "false-flag.png",
+                            "text1": "［戦闘中　＞　コインをトスする］フラグを　Off　にする"
                         }
                     ]
                 }
             ]
         },
         {
-            "left" : 106,
-            "top" : 1,
-            "width" : 9,
-            "height" : 148,
-            "baseColor" : "xl_pale.xl_yellow",
-            "cards" : [
+            "left": 106,
+            "top": 1,
+            "width": 9,
+            "height": 148,
+            "baseColor": "xl_pale.xl_yellow",
+            "cards": [
                 {
-                    "left" : 106,
-                    "top" : 1,
-                    "width" : 9,
-                    "height" : 2,
-                    "paperStrips" : [
+                    "left": 106,
+                    "top": 1,
+                    "width": 9,
+                    "height": 2,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "common-event-list.png",
-                            "text1" : "コモンイベント一覧"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "common-event-list.png",
+                            "text1": "コモンイベント一覧"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "indent" : 1,
-                            "icon" : "open-folder.png",
-                            "text1" : "共通イベント／自作戦闘／戦闘者"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "indent": 1,
+                            "icon": "open-folder.png",
+                            "text1": "共通イベント／自作戦闘／戦闘者"
                         }
                     ]                
                 },
                 {
-                    "left" : 106,
-                    "top" : 15,
-                    "width" : 9,
-                    "height" : 3,
-                    "paperStrips" : [
+                    "left": 106,
+                    "top": 15,
+                    "width": 9,
+                    "height": 3,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "icon" : "state-on-global-game-object.png",
-                            "text1" : "戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更（競合状態）"
+                            "bgColor": "xl_pale.xl_white",
+                            "icon": "state-on-global-game-object.png",
+                            "text1": "戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更（競合状態）"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "無条件　1: イベントシート"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "無条件　1: イベントシート"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "overview.png",
-                            "text1" : "このゲームオブジェクトのグラフィックを変更する"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "overview.png",
+                            "text1": "このゲームオブジェクトのグラフィックを変更する"
                         }
                     ]
                 },
                 {
-                    "left" : 106,
-                    "top" : 77,
-                    "width" : 9,
-                    "height" : 5,
-                    "paperStrips" : [
+                    "left": 106,
+                    "top": 77,
+                    "width": 9,
+                    "height": 5,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "icon" : "state-on-global-game-object.png",
-                            "text1" : "戦闘者　＞　「当たった」"
+                            "bgColor": "xl_pale.xl_white",
+                            "icon": "state-on-global-game-object.png",
+                            "text1": "戦闘者　＞　「当たった」"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "無条件　1: イベントシート"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "無条件　1: イベントシート"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "overview.png",
-                            "text1" : "「やったぜ！　当たった！」"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "overview.png",
+                            "text1": "「やったぜ！　当たった！」"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "true-flag.png",
-                            "text1" : "［戦闘中　＞　%相対する戦闘者%の「ハズレかあ」］フラグをＯｎにする"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "true-flag.png",
+                            "text1": "［戦闘中　＞　%相対する戦闘者%の「ハズレかあ」］フラグをＯｎにする"
                         }
                     ]
                 },
                 {
-                    "left" : 106,
-                    "top" : 91,
-                    "width" : 9,
-                    "height" : 5,
-                    "paperStrips" : [
+                    "left": 106,
+                    "top": 91,
+                    "width": 9,
+                    "height": 5,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "icon" : "state-on-global-game-object.png",
-                            "text1" : "戦闘者　＞　「ハズレかあ」"
+                            "bgColor": "xl_pale.xl_white",
+                            "icon": "state-on-global-game-object.png",
+                            "text1": "戦闘者　＞　「ハズレかあ」"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "無条件　1: イベントシート"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "無条件　1: イベントシート"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘者　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "overview.png",
-                            "text1" : "「ハズレかあ」"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "overview.png",
+                            "text1": "「ハズレかあ」"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
                         }
                     ]
                 },
                 {
-                    "left" : 106,
-                    "top" : 122,
-                    "width" : 9,
-                    "height" : 5,
-                    "paperStrips" : [
+                    "left": 106,
+                    "top": 122,
+                    "width": 9,
+                    "height": 5,
+                    "paperStrips": [
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "icon" : "state-on-global-game-object.png",
-                            "text1" : "戦闘者　＞　優勝を宣言する"
+                            "bgColor": "xl_pale.xl_white",
+                            "icon": "state-on-global-game-object.png",
+                            "text1": "戦闘者　＞　優勝を宣言する"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_white",
-                            "text1" : "無条件　1: イベントシート"
+                            "bgColor": "xl_pale.xl_white",
+                            "text1": "無条件　1: イベントシート"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "function-call.png",
-                            "text1" : "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "function-call.png",
+                            "text1": "［戦闘入後　＞　［％戦闘者%ゲームオブジェクトのステート］のグラフィック変更］"
                         },
                         {
-                            "bgColor" : "xl_pale.xl_yellow",
-                            "icon" : "overview.png",
-                            "text1" : "「【戦闘．設定　＞　優勝span】 点取ったから、わたしの優勝だな」"
+                            "bgColor": "xl_pale.xl_yellow",
+                            "icon": "overview.png",
+                            "text1": "「【戦闘．設定　＞　優勝span】 点取ったから、わたしの優勝だな」"
                         },
                         {
-                            "bgColor" : "xl_light.xl_yellow",
-                            "icon" : "true-flag.png",
-                            "text1" : "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
+                            "bgColor": "xl_light.xl_yellow",
+                            "icon": "true-flag.png",
+                            "text1": "［■戦闘中　＞　ステート］列挙型値をＯｎにする"
                         }
                     ]
                 }
             ]
         }
     ],
-    "lineTapes" : [
+    "lineTapes": [
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 7,
-                    "top" : 8,
-                    "width" : 1,
-                    "bottom" : 10
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 7,
+                    "top": 8,
+                    "width": 1,
+                    "bottom": 10
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : 8,
-                    "width" : 1,
-                    "bottom" : 10
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": 8,
+                    "width": 1,
+                    "bottom": 10
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : 8,
-                    "width" : 1,
-                    "bottom" : 10
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": 8,
+                    "width": 1,
+                    "bottom": 10
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 7,
-                    "top" : "13o1",
-                    "width" : 1,
-                    "bottom" : "22o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 7,
+                    "top": "13o1",
+                    "width": 1,
+                    "bottom": "22o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 7,
-                    "top" : "22o1",
-                    "right" : 12,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 7,
+                    "top": "22o1",
+                    "right": 12,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 12,
-                    "top" : "22o1",
-                    "right" : 20,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 12,
+                    "top": "22o1",
+                    "right": 20,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 20,
-                    "top" : "22o1",
-                    "right" : 29,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 20,
+                    "top": "22o1",
+                    "right": 29,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 29,
-                    "top" : "22o1",
-                    "right" : 37,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 29,
+                    "top": "22o1",
+                    "right": 37,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 37,
-                    "top" : "22o1",
-                    "right" : 41,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 37,
+                    "top": "22o1",
+                    "right": 41,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "22o1",
-                    "width" : 1,
-                    "bottom" : 25
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "22o1",
+                    "width": 1,
+                    "bottom": 25
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "36o1",
-                    "width" : 1,
-                    "bottom" :42
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "36o1",
+                    "width": 1,
+                    "bottom":42
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 40,
-                    "top" : "110o1",
-                    "width" : 1,
-                    "bottom" :"112o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 40,
+                    "top": "110o1",
+                    "width": 1,
+                    "bottom":"112o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 37,
-                    "top" : "112o1",
-                    "width" : 4,
-                    "height" :"0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 37,
+                    "top": "112o1",
+                    "width": 4,
+                    "height":"0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 35,
-                    "top" : "112o1",
-                    "right" : 37,
-                    "height" :"0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 35,
+                    "top": "112o1",
+                    "right": 37,
+                    "height":"0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_up",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 34,
-                    "top" : "40o2",
-                    "width" : 1,
-                    "bottom" :"112o2"
+                    "direction": "after_go_left.turn_up",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 34,
+                    "top": "40o2",
+                    "width": 1,
+                    "bottom":"112o2"
                 },
                 {
-                    "direction" : "after_up.turn_right",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 34,
-                    "top" : "40o1",
-                    "right" : 37,
-                    "height" :"0o1"
+                    "direction": "after_up.turn_right",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 34,
+                    "top": "40o1",
+                    "right": 37,
+                    "height":"0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 37,
-                    "top" : "40o1",
-                    "right" : 41,
-                    "height" :"0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 37,
+                    "top": "40o1",
+                    "right": 41,
+                    "height":"0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_brown",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "40o1",
-                    "width" : 1,
-                    "bottom" : 42
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_brown",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "40o1",
+                    "width": 1,
+                    "bottom": 42
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "65o1",
-                    "width" : 1,
-                    "bottom" : 100
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "65o1",
+                    "width": 1,
+                    "bottom": 100
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_naviy",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "132o1",
-                    "width" : 1,
-                    "bottom" : 138
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_naviy",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "132o1",
+                    "width": 1,
+                    "bottom": 138
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "48o1",
-                    "width" : 1,
-                    "bottom" : "50o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "48o1",
+                    "width": 1,
+                    "bottom": "50o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "50o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "50o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "50o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "50o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "50o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "50o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "50o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "50o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "50o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "50o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 80,
-                    "top" : "50o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 80,
+                    "top": "50o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "50o1",
-                    "right" : 92,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "50o1",
+                    "right": 92,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 92,
-                    "top" : "50o1",
-                    "width" : 1,
-                    "bottom" : 52
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 92,
+                    "top": "50o1",
+                    "width": 1,
+                    "bottom": 52
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 92,
-                    "top" : "56o1",
-                    "width" : 1,
-                    "bottom" : "59o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 92,
+                    "top": "56o1",
+                    "width": 1,
+                    "bottom": "59o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "59o1",
-                    "right" : 93,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "59o1",
+                    "right": 93,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 80,
-                    "top" : "59o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 80,
+                    "top": "59o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "59o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "59o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "59o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "59o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "59o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "59o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "59o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "59o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 42,
-                    "top" : "59o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 42,
+                    "top": "59o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "59o1",
-                    "width" : 1,
-                    "bottom" : 61
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "59o1",
+                    "width": 1,
+                    "bottom": 61
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 39,
-                    "top" : "66o1",
-                    "width" : 1,
-                    "bottom" : "70o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 39,
+                    "top": "66o1",
+                    "width": 1,
+                    "bottom": "70o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 39,
-                    "top" : "70o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 39,
+                    "top": "70o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "70o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "70o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "70o1",
-                    "right" : 58,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "70o1",
+                    "right": 58,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "70o1",
-                    "width" : 1,
-                    "bottom" : 72
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "70o1",
+                    "width": 1,
+                    "bottom": 72
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 43,
-                    "top" : "67o1",
-                    "width" : 1,
-                    "bottom" : "69o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 43,
+                    "top": "67o1",
+                    "width": 1,
+                    "bottom": "69o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 43,
-                    "top" : "69o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 43,
+                    "top": "69o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "69o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "69o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "69o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "69o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "69o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "69o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "69o1",
-                    "right" : 75,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "69o1",
+                    "right": 75,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : "69o1",
-                    "width" : 1,
-                    "bottom" : 72
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": "69o1",
+                    "width": 1,
+                    "bottom": 72
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "75o1",
-                    "width" : 1,
-                    "bottom" : "77o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "75o1",
+                    "width": 1,
+                    "bottom": "77o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "77o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "77o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "77o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "77o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "77o1",
-                    "right" : 75,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "77o1",
+                    "right": 75,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : "77o1",
-                    "width" : 1,
-                    "bottom" : 86
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": "77o1",
+                    "width": 1,
+                    "bottom": 86
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 73,
-                    "top" : "75o1",
-                    "width" : 1,
-                    "bottom" : "78o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 73,
+                    "top": "75o1",
+                    "width": 1,
+                    "bottom": "78o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "78o1",
-                    "right" : 74,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "78o1",
+                    "right": 74,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "78o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "78o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 59,
-                    "top" : "78o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 59,
+                    "top": "78o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "78o1",
-                    "width" : 1,
-                    "bottom" : 86
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "78o1",
+                    "width": 1,
+                    "bottom": 86
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "89o1",
-                    "width" : 1,
-                    "bottom" : "97o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "89o1",
+                    "width": 1,
+                    "bottom": "97o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "97o1",
-                    "right" : 59,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "97o1",
+                    "right": 59,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "97o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "97o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "97o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "97o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "97o1",
-                    "width" : 1,
-                    "bottom" : 100
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "97o1",
+                    "width": 1,
+                    "bottom": 100
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : "89o1",
-                    "width" : 1,
-                    "bottom" : "98o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": "89o1",
+                    "width": 1,
+                    "bottom": "98o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "98o1",
-                    "right" : 76,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "98o1",
+                    "right": 76,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "98o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "98o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "98o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "98o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "98o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "98o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "98o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "98o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "98o1",
-                    "width" : 1,
-                    "bottom" : 100
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "98o1",
+                    "width": 1,
+                    "bottom": 100
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 42,
-                    "top" : "104o1",
-                    "width" : 1,
-                    "bottom" : "115o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 42,
+                    "top": "104o1",
+                    "width": 1,
+                    "bottom": "115o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 42,
-                    "top" : "115o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 42,
+                    "top": "115o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "115o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "115o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "115o1",
-                    "right" : 58,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "115o1",
+                    "right": 58,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "115o1",
-                    "width" : 1,
-                    "bottom" : 117
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "115o1",
+                    "width": 1,
+                    "bottom": 117
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 44,
-                    "top" : "107o1",
-                    "width" : 1,
-                    "bottom" : "114o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 44,
+                    "top": "107o1",
+                    "width": 1,
+                    "bottom": "114o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 44,
-                    "top" : "114o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 44,
+                    "top": "114o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "114o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "114o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "114o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "114o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "114o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "114o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "114o1",
-                    "right" : 75,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "114o1",
+                    "right": 75,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : "114o1",
-                    "width" : 1,
-                    "bottom" : 117
+                    "direction": "after_go_right.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": "114o1",
+                    "width": 1,
+                    "bottom": 117
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 58,
-                    "top" : "120o1",
-                    "width" : 1,
-                    "bottom" : "125o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 58,
+                    "top": "120o1",
+                    "width": 1,
+                    "bottom": "125o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "125o1",
-                    "right" : 59,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "125o1",
+                    "right": 59,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "125o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "125o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "125o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "125o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "125o1",
-                    "width" : 1,
-                    "bottom" : 129
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "125o1",
+                    "width": 1,
+                    "bottom": 129
                 }
             ]
         },
         {
-            "outlineColor" : "xl_theme.xl_white",
-            "segments" : [
+            "outlineColor": "xl_theme.xl_white",
+            "segments": [
                 {
-                    "direction" : "from_here.falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 75,
-                    "top" : "120o1",
-                    "width" : 1,
-                    "bottom" : "127o1"
+                    "direction": "from_here.falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 75,
+                    "top": "120o1",
+                    "width": 1,
+                    "bottom": "127o1"
                 },
                 {
-                    "direction" : "after_falling_down.turn_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "127o1",
-                    "right" : 76,
-                    "height" : "0o1"
+                    "direction": "after_falling_down.turn_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "127o1",
+                    "right": 76,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 63,
-                    "top" : "127o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 63,
+                    "top": "127o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 54,
-                    "top" : "127o1",
-                    "right" : 63,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 54,
+                    "top": "127o1",
+                    "right": 63,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_white",
-                    "left" : 46,
-                    "top" : "127o1",
-                    "right" : 54,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_white",
+                    "left": 46,
+                    "top": "127o1",
+                    "right": 54,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_left",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 42,
-                    "top" : "127o1",
-                    "right" : 46,
-                    "height" : "0o1"
+                    "direction": "continue.go_left",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 42,
+                    "top": "127o1",
+                    "right": 46,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_left.turn_falling_down",
-                    "color" : "xl_strong.xl_green",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 41,
-                    "top" : "127o1",
-                    "width" : 1,
-                    "bottom" : 129
+                    "direction": "after_go_left.turn_falling_down",
+                    "color": "xl_strong.xl_green",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 41,
+                    "top": "127o1",
+                    "width": 1,
+                    "bottom": 129
                 }
             ]
         },
         {
-            "segments" : [
+            "segments": [
                 {
-                    "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 12,
-                    "top" : "12o1",
-                    "right" : 20,
-                    "height" : "0o1"
+                    "direction": "from_here.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 12,
+                    "top": "12o1",
+                    "right": 20,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 20,
-                    "top" : "12o1",
-                    "right" : 25,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 20,
+                    "top": "12o1",
+                    "right": 25,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 25,
-                    "top" : "12o1",
-                    "width" : 1,
-                    "bottom" : 15
+                    "direction": "after_go_right.turn_falling_down",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 25,
+                    "top": "12o1",
+                    "width": 1,
+                    "bottom": 15
                 }
             ]
         },
         {
-            "segments" : [
+            "segments": [
                 {
-                    "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 63,
-                    "top" : "12o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "from_here.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 63,
+                    "top": "12o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "12o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "12o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 80,
-                    "top" : "12o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 80,
+                    "top": "12o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "12o1",
-                    "right" : 97,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "12o1",
+                    "right": 97,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 97,
-                    "top" : "12o1",
-                    "right" : 105,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 97,
+                    "top": "12o1",
+                    "right": 105,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 105,
-                    "top" : "12o1",
-                    "right" : 110,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 105,
+                    "top": "12o1",
+                    "right": 110,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 110,
-                    "top" : "12o1",
-                    "width" : 1,
-                    "bottom" : 15
+                    "direction": "after_go_right.turn_falling_down",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 110,
+                    "top": "12o1",
+                    "width": 1,
+                    "bottom": 15
                 }
             ]
         },
         {
-            "segments" : [
+            "segments": [
                 {
-                    "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 63,
-                    "top" : "74o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "from_here.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 63,
+                    "top": "74o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "74o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "74o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 80,
-                    "top" : "74o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 80,
+                    "top": "74o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "74o1",
-                    "right" : 97,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "74o1",
+                    "right": 97,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 97,
-                    "top" : "74o1",
-                    "right" : 105,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 97,
+                    "top": "74o1",
+                    "right": 105,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 105,
-                    "top" : "74o1",
-                    "right" : 110,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 105,
+                    "top": "74o1",
+                    "right": 110,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 110,
-                    "top" : "74o1",
-                    "width" : 1,
-                    "bottom" : 77
+                    "direction": "after_go_right.turn_falling_down",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 110,
+                    "top": "74o1",
+                    "width": 1,
+                    "bottom": 77
                 }
             ]
         },
         {
-            "segments" : [
+            "segments": [
                 {
-                    "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 63,
-                    "top" : "88o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "from_here.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 63,
+                    "top": "88o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "88o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "88o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 80,
-                    "top" : "88o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 80,
+                    "top": "88o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "88o1",
-                    "right" : 97,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "88o1",
+                    "right": 97,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 97,
-                    "top" : "88o1",
-                    "right" : 105,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 97,
+                    "top": "88o1",
+                    "right": 105,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 105,
-                    "top" : "88o1",
-                    "right" : 110,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 105,
+                    "top": "88o1",
+                    "right": 110,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 110,
-                    "top" : "88o1",
-                    "width" : 1,
-                    "bottom" : 91
+                    "direction": "after_go_right.turn_falling_down",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 110,
+                    "top": "88o1",
+                    "width": 1,
+                    "bottom": 91
                 }
             ]
         },
         {
-            "segments" : [
+            "segments": [
                 {
-                    "direction" : "from_here.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 63,
-                    "top" : "119o1",
-                    "right" : 71,
-                    "height" : "0o1"
+                    "direction": "from_here.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 63,
+                    "top": "119o1",
+                    "right": 71,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 71,
-                    "top" : "119o1",
-                    "right" : 80,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 71,
+                    "top": "119o1",
+                    "right": 80,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 80,
-                    "top" : "119o1",
-                    "right" : 88,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 80,
+                    "top": "119o1",
+                    "right": 88,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_blue",
-                    "left" : 88,
-                    "top" : "119o1",
-                    "right" : 97,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_blue",
+                    "left": 88,
+                    "top": "119o1",
+                    "right": 97,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_pale.xl_white",
-                    "left" : 97,
-                    "top" : "119o1",
-                    "right" : 105,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_pale.xl_white",
+                    "left": 97,
+                    "top": "119o1",
+                    "right": 105,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "continue.go_right",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 105,
-                    "top" : "119o1",
-                    "right" : 110,
-                    "height" : "0o1"
+                    "direction": "continue.go_right",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 105,
+                    "top": "119o1",
+                    "right": 110,
+                    "height": "0o1"
                 },
                 {
-                    "direction" : "after_go_right.turn_falling_down",
-                    "shadowColor" : "xl_light.xl_yellow",
-                    "left" : 110,
-                    "top" : "119o1",
-                    "width" : 1,
-                    "bottom" : 122
+                    "direction": "after_go_right.turn_falling_down",
+                    "shadowColor": "xl_light.xl_yellow",
+                    "left": 110,
+                    "top": "119o1",
+                    "width": 1,
+                    "bottom": 122
                 }
             ]
         }
