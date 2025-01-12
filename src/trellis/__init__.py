@@ -904,7 +904,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
                         
                         # （共通処理）水平方向
-                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left']:
+                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left', 'after_up.turn_right']:
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1054,7 +1054,7 @@ def render_all_line_tapes(document, ws):
                         
                         # 左進から上っていく
                         if line_tape_direction == 'after_go_left.turn_up':
-                            # 左辺（横長）を描く
+                            # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
                                     column_th=column_th + square_unit,
@@ -1072,7 +1072,7 @@ def render_all_line_tapes(document, ws):
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
-                            # 右辺を描く
+                            # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
                                     column_th=column_th - 1,
@@ -1081,6 +1081,25 @@ def render_all_line_tapes(document, ws):
                                     rows=3,
                                     fill_obj=outline_fill_obj)
 
+                        # 上がってきて右折
+                        if line_tape_direction == 'after_up.turn_right':
+                            # 左辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th,
+                                    columns=1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th - 1,
+                                    columns=square_unit + 1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
 
 
 class TrellisInSrc():
