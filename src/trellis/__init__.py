@@ -105,6 +105,14 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     """トーン名・色名を FillPattern オブジェクトに変換します
     """
 
+    # 色が指定されていないとき、この関数を呼び出してはいけません
+    if tone_and_color_name is None:
+        raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
+
+    # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
+    if tone_and_color_name == 'paper_color':
+        return fill_palette_none
+
     tone, color = tone_and_color_name.split('.', 2)
 
     if tone in fill_palette:
@@ -502,20 +510,20 @@ def render_all_pillar_rugs(document, ws):
     pillars_dict = document['pillars']
 
     for pillar_id, whole_pillar in pillars_dict.items():
-        left = whole_pillar['left']
-        top = whole_pillar['top']
-        width = whole_pillar['width']
-        height = whole_pillar['height']
-        baseColor = whole_pillar['baseColor']
+        if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
+            left = whole_pillar['left']
+            top = whole_pillar['top']
+            width = whole_pillar['width']
+            height = whole_pillar['height']
 
-        # 矩形を塗りつぶす
-        fill_rectangle(
-                ws=ws,
-                column_th=left * square_unit + 1,
-                row_th=top * square_unit + 1,
-                columns=width * square_unit,
-                rows=height * square_unit,
-                fill_obj=tone_and_color_name_to_fill_obj(baseColor))
+            # 矩形を塗りつぶす
+            fill_rectangle(
+                    ws=ws,
+                    column_th=left * square_unit + 1,
+                    row_th=top * square_unit + 1,
+                    columns=width * square_unit,
+                    rows=height * square_unit,
+                    fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
 
 def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
@@ -523,7 +531,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
     """
 
     # 柱のヘッダーの背景色
-    if 'bgColor' in paper_strip and paper_strip['bgColor']:
+    if 'bgColor' in paper_strip and (baseColor := paper_strip['bgColor']):
         # 矩形を塗りつぶす
         fill_rectangle(
                 ws=ws,
@@ -531,7 +539,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
                 row_th=row_th,
                 columns=columns,
                 rows=1 * square_unit,   # １行分
-                fill_obj=tone_and_color_name_to_fill_obj(paper_strip['bgColor']))
+                fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
     # インデント
     if 'indent' in paper_strip:
@@ -744,9 +752,7 @@ def render_all_line_tape_shadows(document, ws):
             segments_dict = line_tape_dict['segments']
 
             for segment_dict in segments_dict:
-                if 'shadowColor' in segment_dict:
-                    line_tape_shadow_color = segment_dict['shadowColor']
-
+                if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
                     line_tape_left = segment_dict['left']
                     line_tape_sub_left = 0
                     if isinstance(line_tape_left, str):
@@ -904,7 +910,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
                         
                         # （共通処理）水平方向
-                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left', 'after_up.turn_right']:
+                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left', 'after_up.turn_right', 'from_here.go_right']:
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1130,6 +1136,25 @@ def render_all_line_tapes(document, ws):
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
+                        # ここから右進
+                        elif line_tape_direction == 'from_here.go_right':
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th,
+                                    row_th=row_th - 1,
+                                    columns=square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th,
+                                    row_th=row_th + 1,
+                                    columns=square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
 
 
 class TrellisInSrc():

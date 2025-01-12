@@ -1968,6 +1968,34 @@
                     "bottom" : 129
                 }
             ]
+        },
+        {
+            "segments" : [
+                {
+                    "direction" : "from_here.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 12,
+                    "top" : "12o1",
+                    "right" : 20,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 20,
+                    "top" : "12o1",
+                    "right" : 25,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 25,
+                    "top" : "12o1",
+                    "width" : 1,
+                    "bottom" : 15
+                }
+            ]
         }
     ]
 }
