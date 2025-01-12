@@ -24,7 +24,7 @@ if __name__ == '__main__':
                 from examples.step2_render_pillars import *
                 from examples.step3_render_line_tapes import *
                 from examples.step4_render_auto_shadow import *
-                from examples.step5_render_auto_split_pillar import *
+                from examples.step5_render_auto_split_by_pillar import *
 
             else:
                 raise ValueError(f'unsupported {args[1]=}')
