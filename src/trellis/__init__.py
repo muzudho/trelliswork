@@ -558,8 +558,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 
 
     # テキスト（があれば）
-    if 'text1' in paper_strip:
-        text = paper_strip['text1']
+    if 'text0' in paper_strip:
+        text = paper_strip['text0']
         
         # 左に１マス分のアイコンを置く前提
         icon_columns = square_unit
@@ -568,8 +568,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell = ws[f'{column_letter}{row_th}']
         cell.value = text
 
-    if 'text2' in paper_strip:
-        text = paper_strip['text2']
+    if 'text1' in paper_strip:
+        text = paper_strip['text1']
         
         # 左に１マス分のアイコンを置く前提
         icon_columns = square_unit
@@ -578,8 +578,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell = ws[f'{column_letter}{row_th + 1}']
         cell.value = text
 
-    if 'text3' in paper_strip:
-        text = paper_strip['text3']
+    if 'text2' in paper_strip:
+        text = paper_strip['text2']
         
         # 左に１マス分のアイコンを置く前提
         icon_columns = square_unit
