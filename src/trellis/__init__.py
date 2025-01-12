@@ -1347,22 +1347,15 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
     splitting_segments = []
 
 
-    # TODO とりあえず、落下後の左折だけ考える。他は後で考える
-    # 左進より、右進の方がプログラムが簡単
-    if direction in ['after_falling_down.turn_right', 'after_up.turn_right']:
-        #print('とりあえず、落下後の左折だけ考える。他は後で考える')
+    # 右進でも、左進でも、同じコードでいけるようだ
+    if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'after_falling_down.turn_left']:
 
         # もし、柱のリストがあれば
         if 'pillars' in document and (pillars_list := document['pillars']):
-            #print(f'{len(pillars_list)=}')
 
             # 各柱
             for pillar_dict in pillars_list:
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
-
-                # とりあえず、ラインテープの左端と右端の内側に、柱の左端があるか判定
-                if segment_rect.left_obj.cell_th < pillar_rect.left_obj.cell_th and pillar_rect.left_obj.cell_th < segment_rect.right_obj.cell_th:
-                    print(f'（判定）ラインテープの左端より右と右端の内側に、柱の左端がある')
 
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 if segment_rect.left_obj.cell_th < pillar_rect.right_obj.cell_th and pillar_rect.right_obj.cell_th < segment_rect.right_obj.cell_th:
@@ -1376,7 +1369,6 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
                     left_segment_dict['right'] = Square(pillar_rect.right_obj.var_value).offset(-1).var_value
-                    left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
                     new_segment_list.append(left_segment_dict)
 
                     # 右側のセグメントを新規作成し、既存リストに追加
@@ -1385,13 +1377,8 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     right_segment_dict.pop('width', None)
                     right_segment_dict['left'] = pillar_rect.right_obj.offset(-1).var_value
                     right_segment_dict['right'] = segment_rect.right_obj.var_value
-                    right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
-
-
-    elif direction == 'after_falling_down.turn_left':
-        pass
 
     
     return new_segment_list
