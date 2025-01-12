@@ -699,6 +699,9 @@
                         {
                             "bgColor" : "xl_pale.xl_white",
                             "text1" : "※ %Alice戦闘者% と同様"
+                        },
+                        {
+                            "bgColor" : "xl_pale.xl_white"
                         }
                     ]
                 },
@@ -1994,6 +1997,246 @@
                     "top" : "12o1",
                     "width" : 1,
                     "bottom" : 15
+                }
+            ]
+        },
+        {
+            "segments" : [
+                {
+                    "direction" : "from_here.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 63,
+                    "top" : "12o1",
+                    "right" : 70,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 70,
+                    "top" : "12o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 80,
+                    "top" : "12o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "12o1",
+                    "right" : 97,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 97,
+                    "top" : "12o1",
+                    "right" : 105,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 105,
+                    "top" : "12o1",
+                    "right" : 110,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 110,
+                    "top" : "12o1",
+                    "width" : 1,
+                    "bottom" : 15
+                }
+            ]
+        },
+        {
+            "segments" : [
+                {
+                    "direction" : "from_here.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 63,
+                    "top" : "74o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "74o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 80,
+                    "top" : "74o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "74o1",
+                    "right" : 97,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 97,
+                    "top" : "74o1",
+                    "right" : 105,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 105,
+                    "top" : "74o1",
+                    "right" : 110,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 110,
+                    "top" : "74o1",
+                    "width" : 1,
+                    "bottom" : 77
+                }
+            ]
+        },
+        {
+            "segments" : [
+                {
+                    "direction" : "from_here.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 63,
+                    "top" : "88o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "88o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 80,
+                    "top" : "88o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "88o1",
+                    "right" : 97,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 97,
+                    "top" : "88o1",
+                    "right" : 105,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 105,
+                    "top" : "88o1",
+                    "right" : 110,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 110,
+                    "top" : "88o1",
+                    "width" : 1,
+                    "bottom" : 91
+                }
+            ]
+        },
+        {
+            "segments" : [
+                {
+                    "direction" : "from_here.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 63,
+                    "top" : "119o1",
+                    "right" : 71,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 71,
+                    "top" : "119o1",
+                    "right" : 80,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 80,
+                    "top" : "119o1",
+                    "right" : 88,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 88,
+                    "top" : "119o1",
+                    "right" : 97,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 97,
+                    "top" : "119o1",
+                    "right" : 105,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "continue.go_right",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 105,
+                    "top" : "119o1",
+                    "right" : 110,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "after_go_right.turn_falling_down",
+                    "shadowColor" : "xl_light.xl_yellow",
+                    "left" : 110,
+                    "top" : "119o1",
+                    "width" : 1,
+                    "bottom" : 91
                 }
             ]
         }
