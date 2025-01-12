@@ -806,13 +806,13 @@ class Rectangle():
     """
 
 
-    def __init__(self, left, sub_left, top, sub_top, width, sub_width, height, sub_height):
+    def __init__(self, main_left, sub_left, main_top, sub_top, main_width, sub_width, main_height, sub_height):
         """初期化
         """
-        self._left_obj = Square.from_main_and_sub(main_number=left, sub_number=sub_left)
-        self._width_obj = Square.from_main_and_sub(main_number=width, sub_number=sub_width)
-        self._top_obj = Square.from_main_and_sub(main_number=top, sub_number=sub_top)
-        self._height_obj = Square.from_main_and_sub(main_number=height, sub_number=sub_height)
+        self._left_obj = Square.from_main_and_sub(main_number=main_left, sub_number=sub_left)
+        self._top_obj = Square.from_main_and_sub(main_number=main_top, sub_number=sub_top)
+        self._width_obj = Square.from_main_and_sub(main_number=main_width, sub_number=sub_width)
+        self._height_obj = Square.from_main_and_sub(main_number=main_height, sub_number=sub_height)
         self._right_obj = None
 
 
@@ -856,15 +856,15 @@ class Rectangle():
 def get_rectangle(rectangle_dict):
     """ラインテープのセグメントの矩形情報を取得
     """
-    left = rectangle_dict['left']
+    main_left = rectangle_dict['left']
     sub_left = 0
-    if isinstance(left, str):
-        left, sub_left = map(int, left.split('o', 2))
+    if isinstance(main_left, str):
+        main_left, sub_left = map(int, main_left.split('o', 2))
     
-    top = rectangle_dict['top']
+    main_top = rectangle_dict['top']
     sub_top = 0
-    if isinstance(top, str):
-        top, sub_top = map(int, top.split('o', 2))
+    if isinstance(main_top, str):
+        main_top, sub_top = map(int, main_top.split('o', 2))
 
     # right は、その数を含まない
     if 'right' in rectangle_dict:
@@ -873,14 +873,14 @@ def get_rectangle(rectangle_dict):
         if isinstance(right, str):
             right, sub_right = map(int, right.split('o', 2))
 
-        width = right - left
+        main_width = right - main_left
         sub_width = sub_right - sub_left
 
     else:
-        width = rectangle_dict['width']
+        main_width = rectangle_dict['width']
         sub_width = 0
-        if isinstance(width, str):
-            width, sub_width = map(int, width.split('o', 2))
+        if isinstance(main_width, str):
+            main_width, sub_width = map(int, main_width.split('o', 2))
 
     # bottom は、その数を含まない
     if 'bottom' in rectangle_dict:
@@ -889,23 +889,23 @@ def get_rectangle(rectangle_dict):
         if isinstance(bottom, str):
             bottom, sub_bottom = map(int, bottom.split('o', 2))
 
-        height = bottom - top
+        main_height = bottom - main_top
         sub_height = sub_bottom - sub_top
 
     else:
-        height = rectangle_dict['height']
+        main_height = rectangle_dict['height']
         sub_height = 0
-        if isinstance(height, str):
-            height, sub_height = map(int, height.split('o', 2))
+        if isinstance(main_height, str):
+            main_height, sub_height = map(int, main_height.split('o', 2))
 
     return Rectangle(
-            left=left,
+            main_left=main_left,
             sub_left=sub_left,
-            top=top,
+            main_top=main_top,
             sub_top=sub_top,
-            width=width,
+            main_width=main_width,
             sub_width=sub_width,
-            height=height,
+            main_height=main_height,
             sub_height=sub_height)
 
 
