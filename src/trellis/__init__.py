@@ -741,11 +741,12 @@ def render_all_line_tape_shadows(document, ws):
         line_tape_list = document['lineTapes']
 
         for line_tape_dict in line_tape_list:
-            if 'shadowColor' in line_tape_dict:
-                line_tape_shadow_color = line_tape_dict['shadowColor']
-                segments_dict = line_tape_dict['segments']
+            segments_dict = line_tape_dict['segments']
 
-                for segment_dict in segments_dict:
+            for segment_dict in segments_dict:
+                if 'shadowColor' in segment_dict:
+                    line_tape_shadow_color = segment_dict['shadowColor']
+
                     line_tape_left = segment_dict['left']
                     line_tape_sub_left = 0
                     if isinstance(line_tape_left, str):
@@ -808,11 +809,12 @@ def render_all_line_tapes(document, ws):
         line_tape_list = document['lineTapes']
 
         for line_tape_dict in line_tape_list:
-            if 'color' in line_tape_dict:
-                line_tape_color = line_tape_dict['color']
-                segments_dict = line_tape_dict['segments']
+            segments_dict = line_tape_dict['segments']
 
-                for segment_dict in segments_dict:
+            for segment_dict in segments_dict:
+                if 'color' in segment_dict:
+                    line_tape_color = segment_dict['color']
+
                     line_tape_left = segment_dict['left']
                     line_tape_sub_left = 0
                     if isinstance(line_tape_left, str):

@@ -1006,74 +1006,82 @@
     },
     "lineTapes" : [
         {
-            "color" : "xl_strong.xl_naviy",
-            "shadowColor" : "xl_light.xl_blue",
             "segments" : [
                 {
+                    "direction" : "to_down",
+                    "color" : "xl_strong.xl_naviy",
+                    "shadowColor" : "xl_light.xl_blue",
                     "left" : 7,
                     "top" : 8,
                     "width" : 1,
-                    "height" : 2
+                    "bottom" : 10
                 }
             ]
         },
         {
-            "color" : "xl_strong.xl_green",
-            "shadowColor" : "xl_light.xl_blue",
             "segments" : [
                 {
+                    "direction" : "to_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
                     "left" : 7,
                     "top" : "13o1",
                     "width" : 1,
-                    "bottom" : "22o2"
+                    "bottom" : "22o1"
                 },
                 {
-                    "left" : 8,
+                    "direction" : "to_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 7,
                     "top" : "22o1",
                     "right" : 12,
-                    "bottom" : "22o2"
+                    "height" : "0o1"
                 },
                 {
-                    "left" : 37,
-                    "top" : "22o1",
-                    "right" : 42,
-                    "bottom" : "22o2"
-                },
-                {
-                    "left" : 41,
-                    "top" : "22o2",
-                    "right" : 42,
-                    "bottom" : 25
-                }
-            ]
-        },
-        {
-            "color" : "xl_strong.xl_green",
-            "shadowColor" : "xl_pale.xl_white",
-            "segments" : [
-                {
+                    "direction" : "to_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_pale.xl_white",
                     "left" : 12,
                     "top" : "22o1",
                     "right" : 20,
-                    "bottom" : "22o2"
+                    "height" : "0o1"
                 },
                 {
-                    "left" : 29,
-                    "top" : "22o1",
-                    "right" : 37,
-                    "bottom" : "22o2"
-                }
-            ]
-        },
-        {
-            "color" : "xl_strong.xl_green",
-            "shadowColor" : "xl_light.xl_yellow",
-            "segments" : [
-                {
+                    "direction" : "to_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_yellow",
                     "left" : 20,
                     "top" : "22o1",
                     "right" : 29,
-                    "bottom" : "22o2"
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "to_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_pale.xl_white",
+                    "left" : 29,
+                    "top" : "22o1",
+                    "right" : 37,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "to_right",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 37,
+                    "top" : "22o1",
+                    "right" : 41,
+                    "height" : "0o1"
+                },
+                {
+                    "direction" : "to_down",
+                    "color" : "xl_strong.xl_green",
+                    "shadowColor" : "xl_light.xl_blue",
+                    "left" : 41,
+                    "top" : "22o1",
+                    "width" : 1,
+                    "bottom" : 25
                 }
             ]
         }
