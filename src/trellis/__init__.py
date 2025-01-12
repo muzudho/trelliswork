@@ -1392,7 +1392,7 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                     # TODO 既存のセグメントを削除
                     segment_list.remove(segment_dict)
 
-                    # TODO 左側のセグメントを新規作成
+                    # TODO 左側のセグメントを新規作成し、新リストに追加
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(segment_dict)
                     left_segment_dict.pop('width', None)
@@ -1400,14 +1400,15 @@ def split_segment_by_pillar(document, segment_list, segment_dict):
                     left_segment_dict['color'] = 'xl_standard.xl_red'   # FIXME 動作テスト
                     new_segment_list.append(left_segment_dict)
 
-                    # TODO 右側のセグメントを新規作成
+                    # TODO 右側のセグメントを新規作成し、既存リストに追加
                     # （計算を簡単にするため）width は使わず right を使う
                     right_segment_dict = dict(segment_dict)
                     right_segment_dict.pop('width', None)
                     right_segment_dict['left'] = pillar_rect.exact_right
                     right_segment_dict['right'] = segment_rect.right
                     right_segment_dict['color'] = 'xl_standard.xl_violet'   # FIXME 動作テスト
-                    new_segment_list.append(right_segment_dict)
+                    segment_list.append(right_segment_dict)
+                    #new_segment_list.append(right_segment_dict)
 
 
     elif direction == 'after_up.turn_right':
