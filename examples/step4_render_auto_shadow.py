@@ -24,7 +24,7 @@ tr.edit_document_and_solve_auto_shadow(document)
 json_file_name_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 print(f"write json_file_name_2 = {json_file_name_2}")
 with open(json_file_name_2, mode='w', encoding='utf-8') as f:
-    f.write(json.dumps(document, indent=4))
+    f.write(json.dumps(document, indent=4, ensure_ascii=False))
 
 print(f"read json_file_name_2 = {json_file_name_2}")
 with open(json_file_name_2, mode='r', encoding='utf-8') as f:
