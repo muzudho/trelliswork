@@ -87,16 +87,16 @@ fill_palette = {
         'xl_green' : PatternFill(patternType='solid', fgColor='375623'),
     },
     'xl_standard' : {
-        'xl_brown' : PatternFill(patternType='solid', fgColor='808080'),
-        'xl_red' : PatternFill(patternType='solid', fgColor='0D0D0D'),
-        'xl_orange' : PatternFill(patternType='solid', fgColor='161616'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='161616'),
-        'xl_yellow_green' : PatternFill(patternType='solid', fgColor='1F4E78'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='833C0C'),
-        'xl_dodger_blue' : PatternFill(patternType='solid', fgColor='525252'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='806000'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='203764'),
-        'xl_violet' : PatternFill(patternType='solid', fgColor='375623'),
+        'xl_brown' : PatternFill(patternType='solid', fgColor='C00000'),
+        'xl_red' : PatternFill(patternType='solid', fgColor='FF0000'),
+        'xl_orange' : PatternFill(patternType='solid', fgColor='FFC000'),
+        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFFF00'),
+        'xl_yellow_green' : PatternFill(patternType='solid', fgColor='92D050'),
+        'xl_green' : PatternFill(patternType='solid', fgColor='00B050'),
+        'xl_dodger_blue' : PatternFill(patternType='solid', fgColor='00B0F0'),
+        'xl_blue' : PatternFill(patternType='solid', fgColor='0070C0'),
+        'xl_naviy' : PatternFill(patternType='solid', fgColor='002060'),
+        'xl_violet' : PatternFill(patternType='solid', fgColor='7030A0'),
     }
 }
 
@@ -884,7 +884,7 @@ def render_all_line_tapes(document, ws):
                         outline_fill_obj = tone_and_color_name_to_fill_obj(line_tape_outline_color)
 
                         # （共通処理）垂直方向
-                        if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down']:
+                        if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up']:
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -904,7 +904,7 @@ def render_all_line_tapes(document, ws):
                                     fill_obj=outline_fill_obj)
                         
                         # （共通処理）水平方向
-                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right']:
+                        elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left']:
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1012,6 +1012,74 @@ def render_all_line_tapes(document, ws):
                                     rows=2,
                                     fill_obj=outline_fill_obj)
 
+                        # 落ちたあと左折
+                        if line_tape_direction == 'after_falling_down.turn_left':
+                            # 右辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + columns,
+                                    row_th=row_th - 1,
+                                    columns=1,
+                                    rows=2,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + columns - square_unit,
+                                    row_th=row_th + 1,
+                                    columns=square_unit + 1,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                        # そのまま左進
+                        if line_tape_direction == 'continue.go_left':
+                            # 上辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit,
+                                    row_th=row_th - 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit,
+                                    row_th=row_th + 1,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+                        
+                        # 左進から上っていく
+                        if line_tape_direction == 'after_go_left.turn_up':
+                            # 左辺（横長）を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th + square_unit,
+                                    row_th=row_th + rows - 2,
+                                    columns=square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 下辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th,
+                                    row_th=row_th + rows,
+                                    columns=2 * square_unit,
+                                    rows=1,
+                                    fill_obj=outline_fill_obj)
+
+                            # 右辺を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    column_th=column_th - 1,
+                                    row_th=row_th + rows - 2,
+                                    columns=1,
+                                    rows=3,
+                                    fill_obj=outline_fill_obj)
 
 
 
