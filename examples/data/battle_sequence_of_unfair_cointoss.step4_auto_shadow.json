@@ -8,8 +8,8 @@
         "xl_pale.xl_blue" : "xl_light.xl_blue",
         "xl_pale.xl_yellow" : "xl_light.xl_yellow"        
     },
-    "pillars" : {
-        "battleMapEventMaster" : {
+    "pillars" : [
+        {
             "left" : 4,
             "top" : 1,
             "width" : 9,
@@ -72,7 +72,7 @@
                 }
             ]
         },
-        "encounterMapEventMaster" : {
+        {
             "left" : 21,
             "top" : 1,
             "width" : 9,
@@ -128,7 +128,7 @@
                 }
             ]
         },
-        "inBattle" : {
+        {
             "left" : 38,
             "top" : 1,
             "width" : 9,
@@ -447,7 +447,7 @@
                 }
             ]
         },
-        "alice" : {
+        {
             "left" : 55,
             "top" : 1,
             "width" : 9,
@@ -625,7 +625,7 @@
                 }
             ]
         },
-        "bob" : {
+        {
             "left" : 72,
             "top" : 1,
             "width" : 9,
@@ -800,7 +800,7 @@
                 }
             ]
         },
-        "coin" : {
+        {
             "left" : 89,
             "top" : 1,
             "width" : 9,
@@ -868,7 +868,7 @@
                 }
             ]
         },
-        "battler" : {
+        {
             "left" : 106,
             "top" : 1,
             "width" : 9,
@@ -1014,7 +1014,7 @@
                 }
             ]
         }
-    },
+    ],
     "lineTapes" : [
         {
             "outlineColor" : "xl_theme.xl_white",

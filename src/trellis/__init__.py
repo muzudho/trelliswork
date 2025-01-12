@@ -510,10 +510,10 @@ def render_all_pillar_rugs(document, ws):
     """
     print('全ての柱の敷物の描画')
 
-    # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    # もし、柱のリストがあれば
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, whole_pillar in pillars_dict.items():
+        for whole_pillar in pillars_list:
             if 'baseColor' in whole_pillar and (baseColor := whole_pillar['baseColor']):
                 left = whole_pillar['left']
                 top = whole_pillar['top']
@@ -606,10 +606,10 @@ def render_all_card_shadows(document, ws):
     """
     print('全てのカードの影の描画')
 
-    # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    # もし、柱のリストがあれば
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, pillar_dict in pillars_dict.items():
+        for pillar_dict in pillars_list:
             # もし、カードの辞書があれば
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
@@ -639,9 +639,9 @@ def render_all_cards(document, ws):
     print('全てのカードの描画')
 
     # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, whole_pillar in pillars_dict.items():
+        for whole_pillar in pillars_list:
             baseColor = whole_pillar['baseColor']
             card_list = whole_pillar['cards']
 
@@ -687,9 +687,9 @@ def render_all_terminal_shadows(document, ws):
     print('全ての端子の影の描画')
 
     # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, pillar_dict in pillars_dict.items():
+        for pillar_dict in pillars_list:
             # もし、端子のリストがあれば
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
@@ -714,9 +714,9 @@ def render_all_terminals(document, ws):
     print('全ての端子の描画')
 
     # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, pillar_dict in pillars_dict.items():
+        for pillar_dict in pillars_list:
             # もし、端子のリストがあれば
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
@@ -1163,9 +1163,9 @@ def resolve_auto_shadow(document, column_th, row_th):
     if 'shadowColorMappings' in document and (shadow_color_dict := document['shadowColorMappings']):
 
         # もし、柱の辞書があれば
-        if 'pillars' in document and (pillars_dict := document['pillars']):
+        if 'pillars' in document and (pillars_list := document['pillars']):
 
-            for pillar_id, pillars_dict in pillars_dict.items():
+            for pillars_dict in pillars_list:
                 pillar_left = pillars_dict['left']
                 pillar_top = pillars_dict['top']
                 pillar_width = pillars_dict['width']
@@ -1192,9 +1192,9 @@ def solve_auto_shadow(document):
     """
 
     # もし、柱の辞書があれば
-    if 'pillars' in document and (pillars_dict := document['pillars']):
+    if 'pillars' in document and (pillars_list := document['pillars']):
 
-        for pillar_id, pillar_dict in pillars_dict.items():
+        for pillar_dict in pillars_list:
             # もし、カードの辞書があれば
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
