@@ -93,6 +93,120 @@ class InningsPitched():
                 decimal_part=sum_decimal_part % square_unit)
 
 
+#################
+# MARK: Rectangle
+#################
+class Rectangle():
+    """矩形
+    """
+
+
+    @staticmethod
+    def from_dict(rectangle_dict):
+        """ラインテープのセグメントの矩形情報を取得
+        """
+        main_left = rectangle_dict['left']
+        sub_left = 0
+        if isinstance(main_left, str):
+            main_left, sub_left = map(int, main_left.split('o', 2))
+        
+        main_top = rectangle_dict['top']
+        sub_top = 0
+        if isinstance(main_top, str):
+            main_top, sub_top = map(int, main_top.split('o', 2))
+
+        # right は、その数を含まない。
+        # right が指定されていれば、 width より優先する
+        if 'right' in rectangle_dict:
+            right = rectangle_dict['right']
+            sub_right = 0
+            if isinstance(right, str):
+                right, sub_right = map(int, right.split('o', 2))
+
+            main_width = right - main_left
+            sub_width = sub_right - sub_left
+
+        else:
+            main_width = rectangle_dict['width']
+            sub_width = 0
+            if isinstance(main_width, str):
+                main_width, sub_width = map(int, main_width.split('o', 2))
+
+        # bottom は、その数を含まない。
+        # bottom が指定されていれば、 width より優先する
+        if 'bottom' in rectangle_dict:
+            bottom = rectangle_dict['bottom']
+            sub_bottom = 0
+            if isinstance(bottom, str):
+                bottom, sub_bottom = map(int, bottom.split('o', 2))
+
+            main_height = bottom - main_top
+            sub_height = sub_bottom - sub_top
+
+        else:
+            main_height = rectangle_dict['height']
+            sub_height = 0
+            if isinstance(main_height, str):
+                main_height, sub_height = map(int, main_height.split('o', 2))
+
+        return Rectangle(
+                main_left=main_left,
+                sub_left=sub_left,
+                main_top=main_top,
+                sub_top=sub_top,
+                main_width=main_width,
+                sub_width=sub_width,
+                main_height=main_height,
+                sub_height=sub_height)
+
+
+    def __init__(self, main_left, sub_left, main_top, sub_top, main_width, sub_width, main_height, sub_height):
+        """初期化
+        """
+        self._left_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_left, decimal_part=sub_left)
+        self._top_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_top, decimal_part=sub_top)
+        self._width_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_width, decimal_part=sub_width)
+        self._height_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_height, decimal_part=sub_height)
+        self._right_obj = None
+
+
+    def _calculate_right(self):
+        # サブ右＝サブ左＋サブ幅
+        sum_sub_right = self._left_obj.decimal_part + self._width_obj.decimal_part
+        self._right_obj = InningsPitched.from_integer_and_decimal_part(
+                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_sub_right // square_unit,
+                decimal_part=sum_sub_right % square_unit)
+
+
+    @property
+    def left_obj(self):
+        return self._left_obj
+
+
+    @property
+    def right_obj(self):
+        """矩形の右位置
+        """
+        if not self._right_obj:
+            self._calculate_right()
+        return self._right_obj
+
+
+    @property
+    def top_obj(self):
+        return self._top_obj
+
+
+    @property
+    def width_obj(self):
+        return self._width_obj
+
+
+    @property
+    def height_obj(self):
+        return self._height_obj
+
+
 ####################
 # MARK: Color system
 ####################
@@ -702,7 +816,7 @@ def render_all_card_shadows(document, ws):
                     if 'shadowColor' in card_dict:
                         card_shadow_color = card_dict['shadowColor']
 
-                        card_rect = get_rectangle(rectangle_dict=card_dict)
+                        card_rect = Rectangle.from_dict(card_dict)
 
                         # 端子の影を描く
                         fill_rectangle(
@@ -733,7 +847,7 @@ def render_all_cards(document, ws):
 
             for card_dict in card_list:
 
-                card_rect = get_rectangle(rectangle_dict=card_dict)
+                card_rect = Rectangle.from_dict(card_dict)
 
                 # ヘッダーの矩形の枠線を描きます
                 draw_rectangle(
@@ -772,7 +886,7 @@ def render_all_terminal_shadows(document, ws):
 
                 for terminal_dict in terminals_list:
 
-                    terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
+                    terminal_rect = Rectangle.from_dict(terminal_dict)
                     terminal_shadow_color = terminal_dict['shadowColor']
 
                     # 端子の影を描く
@@ -800,7 +914,7 @@ def render_all_terminals(document, ws):
                 for terminal_dict in terminals_list:
 
                     terminal_pixel_art = terminal_dict['pixelArt']
-                    terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
+                    terminal_rect = Rectangle.from_dict(terminal_dict)
 
                     if terminal_pixel_art == 'start':
                         # 始端のドット絵を描く
@@ -817,114 +931,6 @@ def render_all_terminals(document, ws):
                             row_th=terminal_rect.top_obj.total_of_out_counts_th)
 
 
-class Rectangle():
-    """矩形
-    """
-
-
-    def __init__(self, main_left, sub_left, main_top, sub_top, main_width, sub_width, main_height, sub_height):
-        """初期化
-        """
-        self._left_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_left, decimal_part=sub_left)
-        self._top_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_top, decimal_part=sub_top)
-        self._width_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_width, decimal_part=sub_width)
-        self._height_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_height, decimal_part=sub_height)
-        self._right_obj = None
-
-
-    def _calculate_right(self):
-        # サブ右＝サブ左＋サブ幅
-        sum_sub_right = self._left_obj.decimal_part + self._width_obj.decimal_part
-        self._right_obj = InningsPitched.from_integer_and_decimal_part(
-                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_sub_right // square_unit,
-                decimal_part=sum_sub_right % square_unit)
-
-
-    @property
-    def left_obj(self):
-        return self._left_obj
-
-
-    @property
-    def right_obj(self):
-        """矩形の右位置
-        """
-        if not self._right_obj:
-            self._calculate_right()
-        return self._right_obj
-
-
-    @property
-    def top_obj(self):
-        return self._top_obj
-
-
-    @property
-    def width_obj(self):
-        return self._width_obj
-
-
-    @property
-    def height_obj(self):
-        return self._height_obj
-
-
-def get_rectangle(rectangle_dict):
-    """ラインテープのセグメントの矩形情報を取得
-    """
-    main_left = rectangle_dict['left']
-    sub_left = 0
-    if isinstance(main_left, str):
-        main_left, sub_left = map(int, main_left.split('o', 2))
-    
-    main_top = rectangle_dict['top']
-    sub_top = 0
-    if isinstance(main_top, str):
-        main_top, sub_top = map(int, main_top.split('o', 2))
-
-    # right は、その数を含まない
-    if 'right' in rectangle_dict:
-        right = rectangle_dict['right']
-        sub_right = 0
-        if isinstance(right, str):
-            right, sub_right = map(int, right.split('o', 2))
-
-        main_width = right - main_left
-        sub_width = sub_right - sub_left
-
-    else:
-        main_width = rectangle_dict['width']
-        sub_width = 0
-        if isinstance(main_width, str):
-            main_width, sub_width = map(int, main_width.split('o', 2))
-
-    # bottom は、その数を含まない
-    if 'bottom' in rectangle_dict:
-        bottom = rectangle_dict['bottom']
-        sub_bottom = 0
-        if isinstance(bottom, str):
-            bottom, sub_bottom = map(int, bottom.split('o', 2))
-
-        main_height = bottom - main_top
-        sub_height = sub_bottom - sub_top
-
-    else:
-        main_height = rectangle_dict['height']
-        sub_height = 0
-        if isinstance(main_height, str):
-            main_height, sub_height = map(int, main_height.split('o', 2))
-
-    return Rectangle(
-            main_left=main_left,
-            sub_left=sub_left,
-            main_top=main_top,
-            sub_top=sub_top,
-            main_width=main_width,
-            sub_width=sub_width,
-            main_height=main_height,
-            sub_height=sub_height)
-
-
 def render_all_line_tape_shadows(document, ws):
     """全てのラインテープの影の描画
     """
@@ -936,7 +942,7 @@ def render_all_line_tape_shadows(document, ws):
         for line_tape_dict in line_tape_list:
             for segment_dict in line_tape_dict['segments']:
                 if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
-                    segment_rect = get_rectangle(rectangle_dict=segment_dict)
+                    segment_rect = Rectangle.from_dict(segment_dict)
 
                     # 端子の影を描く
                     fill_rectangle(
@@ -973,7 +979,7 @@ def render_all_line_tapes(document, ws):
                 if 'color' in segment_dict:
                     line_tape_color = segment_dict['color']
 
-                    segment_rect = get_rectangle(rectangle_dict=segment_dict)
+                    segment_rect = Rectangle.from_dict(segment_dict)
 
                     # ラインテープを描く
                     fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
@@ -1272,7 +1278,7 @@ def resolve_auto_shadow(document, column_th, row_th):
                 if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                     continue
 
-                pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
+                pillar_rect = Rectangle.from_dict(pillar_dict)
                 base_color = pillar_dict['baseColor']
 
                 # もし、矩形の中に、指定の点が含まれたなら
@@ -1300,7 +1306,7 @@ def edit_document_and_solve_auto_shadow(document):
                     if 'shadowColor' in card_dict and (card_shadow_color := card_dict['shadowColor']):
 
                         if card_shadow_color == 'auto':
-                            card_rect = get_rectangle(rectangle_dict=card_dict)
+                            card_rect = Rectangle.from_dict(card_dict)
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
@@ -1316,7 +1322,7 @@ def edit_document_and_solve_auto_shadow(document):
                     if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
 
                         if terminal_shadow_color == 'auto':
-                            terminal_rect = get_rectangle(rectangle_dict=terminal_dict)
+                            terminal_rect = Rectangle.from_dict(terminal_dict)
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
@@ -1334,7 +1340,7 @@ def edit_document_and_solve_auto_shadow(document):
 
                 for segment_dict in segment_list:
                     if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']) and segment_shadow_color == 'auto':
-                        segment_rect = get_rectangle(rectangle_dict=segment_dict)
+                        segment_rect = Rectangle.from_dict(segment_dict)
 
                         # NOTE 影が指定されているということは、浮いているということでもある
 
@@ -1356,7 +1362,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
     new_segment_list = []
 
     #print('🔧　柱を跨ぐとき、ラインテープを分割します')
-    segment_rect = get_rectangle(rectangle_dict=line_tape_segment_dict)
+    segment_rect = Rectangle.from_dict(line_tape_segment_dict)
 
     direction = line_tape_segment_dict['direction']
 
@@ -1371,7 +1377,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
             # 各柱
             for pillar_dict in pillars_list:
-                pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
+                pillar_rect = Rectangle.from_dict(pillar_dict)
 
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
                 if segment_rect.left_obj.total_of_out_counts_th < pillar_rect.right_obj.total_of_out_counts_th and pillar_rect.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:

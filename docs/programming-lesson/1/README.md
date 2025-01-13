@@ -83,6 +83,7 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 
 👆　また、width, height の代わりに、right, bottom を使っても構いません。  
 width と height はそれぞれ独立しているので、 width だけ right を使うといったことも可能です。  
+width と right が両方指定されている場合、right を優先して使います。 right を削除したとき width に残っている値を使うかどうかは未定義です。  
 
 right は長方形の右側の外、 bottom は長方形の下側の外であることに違和感を持つかもしれません。  
 これは数学では **半開区間** と呼ばれるもので、珍しいものではありません。  
@@ -104,3 +105,8 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 小数点 `.` の形に似ている小文字の `o` に変えました。深い意味はありません。  
 
 この算術は野球で普通に使われていて珍しいものではないので、使ってみてください。  
+
+上述の Innings pitched と Rectangle はクラスとして実装されています。以下のファイルから探してみてください。  
+
+* 📄 [Trellis ＞ InningsPitched クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+InningsPitched` で検索してください  
+* 📄 [Trellis ＞ Rectangle クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+Rectangle` で検索してください  
