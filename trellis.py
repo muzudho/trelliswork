@@ -1,9 +1,9 @@
-import traceback
+import argparse
 import datetime
 import json
-import argparse
-from src.trellis import trellis_in_src as tr
 import openpyxl as xl
+import traceback
+from src.trellis import trellis_in_src as tr
 
 
 ########################################

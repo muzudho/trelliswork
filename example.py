@@ -4,9 +4,9 @@
 py example.py all
 """
 
-import traceback
 import datetime
 import sys
+import traceback
 
 
 ########################################

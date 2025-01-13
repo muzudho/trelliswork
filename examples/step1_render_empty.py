@@ -2,10 +2,10 @@
 白紙の作成
 """
 
+import json
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
-import json
 from src.trellis import trellis_in_src as tr
 
 
