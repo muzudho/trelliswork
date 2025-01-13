@@ -795,6 +795,27 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
+    # 上側の水平ルーラーの右端の端数のセル結合
+    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    if spacing == 2:
+        column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - spacing
+        row_th = 1
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + spacing - 1)
+        #print(f"""マージセルE {column_th=} {row_th=} {column_letter=} {column_letter2=}""")
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
+
+    # 下側の水平ルーラーの右端の端数のセル結合
+    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    if spacing == 2:
+        column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - spacing
+        row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + spacing - 1)
+        #print(f"""マージセルF {column_th=} {row_th=} {column_letter=} {column_letter2=}""")
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
+
+
 def draw_rectangle(ws, column_th, row_th, columns, rows):
     """矩形の枠線の描画
     """
