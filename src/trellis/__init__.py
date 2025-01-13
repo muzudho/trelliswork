@@ -335,16 +335,15 @@ def render_ruler(document, ws):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    length_of_columns = document['canvas']['width'] * square_unit
-    length_of_rows    = document['canvas']['height'] * square_unit
+    canvas_rect = Rectangle.from_dict(document['canvas'])
 
     # 行の横幅
-    for column_th in range(1, length_of_columns + 1):
+    for column_th in range(1, canvas_rect.width_obj.total_of_out_counts_th):
         column_letter = xl.utils.get_column_letter(column_th)
         ws.column_dimensions[column_letter].width = 2.7    # 2.7 characters = about 30 pixels
 
     # 列の高さ
-    for row_th in range(1, length_of_rows + 1):
+    for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_th):
         ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
     # ウィンドウ枠の固定
@@ -360,7 +359,7 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　上辺
     row_th = 1
-    for column_th in range(4, length_of_columns - 2, square_unit):
+    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_qty - 2, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -387,12 +386,6 @@ def render_ruler(document, ws):
         # -------- -------- -------- --------
         # dark     light    dark     light
         #
-    #     print(f"""\
-    # column_th={column_th}
-    # (column_th - 1)={(column_th - 1)}
-    # (column_th - 1) // square_unit={(column_th - 1) // square_unit}
-    # (column_th - 1) // square_unit % 2={(column_th - 1) // square_unit % 2}
-    # """)
         unit_cell = (column_th - 1) // square_unit
         is_left_end = (column_th - 1) % square_unit == 0
 
@@ -416,7 +409,7 @@ def render_ruler(document, ws):
     # 定規の着色　＞　上側の両端の１セルの隙間
     column_th_list = [
         square_unit,                            # 定規の着色　＞　左上の１セルの隙間
-        length_of_columns - (square_unit - 1)   # 定規の着色　＞　右上の１セルの隙間
+        canvas_rect.width_obj.total_of_out_counts_qty - (square_unit - 1)   # 定規の着色　＞　右上の１セルの隙間
     ]
     for column_th in column_th_list:
         unit_cell = (column_th - 1) // square_unit
@@ -430,7 +423,7 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左辺
     column_th = 1
-    for row_th in range(1, length_of_rows - 1, square_unit):
+    for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_qty - 1, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         unit_cell = (row_th - 1) // square_unit
@@ -456,9 +449,9 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　下辺
-    row_th = length_of_rows
+    row_th = canvas_rect.height_obj.total_of_out_counts_qty
     bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
-    for column_th in range(4, length_of_columns - 2, square_unit):
+    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_qty - 2, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -497,7 +490,7 @@ def render_ruler(document, ws):
     # 定規の着色　＞　下側の両端の１セルの隙間
     column_th_list = [
         square_unit,                            # 定規の着色　＞　左下の１セルの隙間
-        length_of_columns - (square_unit - 1)   # 定規の着色　＞　右下の１セルの隙間
+        canvas_rect.width_obj.total_of_out_counts_qty - (square_unit - 1)   # 定規の着色　＞　右下の１セルの隙間
     ]
     for column_th in column_th_list:
         unit_cell = (column_th - 1) // square_unit
@@ -516,9 +509,9 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　右辺
-    column_th = length_of_columns - 1
+    column_th = canvas_rect.width_obj.total_of_out_counts_qty - 1
     rightest_is_dark_gray = (column_th - 1) // square_unit % 2 == 0
-    for row_th in range(1, length_of_rows - 1, square_unit):
+    for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_qty - 1, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         unit_cell = (row_th - 1) // square_unit
@@ -530,9 +523,15 @@ def render_ruler(document, ws):
             cell.value = unit_cell
             cell.alignment = center_center_alignment
             if unit_cell % 2 == 0:
-                cell.font = light_gray_font
+                if rightest_is_dark_gray:
+                    cell.font = light_gray_font
+                else:
+                    cell.font = dark_gray_font
             else:
-                cell.font = dark_gray_font
+                if rightest_is_dark_gray:
+                    cell.font = dark_gray_font
+                else:
+                    cell.font = light_gray_font
 
         if unit_cell % 2 == 0:
             if rightest_is_dark_gray:
