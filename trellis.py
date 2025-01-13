@@ -7,17 +7,13 @@ import traceback
 from src.trellis import trellis_in_src as tr
 
 
-########################################
-# コマンドから実行時
-########################################
-if __name__ == '__main__':
-    """コマンドから実行時"""
-
+def main():
     try:
         parser = argparse.ArgumentParser()
         parser.add_argument("command", help="コマンド名")
         parser.add_argument("-f", "--file", help="元となるJSON形式ファイルへのパス")
         parser.add_argument("-o", "--output", help="書出し先となるExcelワークブック・ファイルへのパス")
+        parser.add_argument("-t", "--temp", help="テンポラリー・ディレクトリー。削除してもよいファイルを置けるディレクトリーへのパス")
         args = parser.parse_args()
 
         if args.command == 'init':
@@ -91,8 +87,13 @@ if __name__ == '__main__':
 """)
 
         elif args.command == 'compile':
+            temporary_directory_path = args.temp
             json_path_to_read = args.file
             wb_path_to_write = args.output
+
+            if not temporary_directory_path:
+                print(f"""ERROR: compile コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
+                return
 
             source_file_directory_path = os.path.split(json_path_to_read)[0]
             source_file_basename_without_ext = os.path.splitext(os.path.basename(json_path_to_read))[0]
@@ -111,7 +112,7 @@ if __name__ == '__main__':
             # ドキュメントに対して、自動ピラー分割の編集を行います
             tr.edit_document_and_solve_auto_split_pillar(document)
 
-            file_path_in_2_more_steps = os.path.join(source_file_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
+            file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
 
             print(f"🔧　write {file_path_in_2_more_steps} file")
             with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
@@ -124,7 +125,7 @@ if __name__ == '__main__':
             # ドキュメントに対して、影の自動設定の編集を行います
             tr.edit_document_and_solve_auto_shadow(document)
 
-            file_path_in_1_more_step = os.path.join(source_file_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
+            file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
 
             print(f"🔧　write {file_path_in_1_more_step} file")
             with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
@@ -183,3 +184,11 @@ if __name__ == '__main__':
 以下はスタックトレース表示じゃ。
 {traceback.format_exc()}
 """)
+
+
+########################################
+# コマンドから実行時
+########################################
+if __name__ == '__main__':
+    """コマンドから実行時"""
+    main()

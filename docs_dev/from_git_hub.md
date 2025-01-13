@@ -36,7 +36,8 @@ py example.py all
 
 ```shell
 # 以下のコマンドで、
-# examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json ファイルを元にして
-# temp/examples/step5_auto_split_pillar.xlsx ファイルを出力します
-py main.py
+# ./temp/lesson/hello_world.json ファイルを元にして
+# ./temp/lesson/hello_world.xlsx ファイルを出力します。
+# 中間ファイルが ./temp ディレクトリーに出力されます。ファイル名が被って上書きされても困らないフォルダーを指定してください
+py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
