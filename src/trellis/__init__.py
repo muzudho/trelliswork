@@ -11,6 +11,91 @@ import json
 square_unit = 3
 
 
+######################
+# MARK: InningsPitched
+######################
+class InningsPitched():
+    """投球回。
+    トレリスでは、セル番号を指定するのに使っている
+    """
+
+
+    @staticmethod
+    def from_integer_and_decimal_part(integer_part, decimal_part):
+        """整数部と小数部を指定
+        """
+        if decimal_part == 0:
+            return InningsPitched(integer_part)
+        
+        else:
+            return InningsPitched(f'{integer_part}o{decimal_part}')
+
+
+    def __init__(self, value):
+
+        if isinstance(value, str):
+            integer_part, decimal_part = map(int, value.split('o', 2))
+            self._decimal_part = decimal_part
+            self._integer_part = integer_part
+        else:
+            self._decimal_part = 0
+            self._integer_part = value
+
+        if self._decimal_part == 0:
+            self._var_value = self._integer_part
+        else:
+            self._var_value = f'{self._integer_part}o{self._decimal_part}'
+
+        self._total_of_out_counts_qty = self._integer_part * square_unit + self._decimal_part
+
+
+    @property
+    def var_value(self):
+        """投球回の整数だったり、"3o2" 形式の文字列だったりします
+        """
+        return self._var_value
+
+
+    @property
+    def integer_part(self):
+        """投球回の整数部"""
+        return self._integer_part
+
+
+    @property
+    def decimal_part(self):
+        """投球回の小数部"""
+        return self._decimal_part
+
+
+    @property
+    def total_of_out_counts_qty(self):
+        """0から始まるアウト・カウントの総数
+        """
+        return self._total_of_out_counts_qty
+
+
+    @property
+    def total_of_out_counts_th(self):
+        """1から始まるアウト・カウントの総数
+        """
+        return self._total_of_out_counts_qty + 1
+
+
+    def offset(self, var_value):
+        """この投球回に、引数を加算した数を算出して返します"""
+        l = self                       # Left operand
+        r = InningsPitched(var_value)  # Right operand
+        sum_decimal_part = l.decimal_part + r.decimal_part
+        integer_part = l.integer_part + r.integer_part + sum_decimal_part // square_unit
+        return InningsPitched.from_integer_and_decimal_part(
+                integer_part=integer_part,
+                decimal_part=sum_decimal_part % square_unit)
+
+
+####################
+# MARK: Color system
+####################
 # エクセルの色システム（勝手に作ったったもの）
 fill_palette_none = PatternFill(patternType=None)
 fill_palette = {
@@ -622,10 +707,10 @@ def render_all_card_shadows(document, ws):
                         # 端子の影を描く
                         fill_rectangle(
                                 ws=ws,
-                                column_th=card_rect.left_obj.cell_th + square_unit,
-                                row_th=card_rect.top_obj.cell_th + square_unit,
-                                columns=card_rect.width_obj.cell_num,
-                                rows=card_rect.height_obj.cell_num,
+                                column_th=card_rect.left_obj.total_of_out_counts_th + square_unit,
+                                row_th=card_rect.top_obj.total_of_out_counts_th + square_unit,
+                                columns=card_rect.width_obj.total_of_out_counts_qty,
+                                rows=card_rect.height_obj.total_of_out_counts_qty,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
@@ -653,10 +738,10 @@ def render_all_cards(document, ws):
                 # ヘッダーの矩形の枠線を描きます
                 draw_rectangle(
                         ws=ws,
-                        column_th=card_rect.left_obj.cell_th,
-                        row_th=card_rect.top_obj.cell_th,
-                        columns=card_rect.width_obj.cell_num,
-                        rows=card_rect.height_obj.cell_num)
+                        column_th=card_rect.left_obj.total_of_out_counts_th,
+                        row_th=card_rect.top_obj.total_of_out_counts_th,
+                        columns=card_rect.width_obj.total_of_out_counts_qty,
+                        rows=card_rect.height_obj.total_of_out_counts_qty)
 
                 if 'paperStrips' in card_dict:
                     paper_strip_list = card_dict['paperStrips']
@@ -667,10 +752,10 @@ def render_all_cards(document, ws):
                         render_paper_strip(
                                 ws=ws,
                                 paper_strip=paper_strip,
-                                column_th=card_rect.left_obj.cell_th,
-                                row_th=index * square_unit + card_rect.top_obj.cell_th,
-                                columns=card_rect.width_obj.cell_num,
-                                rows=card_rect.height_obj.cell_num)
+                                column_th=card_rect.left_obj.total_of_out_counts_th,
+                                row_th=index * square_unit + card_rect.top_obj.total_of_out_counts_th,
+                                columns=card_rect.width_obj.total_of_out_counts_qty,
+                                rows=card_rect.height_obj.total_of_out_counts_qty)
 
 
 def render_all_terminal_shadows(document, ws):
@@ -693,8 +778,8 @@ def render_all_terminal_shadows(document, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.cell_th + square_unit,
-                            row_th=terminal_rect.top_obj.cell_th + square_unit,
+                            column_th=terminal_rect.left_obj.total_of_out_counts_th + square_unit,
+                            row_th=terminal_rect.top_obj.total_of_out_counts_th + square_unit,
                             columns=9,
                             rows=9,
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
@@ -721,84 +806,15 @@ def render_all_terminals(document, ws):
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.cell_th,
-                            row_th=terminal_rect.top_obj.cell_th)
+                            column_th=terminal_rect.left_obj.total_of_out_counts_th,
+                            row_th=terminal_rect.top_obj.total_of_out_counts_th)
                     
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.cell_th,
-                            row_th=terminal_rect.top_obj.cell_th)
-
-
-class Square():
-    """マス
-    """
-
-
-    @staticmethod
-    def from_main_and_sub(main_number, sub_number):
-        if sub_number == 0:
-            return Square(main_number)
-        
-        else:
-            return Square(f'{main_number}o{sub_number}')
-
-
-    def __init__(self, value):
-
-        if isinstance(value, str):
-            main_number, sub_number = map(int, value.split('o', 2))
-            self._sub_number = sub_number
-            self._main_number = main_number
-        else:
-            self._sub_number = 0
-            self._main_number = value
-
-        if self._sub_number == 0:
-            self._var_value = self._main_number
-        else:
-            self._var_value = f'{self._main_number}o{self._sub_number}'
-
-        self._cell_num = self._main_number * square_unit + self._sub_number
-
-
-    @property
-    def var_value(self):
-        return self._var_value
-
-
-    @property
-    def main_number(self):
-        return self._main_number
-
-
-    @property
-    def sub_number(self):
-        return self._sub_number
-
-
-    @property
-    def cell_th(self):
-        """1から始まるセル番号
-        """
-        return self._cell_num + 1
-
-
-    @property
-    def cell_num(self):
-        """0から始まるセル番号
-        """
-        return self._cell_num
-
-
-    def offset(self, var_value):
-        square = Square(var_value)
-        sub_number = self._sub_number + square.sub_number
-        main_number = self._main_number + square.main_number + sub_number // square_unit
-        sub_number = sub_number % square_unit
-        return Square.from_main_and_sub(main_number=main_number, sub_number=sub_number)
+                            column_th=terminal_rect.left_obj.total_of_out_counts_th,
+                            row_th=terminal_rect.top_obj.total_of_out_counts_th)
 
 
 class Rectangle():
@@ -809,19 +825,19 @@ class Rectangle():
     def __init__(self, main_left, sub_left, main_top, sub_top, main_width, sub_width, main_height, sub_height):
         """初期化
         """
-        self._left_obj = Square.from_main_and_sub(main_number=main_left, sub_number=sub_left)
-        self._top_obj = Square.from_main_and_sub(main_number=main_top, sub_number=sub_top)
-        self._width_obj = Square.from_main_and_sub(main_number=main_width, sub_number=sub_width)
-        self._height_obj = Square.from_main_and_sub(main_number=main_height, sub_number=sub_height)
+        self._left_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_left, decimal_part=sub_left)
+        self._top_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_top, decimal_part=sub_top)
+        self._width_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_width, decimal_part=sub_width)
+        self._height_obj = InningsPitched.from_integer_and_decimal_part(integer_part=main_height, decimal_part=sub_height)
         self._right_obj = None
 
 
     def _calculate_right(self):
         # サブ右＝サブ左＋サブ幅
-        sum_sub_right = self._left_obj.sub_number + self._width_obj._sub_number
-        self._right_obj = Square.from_main_and_sub(
-                main_number=self._left_obj.main_number + self._width_obj.main_number + sum_sub_right // square_unit,
-                sub_number=sum_sub_right % square_unit)
+        sum_sub_right = self._left_obj.decimal_part + self._width_obj.decimal_part
+        self._right_obj = InningsPitched.from_integer_and_decimal_part(
+                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_sub_right // square_unit,
+                decimal_part=sum_sub_right % square_unit)
 
 
     @property
@@ -925,10 +941,10 @@ def render_all_line_tape_shadows(document, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=segment_rect.left_obj.cell_th + square_unit,
-                            row_th=segment_rect.top_obj.cell_th + square_unit,
-                            columns=segment_rect.width_obj.cell_num,
-                            rows=segment_rect.height_obj.cell_num,
+                            column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                            row_th=segment_rect.top_obj.total_of_out_counts_th + square_unit,
+                            columns=segment_rect.width_obj.total_of_out_counts_qty,
+                            rows=segment_rect.height_obj.total_of_out_counts_qty,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
@@ -963,10 +979,10 @@ def render_all_line_tapes(document, ws):
                     fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
-                            column_th=segment_rect.left_obj.cell_th,
-                            row_th=segment_rect.top_obj.cell_th,
-                            columns=segment_rect.width_obj.cell_num,
-                            rows=segment_rect.height_obj.cell_num,
+                            column_th=segment_rect.left_obj.total_of_out_counts_th,
+                            row_th=segment_rect.top_obj.total_of_out_counts_th,
+                            columns=segment_rect.width_obj.total_of_out_counts_qty,
+                            rows=segment_rect.height_obj.total_of_out_counts_qty,
                             fill_obj=fill_obj)
 
                     # （あれば）アウトラインを描く
@@ -978,19 +994,19 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
-                                    rows=segment_rect.height_obj.cell_num - 2,
+                                    rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     fill_obj=outline_fill_obj)
 
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
-                                    rows=segment_rect.height_obj.cell_num - 2,
+                                    rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     fill_obj=outline_fill_obj)
                         
                         # （共通処理）水平方向
@@ -998,18 +1014,18 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
-                                    columns=segment_rect.width_obj.cell_num - 2 * square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num,
-                                    columns=segment_rect.width_obj.cell_num - 2 * square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1018,8 +1034,8 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1027,8 +1043,8 @@ def render_all_line_tapes(document, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num,
-                                    row_th=segment_rect.top_obj.cell_th,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1038,8 +1054,8 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1047,8 +1063,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1058,8 +1074,8 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1067,8 +1083,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1078,8 +1094,8 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1087,8 +1103,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1096,8 +1112,8 @@ def render_all_line_tapes(document, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1107,8 +1123,8 @@ def render_all_line_tapes(document, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
                                     fill_obj=outline_fill_obj)
@@ -1116,8 +1132,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + segment_rect.width_obj.cell_num - square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty - square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1127,18 +1143,18 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
-                                    columns=segment_rect.width_obj.cell_num,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
-                                    columns=segment_rect.width_obj.cell_num,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
                         
@@ -1147,8 +1163,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1156,8 +1172,8 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num - 2,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=1,
                                     rows=3,
                                     fill_obj=outline_fill_obj)
@@ -1165,8 +1181,8 @@ def render_all_line_tapes(document, ws):
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit,
-                                    row_th=segment_rect.top_obj.cell_th + segment_rect.height_obj.cell_num - 2,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1176,8 +1192,8 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1185,8 +1201,8 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=square_unit + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1196,8 +1212,8 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1205,17 +1221,17 @@ def render_all_line_tapes(document, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th - 1,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
-                                    rows=segment_rect.height_obj.cell_num,
+                                    rows=segment_rect.height_obj.total_of_out_counts_qty,
                                     fill_obj=outline_fill_obj)
 
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th + square_unit + 1,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit + 1,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=square_unit - 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1225,8 +1241,8 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_obj.cell_th - 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1234,8 +1250,8 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.cell_th,
-                                    row_th=segment_rect.top_obj.cell_th + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th,
+                                    row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=square_unit,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
@@ -1260,8 +1276,8 @@ def resolve_auto_shadow(document, column_th, row_th):
                 base_color = pillar_dict['baseColor']
 
                 # もし、矩形の中に、指定の点が含まれたなら
-                if pillar_rect.left_obj.cell_th <= column_th and column_th < pillar_rect.left_obj.cell_th + pillar_rect.width_obj.cell_num and \
-                    pillar_rect.top_obj.cell_th <= row_th and row_th < pillar_rect.top_obj.cell_th + pillar_rect.height_obj.cell_num:
+                if pillar_rect.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_rect.left_obj.total_of_out_counts_th + pillar_rect.width_obj.total_of_out_counts_qty and \
+                    pillar_rect.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_rect.top_obj.total_of_out_counts_th + pillar_rect.height_obj.total_of_out_counts_qty:
 
                     return shadow_color_dict[base_color]
 
@@ -1289,8 +1305,8 @@ def edit_document_and_solve_auto_shadow(document):
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
-                                    column_th=card_rect.left_obj.cell_th + square_unit,
-                                    row_th=card_rect.top_obj.cell_th + square_unit):
+                                    column_th=card_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=card_rect.top_obj.total_of_out_counts_th + square_unit):
                                 card_dict['shadowColor'] = solved_tone_and_color_name
 
             # もし、端子のリストがあれば
@@ -1305,8 +1321,8 @@ def edit_document_and_solve_auto_shadow(document):
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
-                                    column_th=terminal_rect.left_obj.cell_th + square_unit,
-                                    row_th=terminal_rect.top_obj.cell_th + square_unit):
+                                    column_th=terminal_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    row_th=terminal_rect.top_obj.total_of_out_counts_th + square_unit):
                                 terminal_dict['shadowColor'] = solved_tone_and_color_name
 
     # もし、ラインテープのリストがあれば
@@ -1325,8 +1341,8 @@ def edit_document_and_solve_auto_shadow(document):
                         # 影に自動が設定されていたら、解決する
                         if solved_tone_and_color_name := resolve_auto_shadow(
                                 document=document,
-                                column_th=segment_rect.left_obj.cell_th + square_unit,
-                                row_th=segment_rect.top_obj.cell_th + square_unit):
+                                column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                row_th=segment_rect.top_obj.total_of_out_counts_th + square_unit):
                             segment_dict['shadowColor'] = solved_tone_and_color_name
 
 
@@ -1358,7 +1374,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                 pillar_rect = get_rectangle(rectangle_dict=pillar_dict)
 
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                if segment_rect.left_obj.cell_th < pillar_rect.right_obj.cell_th and pillar_rect.right_obj.cell_th < segment_rect.right_obj.cell_th:
+                if segment_rect.left_obj.total_of_out_counts_th < pillar_rect.right_obj.total_of_out_counts_th and pillar_rect.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
                     # 既存のセグメントを削除
                     line_tape_segment_list.remove(line_tape_segment_dict)
 
@@ -1366,7 +1382,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = Square(pillar_rect.right_obj.var_value).offset(-1).var_value
+                    left_segment_dict['right'] = InningsPitched(pillar_rect.right_obj.var_value).offset(-1).var_value
                     new_segment_list.append(left_segment_dict)
 
                     # 右側のセグメントを新規作成し、既存リストに追加
