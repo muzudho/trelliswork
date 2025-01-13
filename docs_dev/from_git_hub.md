@@ -34,10 +34,16 @@ py example.py all
 * 📄 `examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json` - step4 で使われます。影の作成を自動設定にしたものです
 * 📄 `examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json` - step5 で使われます。柱を跨がるラインテープのセグメント作成を自動設定にしたものです
 
+
+# 実行
+
+📄 `./temp/lesson/hello_world.json` というファイルを作っておくとします。  
+
+自動生成ファイルを入れておくための、 📁 `./temp` というディレクトリーも作っておいてください。  
+ファイル名が被って上書きされたり、削除されたりしても困らないフォルダーとして使います。  
+
+以下のコマンドを打鍵してください。  
+
 ```shell
-# 以下のコマンドで、
-# ./temp/lesson/hello_world.json ファイルを元にして
-# ./temp/lesson/hello_world.xlsx ファイルを出力します。
-# 中間ファイルが ./temp ディレクトリーに出力されます。ファイル名が被って上書きされても困らないフォルダーを指定してください
 py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
