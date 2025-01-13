@@ -7,8 +7,9 @@ from openpyxl.drawing.image import Image as XlImage
 import json
 
 
-# Trellis では、3x3cells で１マスとします
-square_unit = 3
+# 3 ということが言いたいだけの、長い定数名。
+# Trellis では、3x3cells で［大グリッド１マス分］とします
+OUT_COUNTS_THAT_CHANGE_INNING = 3
 
 
 ######################
@@ -46,7 +47,7 @@ class InningsPitched():
         else:
             self._var_value = f'{self._integer_part}o{self._decimal_part}'
 
-        self._total_of_out_counts_qty = self._integer_part * square_unit + self._decimal_part
+        self._total_of_out_counts_qty = self._integer_part * OUT_COUNTS_THAT_CHANGE_INNING + self._decimal_part
 
 
     @property
@@ -87,10 +88,10 @@ class InningsPitched():
         l = self                       # Left operand
         r = InningsPitched(var_value)  # Right operand
         sum_decimal_part = l.decimal_part + r.decimal_part
-        integer_part = l.integer_part + r.integer_part + sum_decimal_part // square_unit
+        integer_part = l.integer_part + r.integer_part + sum_decimal_part // OUT_COUNTS_THAT_CHANGE_INNING
         return InningsPitched.from_integer_and_decimal_part(
                 integer_part=integer_part,
-                decimal_part=sum_decimal_part % square_unit)
+                decimal_part=sum_decimal_part % OUT_COUNTS_THAT_CHANGE_INNING)
 
 
 #################
@@ -174,8 +175,8 @@ class Rectangle():
         # サブ右＝サブ左＋サブ幅
         sum_sub_right = self._left_obj.decimal_part + self._width_obj.decimal_part
         self._right_obj = InningsPitched.from_integer_and_decimal_part(
-                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_sub_right // square_unit,
-                decimal_part=sum_sub_right % square_unit)
+                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_sub_right // OUT_COUNTS_THAT_CHANGE_INNING,
+                decimal_part=sum_sub_right % OUT_COUNTS_THAT_CHANGE_INNING)
 
 
     @property
@@ -377,15 +378,15 @@ def render_ruler(document, ws):
     #
     row_th = 1
     left_th = 4
-    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     if horizontal_remain == 0:       
-        shrink = square_unit
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING
     elif horizontal_remain == 1:
-        shrink = square_unit + 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING + 1
     else:
-        shrink = square_unit - 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING - 1
 
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -412,8 +413,8 @@ def render_ruler(document, ws):
         # -------- -------- -------- --------
         # dark     light    dark     light
         #
-        unit_cell = (column_th - 1) // square_unit
-        is_left_end = (column_th - 1) % square_unit == 0
+        unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
+        is_left_end = (column_th - 1) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
         if is_left_end:
             cell.value = unit_cell
@@ -445,18 +446,18 @@ def render_ruler(document, ws):
     #
     column_th = 1
     top_th = 1
-    shrink = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
     # # 縦の最後の要素
-    # vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    # vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     # if vertical_remain == 1:
-    #     shrink += square_unit
+    #     shrink += OUT_COUNTS_THAT_CHANGE_INNING
 
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        unit_cell = (row_th - 1) // square_unit
-        is_top_end = (row_th - 1) % square_unit == 0
+        unit_cell = (row_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
+        is_top_end = (row_th - 1) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
         cell = ws[f'{column_letter}{row_th}']
         
@@ -478,11 +479,11 @@ def render_ruler(document, ws):
     #
     #       最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
     #
-    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     #print(f'左辺 h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
     if vertical_remain != 0:
         row_th = canvas_rect.height_obj.total_of_out_counts_th - vertical_remain
-        unit_cell = (row_th - 1) // square_unit
+        unit_cell = (row_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
         #print(f"""左辺の最後の要素の左上へ着色 {row_th=} {unit_cell=}""")
         cell = ws[f'{column_letter}{row_th}']
 
@@ -503,22 +504,22 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
-    bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
+    bottom_is_dark_gray = (row_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
     left_th = 4
-    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     if horizontal_remain == 0:       
-        shrink = square_unit
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING
     elif horizontal_remain == 1:
-        shrink = square_unit + 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING + 1
     else:
-        shrink = square_unit - 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING - 1
 
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
-        unit_cell = (column_th - 1) // square_unit
-        is_left_end = (column_th - 1) % square_unit == 0
+        unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
+        is_left_end = (column_th - 1) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
         if is_left_end:
             cell.value = unit_cell
@@ -548,15 +549,15 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　右辺
     column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
-    rightest_is_dark_gray = (column_th - 1) // square_unit % 2 == 0
+    rightest_is_dark_gray = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
     top_th = 1
-    shrink = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        unit_cell = (row_th - 1) // square_unit
-        is_top_end = (row_th - 1) % square_unit == 0
+        unit_cell = (row_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
+        is_top_end = (row_th - 1) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
         cell = ws[f'{column_letter}{row_th}']
         
@@ -589,11 +590,11 @@ def render_ruler(document, ws):
     #
     #       最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
     #
-    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     #print(f'右辺 h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
     if vertical_remain != 0:
         row_th = canvas_rect.height_obj.total_of_out_counts_th - vertical_remain
-        unit_cell = (row_th - 1) // square_unit
+        unit_cell = (row_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
         #print(f"""右辺の最後の要素の左上へ着色 {row_th=} {unit_cell=}""")
         cell = ws[f'{column_letter}{row_th}']
 
@@ -628,8 +629,8 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左上の１セルの隙間
     row_th = 1
-    column_th = square_unit
-    unit_cell = (column_th - 1) // square_unit
+    column_th = OUT_COUNTS_THAT_CHANGE_INNING
+    unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     if unit_cell % 2 == 0:
@@ -640,9 +641,9 @@ def render_ruler(document, ws):
     # 定規の着色　＞　右上の１セルの隙間    
     row_th = 1
     side_frame_width = 2
-    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % OUT_COUNTS_THAT_CHANGE_INNING
     column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - remain
-    unit_cell = (column_th - 1) // square_unit
+    unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     if unit_cell % 2 == 0:
@@ -652,8 +653,8 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左下の１セルの隙間
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
-    column_th = square_unit
-    unit_cell = (column_th - 1) // square_unit
+    column_th = OUT_COUNTS_THAT_CHANGE_INNING
+    unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     if unit_cell % 2 == 0:
@@ -670,9 +671,9 @@ def render_ruler(document, ws):
     # 定規の着色　＞　右下の１セルの隙間
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     side_frame_width = 2
-    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % OUT_COUNTS_THAT_CHANGE_INNING
     column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - remain
-    unit_cell = (column_th - 1) // square_unit
+    unit_cell = (column_th - 1) // OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     cell = ws[f'{column_letter}{row_th}']
     if unit_cell % 2 == 0:
@@ -705,15 +706,15 @@ def render_ruler(document, ws):
     #
     row_th = 1
     left_th = 4
-    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     if horizontal_remain == 0:       
-        shrink = square_unit
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING
     elif horizontal_remain == 1:
-        shrink = square_unit + 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING + 1
     else:
-        shrink = square_unit - 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING - 1
 
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
@@ -735,24 +736,24 @@ def render_ruler(document, ws):
     #
     column_th = 1
     top_th = 1
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - square_unit, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     # 最後の要素
-    remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     column_letter2 = xl.utils.get_column_letter(column_th + 1)
     if remain == 0:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1 - OUT_COUNTS_THAT_CHANGE_INNING
         #print(f'マージセルA h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     elif remain == 1:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
         #print(f'マージセルH {row_th=} {remain=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
     elif remain == 2:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
         #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
@@ -760,15 +761,15 @@ def render_ruler(document, ws):
     # 定規のセル結合　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     left_th = 4
-    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     if horizontal_remain == 0:       
-        shrink = square_unit
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING
     elif horizontal_remain == 1:
-        shrink = square_unit + 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING + 1
     else:
-        shrink = square_unit - 1
+        shrink = OUT_COUNTS_THAT_CHANGE_INNING - 1
 
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
@@ -777,29 +778,29 @@ def render_ruler(document, ws):
     # 定規のセル結合　＞　右辺
     column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
     top_th = 1
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - square_unit, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING, OUT_COUNTS_THAT_CHANGE_INNING):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     # 最後の要素
-    remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
     column_letter = xl.utils.get_column_letter(column_th)
     column_letter2 = xl.utils.get_column_letter(column_th + 1)
     if remain == 0:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1 - OUT_COUNTS_THAT_CHANGE_INNING
         #print(f'マージセルC h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     elif remain == 1:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
     elif remain == 2:
-        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
         #print(f'マージセルD h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
     # 上側の水平ルーラーの右端の端数のセル結合
-    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % OUT_COUNTS_THAT_CHANGE_INNING
     if spacing == 2:
         column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - spacing
         row_th = 1
@@ -809,7 +810,7 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
     # 下側の水平ルーラーの右端の端数のセル結合
-    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    spacing = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % OUT_COUNTS_THAT_CHANGE_INNING
     if spacing == 2:
         column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - spacing
         row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
@@ -1008,7 +1009,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
                 column_th=column_th,
                 row_th=row_th,
                 columns=columns,
-                rows=1 * square_unit,   # １行分
+                rows=1 * OUT_COUNTS_THAT_CHANGE_INNING,   # １行分
                 fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
     # インデント
@@ -1021,7 +1022,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
     if 'icon' in paper_strip:
         image_basename = paper_strip['icon']  # 例： 'white-game-object.png'
 
-        cur_column_th = column_th + (indent * square_unit)
+        cur_column_th = column_th + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         #
         # NOTE 元の画像サイズで貼り付けられるわけではないの、何でだろう？ 60x60pixels の画像にしておくと、90x90pixels のセルに合う？
@@ -1040,8 +1041,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         text = paper_strip['text0']
         
         # 左に１マス分のアイコンを置く前提
-        icon_columns = square_unit
-        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
+        cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{row_th}']
         cell.value = text
@@ -1050,8 +1051,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         text = paper_strip['text1']
         
         # 左に１マス分のアイコンを置く前提
-        icon_columns = square_unit
-        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
+        cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{row_th + 1}']
         cell.value = text
@@ -1060,8 +1061,8 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         text = paper_strip['text2']
         
         # 左に１マス分のアイコンを置く前提
-        icon_columns = square_unit
-        cur_column_th = column_th + icon_columns + (indent * square_unit)
+        icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
+        cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
         column_letter = xl.utils.get_column_letter(cur_column_th)
         cell = ws[f'{column_letter}{row_th + 2}']
         cell.value = text
@@ -1088,8 +1089,8 @@ def render_all_card_shadows(document, ws):
                         # 端子の影を描く
                         fill_rectangle(
                                 ws=ws,
-                                column_th=card_rect.left_obj.total_of_out_counts_th + square_unit,
-                                row_th=card_rect.top_obj.total_of_out_counts_th + square_unit,
+                                column_th=card_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                row_th=card_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                 columns=card_rect.width_obj.total_of_out_counts_qty,
                                 rows=card_rect.height_obj.total_of_out_counts_qty,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
@@ -1134,7 +1135,7 @@ def render_all_cards(document, ws):
                                 ws=ws,
                                 paper_strip=paper_strip,
                                 column_th=card_rect.left_obj.total_of_out_counts_th,
-                                row_th=index * square_unit + card_rect.top_obj.total_of_out_counts_th,
+                                row_th=index * OUT_COUNTS_THAT_CHANGE_INNING + card_rect.top_obj.total_of_out_counts_th,
                                 columns=card_rect.width_obj.total_of_out_counts_qty,
                                 rows=card_rect.height_obj.total_of_out_counts_qty)
 
@@ -1159,8 +1160,8 @@ def render_all_terminal_shadows(document, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.total_of_out_counts_th + square_unit,
-                            row_th=terminal_rect.top_obj.total_of_out_counts_th + square_unit,
+                            column_th=terminal_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                            row_th=terminal_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,
                             rows=9,
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
@@ -1214,8 +1215,8 @@ def render_all_line_tape_shadows(document, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
-                            row_th=segment_rect.top_obj.total_of_out_counts_th + square_unit,
+                            column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                            row_th=segment_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,
                             rows=segment_rect.height_obj.total_of_out_counts_qty,
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
@@ -1287,18 +1288,18 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * square_unit,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
-                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * square_unit,
+                                    columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1338,7 +1339,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=square_unit + 1,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1347,18 +1348,18 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=2 * square_unit,
+                                    columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=2 * square_unit,
+                                    columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1367,18 +1368,18 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=2 * square_unit,
+                                    columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th - square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=square_unit,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1405,9 +1406,9 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty - square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty - OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=square_unit + 1,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1416,7 +1417,7 @@ def render_all_line_tapes(document, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
@@ -1425,7 +1426,7 @@ def render_all_line_tapes(document, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
@@ -1438,7 +1439,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
-                                    columns=2 * square_unit,
+                                    columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1454,9 +1455,9 @@ def render_all_line_tapes(document, ws):
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
-                                    columns=square_unit,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1476,7 +1477,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=square_unit + 1,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1487,7 +1488,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=2 * square_unit,
+                                    columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1503,9 +1504,9 @@ def render_all_line_tapes(document, ws):
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit + 1,
+                                    column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=square_unit - 1,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING - 1,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1516,7 +1517,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                    columns=square_unit,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1525,7 +1526,7 @@ def render_all_line_tapes(document, ws):
                                     ws=ws,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                    columns=square_unit,
+                                    columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
 
@@ -1578,8 +1579,8 @@ def edit_document_and_solve_auto_shadow(document):
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
-                                    column_th=card_rect.left_obj.total_of_out_counts_th + square_unit,
-                                    row_th=card_rect.top_obj.total_of_out_counts_th + square_unit):
+                                    column_th=card_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                    row_th=card_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
                                 card_dict['shadowColor'] = solved_tone_and_color_name
 
             # もし、端子のリストがあれば
@@ -1594,8 +1595,8 @@ def edit_document_and_solve_auto_shadow(document):
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
-                                    column_th=terminal_rect.left_obj.total_of_out_counts_th + square_unit,
-                                    row_th=terminal_rect.top_obj.total_of_out_counts_th + square_unit):
+                                    column_th=terminal_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                    row_th=terminal_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
                                 terminal_dict['shadowColor'] = solved_tone_and_color_name
 
     # もし、ラインテープのリストがあれば
@@ -1614,8 +1615,8 @@ def edit_document_and_solve_auto_shadow(document):
                         # 影に自動が設定されていたら、解決する
                         if solved_tone_and_color_name := resolve_auto_shadow(
                                 document=document,
-                                column_th=segment_rect.left_obj.total_of_out_counts_th + square_unit,
-                                row_th=segment_rect.top_obj.total_of_out_counts_th + square_unit):
+                                column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                row_th=segment_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
                             segment_dict['shadowColor'] = solved_tone_and_color_name
 
 
