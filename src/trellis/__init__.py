@@ -367,9 +367,24 @@ def render_ruler(document, ws):
     #   ■■□[  1 ][  2 ]□■■
     #   ■■                ■■
     #
+    #   横幅が３で割ると１余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 4 シュリンクする
+    #   ■■□[  1 ][  2 ]□□■■
+    #   ■■                  ■■
+    #
+    #   横幅が３で割ると２余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 2 シュリンクする
+    #   ■■□[  1 ][  2 ][  3 ]■■
+    #   ■■                    ■■
+    #
     row_th = 1
     left_th = 4
-    shrink = 3
+    remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if remain == 0:       
+        shrink = square_unit
+    elif remain == 1:
+        shrink = square_unit + 1
+    else:
+        shrink = square_unit - 1
+
     for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
@@ -444,15 +459,17 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　下辺
-    #
-    #   横幅が３で割り切れるとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 3 シュリンクする
-    #   ■■□[  1 ][  2 ]□■■
-    #   ■■                ■■
-    #
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
     left_th = 4
-    shrink = 3
+    remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if remain == 0:       
+        shrink = square_unit
+    elif remain == 1:
+        shrink = square_unit + 1
+    else:
+        shrink = square_unit - 1
+
     for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
