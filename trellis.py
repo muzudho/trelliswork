@@ -1,6 +1,7 @@
 import argparse
 import datetime
 import json
+import os
 import openpyxl as xl
 import traceback
 from src.trellis import trellis_in_src as tr
@@ -63,6 +64,7 @@ if __name__ == '__main__':
             json_path_to_read = args.file
             wb_path_to_write = args.output
 
+            print(f"🔧　read {json_path_to_read} file")
             with open(json_path_to_read, encoding='utf-8') as f:
                 document = json.load(f)
 
@@ -80,12 +82,94 @@ if __name__ == '__main__':
             # 定規の描画
             tr.render_ruler(document, ws)
 
-            # ワークブックの保存            
+            # ワークブックの保存
+            print(f"🔧　write {wb_path_to_write} file")
             wb.save(wb_path_to_write)
 
             print(f"""\
 {wb_path_to_write} ファイルを書き出しました。確認してください。
 """)
+
+        elif args.command == 'compile':
+            json_path_to_read = args.file
+            wb_path_to_write = args.output
+
+            source_file_directory_path = os.path.split(json_path_to_read)[0]
+            source_file_basename_without_ext = os.path.splitext(os.path.basename(json_path_to_read))[0]
+            source_file_extension_with_dot = os.path.splitext(json_path_to_read)[1]
+            print(f"""\
+{source_file_directory_path=}
+{source_file_basename_without_ext=}
+{source_file_extension_with_dot=}
+""")
+
+            # ソースファイル（JSON形式）を読込
+            print(f"🔧　read {json_path_to_read} file")
+            with open(json_path_to_read, encoding='utf-8') as f:
+                document = json.load(f)
+
+            # ドキュメントに対して、自動ピラー分割の編集を行います
+            tr.edit_document_and_solve_auto_split_pillar(document)
+
+            file_path_in_2_more_steps = os.path.join(source_file_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
+
+            print(f"🔧　write {file_path_in_2_more_steps} file")
+            with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
+                f.write(json.dumps(document, indent=4, ensure_ascii=False))
+
+            print(f"🔧　read {file_path_in_2_more_steps} file")
+            with open(file_path_in_2_more_steps, mode='r', encoding='utf-8') as f:
+                document = json.load(f)
+
+            # ドキュメントに対して、影の自動設定の編集を行います
+            tr.edit_document_and_solve_auto_shadow(document)
+
+            file_path_in_1_more_step = os.path.join(source_file_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
+
+            print(f"🔧　write {file_path_in_1_more_step} file")
+            with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
+                f.write(json.dumps(document, indent=4, ensure_ascii=False))
+
+            print(f"🔧　read {file_path_in_1_more_step} file")
+            with open(file_path_in_1_more_step, mode='r', encoding='utf-8') as f:
+                document = json.load(f)
+
+            # ワークブックを新規生成
+            wb = xl.Workbook()
+
+            # ワークシート
+            ws = wb['Sheet']
+
+            # 全ての柱の敷物の描画
+            tr.render_all_pillar_rugs(document, ws)
+
+            # 全てのカードの影の描画
+            tr.render_all_card_shadows(document, ws)
+
+            # 全ての端子の影の描画
+            tr.render_all_terminal_shadows(document, ws)
+
+            # 全てのラインテープの影の描画
+            tr.render_all_line_tape_shadows(document, ws)
+
+            # 全てのカードの描画
+            tr.render_all_cards(document, ws)
+
+            # 全ての端子の描画
+            tr.render_all_terminals(document, ws)
+
+            # 全てのラインテープの描画
+            tr.render_all_line_tapes(document, ws)
+
+            # 定規の描画
+            #       柱を上から塗りつぶすように描きます
+            tr.render_ruler(document, ws)
+
+            # ワークブックの保存
+            print(f"🔧　write {wb_path_to_write} file")
+            wb.save(wb_path_to_write)
+
+            print(f"Finished. Please look {wb_path_to_write} file.")
 
         else:
             raise ValueError(f'unsupported command: {args.command}')
