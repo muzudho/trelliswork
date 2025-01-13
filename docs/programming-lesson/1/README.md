@@ -77,7 +77,7 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 
 ![レクタングル](../../img/[20250113-1551]rectangle.png)  
 
-👆　トレリスでは、長方形の位置とサイズの指定に、定規（ルーラー）の番号を使います。  
+👆　トレリスでは、長方形の位置とサイズの指定に、（エクセルのセル番号ではなく）、［トレリスの定規（ルーラー）］の番号を使います。  
 
 ![レクタングル２](../../img/[20250113-1606]right-and-bottom.png)  
 
