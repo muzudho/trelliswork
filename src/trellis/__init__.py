@@ -741,16 +741,18 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     # 最後の要素
     remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    column_letter2 = xl.utils.get_column_letter(column_th + 1)
     if remain == 0:
         row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
-        column_letter = xl.utils.get_column_letter(column_th)
-        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         #print(f'マージセルA h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    elif remain == 1:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        #print(f'マージセルH {row_th=} {remain=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
     elif remain == 2:
         row_th = canvas_rect.height_obj.integer_part * square_unit + 1
-        column_letter = xl.utils.get_column_letter(column_th)
-        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
@@ -781,16 +783,17 @@ def render_ruler(document, ws):
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
     # 最後の要素
     remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    column_letter2 = xl.utils.get_column_letter(column_th + 1)
     if remain == 0:
         row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
-        column_letter = xl.utils.get_column_letter(column_th)
-        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         #print(f'マージセルC h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    elif remain == 1:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
     elif remain == 2:
         row_th = canvas_rect.height_obj.integer_part * square_unit + 1
-        column_letter = xl.utils.get_column_letter(column_th)
-        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         #print(f'マージセルD h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
