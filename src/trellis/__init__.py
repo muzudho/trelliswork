@@ -625,50 +625,95 @@ def render_ruler(document, ws):
 
 
     # NOTE 端数の処理
-    # 定規の着色　＞　上側の両端の１セルの隙間
-    column_th_list = [
-        square_unit,                                                    # 定規の着色　＞　左上の１セルの隙間
-        canvas_rect.width_obj.total_of_out_counts_th - square_unit      # 定規の着色　＞　右上の１セルの隙間
-    ]
+
+    # 定規の着色　＞　左上の１セルの隙間
     row_th = 1
-    for column_th in column_th_list:
-        unit_cell = (column_th - 1) // square_unit
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
-        if unit_cell % 2 == 0:
+    column_th = square_unit
+    unit_cell = (column_th - 1) // square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    if unit_cell % 2 == 0:
+        cell.fill = dark_gray
+    else:
+        cell.fill = light_gray
+
+    # 定規の着色　＞　右上の１セルの隙間    
+    row_th = 1
+    side_frame_width = 2
+    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - remain
+    unit_cell = (column_th - 1) // square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    if unit_cell % 2 == 0:
+        cell.fill = dark_gray
+    else:
+        cell.fill = light_gray
+
+    # 定規の着色　＞　左下の１セルの隙間
+    row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
+    column_th = square_unit
+    unit_cell = (column_th - 1) // square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    if unit_cell % 2 == 0:
+        if bottom_is_dark_gray:
             cell.fill = dark_gray
         else:
             cell.fill = light_gray
-
-
-    # 定規の着色　＞　下側の両端の１セルの隙間
-    column_th_list = [
-        square_unit,                                                    # 定規の着色　＞　左下の１セルの隙間
-        canvas_rect.width_obj.total_of_out_counts_th - square_unit      # 定規の着色　＞　右下の１セルの隙間
-    ]
-    row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
-    for column_th in column_th_list:
-        unit_cell = (column_th - 1) // square_unit
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
-        if unit_cell % 2 == 0:
-            if bottom_is_dark_gray:
-                cell.fill = dark_gray
-            else:
-                cell.fill = light_gray
+    else:
+        if bottom_is_dark_gray:
+            cell.fill = light_gray
         else:
-            if bottom_is_dark_gray:
-                cell.fill = light_gray
-            else:
-                cell.fill = dark_gray
+            cell.fill = dark_gray
+
+    # 定規の着色　＞　右下の１セルの隙間
+    row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
+    side_frame_width = 2
+    remain = (canvas_rect.width_obj.total_of_out_counts_qty - side_frame_width) % square_unit
+    column_th = canvas_rect.width_obj.total_of_out_counts_th - side_frame_width - remain
+    unit_cell = (column_th - 1) // square_unit
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    if unit_cell % 2 == 0:
+        if bottom_is_dark_gray:
+            cell.fill = dark_gray
+        else:
+            cell.fill = light_gray
+    else:
+        if bottom_is_dark_gray:
+            cell.fill = light_gray
+        else:
+            cell.fill = dark_gray
 
 
     # NOTE セル結合すると read only セルになるから、セル結合は、セルを編集が終わったあとで行う
 
     # 定規のセル結合　＞　上辺
+    #
+    #   横幅が３で割り切れるとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 3 シュリンクする
+    #   ■■□[  1 ][  2 ]□■■
+    #   ■■                ■■
+    #
+    #   横幅が３で割ると１余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 4 シュリンクする
+    #   ■■□[  1 ][  2 ]□□■■
+    #   ■■                  ■■
+    #
+    #   横幅が３で割ると２余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 2 シュリンクする
+    #   ■■□[  1 ][  2 ][  3 ]■■
+    #   ■■                    ■■
+    #
     row_th = 1
     left_th = 4
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if horizontal_remain == 0:       
+        shrink = square_unit
+    elif horizontal_remain == 1:
+        shrink = square_unit + 1
+    else:
+        shrink = square_unit - 1
+
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
@@ -713,7 +758,15 @@ def render_ruler(document, ws):
     # 定規のセル結合　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     left_th = 4
-    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if horizontal_remain == 0:       
+        shrink = square_unit
+    elif horizontal_remain == 1:
+        shrink = square_unit + 1
+    else:
+        shrink = square_unit - 1
+
+    for column_th in range(left_th, canvas_rect.width_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
