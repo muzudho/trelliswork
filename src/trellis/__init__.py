@@ -132,7 +132,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
 def render_ruler(document, ws):
     """定規の描画
     """
-    print("定規の描画")
+    print("🔧　定規の描画")
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
@@ -508,7 +508,7 @@ def fill_end_terminal(ws, column_th, row_th):
 def render_all_pillar_rugs(document, ws):
     """全ての柱の敷物の描画
     """
-    print('全ての柱の敷物の描画')
+    print('🔧　全ての柱の敷物の描画')
 
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
@@ -604,7 +604,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 def render_all_card_shadows(document, ws):
     """全てのカードの影の描画
     """
-    print('全てのカードの影の描画')
+    print('🔧　全てのカードの影の描画')
 
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
@@ -632,7 +632,7 @@ def render_all_card_shadows(document, ws):
 def render_all_cards(document, ws):
     """全てのカードの描画
     """
-    print('全てのカードの描画')
+    print('🔧　全てのカードの描画')
 
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
@@ -676,7 +676,7 @@ def render_all_cards(document, ws):
 def render_all_terminal_shadows(document, ws):
     """全ての端子の影の描画
     """
-    print('全ての端子の影の描画')
+    print('🔧　全ての端子の影の描画')
 
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
@@ -703,7 +703,7 @@ def render_all_terminal_shadows(document, ws):
 def render_all_terminals(document, ws):
     """全ての端子の描画
     """
-    print('全ての端子の描画')
+    print('🔧　全ての端子の描画')
 
     # もし、柱のリストがあれば
     if 'pillars' in document and (pillars_list := document['pillars']):
@@ -912,7 +912,7 @@ def get_rectangle(rectangle_dict):
 def render_all_line_tape_shadows(document, ws):
     """全てのラインテープの影の描画
     """
-    print('全てのラインテープの影の描画')
+    print('🔧　全てのラインテープの影の描画')
 
     # もし、ラインテープの配列があれば
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
@@ -935,7 +935,7 @@ def render_all_line_tape_shadows(document, ws):
 def render_all_line_tapes(document, ws):
     """全てのラインテープの描画
     """
-    print('全てのラインテープの描画')
+    print('🔧　全てのラインテープの描画')
 
     # もし、ラインテープの配列があれば
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
@@ -1339,7 +1339,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
     new_segment_list = []
 
-    #print('柱を跨ぐとき、ラインテープを分割します')
+    #print('🔧　柱を跨ぐとき、ラインテープを分割します')
     segment_rect = get_rectangle(rectangle_dict=line_tape_segment_dict)
 
     direction = line_tape_segment_dict['direction']
