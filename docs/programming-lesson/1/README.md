@@ -139,3 +139,5 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 ![投球回を使って指定したルーラー](../../img/[20250113-2312]ruler-using-innings-pitched.png)  
 
 👆　［投球回］を使ってもルーラーのサイズを指定できることを示せました。  
+
+次回の記事は、色を指定するための、カラーシステムを予定しています。  
