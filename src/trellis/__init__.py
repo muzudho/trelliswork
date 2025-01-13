@@ -377,10 +377,10 @@ def render_ruler(document, ws):
     #
     row_th = 1
     left_th = 4
-    remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
-    if remain == 0:       
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if horizontal_remain == 0:       
         shrink = square_unit
-    elif remain == 1:
+    elif horizontal_remain == 1:
         shrink = square_unit + 1
     else:
         shrink = square_unit - 1
@@ -431,11 +431,27 @@ def render_ruler(document, ws):
 
     # 定規の着色　＞　左辺
     #
-    #   縦型の場合、１投球回は常に 1th から始まり、最終投球回は縦幅th 通り。
+    #   縦幅が３で割り切れるとき、１投球回は 1th から始まる。最後の投球回は、端数なしで表示できる
+    #   [  0 ][  1 ][  2 ][  3 ]
+    #   ■                    ■
+    #
+    #   縦幅が３で割ると１余るとき、１投球回は 1th から始まる。最後の投球回は、端数１になる
+    #   [  0 ][  1 ][  2 ][  3 ]□
+    #   ■                      ■
+    #
+    #   縦幅が３で割ると２余るとき、１投球回は 1th から始まる。最後の投球回は、端数２になる
+    #   [  0 ][  1 ][  2 ][  3 ]□□
+    #   ■                        ■
     #
     column_th = 1
     top_th = 1
-    shrink = 2
+    shrink = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+
+    # # 縦の最後の要素
+    # vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    # if vertical_remain == 1:
+    #     shrink += square_unit
+
     for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
@@ -458,14 +474,41 @@ def render_ruler(document, ws):
             cell.fill = light_gray
 
 
+    # 左辺の最後の要素が端数のとき、左辺の最後の要素の左上へ着色
+    #
+    #       最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
+    #
+    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    #print(f'左辺 h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
+    if vertical_remain != 0:
+        row_th = canvas_rect.height_obj.total_of_out_counts_th - vertical_remain
+        unit_cell = (row_th - 1) // square_unit
+        #print(f"""左辺の最後の要素の左上へ着色 {row_th=} {unit_cell=}""")
+        cell = ws[f'{column_letter}{row_th}']
+
+        # 数字も振りたい
+        if vertical_remain == 2:
+            cell.value = unit_cell
+            cell.alignment = center_center_alignment
+            if unit_cell % 2 == 0:
+                cell.font = light_gray_font
+            else:
+                cell.font = dark_gray_font
+
+        if unit_cell % 2 == 0:
+            cell.fill = dark_gray
+        else:
+            cell.fill = light_gray
+
+
     # 定規の着色　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
     left_th = 4
-    remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
-    if remain == 0:       
+    horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % square_unit
+    if horizontal_remain == 0:       
         shrink = square_unit
-    elif remain == 1:
+    elif horizontal_remain == 1:
         shrink = square_unit + 1
     else:
         shrink = square_unit - 1
@@ -504,24 +547,11 @@ def render_ruler(document, ws):
 
 
     # 定規の着色　＞　右辺
-    #
-    #   縦型の場合、１投球回は常に 1th から始まり、最終投球回は縦幅th 通り。
-    #
-    #
-    #   3 で割り切れるときの右端（例えば横幅が 10）
-    #   [  9 ]□■■
-    #
-    #   3 で割ったら１余るときの右端（例えば横幅が 10o1）
-    #   [  9 ]□□■■
-    #
-    #   3 で割ったら２余るときの右端（例えば横幅が 10o2）
-    #   [  9 ][ 10 ]■■
-    #
-    #
     column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
     rightest_is_dark_gray = (column_th - 1) // square_unit % 2 == 0
     top_th = 1
-    shrink = 2
+    shrink = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+
     for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - shrink, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
@@ -531,6 +561,44 @@ def render_ruler(document, ws):
         cell = ws[f'{column_letter}{row_th}']
         
         if is_top_end:
+            cell.value = unit_cell
+            cell.alignment = center_center_alignment
+            if unit_cell % 2 == 0:
+                if rightest_is_dark_gray:
+                    cell.font = light_gray_font
+                else:
+                    cell.font = dark_gray_font
+            else:
+                if rightest_is_dark_gray:
+                    cell.font = dark_gray_font
+                else:
+                    cell.font = light_gray_font
+
+        if unit_cell % 2 == 0:
+            if rightest_is_dark_gray:
+                cell.fill = dark_gray
+            else:
+                cell.fill = light_gray
+        else:
+            if rightest_is_dark_gray:
+                cell.fill = light_gray
+            else:
+                cell.fill = dark_gray
+
+    # 右辺の最後の要素が端数のとき、右辺の最後の要素の左上へ着色
+    #
+    #       最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
+    #
+    vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    #print(f'右辺 h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
+    if vertical_remain != 0:
+        row_th = canvas_rect.height_obj.total_of_out_counts_th - vertical_remain
+        unit_cell = (row_th - 1) // square_unit
+        #print(f"""右辺の最後の要素の左上へ着色 {row_th=} {unit_cell=}""")
+        cell = ws[f'{column_letter}{row_th}']
+
+        # 数字も振りたい
+        if vertical_remain == 2:
             cell.value = unit_cell
             cell.alignment = center_center_alignment
             if unit_cell % 2 == 0:
@@ -596,6 +664,7 @@ def render_ruler(document, ws):
 
 
     # NOTE セル結合すると read only セルになるから、セル結合は、セルを編集が終わったあとで行う
+
     # 定規のセル結合　＞　上辺
     row_th = 1
     left_th = 4
@@ -604,13 +673,42 @@ def render_ruler(document, ws):
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
+
     # 定規のセル結合　＞　左辺
+    #
+    #   縦幅が３で割り切れるとき、１投球回は 1th から始まる。最後の投球回は、端数なしで表示できる
+    #   [  0 ][  1 ][  2 ][  3 ]
+    #   ■                    ■
+    #
+    #   縦幅が３で割ると１余るとき、１投球回は 1th から始まる。最後の投球回は、端数１になる
+    #   [  0 ][  1 ][  2 ][  3 ]□
+    #   ■                      ■
+    #
+    #   縦幅が３で割ると２余るとき、１投球回は 1th から始まる。最後の投球回は、端数２になる
+    #   [  0 ][  1 ][  2 ][  3 ]□□
+    #   ■                        ■
+    #
     column_th = 1
     top_th = 1
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - square_unit, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    # 最後の要素
+    remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    if remain == 0:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
+        #print(f'マージセルA h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    elif remain == 2:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
+        #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
+
 
     # 定規のセル結合　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
@@ -620,13 +718,28 @@ def render_ruler(document, ws):
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
+
     # 定規のセル結合　＞　右辺
     column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
     top_th = 1
-    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+    for row_th in range(top_th, canvas_rect.height_obj.total_of_out_counts_th - square_unit, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    # 最後の要素
+    remain = canvas_rect.height_obj.total_of_out_counts_qty % square_unit
+    if remain == 0:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1 - square_unit
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
+        #print(f'マージセルC h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+    elif remain == 2:
+        row_th = canvas_rect.height_obj.integer_part * square_unit + 1
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
+        #print(f'マージセルD h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
 def draw_rectangle(ws, column_th, row_th, columns, rows):
