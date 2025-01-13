@@ -407,9 +407,11 @@ def render_ruler(document, ws):
             cell.fill = light_gray
 
 
-    # # 定規のセル結合　＞　上辺
-    # row_th = 1
-    # for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
+    # 定規のセル結合　＞　上辺
+    row_th = 1
+    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
 
@@ -452,16 +454,18 @@ def render_ruler(document, ws):
             cell.fill = light_gray
 
 
-    # # 定規のセル結合　＞　左辺
-    # column_th = 1
-    # for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+    # 定規のセル結合　＞　左辺
+    column_th = 1
+    for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
     # 定規の着色　＞　下辺
     row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
     bottom_is_dark_gray = (row_th - 1) // square_unit % 2 == 0
-    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_qty - 2, square_unit):
+    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 2)
         cell = ws[f'{column_letter}{row_th}']
@@ -494,9 +498,11 @@ def render_ruler(document, ws):
                 cell.fill = dark_gray
 
 
-    # # 定規のセル結合　＞　下辺
-    # row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
-    # for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_th - 2, square_unit):
+    # 定規のセル結合　＞　下辺
+    row_th = canvas_rect.height_obj.total_of_out_counts_th - 1
+    for column_th in range(4, canvas_rect.width_obj.total_of_out_counts_th - 3, square_unit):
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 2)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
 
@@ -560,9 +566,11 @@ def render_ruler(document, ws):
 
     # # NOTE セル結合すると read only セルになるから、セル結合は、セルを編集が終わったあとで行う
 
-    # # 定規のセル結合　＞　右辺
-    # column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
-    # for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+    # 定規のセル結合　＞　右辺
+    column_th = canvas_rect.width_obj.total_of_out_counts_th - 2
+    for row_th in range(1, canvas_rect.height_obj.total_of_out_counts_th - 2, square_unit):
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
         ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
 
