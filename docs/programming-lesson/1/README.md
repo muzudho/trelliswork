@@ -110,3 +110,32 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 
 * 📄 [Trellis ＞ InningsPitched クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+InningsPitched` で検索してください  
 * 📄 [Trellis ＞ Rectangle クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+Rectangle` で検索してください  
+
+
+## 手順７
+
+👇　手順４で作った 📄 `./temp/lesson/hello_world.json` ファイルの内容について、  
+
+```json
+{
+    "canvas": {
+        "left": 0,
+        "top": 0,
+        "width": "10o1",
+        "height": "10o2"
+    }
+}
+```
+
+👆　left と top は 0 固定です。（キャンバス自体は、別のキャンバスの内側に入れ子にして置くことを想定していないため、キャンバスの内側で使える left と top は指定できません）  
+width を `"10o1"`、 height を `"10o2"` に変更して保存してください。  
+
+そして以下のコマンドを打鍵してください。  
+
+```shell
+py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+```
+
+![投球回を使って指定したルーラー](../../img/[20250113-2312]ruler-using-innings-pitched.png)  
+
+👆　［投球回］を使ってもルーラーのサイズを指定できることを示せました。  
