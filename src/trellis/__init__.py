@@ -714,18 +714,15 @@ def render_all_pillar_rugs(document, ws):
 
         for pillar_dict in pillars_list:
             if 'baseColor' in pillar_dict and (baseColor := pillar_dict['baseColor']):
-                left = pillar_dict['left']
-                top = pillar_dict['top']
-                width = pillar_dict['width']
-                height = pillar_dict['height']
+                pillar_rect = Rectangle.from_dict(pillar_dict)
 
                 # 矩形を塗りつぶす
                 fill_rectangle(
                         ws=ws,
-                        column_th=left * square_unit + 1,
-                        row_th=top * square_unit + 1,
-                        columns=width * square_unit,
-                        rows=height * square_unit,
+                        column_th=pillar_rect.left_obj.total_of_out_counts_th,
+                        row_th=pillar_rect.top_obj.total_of_out_counts_th,
+                        columns=pillar_rect.width_obj.total_of_out_counts_qty,
+                        rows=pillar_rect.height_obj.total_of_out_counts_qty,
                         fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
 
