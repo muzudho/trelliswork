@@ -27,7 +27,7 @@ class InningsPitched():
         """
         if decimal_part == 0:
             return InningsPitched(integer_part)
-        
+
         else:
             return InningsPitched(f'{integer_part}o{decimal_part}')
 
@@ -110,7 +110,7 @@ class Rectangle():
         sub_left = 0
         if isinstance(main_left, str):
             main_left, sub_left = map(int, main_left.split('o', 2))
-        
+
         main_top = rectangle_dict['top']
         sub_top = 0
         if isinstance(main_top, str):
@@ -340,7 +340,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
         if color in fill_palette[tone]:
             color = color.strip()
             return fill_palette[tone][color]
-        
+
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
     return fill_palette_none
 
@@ -361,7 +361,6 @@ def render_ruler(document, ws):
     canvas_rect = Rectangle.from_dict(document['canvas'])
 
     # 行の横幅
-    print(f"""{canvas_rect.width_obj.total_of_out_counts_th=} canvas_dict={document['canvas']}""")
     for column_th in range(
             canvas_rect.left_obj.total_of_out_counts_th,
             canvas_rect.left_obj.total_of_out_counts_th + canvas_rect.width_obj.total_of_out_counts_qty):
@@ -408,7 +407,7 @@ def render_ruler(document, ws):
                 OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
-            
+
             # 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
             # -------- -------- -------- -----------
             # dark      light    dark     light
@@ -463,6 +462,11 @@ def render_ruler(document, ws):
         [  0 ][  1 ][  2 ][  3 ]□□
         ■                        ■
         """
+
+        # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
         column_th = canvas_rect.left_obj.total_of_out_counts_th
         column_letter = xl.utils.get_column_letter(column_th)
         shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
@@ -476,7 +480,6 @@ def render_ruler(document, ws):
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
             is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
-            
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
@@ -493,7 +496,7 @@ def render_ruler(document, ws):
 
     def render_ruler_coloring_of_left_edge_bottom_spacing():
         """左辺の最後の要素が端数のとき、左辺の最後の要素の左上へ着色
-        
+
                 最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
         """
         vertical_remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
@@ -525,6 +528,11 @@ def render_ruler(document, ws):
     def render_ruler_numbering_and_coloring_of_bottom_edge():
         """定規の採番と着色　＞　下辺
         """
+
+        # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.height_obj.total_of_out_counts_qty < 2:
+            return
+
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
         bottom_is_dark_gray = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
@@ -566,6 +574,11 @@ def render_ruler(document, ws):
     def render_ruler_numbering_and_coloring_of_right_edge():
         """定規の採番と着色　＞　右辺
         """
+
+        # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
         rightest_is_dark_gray = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
@@ -576,7 +589,7 @@ def render_ruler(document, ws):
                 canvas_rect.bottom_obj.total_of_out_counts_th - shrink,
                 OUT_COUNTS_THAT_CHANGE_INNING):
             cell = ws[f'{column_letter}{row_th}']
-            
+
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
             is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
@@ -796,16 +809,25 @@ def render_ruler(document, ws):
         [  0 ][  1 ][  2 ][  3 ]□□
         ■                        ■
         """
+
+        # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
         column_th = canvas_rect.left_obj.total_of_out_counts_th
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        
+
         for row_th in range(
                 canvas_rect.top_obj.total_of_out_counts_th,
-                canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_rect.bottom_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                 OUT_COUNTS_THAT_CHANGE_INNING):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
+        # 高さが１イニング未満の場合、最後の要素はありません
+        if canvas_rect.height_obj.total_of_out_counts_qty < OUT_COUNTS_THAT_CHANGE_INNING:
+            return
+        
         # 最後の要素
         spacing = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 0:
@@ -814,20 +836,24 @@ def render_ruler(document, ws):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
         elif spacing == 1:
             row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
-            #print(f'マージセルH {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
+            #print(f'マージセルB {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
         elif spacing == 2:
             row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
-            #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            #print(f'マージセルH h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
     def render_ruler_merge_cells_of_bottom_edge():
         """定規のセル結合　＞　下辺"""
 
+        # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.height_obj.total_of_out_counts_qty < 2:
+            return
+
         skip_left = OUT_COUNTS_THAT_CHANGE_INNING
         horizontal_remain = canvas_rect.width_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
-        if horizontal_remain == 0:       
+        if horizontal_remain == 0:
             shrink_right = 3
         elif horizontal_remain == 1:
             shrink_right = 4
@@ -847,16 +873,25 @@ def render_ruler(document, ws):
 
     def render_ruler_merge_cells_of_right_edge():
         """定規のセル結合　＞　右辺"""
+
+        # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
 
         for row_th in range(
                 canvas_rect.top_obj.total_of_out_counts_th,
-                canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_rect.bottom_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                 OUT_COUNTS_THAT_CHANGE_INNING):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
+        # 高さが１イニング未満の場合、最後の要素はありません
+        if canvas_rect.height_obj.total_of_out_counts_qty < OUT_COUNTS_THAT_CHANGE_INNING:
+            return
+        
         # 最後の要素
         spacing = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 0:
@@ -1039,7 +1074,6 @@ def fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
         for cur_row_th in range(row_th, row_th + rows):
             cell = ws[f'{column_letter}{cur_row_th}']
             cell.fill = fill_obj
-    
 
 
 def fill_pixel_art(ws, column_th, row_th, columns, rows, pixels):
@@ -1048,7 +1082,7 @@ def fill_pixel_art(ws, column_th, row_th, columns, rows, pixels):
     # 背景色
     mat_black = PatternFill(patternType='solid', fgColor='080808')
     mat_white = PatternFill(patternType='solid', fgColor='E8E8E8')
-    
+
     # 横へ
     for cur_column_th in range(column_th, column_th + columns):
         for cur_row_th in range(row_th, row_th + rows):
@@ -1172,7 +1206,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
     # テキスト（があれば）
     if 'text0' in paper_strip:
         text = paper_strip['text0']
-        
+
         # 左に１マス分のアイコンを置く前提
         icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
         cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
@@ -1182,7 +1216,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 
     if 'text1' in paper_strip:
         text = paper_strip['text1']
-        
+
         # 左に１マス分のアイコンを置く前提
         icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
         cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
@@ -1192,7 +1226,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 
     if 'text3' in paper_strip:
         text = paper_strip['text2']
-        
+
         # 左に１マス分のアイコンを置く前提
         icon_columns = OUT_COUNTS_THAT_CHANGE_INNING
         cur_column_th = column_th + icon_columns + (indent * OUT_COUNTS_THAT_CHANGE_INNING)
@@ -1323,7 +1357,7 @@ def render_all_terminals(document, ws):
                             ws=ws,
                             column_th=terminal_rect.left_obj.total_of_out_counts_th,
                             row_th=terminal_rect.top_obj.total_of_out_counts_th)
-                    
+
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
@@ -1415,7 +1449,7 @@ def render_all_line_tapes(document, ws):
                                     columns=1,
                                     rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     fill_obj=outline_fill_obj)
-                        
+
                         # （共通処理）水平方向
                         elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left', 'after_up.turn_right', 'from_here.go_right']:
                             # 上辺を描く
@@ -1564,7 +1598,7 @@ def render_all_line_tapes(document, ws):
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
                                     fill_obj=outline_fill_obj)
-                        
+
                         # 左進から上っていく
                         elif line_tape_direction == 'after_go_left.turn_up':
                             # 下辺を描く
@@ -1584,7 +1618,7 @@ def render_all_line_tapes(document, ws):
                                     columns=1,
                                     rows=3,
                                     fill_obj=outline_fill_obj)
-                            
+
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
@@ -1801,7 +1835,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
 
-    
+
     return new_segment_list
 
 
