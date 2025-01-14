@@ -464,17 +464,18 @@ def render_ruler(document, ws):
         ■                        ■
         """
         column_th = canvas_rect.left_obj.total_of_out_counts_th
+        column_letter = xl.utils.get_column_letter(column_th)
         shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
                 canvas_rect.top_obj.total_of_out_counts_th,
-                canvas_rect.top_obj.total_of_out_counts_th + canvas_rect.height_obj.total_of_out_counts_qty - shrink,
+                canvas_rect.bottom_obj.total_of_out_counts_th - shrink,
                 OUT_COUNTS_THAT_CHANGE_INNING):
-            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
             is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
-            cell = ws[f'{column_letter}{row_th}']
             
             if is_top_end:
                 cell.value = ruler_number
@@ -565,19 +566,19 @@ def render_ruler(document, ws):
         """定規の採番と着色　＞　右辺
         """
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
+        column_letter = xl.utils.get_column_letter(column_th)
         rightest_is_dark_gray = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
         shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
                 canvas_rect.top_obj.total_of_out_counts_th,
-                canvas_rect.top_obj.total_of_out_counts_th + canvas_rect.height_obj.total_of_out_counts_qty - shrink,
+                canvas_rect.bottom_obj.total_of_out_counts_th - shrink,
                 OUT_COUNTS_THAT_CHANGE_INNING):
-            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+            
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
             is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
 
-            cell = ws[f'{column_letter}{row_th}']
-            
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
@@ -797,28 +798,28 @@ def render_ruler(document, ws):
         ■                        ■
         """
         column_th = canvas_rect.left_obj.total_of_out_counts_th
+        column_letter = xl.utils.get_column_letter(column_th)
+        column_letter2 = xl.utils.get_column_letter(column_th + 1)
+        
         for row_th in range(
                 canvas_rect.top_obj.total_of_out_counts_th,
                 canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
                 OUT_COUNTS_THAT_CHANGE_INNING):
-            column_letter = xl.utils.get_column_letter(column_th)
-            column_letter2 = xl.utils.get_column_letter(column_th + 1)
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+
         # 最後の要素
-        remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
-        column_letter = xl.utils.get_column_letter(column_th)
-        column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        if remain == 0:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1 - OUT_COUNTS_THAT_CHANGE_INNING
-            #print(f'マージセルA h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        spacing = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
+        if spacing == 0:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING
+            #print(f'マージセルA h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
-        elif remain == 1:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
-            #print(f'マージセルH {row_th=} {remain=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
+        elif spacing == 1:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
+            #print(f'マージセルH {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_rect.height_obj.integer_part=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
-        elif remain == 2:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
-            #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        elif spacing == 2:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
+            #print(f'マージセルB h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
@@ -848,27 +849,27 @@ def render_ruler(document, ws):
     def render_ruler_merge_cells_of_right_edge():
         """定規のセル結合　＞　右辺"""
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
-        for row_th in range(
-                canvas_rect.top_obj.total_of_out_counts_th,
-                canvas_rect.top_obj.total_of_out_counts_th + canvas_rect.height_obj.total_of_out_counts_qty - OUT_COUNTS_THAT_CHANGE_INNING,
-                OUT_COUNTS_THAT_CHANGE_INNING):
-            column_letter = xl.utils.get_column_letter(column_th)
-            column_letter2 = xl.utils.get_column_letter(column_th + 1)
-            ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
-        # 最後の要素
-        remain = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
-        if remain == 0:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1 - OUT_COUNTS_THAT_CHANGE_INNING
-            #print(f'マージセルC h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+
+        for row_th in range(
+                canvas_rect.top_obj.total_of_out_counts_th,
+                canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
+                OUT_COUNTS_THAT_CHANGE_INNING):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
-        elif remain == 1:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
+
+        # 最後の要素
+        spacing = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
+        if spacing == 0:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING
+            #print(f'マージセルC h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+        elif spacing == 1:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
-        elif remain == 2:
-            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + 1
-            #print(f'マージセルD h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {remain=}')
+        elif spacing == 2:
+            row_th = canvas_rect.height_obj.integer_part * OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect.top_obj.total_of_out_counts_th
+            #print(f'マージセルD h_qty={canvas_rect.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
