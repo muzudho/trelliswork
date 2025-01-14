@@ -128,7 +128,6 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 ```
 
 👆　left を `"0o1"`、 top を `"0o2"`、 width を `"10o1"`、 height を `"10o2"` に変更して保存してください。  
-トレリスでは上１行、左２列をウィンドウ固定するので、 left と top は 0 にして使うことを推奨します。  
 
 そして以下のコマンドを打鍵してください。  
 
@@ -136,8 +135,10 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
 ```
 
-![投球回を使って指定した定規](../../img/[20250113-2312]ruler-using-innings-pitched.png)  
+![投球回を使って指定した定規](../../img/[20250115-0056]ruler-left-right-using-innings-pitched.png)  
 
 👆　［投球回］を使っても［定規］のサイズを指定できることを示せました。  
+
+トレリスでは上１行、左２列をウィンドウ固定するので、 left と top は 0 にして使うことを推奨します。  
 
 次回の記事は、色を指定するための、カラーシステムを予定しています。  
