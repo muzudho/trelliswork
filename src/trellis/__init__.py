@@ -360,6 +360,10 @@ def render_ruler(document, ws):
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
     canvas_rect = Rectangle.from_dict(document['canvas'])
 
+    # 横幅または縦幅が１アウト未満の場合は、定規は描画しません
+    if canvas_rect.width_obj.total_of_out_counts_qty < 1 or canvas_rect.height_obj.total_of_out_counts_qty < 1:
+        return
+
     # 行の横幅
     for column_th in range(
             canvas_rect.left_obj.total_of_out_counts_th,
