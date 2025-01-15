@@ -902,8 +902,6 @@ class TrellisInSrc():
 
     @staticmethod
     def InningsPitched(var_value=None, integer_part=None, decimal_part=None):
-        print(f'★InningsPitched {var_value=} {integer_part=} {decimal_part=}')
-
         global InningsPitched
         if var_value:
             return InningsPitched.from_var_value(var_value)

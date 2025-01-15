@@ -58,14 +58,56 @@ def render_ruler(document, ws):
     # ウィンドウ枠の固定
     ws.freeze_panes = 'C2'
 
-    # TODO 定規の文字色
-    # if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
-    dark_gray_font = Font(color='808080')
-    light_gray_font = Font(color='F2F2F2')
+    # 定規の文字色。２色固定
+    # TODO 任意色数に対応したい
+    if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
+        first_font_text = tone_and_color_name_to_color_code(fg_color_list[0])
+        second_font_text = tone_and_color_name_to_color_code(fg_color_list[1])
 
-    # 定規の背景色
-    dark_gray = PatternFill(patternType='solid', fgColor='808080')
-    light_gray = PatternFill(patternType='solid', fgColor='F2F2F2')
+        if first_font_text is not None:
+            try:
+                first_font = Font(color=first_font_text)
+            except:
+                print(f'ERROR: {first_font_text=}')
+                raise
+
+        if second_font_text is not None:
+            try:
+                second_font = Font(color=second_font_text)
+            except:
+                print(f'ERROR: {second_font_text=}')
+                raise
+
+    else:
+        # フォントの色の既定値は黒
+        first_font = Font(color='000000')
+        second_font = Font(color='000000')
+
+    # 定規の背景色。２色固定
+    # TODO 任意色数に対応したい
+    if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
+        first_pattern_fill_text = tone_and_color_name_to_color_code(bg_color_list[0])
+        second_pattern_fill_text = tone_and_color_name_to_color_code(bg_color_list[1])
+
+        if first_pattern_fill_text is not None:
+            try:
+                first_pattern_fill = PatternFill(patternType='solid', fgColor=first_pattern_fill_text)
+            except:
+                print(f'ERROR: {first_pattern_fill_text=}')
+                raise
+
+        if second_pattern_fill_text is not None:
+            try:
+                second_pattern_fill = PatternFill(patternType='solid', fgColor=second_pattern_fill_text)
+            except:
+                print(f'ERROR: {second_pattern_fill_text=}')
+                raise
+
+    else:
+        # フォントの色の既定値は白
+        first_pattern_fill = PatternFill(patternType='solid', fgColor='FFFFFF')
+        second_pattern_fill = PatternFill(patternType='solid', fgColor='FFFFFF')
+
     center_center_alignment = Alignment(horizontal='center', vertical='center')
 
 
@@ -122,14 +164,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = light_gray_font
+                    cell.font = first_font
                 else:
-                    cell.font = dark_gray_font
+                    cell.font = second_font
 
             if ruler_number % 2 == 0:
-                cell.fill = dark_gray
+                cell.fill = first_pattern_fill
             else:
-                cell.fill = light_gray
+                cell.fill = second_pattern_fill
 
 
     def render_ruler_numbering_and_coloring_of_left_edge():
@@ -169,14 +211,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = light_gray_font
+                    cell.font = first_font
                 else:
-                    cell.font = dark_gray_font
+                    cell.font = second_font
 
             if ruler_number % 2 == 0:
-                cell.fill = dark_gray
+                cell.fill = first_pattern_fill
             else:
-                cell.fill = light_gray
+                cell.fill = second_pattern_fill
 
 
     def render_ruler_coloring_of_left_edge_bottom_spacing():
@@ -200,14 +242,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = light_gray_font
+                    cell.font = first_font
                 else:
-                    cell.font = dark_gray_font
+                    cell.font = second_font
 
             if ruler_number % 2 == 0:
-                cell.fill = dark_gray
+                cell.fill = first_pattern_fill
             else:
-                cell.fill = light_gray
+                cell.fill = second_pattern_fill
 
 
     def render_ruler_numbering_and_coloring_of_bottom_edge():
@@ -219,7 +261,7 @@ def render_ruler(document, ws):
             return
 
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_dark_gray = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
+        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         for column_th in range(
                 canvas_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
@@ -234,26 +276,26 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    if bottom_is_dark_gray:
-                        cell.font = light_gray_font
+                    if bottom_is_first_pattern_fill:
+                        cell.font = first_font
                     else:
-                        cell.font = dark_gray_font
+                        cell.font = second_font
                 else:
-                    if bottom_is_dark_gray:
-                        cell.font = dark_gray_font
+                    if bottom_is_first_pattern_fill:
+                        cell.font = second_font
                     else:
-                        cell.font = light_gray_font
+                        cell.font = first_font
 
             if ruler_number % 2 == 0:
-                if bottom_is_dark_gray:
-                    cell.fill = dark_gray
+                if bottom_is_first_pattern_fill:
+                    cell.fill = first_pattern_fill
                 else:
-                    cell.fill = light_gray
+                    cell.fill = second_pattern_fill
             else:
-                if bottom_is_dark_gray:
-                    cell.fill = light_gray
+                if bottom_is_first_pattern_fill:
+                    cell.fill = second_pattern_fill
                 else:
-                    cell.fill = dark_gray
+                    cell.fill = first_pattern_fill
 
 
     def render_ruler_numbering_and_coloring_of_right_edge():
@@ -266,7 +308,7 @@ def render_ruler(document, ws):
 
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
-        rightest_is_dark_gray = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
+        rightest_is_first_pattern_fill = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
         shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
@@ -282,26 +324,26 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    if rightest_is_dark_gray:
-                        cell.font = light_gray_font
+                    if rightest_is_first_pattern_fill:
+                        cell.font = first_font
                     else:
-                        cell.font = dark_gray_font
+                        cell.font = second_font
                 else:
-                    if rightest_is_dark_gray:
-                        cell.font = dark_gray_font
+                    if rightest_is_first_pattern_fill:
+                        cell.font = second_font
                     else:
-                        cell.font = light_gray_font
+                        cell.font = first_font
 
             if ruler_number % 2 == 0:
-                if rightest_is_dark_gray:
-                    cell.fill = dark_gray
+                if rightest_is_first_pattern_fill:
+                    cell.fill = first_pattern_fill
                 else:
-                    cell.fill = light_gray
+                    cell.fill = second_pattern_fill
             else:
-                if rightest_is_dark_gray:
-                    cell.fill = light_gray
+                if rightest_is_first_pattern_fill:
+                    cell.fill = second_pattern_fill
                 else:
-                    cell.fill = dark_gray
+                    cell.fill = first_pattern_fill
 
 
     def render_ruler_coloring_of_right_edge_bottom_spacing():
@@ -320,33 +362,33 @@ def render_ruler(document, ws):
             #print(f"""右辺の最後の要素の左上へ着色 {row_th=} {ruler_number=}""")
             cell = ws[f'{column_letter}{row_th}']
 
-            rightest_is_dark_gray = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
+            rightest_is_first_pattern_fill = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
             # 数字も振りたい
             if vertical_remain == 2:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    if rightest_is_dark_gray:
-                        cell.font = light_gray_font
+                    if rightest_is_first_pattern_fill:
+                        cell.font = first_font
                     else:
-                        cell.font = dark_gray_font
+                        cell.font = second_font
                 else:
-                    if rightest_is_dark_gray:
-                        cell.font = dark_gray_font
+                    if rightest_is_first_pattern_fill:
+                        cell.font = second_font
                     else:
-                        cell.font = light_gray_font
+                        cell.font = first_font
 
             if ruler_number % 2 == 0:
-                if rightest_is_dark_gray:
-                    cell.fill = dark_gray
+                if rightest_is_first_pattern_fill:
+                    cell.fill = first_pattern_fill
                 else:
-                    cell.fill = light_gray
+                    cell.fill = second_pattern_fill
             else:
-                if rightest_is_dark_gray:
-                    cell.fill = light_gray
+                if rightest_is_first_pattern_fill:
+                    cell.fill = second_pattern_fill
                 else:
-                    cell.fill = dark_gray
+                    cell.fill = first_pattern_fill
 
 
     def render_ruler_coloring_of_top_left_spacing():
@@ -358,9 +400,9 @@ def render_ruler(document, ws):
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            cell.fill = dark_gray
+            cell.fill = first_pattern_fill
         else:
-            cell.fill = light_gray
+            cell.fill = second_pattern_fill
 
 
     def render_ruler_coloring_right_end_spacing_on_top():
@@ -384,9 +426,9 @@ def render_ruler(document, ws):
 
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            cell.fill = dark_gray
+            cell.fill = first_pattern_fill
         else:
-            cell.fill = light_gray
+            cell.fill = second_pattern_fill
 
 
     def render_ruler_coloring_of_bottom_left_spacing():
@@ -394,21 +436,21 @@ def render_ruler(document, ws):
         """
         column_th = canvas_rect.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_dark_gray = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
+        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            if bottom_is_dark_gray:
-                cell.fill = dark_gray
+            if bottom_is_first_pattern_fill:
+                cell.fill = first_pattern_fill
             else:
-                cell.fill = light_gray
+                cell.fill = second_pattern_fill
         else:
-            if bottom_is_dark_gray:
-                cell.fill = light_gray
+            if bottom_is_first_pattern_fill:
+                cell.fill = second_pattern_fill
             else:
-                cell.fill = dark_gray
+                cell.fill = first_pattern_fill
 
 
     def render_ruler_coloring_right_end_spacing_on_bottom():
@@ -419,7 +461,7 @@ def render_ruler(document, ws):
             return
 
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_dark_gray = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
+        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         # 何アウト余るか
         spacing = (canvas_rect.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % OUT_COUNTS_THAT_CHANGE_INNING
@@ -433,15 +475,15 @@ def render_ruler(document, ws):
 
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            if bottom_is_dark_gray:
-                cell.fill = dark_gray
+            if bottom_is_first_pattern_fill:
+                cell.fill = first_pattern_fill
             else:
-                cell.fill = light_gray
+                cell.fill = second_pattern_fill
         else:
-            if bottom_is_dark_gray:
-                cell.fill = light_gray
+            if bottom_is_first_pattern_fill:
+                cell.fill = second_pattern_fill
             else:
-                cell.fill = dark_gray
+                cell.fill = first_pattern_fill
 
 
     def render_ruler_merge_cells_of_top_edge():

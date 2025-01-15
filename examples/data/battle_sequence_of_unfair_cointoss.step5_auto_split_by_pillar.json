@@ -6,7 +6,15 @@
         "height": 149
     },
     "ruler": {
-        "visible": true
+        "visible": true,
+        "fgColor": [
+            "xl_pale.xl_white",
+            "xl_deep.xl_white"
+        ],
+        "bgColor": [
+            "xl_deep.xl_white",
+            "xl_pale.xl_white"
+        ]
     },
     "shadowColorMappings": {
         "paper_color": "xl_pale.xl_white",
@@ -1170,7 +1178,7 @@
             "segments": [
                 {
                     "direction": "from_here.falling_down",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "auto",
                     "left": 40,
                     "top": "110o1",
@@ -1179,7 +1187,7 @@
                 },
                 {
                     "direction": "after_falling_down.turn_left",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "auto",
                     "left": 35,
                     "top": "112o1",
@@ -1188,7 +1196,7 @@
                 },
                 {
                     "direction": "after_go_left.turn_up",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "auto",
                     "left": 34,
                     "top": "40o2",
@@ -1197,7 +1205,7 @@
                 },
                 {
                     "direction": "after_up.turn_right",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "auto",
                     "left": 34,
                     "top": "40o1",
@@ -1206,7 +1214,7 @@
                 },
                 {
                     "direction": "after_go_right.turn_falling_down",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "auto",
                     "left": 41,
                     "top": "40o1",

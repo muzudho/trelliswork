@@ -6,7 +6,15 @@
         "height": 149
     },
     "ruler": {
-        "visible": true
+        "visible": true,
+        "fgColor": [
+            "xl_pale.xl_white",
+            "xl_deep.xl_white"
+        ],
+        "bgColor": [
+            "xl_deep.xl_white",
+            "xl_pale.xl_white"
+        ]
     },
     "pillars": [
         {
@@ -1201,7 +1209,7 @@
             "segments": [
                 {
                     "direction": "from_here.falling_down",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_blue",
                     "left": 40,
                     "top": "110o1",
@@ -1210,7 +1218,7 @@
                 },
                 {
                     "direction": "after_falling_down.turn_left",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_blue",
                     "left": 37,
                     "top": "112o1",
@@ -1219,7 +1227,7 @@
                 },
                 {
                     "direction": "continue.go_left",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_white",
                     "left": 35,
                     "top": "112o1",
@@ -1228,7 +1236,7 @@
                 },
                 {
                     "direction": "after_go_left.turn_up",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_white",
                     "left": 34,
                     "top": "40o2",
@@ -1237,7 +1245,7 @@
                 },
                 {
                     "direction": "after_up.turn_right",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_white",
                     "left": 34,
                     "top": "40o1",
@@ -1246,7 +1254,7 @@
                 },
                 {
                     "direction": "continue.go_right",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_blue",
                     "left": 37,
                     "top": "40o1",
@@ -1255,7 +1263,7 @@
                 },
                 {
                     "direction": "after_go_right.turn_falling_down",
-                    "color": "xl_strong.xl_brown",
+                    "color": "xl_strong.xl_red",
                     "shadowColor": "xl_light.xl_blue",
                     "left": 41,
                     "top": "40o1",

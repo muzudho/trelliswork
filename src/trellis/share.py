@@ -252,7 +252,7 @@ color_code_dict = {
         'xl_red_gray' : 'E7E6E6',
         'xl_blue_gray' : '44546A',
         'xl_blue' : '5B9BD5',
-        'xl_brown' : 'ED7D31',
+        'xl_red' : 'ED7D31',
         'xl_gray' : 'A5A5A5',
         'xl_yellow' : 'FFC000',
         'xl_naviy' : '4472C4',
@@ -264,7 +264,7 @@ color_code_dict = {
         'xl_red_gray' : 'AEAAAA',
         'xl_blue_gray' : 'D6DCE4',
         'xl_blue' : 'DDEBF7',
-        'xl_brown' : 'FCE4D6',
+        'xl_red' : 'FCE4D6',
         'xl_gray' : 'EDEDED',
         'xl_yellow' : 'FFF2CC',
         'xl_naviy' : 'D9E1F2',
@@ -276,7 +276,7 @@ color_code_dict = {
         'xl_red_gray' : '757171',
         'xl_blue_gray' : 'ACB9CA',
         'xl_blue' : 'BDD7EE',
-        'xl_brown' : 'F8CBAD',
+        'xl_red' : 'F8CBAD',
         'xl_gray' : 'DBDBDB',
         'xl_yellow' : 'FFE699',
         'xl_naviy' : 'B4C6E7',
@@ -288,7 +288,7 @@ color_code_dict = {
         'xl_red_gray' : '3A3838',
         'xl_blue_gray' : '8497B0',
         'xl_blue' : '9BC2E6',
-        'xl_brown' : 'F4B084',
+        'xl_red' : 'F4B084',
         'xl_gray' : 'C9C9C9',
         'xl_yellow' : 'FFD966',
         'xl_naviy' : '8EA9DB',
@@ -300,7 +300,7 @@ color_code_dict = {
         'xl_red_gray' : '3A3838',
         'xl_blue_gray' : '333F4F',
         'xl_blue' : '2F75B5',
-        'xl_brown' : 'C65911',
+        'xl_red' : 'C65911',
         'xl_gray' : '7B7B7B',
         'xl_yellow' : 'BF8F00',
         'xl_naviy' : '305496',
@@ -312,14 +312,14 @@ color_code_dict = {
         'xl_red_gray' : '161616',
         'xl_blue_gray' : '161616',
         'xl_blue' : '1F4E78',
-        'xl_brown' : '833C0C',
+        'xl_red' : '833C0C',
         'xl_gray' : '525252',
         'xl_yellow' : '806000',
         'xl_naviy' : '203764',
         'xl_green' : '375623',
     },
     'xl_standard' : {
-        'xl_brown' : 'C00000',
+        'xl_red' : 'C00000',
         'xl_red' : 'FF0000',
         'xl_orange' : 'FFC000',
         'xl_yellow' : 'FFFF00',
@@ -331,6 +331,34 @@ color_code_dict = {
         'xl_violet' : '7030A0',
     }
 }
+
+
+def tone_and_color_name_to_color_code(tone_and_color_name):
+    """トーン名・色名を１６進文字列の色コードに変換します
+    """
+
+    # 色が指定されていないとき、この関数を呼び出してはいけません
+    if tone_and_color_name is None:
+        raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
+
+    # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
+    if tone_and_color_name == 'paper_color':
+        return None
+
+    # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
+    if tone_and_color_name == 'auto':
+        return color_code_dict['xl_theme']['xl_black']
+
+    tone, color = tone_and_color_name.split('.', 2)
+    tone = tone.strip()
+    color = color.strip()
+
+    if tone in color_code_dict:
+        if color in color_code_dict[tone]:
+            return color_code_dict[tone][color]
+
+    print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
+    return None
 
 
 def tone_and_color_name_to_fill_obj(tone_and_color_name):
@@ -349,7 +377,12 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     if tone_and_color_name == 'auto':
         return PatternFill(patternType='solid', fgColor=color_code_dict['xl_theme']['xl_black'])
 
-    tone, color = tone_and_color_name.split('.', 2)
+    try:
+        tone, color = tone_and_color_name.split('.', 2)
+    except:
+        print(f'ERROR: {tone_and_color_name=}')
+        raise
+
     tone = tone.strip()
     color = color.strip()
 
