@@ -45,6 +45,9 @@ py trellis.py init
         "top": 0,
         "width": 100,
         "height": 100
+    },
+    "ruler": {
+        "visible": true
     }
 }
 ```
@@ -123,6 +126,9 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
         "top": "0o2",
         "width": "10o1",
         "height": "10o2"
+    },
+    "ruler": {
+        "visible": true
     }
 }
 ```
