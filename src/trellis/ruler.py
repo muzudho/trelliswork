@@ -58,69 +58,58 @@ def render_ruler(document, ws):
     # ウィンドウ枠の固定
     ws.freeze_panes = 'C2'
 
-    # 定規の文字色。２色固定
-    # TODO 任意色数に対応したい
+    # 定規の文字色
     font_list = None
 
     if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
-        font_list = [None] * len(fg_color_list)
-        
-        if (fg_color_text := fg_color_list[0]) == 'paper_color':
-            #font_list[0] = Font(color=None)   # フォントに使うと黒になる
-            raise ValueError('fgColor に paper_color を指定してはいけません')
+        if len(fg_color_list) == 0:
+            # フォントの色の既定値は黒が１つ
+            font_list = [Font(color='000000')]
 
-        elif (first_font_text := tone_and_color_name_to_color_code(fg_color_text)) and first_font_text is not None:
-            try:
-                font_list[0] = Font(color=first_font_text)
-            except:
-                print(f'ERROR: {first_font_text=}')
-                raise
+        else:
+            font_list = [None] * len(fg_color_list)
+            
+            for index, fg_color_text in enumerate(fg_color_list):
+                if fg_color_text == 'paper_color':
+                    #font_list[index] = Font(color=None)   # フォントに使うと黒になる
+                    raise ValueError(f'fgColor に paper_color を指定してはいけません {index=}')
 
-        if (fg_color_text := fg_color_list[1]) == 'paper_color':
-            #font_list[1] = Font(color=None)   # フォントに使うと黒になる
-            raise ValueError('fgColor に paper_color を指定してはいけません')
-
-        elif (second_font_text := tone_and_color_name_to_color_code(fg_color_text)) and second_font_text is not None:
-            try:
-                font_list[1] = Font(color=second_font_text)
-            except:
-                print(f'ERROR: {second_font_text=}')
-                raise
+                elif (font_text := tone_and_color_name_to_color_code(fg_color_text)) and font_text is not None:
+                    try:
+                        font_list[index] = Font(color=font_text)
+                    except:
+                        print(f'ERROR: {index=} {font_text=}')
+                        raise
 
     else:
         # フォントの色の既定値は黒が１つ
         font_list = [Font(color='000000')]
 
-    # 定規の背景色。２色固定
-    # TODO 任意色数に対応したい
+    # 定規の背景色
     pattern_fill_list = None
 
     if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
-        pattern_fill_list = [None] * len(bg_color_list)
+        if len(bg_color_list) == 0:
+            # 背景色の既定値は［塗りつぶし無し］
+            pattern_fill_list = [PatternFill(patternType=None)]
         
-        if (bg_color_text := bg_color_list[0]) == 'paper_color':
-            pattern_fill_list[0] = PatternFill(patternType=None)
+        else:
+            pattern_fill_list = [None] * len(bg_color_list)
+            
+            for index, bg_color_text in enumerate(bg_color_list):
+                if bg_color_text == 'paper_color':
+                    pattern_fill_list[index] = PatternFill(patternType=None)
 
-        elif (first_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and first_pattern_fill_text is not None:
-            try:
-                pattern_fill_list[0] = PatternFill(patternType='solid', fgColor=first_pattern_fill_text)
-            except:
-                print(f'ERROR: {first_pattern_fill_text=}')
-                raise
-
-        if (bg_color_text := bg_color_list[1]) == 'paper_color':
-            pattern_fill_list[1] = PatternFill(patternType=None)
-
-        elif (second_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and second_pattern_fill_text is not None:
-            try:
-                pattern_fill_list[1] = PatternFill(patternType='solid', fgColor=second_pattern_fill_text)
-            except:
-                print(f'ERROR: {second_pattern_fill_text=}')
-                raise
+                elif (pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and pattern_fill_text is not None:
+                    try:
+                        pattern_fill_list[index] = PatternFill(patternType='solid', fgColor=pattern_fill_text)
+                    except:
+                        print(f'ERROR: {index=} {pattern_fill_text=}')
+                        raise
 
     else:
-        # フォントの色の既定値は白が１つ
-        pattern_fill_list = [PatternFill(patternType='solid', fgColor='FFFFFF')]
+        # 背景色の既定値は［塗りつぶし無し］
+        pattern_fill_list = [PatternFill(patternType=None)]
 
 
     center_center_alignment = Alignment(horizontal='center', vertical='center')
@@ -178,9 +167,9 @@ def render_ruler(document, ws):
             if is_left_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_numbering_and_coloring_of_left_edge():
@@ -219,9 +208,9 @@ def render_ruler(document, ws):
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_of_left_edge_bottom_spacing():
@@ -244,9 +233,9 @@ def render_ruler(document, ws):
             if vertical_remain == 2:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_numbering_and_coloring_of_bottom_edge():
@@ -271,9 +260,9 @@ def render_ruler(document, ws):
             if is_left_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_numbering_and_coloring_of_right_edge():
@@ -300,9 +289,9 @@ def render_ruler(document, ws):
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_of_right_edge_bottom_spacing():
@@ -325,9 +314,9 @@ def render_ruler(document, ws):
             if vertical_remain == 2:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % 2]
+                cell.font = font_list[ruler_number % len(font_list)]
 
-            cell.fill = pattern_fill_list[ruler_number % 2]
+            cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_of_top_left_spacing():
@@ -338,7 +327,7 @@ def render_ruler(document, ws):
         ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
-        cell.fill = pattern_fill_list[ruler_number % 2]
+        cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_right_end_spacing_on_top():
@@ -361,7 +350,7 @@ def render_ruler(document, ws):
         ruler_number = column_th // OUT_COUNTS_THAT_CHANGE_INNING
 
         cell = ws[f'{column_letter}{row_th}']
-        cell.fill = pattern_fill_list[ruler_number % 2]
+        cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_of_bottom_left_spacing():
@@ -373,7 +362,7 @@ def render_ruler(document, ws):
         ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
-        cell.fill = pattern_fill_list[ruler_number % 2]
+        cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_coloring_right_end_spacing_on_bottom():
@@ -396,7 +385,7 @@ def render_ruler(document, ws):
         ruler_number = column_th // OUT_COUNTS_THAT_CHANGE_INNING
 
         cell = ws[f'{column_letter}{row_th}']
-        cell.fill = pattern_fill_list[ruler_number % 2]
+        cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
     def render_ruler_merge_cells_of_top_edge():
