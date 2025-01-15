@@ -178,15 +178,9 @@ def render_ruler(document, ws):
             if is_left_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    cell.font = font_list[0]
-                else:
-                    cell.font = font_list[1]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                cell.fill = pattern_fill_list[0]
-            else:
-                cell.fill = pattern_fill_list[1]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_numbering_and_coloring_of_left_edge():
@@ -225,15 +219,9 @@ def render_ruler(document, ws):
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    cell.font = font_list[0]
-                else:
-                    cell.font = font_list[1]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                cell.fill = pattern_fill_list[0]
-            else:
-                cell.fill = pattern_fill_list[1]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_of_left_edge_bottom_spacing():
@@ -256,15 +244,9 @@ def render_ruler(document, ws):
             if vertical_remain == 2:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    cell.font = font_list[0]
-                else:
-                    cell.font = font_list[1]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                cell.fill = pattern_fill_list[0]
-            else:
-                cell.fill = pattern_fill_list[1]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_numbering_and_coloring_of_bottom_edge():
@@ -276,7 +258,6 @@ def render_ruler(document, ws):
             return
 
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         for column_th in range(
                 canvas_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
@@ -290,27 +271,9 @@ def render_ruler(document, ws):
             if is_left_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    if bottom_is_first_pattern_fill:
-                        cell.font = font_list[0]
-                    else:
-                        cell.font = font_list[1]
-                else:
-                    if bottom_is_first_pattern_fill:
-                        cell.font = font_list[1]
-                    else:
-                        cell.font = font_list[0]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                if bottom_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[0]
-                else:
-                    cell.fill = pattern_fill_list[1]
-            else:
-                if bottom_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[1]
-                else:
-                    cell.fill = pattern_fill_list[0]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_numbering_and_coloring_of_right_edge():
@@ -323,7 +286,6 @@ def render_ruler(document, ws):
 
         column_th = canvas_rect.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
-        rightest_is_first_pattern_fill = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
         shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
@@ -338,27 +300,9 @@ def render_ruler(document, ws):
             if is_top_end:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    if rightest_is_first_pattern_fill:
-                        cell.font = font_list[0]
-                    else:
-                        cell.font = font_list[1]
-                else:
-                    if rightest_is_first_pattern_fill:
-                        cell.font = font_list[1]
-                    else:
-                        cell.font = font_list[0]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                if rightest_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[0]
-                else:
-                    cell.fill = pattern_fill_list[1]
-            else:
-                if rightest_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[1]
-                else:
-                    cell.fill = pattern_fill_list[0]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_of_right_edge_bottom_spacing():
@@ -377,33 +321,13 @@ def render_ruler(document, ws):
             #print(f"""右辺の最後の要素の左上へ着色 {row_th=} {ruler_number=}""")
             cell = ws[f'{column_letter}{row_th}']
 
-            rightest_is_first_pattern_fill = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
-
             # 数字も振りたい
             if vertical_remain == 2:
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
-                if ruler_number % 2 == 0:
-                    if rightest_is_first_pattern_fill:
-                        cell.font = font_list[0]
-                    else:
-                        cell.font = font_list[1]
-                else:
-                    if rightest_is_first_pattern_fill:
-                        cell.font = font_list[1]
-                    else:
-                        cell.font = font_list[0]
+                cell.font = font_list[ruler_number % 2]
 
-            if ruler_number % 2 == 0:
-                if rightest_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[0]
-                else:
-                    cell.fill = pattern_fill_list[1]
-            else:
-                if rightest_is_first_pattern_fill:
-                    cell.fill = pattern_fill_list[1]
-                else:
-                    cell.fill = pattern_fill_list[0]
+            cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_of_top_left_spacing():
@@ -414,10 +338,7 @@ def render_ruler(document, ws):
         ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
-        if ruler_number % 2 == 0:
-            cell.fill = pattern_fill_list[0]
-        else:
-            cell.fill = pattern_fill_list[1]
+        cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_right_end_spacing_on_top():
@@ -440,10 +361,7 @@ def render_ruler(document, ws):
         ruler_number = column_th // OUT_COUNTS_THAT_CHANGE_INNING
 
         cell = ws[f'{column_letter}{row_th}']
-        if ruler_number % 2 == 0:
-            cell.fill = pattern_fill_list[0]
-        else:
-            cell.fill = pattern_fill_list[1]
+        cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_of_bottom_left_spacing():
@@ -451,21 +369,11 @@ def render_ruler(document, ws):
         """
         column_th = canvas_rect.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
-        if ruler_number % 2 == 0:
-            if bottom_is_first_pattern_fill:
-                cell.fill = pattern_fill_list[0]
-            else:
-                cell.fill = pattern_fill_list[1]
-        else:
-            if bottom_is_first_pattern_fill:
-                cell.fill = pattern_fill_list[1]
-            else:
-                cell.fill = pattern_fill_list[0]
+        cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_coloring_right_end_spacing_on_bottom():
@@ -476,7 +384,6 @@ def render_ruler(document, ws):
             return
 
         row_th = canvas_rect.bottom_obj.total_of_out_counts_th - 1
-        bottom_is_first_pattern_fill = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING % 2 == 0
 
         # 何アウト余るか
         spacing = (canvas_rect.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % OUT_COUNTS_THAT_CHANGE_INNING
@@ -489,16 +396,7 @@ def render_ruler(document, ws):
         ruler_number = column_th // OUT_COUNTS_THAT_CHANGE_INNING
 
         cell = ws[f'{column_letter}{row_th}']
-        if ruler_number % 2 == 0:
-            if bottom_is_first_pattern_fill:
-                cell.fill = pattern_fill_list[0]
-            else:
-                cell.fill = pattern_fill_list[1]
-        else:
-            if bottom_is_first_pattern_fill:
-                cell.fill = pattern_fill_list[1]
-            else:
-                cell.fill = pattern_fill_list[0]
+        cell.fill = pattern_fill_list[ruler_number % 2]
 
 
     def render_ruler_merge_cells_of_top_edge():
