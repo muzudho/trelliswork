@@ -147,4 +147,38 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 
 トレリスでは上１行、左２列をウィンドウ固定するので、 left と top は 0 にして使うことを推奨します。  
 
+
+## 手順８
+
+👇　手順７で作った 📄 `./temp/lesson/hello_world.json` ファイルの内容について、  
+
+```json
+{
+    "canvas": {
+        "left": "0o1",
+        "top": "0o2",
+        "width": "10o1",
+        "height": "10o2"
+    },
+    "ruler": {
+        "visible": false
+    }
+}
+```
+
+👆　`["ruler"]["visible"]` （このように表記するとします）が true だったところを、 false に変えてください。  
+
+手順７と同様に、以下のコマンドを打鍵してください。  
+
+```shell
+py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+```
+
+![定規を非表示](../../img/[20250115-1900]invisible-ruler.png)  
+
+👆　［定規］を不可視にしました。ただし、定規を前提とした［投球回］や［長方形］の機能は消えていません  
+
+
+## 次回
+
 次回の記事は、色を指定するための、カラーシステムを予定しています。  

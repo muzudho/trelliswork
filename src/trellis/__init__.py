@@ -393,6 +393,20 @@ def render_ruler(document, ws):
             canvas_rect.top_obj.total_of_out_counts_th + canvas_rect.height_obj.total_of_out_counts_qty):
         ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
+
+    # 定規を描画しないケース
+    if (
+            # ruler 項目がない、 
+            'ruler' not in document or
+            # ruler 項目にヌルが設定されている
+            (ruler_dict := document['ruler']) is None or
+            # document.visibule プロパティがない
+            'visible' not in ruler_dict or
+            # document.visibule プロパティがヌルか偽だ
+            ruler_dict['visible'] in [None, False]):
+        return
+
+
     # ウィンドウ枠の固定
     ws.freeze_panes = 'C2'
 
