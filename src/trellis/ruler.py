@@ -60,63 +60,68 @@ def render_ruler(document, ws):
 
     # 定規の文字色。２色固定
     # TODO 任意色数に対応したい
+    font_list = None
+
     if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
+        font_list = [None] * len(fg_color_list)
         
         if (fg_color_text := fg_color_list[0]) == 'paper_color':
-            #first_font = Font(color=None)   # フォントに使うと黒になる
+            #font_list[0] = Font(color=None)   # フォントに使うと黒になる
             raise ValueError('fgColor に paper_color を指定してはいけません')
 
         elif (first_font_text := tone_and_color_name_to_color_code(fg_color_text)) and first_font_text is not None:
             try:
-                first_font = Font(color=first_font_text)
+                font_list[0] = Font(color=first_font_text)
             except:
                 print(f'ERROR: {first_font_text=}')
                 raise
 
         if (fg_color_text := fg_color_list[1]) == 'paper_color':
-            #second_font = Font(color=None)   # フォントに使うと黒になる
+            #font_list[1] = Font(color=None)   # フォントに使うと黒になる
             raise ValueError('fgColor に paper_color を指定してはいけません')
 
         elif (second_font_text := tone_and_color_name_to_color_code(fg_color_text)) and second_font_text is not None:
             try:
-                second_font = Font(color=second_font_text)
+                font_list[1] = Font(color=second_font_text)
             except:
                 print(f'ERROR: {second_font_text=}')
                 raise
 
     else:
-        # フォントの色の既定値は黒
-        first_font = Font(color='000000')
-        second_font = Font(color='000000')
+        # フォントの色の既定値は黒が１つ
+        font_list = [Font(color='000000')]
 
     # 定規の背景色。２色固定
     # TODO 任意色数に対応したい
+    pattern_fill_list = None
+
     if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
+        pattern_fill_list = [None] * len(bg_color_list)
         
         if (bg_color_text := bg_color_list[0]) == 'paper_color':
-            first_pattern_fill = PatternFill(patternType=None)
+            pattern_fill_list[0] = PatternFill(patternType=None)
 
         elif (first_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and first_pattern_fill_text is not None:
             try:
-                first_pattern_fill = PatternFill(patternType='solid', fgColor=first_pattern_fill_text)
+                pattern_fill_list[0] = PatternFill(patternType='solid', fgColor=first_pattern_fill_text)
             except:
                 print(f'ERROR: {first_pattern_fill_text=}')
                 raise
 
         if (bg_color_text := bg_color_list[1]) == 'paper_color':
-            second_pattern_fill = PatternFill(patternType=None)
+            pattern_fill_list[1] = PatternFill(patternType=None)
 
         elif (second_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and second_pattern_fill_text is not None:
             try:
-                second_pattern_fill = PatternFill(patternType='solid', fgColor=second_pattern_fill_text)
+                pattern_fill_list[1] = PatternFill(patternType='solid', fgColor=second_pattern_fill_text)
             except:
                 print(f'ERROR: {second_pattern_fill_text=}')
                 raise
 
     else:
-        # フォントの色の既定値は白
-        first_pattern_fill = PatternFill(patternType='solid', fgColor='FFFFFF')
-        second_pattern_fill = PatternFill(patternType='solid', fgColor='FFFFFF')
+        # フォントの色の既定値は白が１つ
+        pattern_fill_list = [PatternFill(patternType='solid', fgColor='FFFFFF')]
+
 
     center_center_alignment = Alignment(horizontal='center', vertical='center')
 
@@ -174,14 +179,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = first_font
+                    cell.font = font_list[0]
                 else:
-                    cell.font = second_font
+                    cell.font = font_list[1]
 
             if ruler_number % 2 == 0:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
             else:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
 
 
     def render_ruler_numbering_and_coloring_of_left_edge():
@@ -221,14 +226,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = first_font
+                    cell.font = font_list[0]
                 else:
-                    cell.font = second_font
+                    cell.font = font_list[1]
 
             if ruler_number % 2 == 0:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
             else:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
 
 
     def render_ruler_coloring_of_left_edge_bottom_spacing():
@@ -252,14 +257,14 @@ def render_ruler(document, ws):
                 cell.value = ruler_number
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
-                    cell.font = first_font
+                    cell.font = font_list[0]
                 else:
-                    cell.font = second_font
+                    cell.font = font_list[1]
 
             if ruler_number % 2 == 0:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
             else:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
 
 
     def render_ruler_numbering_and_coloring_of_bottom_edge():
@@ -287,25 +292,25 @@ def render_ruler(document, ws):
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
                     if bottom_is_first_pattern_fill:
-                        cell.font = first_font
+                        cell.font = font_list[0]
                     else:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                 else:
                     if bottom_is_first_pattern_fill:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                     else:
-                        cell.font = first_font
+                        cell.font = font_list[0]
 
             if ruler_number % 2 == 0:
                 if bottom_is_first_pattern_fill:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
                 else:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
             else:
                 if bottom_is_first_pattern_fill:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
                 else:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
 
 
     def render_ruler_numbering_and_coloring_of_right_edge():
@@ -335,25 +340,25 @@ def render_ruler(document, ws):
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
                     if rightest_is_first_pattern_fill:
-                        cell.font = first_font
+                        cell.font = font_list[0]
                     else:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                 else:
                     if rightest_is_first_pattern_fill:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                     else:
-                        cell.font = first_font
+                        cell.font = font_list[0]
 
             if ruler_number % 2 == 0:
                 if rightest_is_first_pattern_fill:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
                 else:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
             else:
                 if rightest_is_first_pattern_fill:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
                 else:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
 
 
     def render_ruler_coloring_of_right_edge_bottom_spacing():
@@ -380,25 +385,25 @@ def render_ruler(document, ws):
                 cell.alignment = center_center_alignment
                 if ruler_number % 2 == 0:
                     if rightest_is_first_pattern_fill:
-                        cell.font = first_font
+                        cell.font = font_list[0]
                     else:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                 else:
                     if rightest_is_first_pattern_fill:
-                        cell.font = second_font
+                        cell.font = font_list[1]
                     else:
-                        cell.font = first_font
+                        cell.font = font_list[0]
 
             if ruler_number % 2 == 0:
                 if rightest_is_first_pattern_fill:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
                 else:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
             else:
                 if rightest_is_first_pattern_fill:
-                    cell.fill = second_pattern_fill
+                    cell.fill = pattern_fill_list[1]
                 else:
-                    cell.fill = first_pattern_fill
+                    cell.fill = pattern_fill_list[0]
 
 
     def render_ruler_coloring_of_top_left_spacing():
@@ -410,9 +415,9 @@ def render_ruler(document, ws):
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            cell.fill = first_pattern_fill
+            cell.fill = pattern_fill_list[0]
         else:
-            cell.fill = second_pattern_fill
+            cell.fill = pattern_fill_list[1]
 
 
     def render_ruler_coloring_right_end_spacing_on_top():
@@ -436,9 +441,9 @@ def render_ruler(document, ws):
 
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
-            cell.fill = first_pattern_fill
+            cell.fill = pattern_fill_list[0]
         else:
-            cell.fill = second_pattern_fill
+            cell.fill = pattern_fill_list[1]
 
 
     def render_ruler_coloring_of_bottom_left_spacing():
@@ -453,14 +458,14 @@ def render_ruler(document, ws):
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
             if bottom_is_first_pattern_fill:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
             else:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
         else:
             if bottom_is_first_pattern_fill:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
             else:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
 
 
     def render_ruler_coloring_right_end_spacing_on_bottom():
@@ -486,14 +491,14 @@ def render_ruler(document, ws):
         cell = ws[f'{column_letter}{row_th}']
         if ruler_number % 2 == 0:
             if bottom_is_first_pattern_fill:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
             else:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
         else:
             if bottom_is_first_pattern_fill:
-                cell.fill = second_pattern_fill
+                cell.fill = pattern_fill_list[1]
             else:
-                cell.fill = first_pattern_fill
+                cell.fill = pattern_fill_list[0]
 
 
     def render_ruler_merge_cells_of_top_edge():
