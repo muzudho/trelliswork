@@ -25,22 +25,38 @@ class InningsPitched():
     def from_integer_and_decimal_part(integer_part, decimal_part):
         """整数部と小数部を指定
         """
-        if decimal_part == 0:
+        if not decimal_part or decimal_part == 0:
             return InningsPitched(integer_part)
 
         else:
             return InningsPitched(f'{integer_part}o{decimal_part}')
 
 
-    def __init__(self, value):
+    @staticmethod
+    def from_var_value(var_value):
+        return InningsPitched(var_value)
 
-        if isinstance(value, str):
-            integer_part, decimal_part = map(int, value.split('o', 2))
+
+    def __init__(self, var_value):
+
+        try:
+            # "100" が来たら 100 にする
+            var_value = int(var_value)
+        except ValueError:
+            pass
+
+        if isinstance(var_value, int):
+            self._decimal_part = 0
+            self._integer_part = var_value
+
+        elif isinstance(var_value, str):
+            integer_part, decimal_part = map(int, var_value.split('o', 2))
             self._decimal_part = decimal_part
             self._integer_part = integer_part
+
         else:
-            self._decimal_part = 0
-            self._integer_part = value
+            raise ValueError(f'{type(var_value)=} {var_value=}')
+
 
         if self._decimal_part == 0:
             self._var_value = self._integer_part
@@ -86,7 +102,7 @@ class InningsPitched():
     def offset(self, var_value):
         """この投球回に、引数を加算した数を算出して返します"""
         l = self                       # Left operand
-        r = InningsPitched(var_value)  # Right operand
+        r = InningsPitched.from_var_value(var_value)  # Right operand
         sum_decimal_part = l.decimal_part + r.decimal_part
         integer_part = l.integer_part + r.integer_part + sum_decimal_part // OUT_COUNTS_THAT_CHANGE_INNING
         return InningsPitched.from_integer_and_decimal_part(
@@ -1827,7 +1843,7 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = InningsPitched(pillar_rect.right_obj.var_value).offset(-1).var_value
+                    left_segment_dict['right'] = InningsPitched.from_var_value(pillar_rect.right_obj.var_value).offset(-1).var_value
                     new_segment_list.append(left_segment_dict)
 
                     # 右側のセグメントを新規作成し、既存リストに追加
@@ -1870,6 +1886,31 @@ def edit_document_and_solve_auto_split_pillar(document):
 
 
 class TrellisInSrc():
+    """例えば
+    
+    import trellis as tr
+
+    とインポートしたとき、
+
+    tr.render_ruler(document, ws)
+
+    という形で関数を呼び出せるようにしたラッパー
+    """
+
+
+    @staticmethod
+    def InningsPitched(var_value=None, integer_part=None, decimal_part=None):
+        print(f'★InningsPitched {var_value=} {integer_part=} {decimal_part=}')
+
+        global InningsPitched
+        if var_value:
+            return InningsPitched.from_var_value(var_value)
+        elif integer_part or decimal_part:
+            return InningsPitched.from_integer_and_decimal_part(integer_part, decimal_part)
+        else:
+            raise ValueError(f'{var_value=} {integer_part=} {decimal_part=}')
+
+
     @staticmethod
     def render_ruler(document, ws):
         global render_ruler

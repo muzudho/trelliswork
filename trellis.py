@@ -17,21 +17,21 @@ def main():
         args = parser.parse_args()
 
         if args.command == 'init':
-            canvas_width = input("""\
+            canvas_width_var_value = input("""\
 これからキャンバスの横幅を指定してもらいます。
 よくわからないときは 100 を入力してください。
-単位は［大グリッド１マス分］です。
+単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
 例）　100
 > """)
-            canvas_width = int(canvas_width)
+            canvas_width_obj = tr.InningsPitched(var_value=canvas_width_var_value)
 
-            canvas_height = input("""\
+            canvas_height_var_value = input("""\
 これからキャンバスの縦幅を指定してもらいます。
 よくわからないときは 100 を入力してください。
-単位は［大グリッド１マス分］です。
+単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
 例）　100
 > """)
-            canvas_height = int(canvas_height)
+            canvas_height_obj = tr.InningsPitched(var_value=canvas_height_var_value)
 
             json_path_to_write = input("""\
 これから、JSON形式ファイルの書出し先パスを指定してもらいます。
@@ -44,8 +44,11 @@ def main():
                 "canvas": {
                     "left": 0,
                     "top": 0,
-                    "width": canvas_width,
-                    "height": canvas_height
+                    "width": canvas_width_obj.var_value,
+                    "height": canvas_height_obj.var_value
+                },
+                "ruler": {
+                    "visible": True
                 }
             }
 
@@ -64,10 +67,10 @@ def main():
             with open(json_path_to_read, encoding='utf-8') as f:
                 document = json.load(f)
 
-            canvas_width = document['canvas']['width']
-            canvas_height = document['canvas']['height']
+            canvas_width_obj = tr.InningsPitched(var_value=document['canvas']['width'])
+            canvas_height_obj = tr.InningsPitched(var_value=document['canvas']['height'])
 
-            print(f"""{json_path_to_read} ファイルには、キャンバスの横幅 {canvas_width}、縦幅 {canvas_height} と書いてあったので、それに従って定規を描きます""")
+            print(f"""{json_path_to_read} ファイルには、キャンバスの横幅 {canvas_width_obj.var_value}、縦幅 {canvas_height_obj.var_value} と書いてあったので、それに従って定規を描きます""")
 
             # ワークブックを新規生成
             wb = xl.Workbook()
