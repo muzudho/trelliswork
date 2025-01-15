@@ -72,35 +72,6 @@ def main():
 {json_path_to_write} ファイルを書き出しました。確認してください。
 """)
 
-        elif args.command == 'ruler':
-            json_path_to_read = args.file
-            wb_path_to_write = args.output
-
-            print(f"🔧　read {json_path_to_read} file")
-            with open(json_path_to_read, encoding='utf-8') as f:
-                document = json.load(f)
-
-            canvas_width_obj = tr.InningsPitched(var_value=document['canvas']['width'])
-            canvas_height_obj = tr.InningsPitched(var_value=document['canvas']['height'])
-
-            print(f"""{json_path_to_read} ファイルには、キャンバスの横幅 {canvas_width_obj.var_value}、縦幅 {canvas_height_obj.var_value} と書いてあったので、それに従って定規を描きます""")
-
-            # ワークブックを新規生成
-            wb = xl.Workbook()
-
-            # ワークシート
-            ws = wb['Sheet']
-
-            # 定規の描画
-            tr.render_ruler(document, ws)
-
-            # ワークブックの保存
-            print(f"🔧　write {wb_path_to_write} file")
-            wb.save(wb_path_to_write)
-
-            print(f"""\
-{wb_path_to_write} ファイルを書き出しました。確認してください。
-""")
 
         elif args.command == 'compile':
             json_path_to_read = args.file
