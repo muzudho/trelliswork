@@ -58,11 +58,14 @@ def render_ruler(document, ws):
     # ウィンドウ枠の固定
     ws.freeze_panes = 'C2'
 
-    # 定規の着色
-    dark_gray = PatternFill(patternType='solid', fgColor='808080')
-    light_gray = PatternFill(patternType='solid', fgColor='F2F2F2')
+    # TODO 定規の文字色
+    # if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
     dark_gray_font = Font(color='808080')
     light_gray_font = Font(color='F2F2F2')
+
+    # 定規の背景色
+    dark_gray = PatternFill(patternType='solid', fgColor='808080')
+    light_gray = PatternFill(patternType='solid', fgColor='F2F2F2')
     center_center_alignment = Alignment(horizontal='center', vertical='center')
 
 

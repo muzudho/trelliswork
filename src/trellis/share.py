@@ -243,92 +243,92 @@ class Rectangle():
 ####################
 # MARK: Color system
 ####################
+none_pattern_fill = PatternFill(patternType=None)
 # エクセルの色システム（勝手に作ったったもの）
-fill_palette_none = PatternFill(patternType=None)
-fill_palette = {
+color_code_dict = {
     'xl_theme' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='FFFFFF'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='000000'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='E7E6E6'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='44546A'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='5B9BD5'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='ED7D31'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='A5A5A5'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFC000'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='4472C4'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='70AD47'),
+        'xl_white' : 'FFFFFF',
+        'xl_black' : '000000',
+        'xl_red_gray' : 'E7E6E6',
+        'xl_blue_gray' : '44546A',
+        'xl_blue' : '5B9BD5',
+        'xl_brown' : 'ED7D31',
+        'xl_gray' : 'A5A5A5',
+        'xl_yellow' : 'FFC000',
+        'xl_naviy' : '4472C4',
+        'xl_green' : '70AD47',
     },
     'xl_pale' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='F2F2F2'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='808080'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='AEAAAA'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='D6DCE4'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='DDEBF7'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='FCE4D6'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='EDEDED'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFF2CC'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='D9E1F2'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='E2EFDA'),
+        'xl_white' : 'F2F2F2',
+        'xl_black' : '808080',
+        'xl_red_gray' : 'AEAAAA',
+        'xl_blue_gray' : 'D6DCE4',
+        'xl_blue' : 'DDEBF7',
+        'xl_brown' : 'FCE4D6',
+        'xl_gray' : 'EDEDED',
+        'xl_yellow' : 'FFF2CC',
+        'xl_naviy' : 'D9E1F2',
+        'xl_green' : 'E2EFDA',
     },
     'xl_light' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='D9D9D9'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='595959'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='757171'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='ACB9CA'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='BDD7EE'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='F8CBAD'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='DBDBDB'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFE699'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='B4C6E7'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='C6E0B4'),
+        'xl_white' : 'D9D9D9',
+        'xl_black' : '595959',
+        'xl_red_gray' : '757171',
+        'xl_blue_gray' : 'ACB9CA',
+        'xl_blue' : 'BDD7EE',
+        'xl_brown' : 'F8CBAD',
+        'xl_gray' : 'DBDBDB',
+        'xl_yellow' : 'FFE699',
+        'xl_naviy' : 'B4C6E7',
+        'xl_green' : 'C6E0B4',
     },
     'xl_soft' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='BFBFBF'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='404040'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='3A3838'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='8497B0'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='9BC2E6'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='F4B084'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='C9C9C9'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFD966'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='8EA9DB'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='A9D08E'),
+        'xl_white' : 'BFBFBF',
+        'xl_black' : '404040',
+        'xl_red_gray' : '3A3838',
+        'xl_blue_gray' : '8497B0',
+        'xl_blue' : '9BC2E6',
+        'xl_brown' : 'F4B084',
+        'xl_gray' : 'C9C9C9',
+        'xl_yellow' : 'FFD966',
+        'xl_naviy' : '8EA9DB',
+        'xl_green' : 'A9D08E',
     },
     'xl_strong' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='A6A6A6'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='262626'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='3A3838'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='333F4F'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='2F75B5'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='C65911'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='7B7B7B'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='BF8F00'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='305496'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='548235'),
+        'xl_white' : 'A6A6A6',
+        'xl_black' : '262626',
+        'xl_red_gray' : '3A3838',
+        'xl_blue_gray' : '333F4F',
+        'xl_blue' : '2F75B5',
+        'xl_brown' : 'C65911',
+        'xl_gray' : '7B7B7B',
+        'xl_yellow' : 'BF8F00',
+        'xl_naviy' : '305496',
+        'xl_green' : '548235',
     },
     'xl_deep' : {
-        'xl_white' : PatternFill(patternType='solid', fgColor='808080'),
-        'xl_black' : PatternFill(patternType='solid', fgColor='0D0D0D'),
-        'xl_red_gray' : PatternFill(patternType='solid', fgColor='161616'),
-        'xl_blue_gray' : PatternFill(patternType='solid', fgColor='161616'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='1F4E78'),
-        'xl_brown' : PatternFill(patternType='solid', fgColor='833C0C'),
-        'xl_gray' : PatternFill(patternType='solid', fgColor='525252'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='806000'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='203764'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='375623'),
+        'xl_white' : '808080',
+        'xl_black' : '0D0D0D',
+        'xl_red_gray' : '161616',
+        'xl_blue_gray' : '161616',
+        'xl_blue' : '1F4E78',
+        'xl_brown' : '833C0C',
+        'xl_gray' : '525252',
+        'xl_yellow' : '806000',
+        'xl_naviy' : '203764',
+        'xl_green' : '375623',
     },
     'xl_standard' : {
-        'xl_brown' : PatternFill(patternType='solid', fgColor='C00000'),
-        'xl_red' : PatternFill(patternType='solid', fgColor='FF0000'),
-        'xl_orange' : PatternFill(patternType='solid', fgColor='FFC000'),
-        'xl_yellow' : PatternFill(patternType='solid', fgColor='FFFF00'),
-        'xl_yellow_green' : PatternFill(patternType='solid', fgColor='92D050'),
-        'xl_green' : PatternFill(patternType='solid', fgColor='00B050'),
-        'xl_dodger_blue' : PatternFill(patternType='solid', fgColor='00B0F0'),
-        'xl_blue' : PatternFill(patternType='solid', fgColor='0070C0'),
-        'xl_naviy' : PatternFill(patternType='solid', fgColor='002060'),
-        'xl_violet' : PatternFill(patternType='solid', fgColor='7030A0'),
+        'xl_brown' : 'C00000',
+        'xl_red' : 'FF0000',
+        'xl_orange' : 'FFC000',
+        'xl_yellow' : 'FFFF00',
+        'xl_yellow_green' : '92D050',
+        'xl_green' : '00B050',
+        'xl_dodger_blue' : '00B0F0',
+        'xl_blue' : '0070C0',
+        'xl_naviy' : '002060',
+        'xl_violet' : '7030A0',
     }
 }
 
@@ -343,19 +343,19 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
 
     # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
     if tone_and_color_name == 'paper_color':
-        return fill_palette_none
+        return none_pattern_fill
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
-        return fill_palette['xl_theme']['xl_black']
+        return PatternFill(patternType='solid', fgColor=color_code_dict['xl_theme']['xl_black'])
 
     tone, color = tone_and_color_name.split('.', 2)
+    tone = tone.strip()
+    color = color.strip()
 
-    if tone in fill_palette:
-        tone = tone.strip()
-        if color in fill_palette[tone]:
-            color = color.strip()
-            return fill_palette[tone][color]
+    if tone in color_code_dict:
+        if color in color_code_dict[tone]:
+            return PatternFill(patternType='solid', fgColor=color_code_dict[tone][color])
 
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
-    return fill_palette_none
+    return none_pattern_fill

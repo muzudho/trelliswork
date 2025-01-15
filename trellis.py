@@ -48,7 +48,15 @@ def main():
                     "height": canvas_height_obj.var_value
                 },
                 "ruler": {
-                    "visible": True
+                    "visible": True,
+                    "fgColor": [
+                        "xl_pale.xl_white",
+                        "xl_deep.xl_white"
+                    ],
+                    "bgColor": [
+                        "xl_deep.xl_white",
+                        "xl_pale.xl_white"
+                    ]
                 }
             }
 
