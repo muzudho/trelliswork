@@ -164,6 +164,28 @@ def fill_end_terminal(ws, column_th, row_th):
             ])
 
 
+def render_all_rectangles(document, ws):
+    """全ての矩形の描画
+    """
+    print('🔧　全ての矩形の描画')
+
+    # もし、矩形のリストがあれば
+    if 'rectangles' in document and (rectangles_list := document['rectangles']):
+
+        for rectangle_dict in rectangles_list:
+            if 'bgColor' in rectangle_dict and (bgColor := rectangle_dict['bgColor']):
+                rectangle_rect = Rectangle.from_dict(rectangle_dict)
+
+                # 矩形を塗りつぶす
+                fill_rectangle(
+                        ws=ws,
+                        column_th=rectangle_rect.left_obj.total_of_out_counts_th,
+                        row_th=rectangle_rect.top_obj.total_of_out_counts_th,
+                        columns=rectangle_rect.width_obj.total_of_out_counts_qty,
+                        rows=rectangle_rect.height_obj.total_of_out_counts_qty,
+                        fill_obj=tone_and_color_name_to_fill_obj(bgColor))
+
+
 def render_all_pillar_rugs(document, ws):
     """全ての柱の敷物の描画
     """
@@ -915,6 +937,12 @@ class TrellisInSrc():
     def render_ruler(document, ws):
         global render_ruler
         render_ruler(document, ws)
+
+
+    @staticmethod
+    def render_all_rectangles(document, ws):
+        global render_all_rectangles
+        render_all_rectangles(document, ws)
 
 
     @staticmethod

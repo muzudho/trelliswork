@@ -48,6 +48,9 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
+# 全ての矩形の描画
+tr.render_all_rectangles(document, ws)
+
 # 全ての柱の敷物の描画
 tr.render_all_pillar_rugs(document, ws)
 

@@ -44,7 +44,7 @@
 そして［プログラミング・レッスン１の手順８］と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![定規の色を変更](../../img/[20250115-2124]change-ruler-color.png)  
@@ -83,7 +83,7 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 そして手順２と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![紙の地の色に変更](../../img/[20250115-2201]paper-color.png)  
@@ -125,7 +125,7 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 そして手順３と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![紙の地の色に変更](../../img/[20250115-2250]tri-color.png)  

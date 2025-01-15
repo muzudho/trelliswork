@@ -12,6 +12,11 @@ def main():
         parser = argparse.ArgumentParser()
         parser.add_argument("command", help="コマンド名")
         parser.add_argument("-f", "--file", help="元となるJSON形式ファイルへのパス")
+        parser.add_argument("-l", "--level", type=int, default=0, help="""自動化レベルです。既定値は 0。
+0 で自動化は行いません。
+1 で影の色の自動設定を行います。
+2 で柱を跨るラインテープを自動的に別セグメントとして分割します。
+""")
         parser.add_argument("-o", "--output", help="書出し先となるExcelワークブック・ファイルへのパス")
         parser.add_argument("-t", "--temp", help="テンポラリー・ディレクトリー。削除してもよいファイルを置けるディレクトリーへのパス")
         args = parser.parse_args()
@@ -98,9 +103,10 @@ def main():
 """)
 
         elif args.command == 'compile':
-            temporary_directory_path = args.temp
             json_path_to_read = args.file
+            automation_level = args.level
             wb_path_to_write = args.output
+            temporary_directory_path = args.temp
 
             if not temporary_directory_path:
                 print(f"""ERROR: compile コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
@@ -120,37 +126,47 @@ def main():
             with open(json_path_to_read, encoding='utf-8') as f:
                 document = json.load(f)
 
-            # ドキュメントに対して、自動ピラー分割の編集を行います
-            tr.edit_document_and_solve_auto_split_pillar(document)
+            # 自動化レベル２
+            if 1 < automation_level:
+                # ドキュメントに対して、自動ピラー分割の編集を行います
+                tr.edit_document_and_solve_auto_split_pillar(document)
 
-            file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
+                file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
 
-            print(f"🔧　write {file_path_in_2_more_steps} file")
-            with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
-                f.write(json.dumps(document, indent=4, ensure_ascii=False))
+                print(f"🔧　write {file_path_in_2_more_steps} file")
+                with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
+                    f.write(json.dumps(document, indent=4, ensure_ascii=False))
 
-            print(f"🔧　read {file_path_in_2_more_steps} file")
-            with open(file_path_in_2_more_steps, mode='r', encoding='utf-8') as f:
-                document = json.load(f)
+                print(f"🔧　read {file_path_in_2_more_steps} file")
+                with open(file_path_in_2_more_steps, mode='r', encoding='utf-8') as f:
+                    document = json.load(f)
 
-            # ドキュメントに対して、影の自動設定の編集を行います
-            tr.edit_document_and_solve_auto_shadow(document)
+            # 自動化レベル１
+            if 0 < automation_level:
+                # ドキュメントに対して、影の自動設定の編集を行います
+                tr.edit_document_and_solve_auto_shadow(document)
 
-            file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
+                file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
 
-            print(f"🔧　write {file_path_in_1_more_step} file")
-            with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
-                f.write(json.dumps(document, indent=4, ensure_ascii=False))
+                print(f"🔧　write {file_path_in_1_more_step} file")
+                with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
+                    f.write(json.dumps(document, indent=4, ensure_ascii=False))
 
-            print(f"🔧　read {file_path_in_1_more_step} file")
-            with open(file_path_in_1_more_step, mode='r', encoding='utf-8') as f:
-                document = json.load(f)
+                print(f"🔧　read {file_path_in_1_more_step} file")
+                with open(file_path_in_1_more_step, mode='r', encoding='utf-8') as f:
+                    document = json.load(f)
 
             # ワークブックを新規生成
             wb = xl.Workbook()
 
             # ワークシート
             ws = wb['Sheet']
+
+            # 全ての矩形の描画
+            tr.render_all_rectangles(document, ws)
+
+            # 全ての矩形の描画
+            tr.render_all_rectangles(document, ws)
 
             # 全ての柱の敷物の描画
             tr.render_all_pillar_rugs(document, ws)

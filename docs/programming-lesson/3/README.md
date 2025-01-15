@@ -31,7 +31,7 @@
             "top": 2,
             "width": 4,
             "height": 1,
-            "baseColor": "xl_light.xl_green"
+            "bgColor": "xl_light.xl_green"
         }
     ]
 }
@@ -39,8 +39,8 @@
 
 👆　`"rectangles": [` の辺りのコードを書き足してください。  
 
-そして［プログラミング・レッスン２の手順４］と同様に、以下のコマンドを打鍵してください。  
+そして、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
