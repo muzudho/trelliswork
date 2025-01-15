@@ -25,19 +25,11 @@ class InningsPitched():
     def from_integer_and_decimal_part(integer_part, decimal_part):
         """整数部と小数部を指定
         """
-        if not decimal_part or decimal_part == 0:
-            return InningsPitched(integer_part)
-
-        else:
-            return InningsPitched(f'{integer_part}o{decimal_part}')
+        return InningsPitched(integer_part=integer_part, decimal_part=decimal_part)
 
 
     @staticmethod
     def from_var_value(var_value):
-        return InningsPitched(var_value)
-
-
-    def __init__(self, var_value):
 
         try:
             # "100" が来たら 100 にする
@@ -46,17 +38,25 @@ class InningsPitched():
             pass
 
         if isinstance(var_value, int):
-            self._decimal_part = 0
-            self._integer_part = var_value
+            return InningsPitched(
+                    integer_part=var_value,
+                    decimal_part=0)
 
         elif isinstance(var_value, str):
             integer_part, decimal_part = map(int, var_value.split('o', 2))
-            self._decimal_part = decimal_part
-            self._integer_part = integer_part
+            return InningsPitched(
+                    integer_part=integer_part,
+                    decimal_part=decimal_part)
 
         else:
             raise ValueError(f'{type(var_value)=} {var_value=}')
 
+        return InningsPitched(var_value)
+
+
+    def __init__(self, integer_part, decimal_part):
+        self._integer_part = integer_part
+        self._decimal_part = decimal_part
 
         if self._decimal_part == 0:
             self._var_value = self._integer_part
