@@ -61,17 +61,23 @@ def render_ruler(document, ws):
     # 定規の文字色。２色固定
     # TODO 任意色数に対応したい
     if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
-        first_font_text = tone_and_color_name_to_color_code(fg_color_list[0])
-        second_font_text = tone_and_color_name_to_color_code(fg_color_list[1])
+        
+        if (fg_color_text := fg_color_list[0]) == 'paper_color':
+            #first_font = Font(color=None)   # フォントに使うと黒になる
+            raise ValueError('fgColor に paper_color を指定してはいけません')
 
-        if first_font_text is not None:
+        elif (first_font_text := tone_and_color_name_to_color_code(fg_color_text)) and first_font_text is not None:
             try:
                 first_font = Font(color=first_font_text)
             except:
                 print(f'ERROR: {first_font_text=}')
                 raise
 
-        if second_font_text is not None:
+        if (fg_color_text := fg_color_list[1]) == 'paper_color':
+            #second_font = Font(color=None)   # フォントに使うと黒になる
+            raise ValueError('fgColor に paper_color を指定してはいけません')
+
+        elif (second_font_text := tone_and_color_name_to_color_code(fg_color_text)) and second_font_text is not None:
             try:
                 second_font = Font(color=second_font_text)
             except:
@@ -86,17 +92,21 @@ def render_ruler(document, ws):
     # 定規の背景色。２色固定
     # TODO 任意色数に対応したい
     if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
-        first_pattern_fill_text = tone_and_color_name_to_color_code(bg_color_list[0])
-        second_pattern_fill_text = tone_and_color_name_to_color_code(bg_color_list[1])
+        
+        if (bg_color_text := bg_color_list[0]) == 'paper_color':
+            first_pattern_fill = PatternFill(patternType=None)
 
-        if first_pattern_fill_text is not None:
+        elif (first_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and first_pattern_fill_text is not None:
             try:
                 first_pattern_fill = PatternFill(patternType='solid', fgColor=first_pattern_fill_text)
             except:
                 print(f'ERROR: {first_pattern_fill_text=}')
                 raise
 
-        if second_pattern_fill_text is not None:
+        if (bg_color_text := bg_color_list[1]) == 'paper_color':
+            second_pattern_fill = PatternFill(patternType=None)
+
+        elif (second_pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and second_pattern_fill_text is not None:
             try:
                 second_pattern_fill = PatternFill(patternType='solid', fgColor=second_pattern_fill_text)
             except:

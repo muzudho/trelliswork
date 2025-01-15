@@ -334,16 +334,16 @@ color_code_dict = {
 
 
 def tone_and_color_name_to_color_code(tone_and_color_name):
-    """トーン名・色名を１６進文字列の色コードに変換します
+    """トーン名・色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
     """
 
     # 色が指定されていないとき、この関数を呼び出してはいけません
     if tone_and_color_name is None:
-        raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
+        raise Exception(f'tone_and_color_name_to_color_code: 色が指定されていません')
 
     # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
     if tone_and_color_name == 'paper_color':
-        return None
+        raise Exception(f'tone_and_color_name_to_color_code: 透明色には対応していません')
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
@@ -357,7 +357,7 @@ def tone_and_color_name_to_color_code(tone_and_color_name):
         if color in color_code_dict[tone]:
             return color_code_dict[tone][color]
 
-    print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
+    print(f'tone_and_color_name_to_color_code: 色がない {tone_and_color_name=}')
     return None
 
 

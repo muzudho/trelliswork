@@ -50,3 +50,43 @@ py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson
 ![定規の色を変更](../../img/[20250115-2124]change-ruler-color.png)  
 
 👆　［定規］の色を変更しました。  
+
+
+## 手順３
+
+👇　📄 `./temp/lesson/hello_world.json` ファイルの内容について、  
+
+```json
+{
+    "canvas": {
+        "left": 0,
+        "top": 0,
+        "width": 10,
+        "height": 10
+    },
+    "ruler": {
+        "visible": true,
+        "fgColor": [
+            "xl_pale.xl_red",
+            "xl_deep.xl_blue"
+        ],
+        "bgColor": [
+            "paper_color",
+            "paper_color"
+        ]
+    }
+}
+```
+
+👆　`["ruler"]["bgColor"]` の値を `["paper_color", "paper_color"]` に変えてください。  
+
+そして手順２と同様に、以下のコマンドを打鍵してください。  
+
+```shell
+py trellis.py ruler --file ./temp/lesson/hello_world.json --output ./temp/lesson/hello_world.xlsx
+```
+
+![紙の地の色に変更](../../img/[20250115-2201]paper-color.png)  
+
+👆　［定規］の背景色をワークシートの地の色に変更しました。（塗りつぶしを無しにしました）  
+`paper_color` キーワードは `fgColor` には使えません。  
