@@ -5,6 +5,9 @@
         "width": 119,
         "height": 149
     },
+    "ruler": {
+        "visible": true
+    },
     "pillars": [
         {
             "left": 0,

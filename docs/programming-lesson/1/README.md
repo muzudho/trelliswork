@@ -111,8 +111,8 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 
 上述の Innings pitched と Rectangle はクラスとして実装されています。以下のファイルから探してみてください。  
 
-* 📄 [Trellis ＞ InningsPitched クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+InningsPitched` で検索してください  
-* 📄 [Trellis ＞ Rectangle クラス](../../../src/trellis/__init__.py) - 正規表現 `class\s+Rectangle` で検索してください  
+* 📄 [Trellis ＞ InningsPitched クラス](../../../src/trellis/share.py) - 正規表現 `class\s+InningsPitched` で検索してください  
+* 📄 [Trellis ＞ Rectangle クラス](../../../src/trellis/share.py) - 正規表現 `class\s+Rectangle` で検索してください  
 
 
 ## 手順７

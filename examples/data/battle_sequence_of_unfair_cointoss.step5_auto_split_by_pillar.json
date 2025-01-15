@@ -5,6 +5,9 @@
         "width": 119,
         "height": 149
     },
+    "ruler": {
+        "visible": true
+    },
     "shadowColorMappings": {
         "paper_color": "xl_pale.xl_white",
         "xl_pale.xl_blue": "xl_light.xl_blue",
