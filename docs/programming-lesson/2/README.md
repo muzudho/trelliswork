@@ -133,6 +133,47 @@ py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./t
 👆　［定規］の背景色を３色にしました。  
 
 
+## 手順５
+
+👇　📄 `./temp/lesson/hello_world.json` ファイルの内容について、  
+
+```json
+{
+    "canvas": {
+        "left": 0,
+        "top": 0,
+        "width": 10,
+        "height": 10
+    },
+    "ruler": {
+        "visible": true,
+        "fgColor": [
+            "#FFFF00",
+            "#FF00FF",
+            "#00FFFF"
+        ],
+        "bgColor": [
+            "#FF0000",
+            "#00FF00",
+            "#0000FF"
+        ]
+    }
+}
+```
+
+👆　`["ruler"]["fgColor"]` と `["ruler"]["bgColor"]` の配列の要素を変更してください。  
+
+そして手順３と同様に、以下のコマンドを打鍵してください。  
+
+```shell
+py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+```
+
+![紙の地の色に変更](../../img/[20250116-0038]web-safe-color.png)  
+
+👆　ウェブ・セーフ・カラーを使った色指定もできました。  
+
+
 ## 次回
 
 次回の記事：　📖 [トレリスの矩形描画](../3/README.md)  

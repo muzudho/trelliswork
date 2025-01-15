@@ -349,7 +349,18 @@ def tone_and_color_name_to_color_code(tone_and_color_name):
     if tone_and_color_name == 'auto':
         return color_code_dict['xl_theme']['xl_black']
 
-    tone, color = tone_and_color_name.split('.', 2)
+    # `#` で始まるなら、ウェブセーフカラーとして扱う
+    if tone_and_color_name.startswith('#'):
+        return tone_and_color_name[1:]
+
+
+    try:
+        tone, color = tone_and_color_name.split('.', 2)
+    except:
+        print(f'tone_and_color_name_to_color_code: tone.color の形式でない {tone_and_color_name=}')
+        raise
+
+
     tone = tone.strip()
     color = color.strip()
 
