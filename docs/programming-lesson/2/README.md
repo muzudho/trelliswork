@@ -135,4 +135,4 @@ py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./t
 
 ## 次回
 
-次回は、トレリスのキャンバス上で矩形に塗りつぶす方法を予定しています。  
+次回の記事：　📖 [トレリスの矩形描画](../3/README.md)  
