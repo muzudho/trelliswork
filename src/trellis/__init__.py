@@ -6,6 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
+from .draw_2d import fill_rectangle, draw_border_on_rectangle
 from .ruler import render_ruler
 from .share import *
 
@@ -85,19 +86,6 @@ def draw_rectangle(ws, column_th, row_th, columns, rows):
         cell.border = black_right_border
 
 
-def fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
-    """矩形を塗りつぶします
-    """
-    # 横へ
-    for cur_column_th in range(column_th, column_th + columns):
-        column_letter = xl.utils.get_column_letter(cur_column_th)
-
-        # 縦へ
-        for cur_row_th in range(row_th, row_th + rows):
-            cell = ws[f'{column_letter}{cur_row_th}']
-            cell.fill = fill_obj
-
-
 def fill_pixel_art(ws, column_th, row_th, columns, rows, pixels):
     """ドット絵を描きます
     """
@@ -173,8 +161,18 @@ def render_all_rectangles(document, ws):
     if 'rectangles' in document and (rectangles_list := document['rectangles']):
 
         for rectangle_dict in rectangles_list:
-            if 'bgColor' in rectangle_dict and (bgColor := rectangle_dict['bgColor']):
+            if 'bgColor' in rectangle_dict and (bg_color := rectangle_dict['bgColor']):
                 rectangle_rect = Rectangle.from_dict(rectangle_dict)
+
+                # もし境界線が指定されていれば、描画する
+                if 'border' in rectangle_dict and (border_dict := rectangle_dict['border']):
+                    draw_border_on_rectangle(
+                            ws=ws,
+                            border_dict=border_dict,
+                            column_th=rectangle_rect.left_obj.total_of_out_counts_th,
+                            row_th=rectangle_rect.top_obj.total_of_out_counts_th,
+                            columns=rectangle_rect.width_obj.total_of_out_counts_qty,
+                            rows=rectangle_rect.height_obj.total_of_out_counts_qty)
 
                 # 矩形を塗りつぶす
                 fill_rectangle(
@@ -183,7 +181,7 @@ def render_all_rectangles(document, ws):
                         row_th=rectangle_rect.top_obj.total_of_out_counts_th,
                         columns=rectangle_rect.width_obj.total_of_out_counts_qty,
                         rows=rectangle_rect.height_obj.total_of_out_counts_qty,
-                        fill_obj=tone_and_color_name_to_fill_obj(bgColor))
+                        fill_obj=tone_and_color_name_to_fill_obj(bg_color))
 
 
 def render_all_pillar_rugs(document, ws):
