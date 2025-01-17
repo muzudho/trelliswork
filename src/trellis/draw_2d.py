@@ -26,23 +26,73 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
     bottom_side = None
     left_side = None
 
+    # 罫線の style の種類
+    # 📖 [openpyxl.styles.borders module](https://openpyxl.readthedocs.io/en/3.1/api/openpyxl.styles.borders.html)
+    # ‘mediumDashed’, ‘mediumDashDotDot’, ‘dashDot’, ‘dashed’, ‘slantDashDot’, ‘dashDotDot’, ‘thick’, ‘thin’, ‘dotted’, ‘double’, ‘medium’, ‘hair’, ‘mediumDashDot’
+
     if 'top' in border_dict and (top_dict := border_dict['top']):
+        color_code = None
+        style = None
+
         if 'color' in top_dict and (color := top_dict['color']):
-            color_obj = tone_and_color_name_to_color_code(color)
-            print(f'★ {color_obj=}')
-            top_side = Side(style='thick', color=color_obj)
+            color_code = tone_and_color_name_to_color_code(color)
+
+        if 'style' in top_dict and (style := top_dict['style']):
+            pass
+
+        try:
+            top_side = Side(style=style, color=color_code)
+        except:
+            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+
 
     if 'right' in border_dict and (right_dict := border_dict['right']):
+        color_code = None
+        style = None
+
         if 'color' in right_dict and (color := right_dict['color']):
-            right_side = Side(style='thick', color=tone_and_color_name_to_color_code(color))
+            color_code = tone_and_color_name_to_color_code(color)
+
+        if 'style' in right_dict and (style := right_dict['style']):
+            pass
+
+        try:
+            right_side = Side(style=style, color=color_code)
+        except:
+            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+
 
     if 'bottom' in border_dict and (bottom_dict := border_dict['bottom']):
+        color_code = None
+        style = None
+
         if 'color' in bottom_dict and (color := bottom_dict['color']):
-            bottom_side = Side(style='thick', color=tone_and_color_name_to_color_code(color))
+            color_code = tone_and_color_name_to_color_code(color)
+
+        if 'style' in bottom_dict and (style := bottom_dict['style']):
+            pass
+
+        try:
+            bottom_side = Side(style=style, color=color_code)
+        except:
+            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+
 
     if 'left' in border_dict and (left_dict := border_dict['left']):
+        color_code = None
+        style = None
+
         if 'color' in left_dict and (color := left_dict['color']):
-            left_side = Side(style='thick', color=tone_and_color_name_to_color_code(color))
+            color_code = tone_and_color_name_to_color_code(color)
+
+        if 'style' in left_dict and (style := left_dict['style']):
+            pass
+
+        try:
+            left_side = Side(style=style, color=color_code)
+        except:
+            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+
 
     # TODO 厚みが１のケースや、角は、２辺に線を引く
 
