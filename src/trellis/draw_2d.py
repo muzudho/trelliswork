@@ -28,7 +28,9 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
 
     if 'top' in border_dict and (top_dict := border_dict['top']):
         if 'color' in top_dict and (color := top_dict['color']):
-            top_side = Side(style='thick', color=tone_and_color_name_to_color_code(color))
+            color_obj = tone_and_color_name_to_color_code(color)
+            print(f'★ {color_obj=}')
+            top_side = Side(style='thick', color=color_obj)
 
     if 'right' in border_dict and (right_dict := border_dict['right']):
         if 'color' in right_dict and (color := right_dict['color']):
@@ -110,3 +112,28 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
             column_letter = xl.utils.get_column_letter(column_th + columns - 1)
             cell = ws[f'{column_letter}{cur_row_th}']
             cell.border = right_border
+
+
+    # 左上隅
+    if 1 < columns and 1 < rows:
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = Border(top=top_side, left=left_side)
+
+    # 右上隅
+    if 1 < columns and 1 < rows:
+        column_letter = xl.utils.get_column_letter(column_th + columns - 1)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = Border(top=top_side, right=right_side)
+
+    # 左下隅
+    if 1 < columns and 1 < rows:
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th + rows - 1}']
+        cell.border = Border(left=left_side, bottom=bottom_side)
+
+    # 右下隅
+    if 1 < columns and 1 < rows:
+        column_letter = xl.utils.get_column_letter(column_th + columns - 1)
+        cell = ws[f'{column_letter}{row_th + rows - 1}']
+        cell.border = Border(right=right_side, bottom=bottom_side)
