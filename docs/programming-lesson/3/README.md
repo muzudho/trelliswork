@@ -162,3 +162,10 @@ py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./t
 ![境界線](../../img/[20250117-2257]xl_border.png)  
 
 👆　境界線を引けました。 Microsoft Excel をディスプレイと考えているケースでだけ使えることを想定しています。  
+
+これで点描は打てそうです。  
+
+
+## 次回
+
+次回は色の合成を予定しています。  
