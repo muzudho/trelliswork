@@ -37,7 +37,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         if 'color' in top_dict and (color := top_dict['color']):
             color_code = tone_and_color_name_to_color_code(color)
 
-        if 'style' in top_dict and (style := top_dict['style']):
+        if 'xl_style' in top_dict and (style := top_dict['xl_style']):
             pass
 
         try:
@@ -53,7 +53,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         if 'color' in right_dict and (color := right_dict['color']):
             color_code = tone_and_color_name_to_color_code(color)
 
-        if 'style' in right_dict and (style := right_dict['style']):
+        if 'xl_style' in right_dict and (style := right_dict['xl_style']):
             pass
 
         try:
@@ -69,7 +69,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         if 'color' in bottom_dict and (color := bottom_dict['color']):
             color_code = tone_and_color_name_to_color_code(color)
 
-        if 'style' in bottom_dict and (style := bottom_dict['style']):
+        if 'xl_style' in bottom_dict and (style := bottom_dict['xl_style']):
             pass
 
         try:
@@ -85,7 +85,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         if 'color' in left_dict and (color := left_dict['color']):
             color_code = tone_and_color_name_to_color_code(color)
 
-        if 'style' in left_dict and (style := left_dict['style']):
+        if 'xl_style' in left_dict and (style := left_dict['xl_style']):
             pass
 
         try:
@@ -187,3 +187,9 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         column_letter = xl.utils.get_column_letter(column_th + columns - 1)
         cell = ws[f'{column_letter}{row_th + rows - 1}']
         cell.border = Border(right=right_side, bottom=bottom_side)
+
+    # 四方
+    if columns == 1 and rows == 1:
+        column_letter = xl.utils.get_column_letter(column_th)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.border = Border(top=top_side, right=right_side, bottom=bottom_side, left=left_side)
