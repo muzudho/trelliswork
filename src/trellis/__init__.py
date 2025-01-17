@@ -6,7 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .draw_2d import fill_rectangle, draw_border_on_rectangle
+from .draw_2d import fill_rectangle, draw_xl_border_on_rectangle
 from .ruler import render_ruler
 from .share import *
 
@@ -165,10 +165,10 @@ def render_all_rectangles(document, ws):
                 rectangle_rect = Rectangle.from_dict(rectangle_dict)
 
                 # もし境界線が指定されていれば、描画する
-                if 'border' in rectangle_dict and (border_dict := rectangle_dict['border']):
-                    draw_border_on_rectangle(
+                if 'xl_border' in rectangle_dict and (xl_border_dict := rectangle_dict['xl_border']):
+                    draw_xl_border_on_rectangle(
                             ws=ws,
-                            border_dict=border_dict,
+                            xl_border_dict=xl_border_dict,
                             column_th=rectangle_rect.left_obj.total_of_out_counts_th,
                             row_th=rectangle_rect.top_obj.total_of_out_counts_th,
                             columns=rectangle_rect.width_obj.total_of_out_counts_qty,

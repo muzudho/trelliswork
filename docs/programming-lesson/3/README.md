@@ -99,3 +99,66 @@ py trellis.py compile --level 0 --file ./temp/lesson/hello_world.json --temp ./t
 ![右と下を使って矩形描画](../../img/[20250116-0020]right-bottom.png)  
 
 👆　手順１と同じサイズの［矩形］を描画できました。  
+
+
+## 手順３
+
+👇　引き続き 📄 `./temp/lesson/hello_world.json` ファイルの内容について、  
+
+```json
+{
+    "canvas": {
+        "left": 0,
+        "top": 0,
+        "width": 10,
+        "height": 10
+    },
+    "ruler": {
+        "visible": true,
+        "fgColor": [
+            "xl_deep.xl_red",
+            "xl_deep.xl_green",
+            "xl_deep.xl_blue"
+        ],
+        "bgColor": [
+            "xl_pale.xl_red",
+            "xl_pale.xl_green",
+            "xl_pale.xl_blue"
+        ]
+    },
+    "rectangles": [
+        {
+            "left": 2,
+            "top": 2,
+            "width": 6,
+            "height": 6,
+            "bgColor": "xl_light.xl_blue",
+            "xl_border": {
+                "top": {
+                    "color": "xl_strong.xl_red",
+                    "xl_style": "thick"
+                },
+                "right": {
+                    "color": "xl_strong.xl_green",
+                    "xl_style": "thick"
+                },
+                "bottom": {
+                    "color": "xl_strong.xl_blue",
+                    "xl_style": "thick"
+                },
+                "left": {
+                    "color": "xl_strong.xl_yellow",
+                    "xl_style": "thick"
+                }
+            }
+        }
+    ]
+}
+```
+
+👆　`["rectangles"]["xl_border"]` 辞書を追加しました。  
+ここで `["rectangles"]["xl_border"]["top"]["xl_style"]` には、 `mediumDashed`, `mediumDashDotDot`, `dashDot`, `dashed`, `slantDashDot`, `dashDotDot`, `thick`, `thin`, `dotted`, `double`, `medium`, `hair`, `mediumDashDot` のいずれかを入れることができると思います。  
+
+![境界線](../../img/[20250117-2257]xl_border.png)  
+
+👆　境界線を引けました。 Microsoft Excel をディスプレイと考えているケースでだけ使えることを想定しています。  

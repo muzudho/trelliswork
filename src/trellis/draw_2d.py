@@ -16,11 +16,9 @@ def fill_rectangle(ws, column_th, row_th, columns, rows, fill_obj):
             cell.fill = fill_obj
 
 
-def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
+def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, rows):
     """境界線の描画
     """
-    print(f'★draw_border_on_rectangle: {column_th=} {row_th=} {columns=} {rows=}')
-
     top_side = None
     right_side = None
     bottom_side = None
@@ -30,7 +28,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
     # 📖 [openpyxl.styles.borders module](https://openpyxl.readthedocs.io/en/3.1/api/openpyxl.styles.borders.html)
     # ‘mediumDashed’, ‘mediumDashDotDot’, ‘dashDot’, ‘dashed’, ‘slantDashDot’, ‘dashDotDot’, ‘thick’, ‘thin’, ‘dotted’, ‘double’, ‘medium’, ‘hair’, ‘mediumDashDot’
 
-    if 'top' in border_dict and (top_dict := border_dict['top']):
+    if 'top' in xl_border_dict and (top_dict := xl_border_dict['top']):
         color_code = None
         style = None
 
@@ -43,10 +41,10 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         try:
             top_side = Side(style=style, color=color_code)
         except:
-            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
 
 
-    if 'right' in border_dict and (right_dict := border_dict['right']):
+    if 'right' in xl_border_dict and (right_dict := xl_border_dict['right']):
         color_code = None
         style = None
 
@@ -59,10 +57,10 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         try:
             right_side = Side(style=style, color=color_code)
         except:
-            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
 
 
-    if 'bottom' in border_dict and (bottom_dict := border_dict['bottom']):
+    if 'bottom' in xl_border_dict and (bottom_dict := xl_border_dict['bottom']):
         color_code = None
         style = None
 
@@ -75,10 +73,10 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         try:
             bottom_side = Side(style=style, color=color_code)
         except:
-            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
 
 
-    if 'left' in border_dict and (left_dict := border_dict['left']):
+    if 'left' in xl_border_dict and (left_dict := xl_border_dict['left']):
         color_code = None
         style = None
 
@@ -91,7 +89,7 @@ def draw_border_on_rectangle(ws, border_dict, column_th, row_th, columns, rows):
         try:
             left_side = Side(style=style, color=color_code)
         except:
-            print(f'draw_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
 
 
     # TODO 厚みが１のケースや、角は、２辺に線を引く
