@@ -17,7 +17,7 @@ def render_ruler(ws, document):
     """
     print("🔧　定規の描画")
 
-    HORIZONTAL_RULER_HEIGHT = 2     # 垂直定規の縦幅
+    HORIZONTAL_RULER_HEIGHT = 1     # 水平定規の縦幅
     VERTICAL_RULER_WIDTH = 2        # 垂直定規の横幅
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
@@ -36,17 +36,15 @@ def render_ruler(ws, document):
             ruler_dict['visible'] in [None, False]):
         return
 
-
-    # ウィンドウ枠の固定
-    ws.freeze_panes = 'C2'
-
     # 定規の文字色
     font_list = None
+    black_font = Font(color='000000')
 
+    # font_list 作成
     if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
         if len(fg_color_list) == 0:
             # フォントの色の既定値は黒が１つ
-            font_list = [Font(color='000000')]
+            font_list = [black_font]
 
         else:
             font_list = [None] * len(fg_color_list)
@@ -65,11 +63,12 @@ def render_ruler(ws, document):
 
     else:
         # フォントの色の既定値は黒が１つ
-        font_list = [Font(color='000000')]
+        font_list = [black_font]
 
     # 定規の背景色
     pattern_fill_list = None
 
+    # pattern_fill_list 作成
     if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
         if len(bg_color_list) == 0:
             # 背景色の既定値は［塗りつぶし無し］
@@ -97,20 +96,8 @@ def render_ruler(ws, document):
     center_center_alignment = Alignment(horizontal='center', vertical='center')
 
 
-    def render_ruler_numbering_and_coloring_of_top_edge():
-        """定規の採番と着色　＞　上辺
-
-                横幅が３で割り切れるとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 3 シュリンクする
-                ■■□[  1 ][  2 ]□■■
-                ■■                ■■
-
-                横幅が３で割ると１余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 4 シュリンクする
-                ■■□[  1 ][  2 ]□□■■
-                ■■                  ■■
-
-                横幅が３で割ると２余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 2 シュリンクする
-                ■■□[  1 ][  2 ][  3 ]■■
-                ■■                    ■■
+    def render_coloring_of_top_edge():
+        """定規の着色　＞　上辺
         """
         row_th = canvas_rect.top_obj.total_of_out_counts_th
 
@@ -121,53 +108,12 @@ def render_ruler(ws, document):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
 
-            # 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-            # -------- -------- -------- -----------
-            # dark      light    dark     light
-            #
-            # - 1 する
-            #
-            # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-            # -------- -------- -------- ----------
-            # dark     light    dark     light
-            #
-            # 3 で割って端数を切り捨て
-            #
-            # 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3,
-            # -------- -------- -------- --------
-            # dark     light    dark     light
-            #
-            # 2 で割った余り
-            #
-            # 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1,
-            # -------- -------- -------- --------
-            # dark     light    dark     light
-            #
             ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_left_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
-
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
-    def render_ruler_numbering_and_coloring_of_left_edge():
-        """定規の採番と着色　＞　左辺
-
-        縦幅が３で割り切れるとき、１投球回は 1th から始まる。最後の投球回は、端数なしで表示できる
-        [  0 ][  1 ][  2 ][  3 ]
-        ■                    ■
-
-        縦幅が３で割ると１余るとき、１投球回は 1th から始まる。最後の投球回は、端数１になる
-        [  0 ][  1 ][  2 ][  3 ]□
-        ■                      ■
-
-        縦幅が３で割ると２余るとき、１投球回は 1th から始まる。最後の投球回は、端数２になる
-        [  0 ][  1 ][  2 ][  3 ]□□
-        ■                        ■
+    def render_coloring_of_left_edge():
+        """定規の着色　＞　左辺
         """
 
         # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
@@ -185,13 +131,6 @@ def render_ruler(ws, document):
             cell = ws[f'{column_letter}{row_th}']
 
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_top_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
-
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -220,8 +159,8 @@ def render_ruler(ws, document):
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
-    def render_ruler_numbering_and_coloring_of_bottom_edge():
-        """定規の採番と着色　＞　下辺
+    def render_coloring_of_bottom_edge():
+        """定規の着色　＞　下辺
         """
 
         # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
@@ -237,18 +176,11 @@ def render_ruler(ws, document):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
             ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_left_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
-
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
-    def render_ruler_numbering_and_coloring_of_right_edge():
-        """定規の採番と着色　＞　右辺
+    def render_coloring_of_right_edge():
+        """定規の着色　＞　右辺
         """
 
         # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
@@ -266,13 +198,6 @@ def render_ruler(ws, document):
             cell = ws[f'{column_letter}{row_th}']
 
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_top_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
-
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -546,17 +471,25 @@ def render_ruler(ws, document):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
 
-    # 定規の採番と着色　＞　上辺
-    render_ruler_numbering_and_coloring_of_top_edge()
+    # 定規上のテキスト描画
+    __paint_all_texts(
+            ws=ws,
+            vertical_ruler_width=VERTICAL_RULER_WIDTH,
+            horizontal_ruler_height=HORIZONTAL_RULER_HEIGHT,
+            font_list=font_list,
+            center_center_alignment=center_center_alignment,
+            canvas_rect=canvas_rect)
 
-    # 定規の採番と着色　＞　左辺
-    render_ruler_numbering_and_coloring_of_left_edge()
 
-    # 定規の採番と着色　＞　下辺
-    render_ruler_numbering_and_coloring_of_bottom_edge()
+    # 定規の着色　＞　上辺
+    render_coloring_of_top_edge()
+    # 定規の着色　＞　左辺
+    render_coloring_of_left_edge()
+    # 定規の着色　＞　下辺
+    render_coloring_of_bottom_edge()
+    # 定規の着色　＞　右辺
+    render_coloring_of_right_edge()
 
-    # 定規の採番と着色　＞　右辺
-    render_ruler_numbering_and_coloring_of_right_edge()
 
     # 左辺の最後の要素が端数のとき、左辺の最後の要素の左上へ着色
     render_ruler_coloring_of_left_edge_bottom_spacing()
@@ -597,3 +530,164 @@ def render_ruler(ws, document):
 
     # 下側の水平［定規］の右端の端数のセル結合
     render_ruler_merge_cells_right_end_fraction_on_bottom()
+
+
+def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect):
+    """定規上のテキスト描画
+    """
+
+
+    def render_ruler_numbering_of_top_edge():
+        """定規の採番　＞　上辺
+
+                横幅が３で割り切れるとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 3 シュリンクする
+                ■■□[  1 ][  2 ]□■■
+                ■■                ■■
+
+                横幅が３で割ると１余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 4 シュリンクする
+                ■■□[  1 ][  2 ]□□■■
+                ■■                  ■■
+
+                横幅が３で割ると２余るとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 2 シュリンクする
+                ■■□[  1 ][  2 ][  3 ]■■
+                ■■                    ■■
+        """
+        row_th = canvas_rect.top_obj.total_of_out_counts_th
+
+        for column_th in range(
+                canvas_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
+                OUT_COUNTS_THAT_CHANGE_INNING):
+            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+
+            # 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+            # -------- -------- -------- -----------
+            # dark      light    dark     light
+            #
+            # - 1 する
+            #
+            # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+            # -------- -------- -------- ----------
+            # dark     light    dark     light
+            #
+            # 3 で割って端数を切り捨て
+            #
+            # 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3,
+            # -------- -------- -------- --------
+            # dark     light    dark     light
+            #
+            # 2 で割った余り
+            #
+            # 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1,
+            # -------- -------- -------- --------
+            # dark     light    dark     light
+            #
+            ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
+            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
+
+            if is_left_end:
+                cell.value = ruler_number
+                cell.alignment = center_center_alignment
+                cell.font = font_list[ruler_number % len(font_list)]
+
+
+    def render_ruler_numbering_of_left_edge():
+        """定規の採番　＞　左辺
+
+        縦幅が３で割り切れるとき、１投球回は 1th から始まる。最後の投球回は、端数なしで表示できる
+        [  0 ][  1 ][  2 ][  3 ]
+        ■                    ■
+
+        縦幅が３で割ると１余るとき、１投球回は 1th から始まる。最後の投球回は、端数１になる
+        [  0 ][  1 ][  2 ][  3 ]□
+        ■                      ■
+
+        縦幅が３で割ると２余るとき、１投球回は 1th から始まる。最後の投球回は、端数２になる
+        [  0 ][  1 ][  2 ][  3 ]□□
+        ■                        ■
+        """
+
+        # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
+        column_th = canvas_rect.left_obj.total_of_out_counts_th
+        column_letter = xl.utils.get_column_letter(column_th)
+        shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
+
+        for row_th in range(
+                canvas_rect.top_obj.total_of_out_counts_th,
+                canvas_rect.bottom_obj.total_of_out_counts_th - shrink,
+                OUT_COUNTS_THAT_CHANGE_INNING):
+            cell = ws[f'{column_letter}{row_th}']
+
+            ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
+            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
+
+            if is_top_end:
+                cell.value = ruler_number
+                cell.alignment = center_center_alignment
+                cell.font = font_list[ruler_number % len(font_list)]
+
+
+    def render_ruler_numbering_of_bottom_edge():
+        """定規の採番　＞　下辺
+        """
+
+        # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.height_obj.total_of_out_counts_qty < 2:
+            return
+
+        row_th = canvas_rect.bottom_obj.total_of_out_counts_th - horizontal_ruler_height
+
+        for column_th in range(
+                canvas_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_rect.right_obj.total_of_out_counts_th - OUT_COUNTS_THAT_CHANGE_INNING,
+                OUT_COUNTS_THAT_CHANGE_INNING):
+            column_letter = xl.utils.get_column_letter(column_th)
+            cell = ws[f'{column_letter}{row_th}']
+            ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
+            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
+
+            if is_left_end:
+                cell.value = ruler_number
+                cell.alignment = center_center_alignment
+                cell.font = font_list[ruler_number % len(font_list)]
+
+
+    def render_ruler_numbering_of_right_edge():
+        """定規の採番　＞　右辺
+        """
+
+        # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
+        if canvas_rect.width_obj.total_of_out_counts_qty < 4:
+            return
+
+        column_th = canvas_rect.right_obj.total_of_out_counts_th - vertical_ruler_width
+        column_letter = xl.utils.get_column_letter(column_th)
+        shrink = canvas_rect.height_obj.total_of_out_counts_qty % OUT_COUNTS_THAT_CHANGE_INNING
+
+        for row_th in range(
+                canvas_rect.top_obj.total_of_out_counts_th,
+                canvas_rect.bottom_obj.total_of_out_counts_th - shrink,
+                OUT_COUNTS_THAT_CHANGE_INNING):
+            cell = ws[f'{column_letter}{row_th}']
+
+            ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
+            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
+
+            if is_top_end:
+                cell.value = ruler_number
+                cell.alignment = center_center_alignment
+                cell.font = font_list[ruler_number % len(font_list)]
+
+
+    # 定規の採番　＞　上辺
+    render_ruler_numbering_of_top_edge()
+    # 定規の採番　＞　左辺
+    render_ruler_numbering_of_left_edge()
+    # 定規の採番　＞　下辺
+    render_ruler_numbering_of_bottom_edge()
+    # 定規の採番　＞　右辺
+    render_ruler_numbering_of_right_edge()

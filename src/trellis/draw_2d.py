@@ -9,6 +9,9 @@ def edit_canvas(ws, document):
     """
     print("🔧　キャンバスの編集")
 
+    # ウィンドウ枠の固定
+    ws.freeze_panes = 'C2'
+
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
     canvas_rect = Rectangle.from_dict(document['canvas'])
