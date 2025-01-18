@@ -324,18 +324,20 @@ def render_all_card_shadows(ws, document):
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
                 for card_dict in card_dict_list:
+                    card_obj = Card.from_dict(card_dict)
+
                     if 'shadowColor' in card_dict:
                         card_shadow_color = card_dict['shadowColor']
 
-                        card_rect = Rectangle.from_dict(card_dict)
+                        card_rect_obj = card_obj.rect_obj
 
                         # 端子の影を描く
                         fill_rectangle(
                                 ws=ws,
-                                column_th=card_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
-                                row_th=card_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
-                                columns=card_rect.width_obj.total_of_out_counts_qty,
-                                rows=card_rect.height_obj.total_of_out_counts_qty,
+                                column_th=card_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                row_th=card_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                columns=card_rect_obj.width_obj.total_of_out_counts_qty,
+                                rows=card_rect_obj.height_obj.total_of_out_counts_qty,
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
@@ -358,16 +360,20 @@ def render_all_cards(ws, document):
             card_list = pillar_dict['cards']
 
             for card_dict in card_list:
+                card_obj = Card.from_dict(card_dict)
+                card_rect_obj = card_obj.rect_obj
 
-                card_rect = Rectangle.from_dict(card_dict)
-
-                # ヘッダーの矩形の枠線を描きます
-                draw_rectangle(
-                        ws=ws,
-                        column_th=card_rect.left_obj.total_of_out_counts_th,
-                        row_th=card_rect.top_obj.total_of_out_counts_th,
-                        columns=card_rect.width_obj.total_of_out_counts_qty,
-                        rows=card_rect.height_obj.total_of_out_counts_qty)
+                try:
+                    # ヘッダーの矩形の枠線を描きます
+                    draw_rectangle(
+                            ws=ws,
+                            column_th=card_rect_obj.left_obj.total_of_out_counts_th,
+                            row_th=card_rect_obj.top_obj.total_of_out_counts_th,
+                            columns=card_rect_obj.width_obj.total_of_out_counts_qty,
+                            rows=card_rect_obj.height_obj.total_of_out_counts_qty)
+                except:
+                    print(f'ERROR: render_all_cards: {card_dict=}')
+                    raise
 
                 if 'paperStrips' in card_dict:
                     paper_strip_list = card_dict['paperStrips']
@@ -378,10 +384,10 @@ def render_all_cards(ws, document):
                         render_paper_strip(
                                 ws=ws,
                                 paper_strip=paper_strip,
-                                column_th=card_rect.left_obj.total_of_out_counts_th,
-                                row_th=index * OUT_COUNTS_THAT_CHANGE_INNING + card_rect.top_obj.total_of_out_counts_th,
-                                columns=card_rect.width_obj.total_of_out_counts_qty,
-                                rows=card_rect.height_obj.total_of_out_counts_qty)
+                                column_th=card_rect_obj.left_obj.total_of_out_counts_th,
+                                row_th=index * OUT_COUNTS_THAT_CHANGE_INNING + card_rect_obj.top_obj.total_of_out_counts_th,
+                                columns=card_rect_obj.width_obj.total_of_out_counts_qty,
+                                rows=card_rect_obj.height_obj.total_of_out_counts_qty)
 
 
 def render_all_terminal_shadows(ws, document):
@@ -822,17 +828,23 @@ def edit_document_and_solve_auto_shadow(document):
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
                 for card_dict in card_dict_list:
+                    card_obj = Card.from_dict(card_dict)
+
                     if 'shadowColor' in card_dict and (card_shadow_color := card_dict['shadowColor']):
 
                         if card_shadow_color == 'auto':
-                            card_rect = Rectangle.from_dict(card_dict)
+                            card_rect_obj = card_obj.rect_obj
 
                             # 影に自動が設定されていたら、解決する
-                            if solved_tone_and_color_name := resolve_auto_shadow(
-                                    document=document,
-                                    column_th=card_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
-                                    row_th=card_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
-                                card_dict['shadowColor'] = solved_tone_and_color_name
+                            try:
+                                if solved_tone_and_color_name := resolve_auto_shadow(
+                                        document=document,
+                                        column_th=card_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                        row_th=card_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
+                                    card_dict['shadowColor'] = solved_tone_and_color_name
+                            except:
+                                print(f'ERROR: edit_document_and_solve_auto_shadow: {card_dict=}')
+                                raise
 
             # もし、端子のリストがあれば
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):

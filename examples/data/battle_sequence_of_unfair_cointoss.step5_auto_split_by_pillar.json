@@ -42,10 +42,12 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "left": 4,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 4,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_blue",
@@ -60,10 +62,12 @@
                     ]
                 },
                 {
-                    "left": 3,
-                    "top": 10,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 3,
+                        "top": 10,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -117,10 +121,12 @@
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
-                    "left": 21,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 21,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_yellow",
@@ -136,10 +142,12 @@
                     ]
                 },
                 {
-                    "left": 21,
-                    "top":15,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 21,
+                        "top":15,
+                        "width": 9,
+                        "height": 4
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_white",
@@ -183,10 +191,12 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "left": 38,
-                    "top": 1,
-                    "width": 9,
-                    "height": 3,
+                    "rect": {
+                        "left": 38,
+                        "top": 1,
+                        "width": 9,
+                        "height": 3
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_yellow",
@@ -208,10 +218,12 @@
                     ]
                 },
                 {
-                    "left": 37,
-                    "top": 25,
-                    "width": 9,
-                    "height": 12,
+                    "rect": {
+                        "left": 37,
+                        "top": 25,
+                        "width": 9,
+                        "height": 12
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -280,10 +292,12 @@
                     ]
                 },
                 {
-                    "left": 37,
-                    "top": 42,
-                    "width": 9,
-                    "height": 7,
+                    "rect": {
+                        "left": 37,
+                        "top": 42,
+                        "width": 9,
+                        "height": 7
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -328,10 +342,12 @@
                     ]
                 },
                 {
-                    "left": 37,
-                    "top": 61,
-                    "width": 9,
-                    "height": 7,
+                    "rect": {
+                        "left": 37,
+                        "top": 61,
+                        "width": 9,
+                        "height": 7
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -376,10 +392,12 @@
                     ]
                 },
                 {
-                    "left": 37,
-                    "top": 100,
-                    "width": 9,
-                    "height": 11,
+                    "rect": {
+                        "left": 37,
+                        "top": 100,
+                        "width": 9,
+                        "height": 11
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -444,10 +462,12 @@
                     ]
                 },
                 {
-                    "left": 37,
-                    "top": 129,
-                    "width": 9,
-                    "height": 6,
+                    "rect": {
+                        "left": 37,
+                        "top": 129,
+                        "width": 9,
+                        "height": 6
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -514,10 +534,12 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "left": 55,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 55,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_blue",
@@ -532,10 +554,12 @@
                     ]                
                 },
                 {
-                    "left": 54,
-                    "top": 10,
-                    "width": 9,
-                    "height": 5,
+                    "rect": {
+                        "left": 54,
+                        "top": 10,
+                        "width": 9,
+                        "height": 5
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -567,10 +591,12 @@
                     ]
                 },
                 {
-                    "left": 54,
-                    "top": 72,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 54,
+                        "top": 72,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -595,10 +621,12 @@
                     ]
                 },
                 {
-                    "left": 54,
-                    "top": 86,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 54,
+                        "top": 86,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -623,10 +651,12 @@
                     ]
                 },
                 {
-                    "left": 54,
-                    "top": 117,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 54,
+                        "top": 117,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -651,10 +681,12 @@
                     ]
                 },
                 {
-                    "left": 54,
-                    "top": 134,
-                    "width": 9,
-                    "height": 3,
+                    "rect": {
+                        "left": 54,
+                        "top": 134,
+                        "width": 9,
+                        "height": 3
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -704,10 +736,12 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "left": 72,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 72,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_blue",
@@ -722,10 +756,12 @@
                     ]                
                 },
                 {
-                    "left": 71,
-                    "top": 10,
-                    "width": 9,
-                    "height": 5,
+                    "rect": {
+                        "left": 71,
+                        "top": 10,
+                        "width": 9,
+                        "height": 5
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -757,10 +793,12 @@
                     ]
                 },
                 {
-                    "left": 71,
-                    "top": 72,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 71,
+                        "top": 72,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -784,10 +822,12 @@
                     ]
                 },
                 {
-                    "left": 71,
-                    "top": 86,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 71,
+                        "top": 86,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -811,10 +851,12 @@
                     ]
                 },
                 {
-                    "left": 71,
-                    "top": 117,
-                    "width": 9,
-                    "height": 4,
+                    "rect": {
+                        "left": 71,
+                        "top": 117,
+                        "width": 9,
+                        "height": 4
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -838,10 +880,12 @@
                     ]
                 },
                 {
-                    "left": 71,
-                    "top": 134,
-                    "width": 9,
-                    "height": 3,
+                    "rect": {
+                        "left": 71,
+                        "top": 134,
+                        "width": 9,
+                        "height": 3
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -891,10 +935,12 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "left": 89,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 89,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_blue",
@@ -909,10 +955,12 @@
                     ]
                 },
                 {
-                    "left": 88,
-                    "top": 52,
-                    "width": 9,
-                    "height": 6,
+                    "rect": {
+                        "left": 88,
+                        "top": 52,
+                        "width": 9,
+                        "height": 6
+                    },
                     "shadowColor": "auto",
                     "paperStrips": [
                         {
@@ -969,10 +1017,12 @@
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
-                    "left": 106,
-                    "top": 1,
-                    "width": 9,
-                    "height": 2,
+                    "rect": {
+                        "left": 106,
+                        "top": 1,
+                        "width": 9,
+                        "height": 2
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_yellow",
@@ -988,10 +1038,12 @@
                     ]                
                 },
                 {
-                    "left": 106,
-                    "top": 15,
-                    "width": 9,
-                    "height": 3,
+                    "rect": {
+                        "left": 106,
+                        "top": 15,
+                        "width": 9,
+                        "height": 3
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_white",
@@ -1010,10 +1062,12 @@
                     ]
                 },
                 {
-                    "left": 106,
-                    "top": 77,
-                    "width": 9,
-                    "height": 5,
+                    "rect": {
+                        "left": 106,
+                        "top": 77,
+                        "width": 9,
+                        "height": 5
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_white",
@@ -1042,10 +1096,12 @@
                     ]
                 },
                 {
-                    "left": 106,
-                    "top": 91,
-                    "width": 9,
-                    "height": 5,
+                    "rect": {
+                        "left": 106,
+                        "top": 91,
+                        "width": 9,
+                        "height": 5
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_white",
@@ -1074,10 +1130,12 @@
                     ]
                 },
                 {
-                    "left": 106,
-                    "top": 122,
-                    "width": 9,
-                    "height": 5,
+                    "rect": {
+                        "left": 106,
+                        "top": 122,
+                        "width": 9,
+                        "height": 5
+                    },
                     "paperStrips": [
                         {
                             "bgColor": "xl_pale.xl_white",
