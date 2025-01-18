@@ -24,7 +24,7 @@ wb = xl.Workbook()
 ws = wb['Sheet']
 
 # 定規の描画
-tr.render_ruler(document, ws)
+tr.render_ruler(ws, document)
 
 # ワークブックの保存            
 wb.save('./temp/examples/step1_new_paper.xlsx')

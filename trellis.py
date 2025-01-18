@@ -133,36 +133,38 @@ def main():
             # ワークシート
             ws = wb['Sheet']
 
-            # 全ての矩形の描画
-            tr.render_all_rectangles(document, ws)
+            # 全てのテキストの描画（テープ除く）
 
             # 全ての矩形の描画
-            tr.render_all_rectangles(document, ws)
+            tr.render_all_rectangles(ws, document)
+
+            # 全ての矩形の描画
+            tr.render_all_rectangles(ws, document)
 
             # 全ての柱の敷物の描画
-            tr.render_all_pillar_rugs(document, ws)
+            tr.render_all_pillar_rugs(ws, document)
 
             # 全てのカードの影の描画
-            tr.render_all_card_shadows(document, ws)
+            tr.render_all_card_shadows(ws, document)
 
             # 全ての端子の影の描画
-            tr.render_all_terminal_shadows(document, ws)
+            tr.render_all_terminal_shadows(ws, document)
 
             # 全てのラインテープの影の描画
-            tr.render_all_line_tape_shadows(document, ws)
+            tr.render_all_line_tape_shadows(ws, document)
 
             # 全てのカードの描画
-            tr.render_all_cards(document, ws)
+            tr.render_all_cards(ws, document)
 
             # 全ての端子の描画
-            tr.render_all_terminals(document, ws)
+            tr.render_all_terminals(ws, document)
 
             # 全てのラインテープの描画
-            tr.render_all_line_tapes(document, ws)
+            tr.render_all_line_tapes(ws, document)
 
             # 定規の描画
             #       柱を上から塗りつぶすように描きます
-            tr.render_ruler(document, ws)
+            tr.render_ruler(ws, document)
 
             # ワークブックの保存
             print(f"🔧　write {wb_path_to_write} file")

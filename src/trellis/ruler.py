@@ -12,7 +12,7 @@ from .share import *
 #############
 # MARK: Ruler
 #############
-def render_ruler(document, ws):
+def render_ruler(ws, document):
     """定規の描画
     """
     print("🔧　定規の描画")

@@ -152,7 +152,7 @@ def fill_end_terminal(ws, column_th, row_th):
             ])
 
 
-def render_all_rectangles(document, ws):
+def render_all_rectangles(ws, document):
     """全ての矩形の描画
     """
     print('🔧　全ての矩形の描画')
@@ -184,7 +184,7 @@ def render_all_rectangles(document, ws):
                         fill_obj=tone_and_color_name_to_fill_obj(bg_color))
 
 
-def render_all_pillar_rugs(document, ws):
+def render_all_pillar_rugs(ws, document):
     """全ての柱の敷物の描画
     """
     print('🔧　全ての柱の敷物の描画')
@@ -277,7 +277,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
         cell.value = text
 
 
-def render_all_card_shadows(document, ws):
+def render_all_card_shadows(ws, document):
     """全てのカードの影の描画
     """
     print('🔧　全てのカードの影の描画')
@@ -305,7 +305,7 @@ def render_all_card_shadows(document, ws):
                                 fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
-def render_all_cards(document, ws):
+def render_all_cards(ws, document):
     """全てのカードの描画
     """
     print('🔧　全てのカードの描画')
@@ -349,7 +349,7 @@ def render_all_cards(document, ws):
                                 rows=card_rect.height_obj.total_of_out_counts_qty)
 
 
-def render_all_terminal_shadows(document, ws):
+def render_all_terminal_shadows(ws, document):
     """全ての端子の影の描画
     """
     print('🔧　全ての端子の影の描画')
@@ -376,7 +376,7 @@ def render_all_terminal_shadows(document, ws):
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
 
 
-def render_all_terminals(document, ws):
+def render_all_terminals(ws, document):
     """全ての端子の描画
     """
     print('🔧　全ての端子の描画')
@@ -408,7 +408,7 @@ def render_all_terminals(document, ws):
                             row_th=terminal_rect.top_obj.total_of_out_counts_th)
 
 
-def render_all_line_tape_shadows(document, ws):
+def render_all_line_tape_shadows(ws, document):
     """全てのラインテープの影の描画
     """
     print('🔧　全てのラインテープの影の描画')
@@ -431,7 +431,7 @@ def render_all_line_tape_shadows(document, ws):
                             fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
-def render_all_line_tapes(document, ws):
+def render_all_line_tapes(ws, document):
     """全てのラインテープの描画
     """
     print('🔧　全てのラインテープの描画')
@@ -914,7 +914,7 @@ class TrellisInSrc():
 
     とインポートしたとき、
 
-    tr.render_ruler(document, ws)
+    tr.render_ruler(ws, document)
 
     という形で関数を呼び出せるようにしたラッパー
     """
@@ -932,57 +932,57 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_ruler(document, ws):
+    def render_ruler(ws, document):
         global render_ruler
-        render_ruler(document, ws)
+        render_ruler(ws, document)
 
 
     @staticmethod
-    def render_all_rectangles(document, ws):
+    def render_all_rectangles(ws, document):
         global render_all_rectangles
-        render_all_rectangles(document, ws)
+        render_all_rectangles(ws, document)
 
 
     @staticmethod
-    def render_all_terminal_shadows(document, ws):
+    def render_all_terminal_shadows(ws, document):
         global render_all_terminal_shadows
-        render_all_terminal_shadows(document, ws)
+        render_all_terminal_shadows(ws, document)
 
 
     @staticmethod
-    def render_all_pillar_rugs(document, ws):
+    def render_all_pillar_rugs(ws, document):
         global render_all_pillar_rugs
-        render_all_pillar_rugs(document, ws)
+        render_all_pillar_rugs(ws, document)
 
 
     @staticmethod
-    def render_all_card_shadows(document, ws):
+    def render_all_card_shadows(ws, document):
         global render_all_card_shadows
-        render_all_card_shadows(document, ws)
+        render_all_card_shadows(ws, document)
 
 
     @staticmethod
-    def render_all_cards(document, ws):
+    def render_all_cards(ws, document):
         global render_all_cards
-        render_all_cards(document, ws)
+        render_all_cards(ws, document)
 
 
     @staticmethod
-    def render_all_terminals(document, ws):
+    def render_all_terminals(ws, document):
         global render_all_terminals
-        render_all_terminals(document, ws)
+        render_all_terminals(ws, document)
 
 
     @staticmethod
-    def render_all_line_tape_shadows(document, ws):
+    def render_all_line_tape_shadows(ws, document):
         global render_all_line_tape_shadows
-        render_all_line_tape_shadows(document, ws)
+        render_all_line_tape_shadows(ws, document)
 
 
     @staticmethod
-    def render_all_line_tapes(document, ws):
+    def render_all_line_tapes(ws, document):
         global render_all_line_tapes
-        render_all_line_tapes(document, ws)
+        render_all_line_tapes(ws, document)
 
 
     @staticmethod
