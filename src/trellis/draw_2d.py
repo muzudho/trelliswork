@@ -202,4 +202,6 @@ def print_text(ws, column_th, row_th, columns, rows, text):
     cell = ws[f'{column_letter}{row_th}']
     cell.value = text
 
-    # TODO width と height はセル結合したい
+    # セル結合
+    column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
+    ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')

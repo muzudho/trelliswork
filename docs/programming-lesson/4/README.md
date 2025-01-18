@@ -44,6 +44,6 @@
 py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
-![テキスト描画](../../img/[20250118-1805]print-text.png)  
+![テキスト描画](../../img/[20250118-1839]print-text2.png)  
 
 👆　テキストを描画できた。  
