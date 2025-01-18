@@ -170,29 +170,29 @@ class Rectangle():
 
 
     @staticmethod
-    def from_dict(rect_dict):
+    def from_dict(bounds_dict):
         """ラインテープのセグメントの矩形情報を取得
         """
 
         try:
-            main_left = rect_dict['left']
+            main_left = bounds_dict['left']
         except:
-            print(f'ERROR: Rectangle.from_dict: {rect_dict=}')
+            print(f'ERROR: Rectangle.from_dict: {bounds_dict=}')
             raise
 
         sub_left = 0
         if isinstance(main_left, str):
             main_left, sub_left = map(int, main_left.split('o', 2))
 
-        main_top = rect_dict['top']
+        main_top = bounds_dict['top']
         sub_top = 0
         if isinstance(main_top, str):
             main_top, sub_top = map(int, main_top.split('o', 2))
 
         # right は、その数を含まない。
         # right が指定されていれば、 width より優先する
-        if 'right' in rect_dict:
-            right = rect_dict['right']
+        if 'right' in bounds_dict:
+            right = bounds_dict['right']
             sub_right = 0
             if isinstance(right, str):
                 right, sub_right = map(int, right.split('o', 2))
@@ -201,15 +201,15 @@ class Rectangle():
             sub_width = sub_right - sub_left
 
         else:
-            main_width = rect_dict['width']
+            main_width = bounds_dict['width']
             sub_width = 0
             if isinstance(main_width, str):
                 main_width, sub_width = map(int, main_width.split('o', 2))
 
         # bottom は、その数を含まない。
         # bottom が指定されていれば、 width より優先する
-        if 'bottom' in rect_dict:
-            bottom = rect_dict['bottom']
+        if 'bottom' in bounds_dict:
+            bottom = bounds_dict['bottom']
             sub_bottom = 0
             if isinstance(bottom, str):
                 bottom, sub_bottom = map(int, bottom.split('o', 2))
@@ -218,7 +218,7 @@ class Rectangle():
             sub_height = sub_bottom - sub_top
 
         else:
-            main_height = rect_dict['height']
+            main_height = bounds_dict['height']
             sub_height = 0
             if isinstance(main_height, str):
                 main_height, sub_height = map(int, main_height.split('o', 2))
@@ -561,8 +561,8 @@ class Canvas():
     def from_dict(canvas_dict):
 
         rect_obj = None
-        if 'rect' in canvas_dict and (rect_dict := canvas_dict['rect']):
-            rect_obj = Rectangle.from_dict(rect_dict)
+        if 'bounds' in canvas_dict and (bounds_dict := canvas_dict['bounds']):
+            rect_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
                 rect_obj=rect_obj)
@@ -588,8 +588,8 @@ class Pillar():
     def from_dict(pillar_dict):
 
         rect_obj = None
-        if 'rect' in pillar_dict and (rect_dict := pillar_dict['rect']):
-            rect_obj = Rectangle.from_dict(rect_dict)
+        if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
+            rect_obj = Rectangle.from_dict(bounds_dict)
 
         # FIXME: if 'baseColor' in pillar_dict and (tone_and_color_name := pillar_dict['baseColor']):
 
@@ -618,8 +618,8 @@ class Card():
     def from_dict(card_dict):
 
         rect_obj = None
-        if 'rect' in card_dict and (rect_dict := card_dict['rect']):
-            rect_obj = Rectangle.from_dict(rect_dict)
+        if 'bounds' in card_dict and (bounds_dict := card_dict['bounds']):
+            rect_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
                 rect_obj=rect_obj)
@@ -645,8 +645,8 @@ class Terminal():
     def from_dict(terminal_dict):
 
         rect_obj = None
-        if 'rect' in terminal_dict and (rect_dict := terminal_dict['rect']):
-            rect_obj = Rectangle.from_dict(rect_dict)
+        if 'bounds' in terminal_dict and (bounds_dict := terminal_dict['bounds']):
+            rect_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
                 rect_obj=rect_obj)

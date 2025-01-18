@@ -1,6 +1,6 @@
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 119,
@@ -20,7 +20,7 @@
     },
     "pillars": [
         {
-            "rect": {
+            "bounds": {
                 "left": 0,
                 "right": 4,
                 "top": 1,
@@ -28,7 +28,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 4,
                 "right": 13,
                 "top": 1,
@@ -37,7 +37,7 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 4,
                         "top": 1,
                         "width": 9,
@@ -57,7 +57,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 3,
                         "top": 10,
                         "width": 9,
@@ -90,7 +90,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "rect": {
+                    "bounds": {
                         "left": 6,
                         "top": 5,
                         "width": 3,
@@ -101,7 +101,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 13,
                 "right": 21,
                 "top": 1,
@@ -109,7 +109,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 21,
                 "right": 30,
                 "top": 1,
@@ -118,7 +118,7 @@
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 21,
                         "top": 1,
                         "width": 9,
@@ -139,7 +139,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 21,
                         "top":15,
                         "width": 9,
@@ -171,7 +171,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 30,
                 "right": 38,
                 "top": 1,
@@ -179,7 +179,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 38,
                 "right": 47,
                 "top": 1,
@@ -188,7 +188,7 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 38,
                         "top": 1,
                         "width": 9,
@@ -215,7 +215,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 37,
                         "top": 25,
                         "width": 9,
@@ -289,7 +289,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 37,
                         "top": 42,
                         "width": 9,
@@ -339,7 +339,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 37,
                         "top": 61,
                         "width": 9,
@@ -389,7 +389,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 37,
                         "top": 100,
                         "width": 9,
@@ -459,7 +459,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 37,
                         "top": 129,
                         "width": 9,
@@ -505,7 +505,7 @@
             "terminals": [
                 {
                     "pixelArt": "end",
-                    "rect": {
+                    "bounds": {
                         "left": 40,
                         "top": 138,
                         "width": 3,
@@ -516,7 +516,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 47,
                 "right": 55,
                 "top": 1,
@@ -524,7 +524,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 55,
                 "right": 64,
                 "top": 1,
@@ -533,7 +533,7 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 55,
                         "top": 1,
                         "width": 9,
@@ -553,7 +553,7 @@
                     ]                
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 54,
                         "top": 10,
                         "width": 9,
@@ -590,7 +590,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 54,
                         "top": 72,
                         "width": 9,
@@ -620,7 +620,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 54,
                         "top": 86,
                         "width": 9,
@@ -650,7 +650,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 54,
                         "top": 117,
                         "width": 9,
@@ -680,7 +680,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 54,
                         "top": 134,
                         "width": 9,
@@ -709,7 +709,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "rect": {
+                    "bounds": {
                         "left": 57,
                         "top": 5,
                         "width": 3,
@@ -720,7 +720,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 64,
                 "right": 72,
                 "top": 1,
@@ -728,7 +728,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 72,
                 "right": 81,
                 "top": 1,
@@ -737,7 +737,7 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 72,
                         "top": 1,
                         "width": 9,
@@ -757,7 +757,7 @@
                     ]                
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 71,
                         "top": 10,
                         "width": 9,
@@ -794,7 +794,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 71,
                         "top": 72,
                         "width": 9,
@@ -823,7 +823,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 71,
                         "top": 86,
                         "width": 9,
@@ -852,7 +852,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 71,
                         "top": 117,
                         "width": 9,
@@ -881,7 +881,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 71,
                         "top": 134,
                         "width": 9,
@@ -910,7 +910,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "rect": {
+                    "bounds": {
                         "left": 74,
                         "top": 5,
                         "width": 3,
@@ -921,7 +921,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 81,
                 "right": 89,
                 "top": 1,
@@ -929,7 +929,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 89,
                 "right": 98,
                 "top": 1,
@@ -938,7 +938,7 @@
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 89,
                         "top": 1,
                         "width": 9,
@@ -958,7 +958,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 88,
                         "top": 52,
                         "width": 9,
@@ -1003,7 +1003,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 98,
                 "right": 106,
                 "top": 1,
@@ -1011,7 +1011,7 @@
             }
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 106,
                 "right": 115,
                 "top": 1,
@@ -1020,7 +1020,7 @@
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 106,
                         "top": 1,
                         "width": 9,
@@ -1041,7 +1041,7 @@
                     ]                
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 106,
                         "top": 15,
                         "width": 9,
@@ -1065,7 +1065,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 106,
                         "top": 77,
                         "width": 9,
@@ -1099,7 +1099,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 106,
                         "top": 91,
                         "width": 9,
@@ -1133,7 +1133,7 @@
                     ]
                 },
                 {
-                    "rect": {
+                    "bounds": {
                         "left": 106,
                         "top": 122,
                         "width": 9,
@@ -1169,7 +1169,7 @@
             ]
         },
         {
-            "rect": {
+            "bounds": {
                 "left": 115,
                 "right": 109,
                 "top": 1,

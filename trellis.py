@@ -47,7 +47,7 @@ def main():
 
             document = {
                 "canvas": {
-                    "rect": {
+                    "bounds": {
                         "left": 0,
                         "top": 0,
                         "width": canvas_width_obj.var_value,

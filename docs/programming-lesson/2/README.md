@@ -18,7 +18,7 @@
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -61,7 +61,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -103,7 +103,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -146,7 +146,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 10,

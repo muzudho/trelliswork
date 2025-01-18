@@ -162,8 +162,8 @@ def render_all_rectangles(ws, document):
         for rectangle_dict in rectangles_list:
 
             rect_obj = None
-            if 'rect' in rectangle_dict and (rect_dict := rectangle_dict['rect']):
-                rect_obj = Rectangle.from_dict(rect_dict)
+            if 'bounds' in rectangle_dict and (bounds_dict := rectangle_dict['bounds']):
+                rect_obj = Rectangle.from_dict(bounds_dict)
 
                 # セル結合
                 if 'mergeCells' in rectangle_dict and (is_merge_cells := rectangle_dict['mergeCells']):

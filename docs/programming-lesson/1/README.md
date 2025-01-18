@@ -41,7 +41,7 @@ py trellis.py init
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 100,
@@ -124,7 +124,7 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": "0o1",
             "top": "0o2",
             "width": "10o1",
@@ -159,7 +159,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": "0o1",
             "top": "0o2",
             "width": "10o1",

@@ -7,7 +7,7 @@
 ```json
 {
     "canvas": {
-        "rect": {
+        "bounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -27,7 +27,7 @@
     },
     "rectangles" : [
         {
-            "rect" : {
+            "bounds" : {
                 "left": 3,
                 "top": 4,
                 "width": 2,
