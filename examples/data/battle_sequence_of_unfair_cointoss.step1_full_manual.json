@@ -20,16 +20,20 @@
     },
     "pillars": [
         {
-            "left": 0,
-            "right": 4,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 0,
+                "right": 4,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 4,
-            "right": 13,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                    "left": 4,
+                "right": 13,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
@@ -91,16 +95,20 @@
             ]
         },
         {
-            "left": 13,
-            "right": 21,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 13,
+                "right": 21,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 21,
-            "right": 30,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 21,
+                "right": 30,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
@@ -153,16 +161,20 @@
             ]
         },
         {
-            "left": 30,
-            "right": 38,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 30,
+                "right": 38,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 38,
-            "right": 47,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 38,
+                "right": 47,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
@@ -480,16 +492,20 @@
             ]
         },
         {
-            "left": 47,
-            "right": 55,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 47,
+                "right": 55,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 55,
-            "right": 64,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 55,
+                "right": 64,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
@@ -666,16 +682,20 @@
             ]
         },
         {
-            "left": 64,
-            "right": 72,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 64,
+                "right": 72,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 72,
-            "right": 81,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 72,
+                "right": 81,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
@@ -849,16 +869,20 @@
             ]
         },
         {
-            "left": 81,
-            "right": 89,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 81,
+                "right": 89,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 89,
-            "right": 98,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 89,
+                "right": 98,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_blue",
             "cards": [
                 {
@@ -923,16 +947,20 @@
             ]
         },
         {
-            "left": 98,
-            "right": 106,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 98,
+                "right": 106,
+                "top": 1,
+                "height": 148
+            }
         },
         {
-            "left": 106,
-            "right": 115,
-            "top": 1,
-            "height": 148,
+            "rect": {
+                "left": 106,
+                "right": 115,
+                "top": 1,
+                "height": 148
+            },
             "baseColor": "xl_pale.xl_yellow",
             "cards": [
                 {
@@ -1075,10 +1103,12 @@
             ]
         },
         {
-            "left": 115,
-            "right": 109,
-            "top": 1,
-            "height": 148
+            "rect": {
+                "left": 115,
+                "right": 109,
+                "top": 1,
+                "height": 148
+            }
         }
     ],
     "lineTapes": [

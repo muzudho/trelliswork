@@ -121,7 +121,13 @@ class Rectangle():
     def from_dict(rect_dict):
         """ラインテープのセグメントの矩形情報を取得
         """
-        main_left = rect_dict['left']
+
+        try:
+            main_left = rect_dict['left']
+        except:
+            print(f'ERROR: Rectangle.from_dict: {rect_dict=}')
+            raise
+
         sub_left = 0
         if isinstance(main_left, str):
             main_left, sub_left = map(int, main_left.split('o', 2))
@@ -505,6 +511,36 @@ class Canvas():
         rect_obj = None
         if 'rect' in canvas_dict and (rect_dict := canvas_dict['rect']):
             rect_obj = Rectangle.from_dict(rect_dict)
+
+        return Canvas(
+                rect_obj=rect_obj)
+
+
+    def __init__(self, rect_obj):
+        self._rect_obj = rect_obj
+
+
+    @property
+    def rect_obj(self):
+        return self._rect_obj
+
+
+##############
+# MARK: Pillar
+##############
+class Pillar():
+    """柱
+    """
+
+
+    def from_dict(pillar_dict):
+
+        rect_obj = None
+        if 'rect' in pillar_dict and (rect_dict := pillar_dict['rect']):
+            rect_obj = Rectangle.from_dict(rect_dict)
+
+        # FIXME: if 'baseColor' in pillar_dict and (tone_and_color_name := pillar_dict['baseColor']):
+
 
         return Canvas(
                 rect_obj=rect_obj)

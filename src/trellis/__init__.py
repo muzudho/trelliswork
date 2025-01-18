@@ -223,16 +223,18 @@ def render_all_pillar_rugs(ws, document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
             if 'baseColor' in pillar_dict and (baseColor := pillar_dict['baseColor']):
-                pillar_rect = Rectangle.from_dict(pillar_dict)
+                pillar_rect_obj = pillar_obj.rect_obj
 
                 # 矩形を塗りつぶす
                 fill_rectangle(
                         ws=ws,
-                        column_th=pillar_rect.left_obj.total_of_out_counts_th,
-                        row_th=pillar_rect.top_obj.total_of_out_counts_th,
-                        columns=pillar_rect.width_obj.total_of_out_counts_qty,
-                        rows=pillar_rect.height_obj.total_of_out_counts_qty,
+                        column_th=pillar_rect_obj.left_obj.total_of_out_counts_th,
+                        row_th=pillar_rect_obj.top_obj.total_of_out_counts_th,
+                        columns=pillar_rect_obj.width_obj.total_of_out_counts_qty,
+                        rows=pillar_rect_obj.height_obj.total_of_out_counts_qty,
                         fill_obj=tone_and_color_name_to_fill_obj(baseColor))
 
 
@@ -316,6 +318,8 @@ def render_all_card_shadows(ws, document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
             # もし、カードの辞書があれば
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
@@ -344,6 +348,7 @@ def render_all_cards(ws, document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
 
             # 柱と柱の隙間（隙間柱）は無視する
             if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
@@ -388,6 +393,8 @@ def render_all_terminal_shadows(ws, document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
             # もし、端子のリストがあれば
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
@@ -415,6 +422,8 @@ def render_all_terminals(ws, document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
             # もし、端子のリストがあれば
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
@@ -780,17 +789,18 @@ def resolve_auto_shadow(document, column_th, row_th):
         if 'pillars' in document and (pillars_list := document['pillars']):
 
             for pillar_dict in pillars_list:
+                pillar_obj = Pillar.from_dict(pillar_dict)
 
                 # 柱と柱の隙間（隙間柱）は無視する
                 if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                     continue
 
-                pillar_rect = Rectangle.from_dict(pillar_dict)
+                pillar_rect_obj = pillar_obj.rect_obj
                 base_color = pillar_dict['baseColor']
 
                 # もし、矩形の中に、指定の点が含まれたなら
-                if pillar_rect.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_rect.left_obj.total_of_out_counts_th + pillar_rect.width_obj.total_of_out_counts_qty and \
-                    pillar_rect.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_rect.top_obj.total_of_out_counts_th + pillar_rect.height_obj.total_of_out_counts_qty:
+                if pillar_rect_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_rect_obj.left_obj.total_of_out_counts_th + pillar_rect_obj.width_obj.total_of_out_counts_qty and \
+                    pillar_rect_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_rect_obj.top_obj.total_of_out_counts_th + pillar_rect_obj.height_obj.total_of_out_counts_qty:
 
                     return shadow_color_dict[base_color]
 
@@ -806,6 +816,8 @@ def edit_document_and_solve_auto_shadow(document):
     if 'pillars' in document and (pillars_list := document['pillars']):
 
         for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
             # もし、カードの辞書があれば
             if 'cards' in pillar_dict and (card_dict_list := pillar_dict['cards']):
 
@@ -884,10 +896,11 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
 
             # 各柱
             for pillar_dict in pillars_list:
-                pillar_rect = Rectangle.from_dict(pillar_dict)
+                pillar_obj = Pillar.from_dict(pillar_dict)
+                pillar_rect_obj = pillar_obj.rect_obj
 
                 # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                if segment_rect.left_obj.total_of_out_counts_th < pillar_rect.right_obj.total_of_out_counts_th and pillar_rect.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
+                if segment_rect.left_obj.total_of_out_counts_th < pillar_rect_obj.right_obj.total_of_out_counts_th and pillar_rect_obj.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
                     # 既存のセグメントを削除
                     line_tape_segment_list.remove(line_tape_segment_dict)
 
@@ -895,14 +908,14 @@ def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_
                     # （計算を簡単にするため）width は使わず right を使う
                     left_segment_dict = dict(line_tape_segment_dict)
                     left_segment_dict.pop('width', None)
-                    left_segment_dict['right'] = InningsPitched.from_var_value(pillar_rect.right_obj.var_value).offset(-1).var_value
+                    left_segment_dict['right'] = InningsPitched.from_var_value(pillar_rect_obj.right_obj.var_value).offset(-1).var_value
                     new_segment_list.append(left_segment_dict)
 
                     # 右側のセグメントを新規作成し、既存リストに追加
                     # （計算を簡単にするため）width は使わず right を使う
                     right_segment_dict = dict(line_tape_segment_dict)
                     right_segment_dict.pop('width', None)
-                    right_segment_dict['left'] = pillar_rect.right_obj.offset(-1).var_value
+                    right_segment_dict['left'] = pillar_rect_obj.right_obj.offset(-1).var_value
                     right_segment_dict['right'] = segment_rect.right_obj.var_value
                     line_tape_segment_list.append(right_segment_dict)
                     line_tape_segment_dict = right_segment_dict          # 入れ替え
