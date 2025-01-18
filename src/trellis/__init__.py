@@ -1,7 +1,6 @@
 import os
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
-from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
@@ -199,6 +198,7 @@ def render_all_xl_texts(ws, document):
                 # テキストを入力する
                 print_text(
                         ws=ws,
+                        xl_text_dict=xl_text_dict,
                         column_th=text_rect.left_obj.total_of_out_counts_th,
                         row_th=text_rect.top_obj.total_of_out_counts_th,
                         columns=text_rect.width_obj.total_of_out_counts_qty,

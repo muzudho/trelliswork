@@ -5,7 +5,6 @@
 import json
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
-from openpyxl.styles.alignment import Alignment
 from src.trellis import trellis_in_src as tr
 
 

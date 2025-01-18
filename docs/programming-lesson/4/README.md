@@ -26,10 +26,14 @@
     "xl_texts": [
         {
             "left": 3,
-            "top": 2,
-            "width": 1,
+            "top": 4,
+            "width": 2,
             "height": 1,
-            "text": "Hello, world!"
+            "text": "Hello, world!",
+            "xl_alignment" : {
+                "xl_horizontal" : "center",
+                "xl_vertical" : "center"
+            }
         }
     ]
 }
@@ -44,6 +48,9 @@
 py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
-![テキスト描画](../../img/[20250118-1839]print-text2.png)  
+![テキスト描画](../../img/[20250118-1914]print-text3.png)  
 
 👆　テキストを描画できた。  
+
+`xl_horizontal` には `fill`, `left`, `distributed`, `justify`, `center`, `general`, `centerContinuous`, `right` が入れられるはず。  
+`xl_vertical` には `distributed`, `justify`, `center`, `bottom`, `top` が入れられるはず。  

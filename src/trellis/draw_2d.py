@@ -1,4 +1,5 @@
 import openpyxl as xl
+from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 from .share import tone_and_color_name_to_color_code
 
@@ -193,7 +194,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         cell.border = Border(top=top_side, right=right_side, bottom=bottom_side, left=left_side)
 
 
-def print_text(ws, column_th, row_th, columns, rows, text):
+def print_text(ws, xl_text_dict, column_th, row_th, columns, rows, text):
     """テキスト描画
     """
 
@@ -202,6 +203,24 @@ def print_text(ws, column_th, row_th, columns, rows, text):
     cell = ws[f'{column_letter}{row_th}']
     cell.value = text
 
+    # テキストの位置
+    if 'xl_alignment' in xl_text_dict and (xl_alignment := xl_text_dict['xl_alignment']):
+        xl_horizontal = None
+        xl_vertical = None
+        # 📖 [openpyxl.styles.alignment module](https://openpyxl.readthedocs.io/en/latest/api/openpyxl.styles.alignment.html)
+        # horizontal: Value must be one of {‘fill’, ‘left’, ‘distributed’, ‘justify’, ‘center’, ‘general’, ‘centerContinuous’, ‘right’}
+        # vertical: Value must be one of {‘distributed’, ‘justify’, ‘center’, ‘bottom’, ‘top’}
+        if 'xl_horizontal' in xl_alignment:
+            xl_horizontal = xl_alignment['xl_horizontal']
+
+        if 'xl_vertical' in xl_alignment:
+            xl_vertical = xl_alignment['xl_vertical']
+
+        alignment = Alignment(horizontal=xl_horizontal, vertical=xl_vertical)
+        cell = ws[f'{column_letter}{row_th}']
+        cell.alignment = alignment
+
     # セル結合
-    column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
-    ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')
+    if 1 < columns or 1 < rows:
+        column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
+        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')
