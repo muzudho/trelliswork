@@ -1,7 +1,7 @@
 import openpyxl as xl
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
-from .share import tone_and_color_name_to_color_code, Rectangle
+from .share import tone_and_color_name_to_color_code, Rectangle, XlAlignment
 
 
 def edit_canvas(ws, document):
@@ -234,21 +234,12 @@ def print_text(ws, xl_text_dict, column_th, row_th, columns, rows, text):
     cell.value = text
 
     # テキストの位置
-    if 'xl_alignment' in xl_text_dict and (xl_alignment := xl_text_dict['xl_alignment']):
-        xl_horizontal = None
-        xl_vertical = None
-        # 📖 [openpyxl.styles.alignment module](https://openpyxl.readthedocs.io/en/latest/api/openpyxl.styles.alignment.html)
-        # horizontal: Value must be one of {‘fill’, ‘left’, ‘distributed’, ‘justify’, ‘center’, ‘general’, ‘centerContinuous’, ‘right’}
-        # vertical: Value must be one of {‘distributed’, ‘justify’, ‘center’, ‘bottom’, ‘top’}
-        if 'xl_horizontal' in xl_alignment:
-            xl_horizontal = xl_alignment['xl_horizontal']
-
-        if 'xl_vertical' in xl_alignment:
-            xl_vertical = xl_alignment['xl_vertical']
-
-        alignment = Alignment(horizontal=xl_horizontal, vertical=xl_vertical)
+    if 'xl_alignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xl_alignment']):
         cell = ws[f'{column_letter}{row_th}']
-        cell.alignment = alignment
+        xl_alignment_obj = XlAlignment.from_dict(xl_alignment_dict)
+        cell.alignment = Alignment(
+                horizontal=xl_alignment_obj.xl_horizontal,
+                vertical=xl_alignment_obj.xl_vertical)
 
     # セル結合
     if 1 < columns or 1 < rows:

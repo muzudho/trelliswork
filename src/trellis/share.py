@@ -402,3 +402,47 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
 
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
     return none_pattern_fill
+
+
+###################
+# MARK: XlAlignment
+###################
+class XlAlignment():
+    """矩形
+    """
+
+
+    @staticmethod
+    def from_dict(xl_alignment_dict):
+        """辞書を元に生成
+
+        📖 [openpyxl.styles.alignment module](https://openpyxl.readthedocs.io/en/latest/api/openpyxl.styles.alignment.html)
+        horizontal: Value must be one of {‘fill’, ‘left’, ‘distributed’, ‘justify’, ‘center’, ‘general’, ‘centerContinuous’, ‘right’}
+        vertical: Value must be one of {‘distributed’, ‘justify’, ‘center’, ‘bottom’, ‘top’}
+        """
+        xl_horizontal = None
+        xl_vertical = None
+        if 'xl_horizontal' in xl_alignment_dict:
+            xl_horizontal = xl_alignment_dict['xl_horizontal']
+
+        if 'xl_vertical' in xl_alignment_dict:
+            xl_vertical = xl_alignment_dict['xl_vertical']
+
+        return XlAlignment(
+                xl_horizontal=xl_horizontal,
+                xl_vertical=xl_vertical)
+
+
+    def __init__(self, xl_horizontal, xl_vertical):
+        self._xl_horizontal = xl_horizontal
+        self._xl_vertical = xl_vertical
+
+
+    @property
+    def xl_horizontal(self):
+        return self._xl_horizontal
+
+
+    @property
+    def xl_vertical(self):
+        return self._xl_vertical
