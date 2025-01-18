@@ -405,15 +405,16 @@ def render_all_terminal_shadows(ws, document):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
+                    terminal_obj = Terminal.from_dict(terminal_dict)
+                    terminal_rect_obj = terminal_obj.rect_obj
 
-                    terminal_rect = Rectangle.from_dict(terminal_dict)
                     terminal_shadow_color = terminal_dict['shadowColor']
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
-                            row_th=terminal_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,
                             rows=9,
                             fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
@@ -434,23 +435,24 @@ def render_all_terminals(ws, document):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
+                    terminal_obj = Terminal.from_dict(terminal_dict)
+                    terminal_rect_obj = terminal_obj.rect_obj
 
                     terminal_pixel_art = terminal_dict['pixelArt']
-                    terminal_rect = Rectangle.from_dict(terminal_dict)
 
                     if terminal_pixel_art == 'start':
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.total_of_out_counts_th,
-                            row_th=terminal_rect.top_obj.total_of_out_counts_th)
+                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th,
+                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
 
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
-                            column_th=terminal_rect.left_obj.total_of_out_counts_th,
-                            row_th=terminal_rect.top_obj.total_of_out_counts_th)
+                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th,
+                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
 
 
 def render_all_line_tape_shadows(ws, document):
@@ -850,16 +852,18 @@ def edit_document_and_solve_auto_shadow(document):
             if 'terminals' in pillar_dict and (terminals_list := pillar_dict['terminals']):
 
                 for terminal_dict in terminals_list:
+                    terminal_obj = Terminal.from_dict(terminal_dict)
+                    terminal_rect_obj = terminal_obj.rect_obj
+
                     if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
 
                         if terminal_shadow_color == 'auto':
-                            terminal_rect = Rectangle.from_dict(terminal_dict)
 
                             # 影に自動が設定されていたら、解決する
                             if solved_tone_and_color_name := resolve_auto_shadow(
                                     document=document,
-                                    column_th=terminal_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
-                                    row_th=terminal_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
+                                    column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
+                                    row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
                                 terminal_dict['shadowColor'] = solved_tone_and_color_name
 
     # もし、ラインテープのリストがあれば

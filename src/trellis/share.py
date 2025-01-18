@@ -569,8 +569,32 @@ class Card():
         if 'rect' in card_dict and (rect_dict := card_dict['rect']):
             rect_obj = Rectangle.from_dict(rect_dict)
 
-        # FIXME: if 'baseColor' in pillar_dict and (tone_and_color_name := pillar_dict['baseColor']):
+        return Canvas(
+                rect_obj=rect_obj)
 
+
+    def __init__(self, rect_obj):
+        self._rect_obj = rect_obj
+
+
+    @property
+    def rect_obj(self):
+        return self._rect_obj
+
+
+################
+# MARK: Terminal
+################
+class Terminal():
+    """端子
+    """
+
+
+    def from_dict(terminal_dict):
+
+        rect_obj = None
+        if 'rect' in terminal_dict and (rect_dict := terminal_dict['rect']):
+            rect_obj = Rectangle.from_dict(rect_dict)
 
         return Canvas(
                 rect_obj=rect_obj)
