@@ -118,23 +118,23 @@ class Rectangle():
 
 
     @staticmethod
-    def from_dict(rectangle_dict):
+    def from_dict(rect_dict):
         """ラインテープのセグメントの矩形情報を取得
         """
-        main_left = rectangle_dict['left']
+        main_left = rect_dict['left']
         sub_left = 0
         if isinstance(main_left, str):
             main_left, sub_left = map(int, main_left.split('o', 2))
 
-        main_top = rectangle_dict['top']
+        main_top = rect_dict['top']
         sub_top = 0
         if isinstance(main_top, str):
             main_top, sub_top = map(int, main_top.split('o', 2))
 
         # right は、その数を含まない。
         # right が指定されていれば、 width より優先する
-        if 'right' in rectangle_dict:
-            right = rectangle_dict['right']
+        if 'right' in rect_dict:
+            right = rect_dict['right']
             sub_right = 0
             if isinstance(right, str):
                 right, sub_right = map(int, right.split('o', 2))
@@ -143,15 +143,15 @@ class Rectangle():
             sub_width = sub_right - sub_left
 
         else:
-            main_width = rectangle_dict['width']
+            main_width = rect_dict['width']
             sub_width = 0
             if isinstance(main_width, str):
                 main_width, sub_width = map(int, main_width.split('o', 2))
 
         # bottom は、その数を含まない。
         # bottom が指定されていれば、 width より優先する
-        if 'bottom' in rectangle_dict:
-            bottom = rectangle_dict['bottom']
+        if 'bottom' in rect_dict:
+            bottom = rect_dict['bottom']
             sub_bottom = 0
             if isinstance(bottom, str):
                 bottom, sub_bottom = map(int, bottom.split('o', 2))
@@ -160,7 +160,7 @@ class Rectangle():
             sub_height = sub_bottom - sub_top
 
         else:
-            main_height = rectangle_dict['height']
+            main_height = rect_dict['height']
             sub_height = 0
             if isinstance(main_height, str):
                 main_height, sub_height = map(int, main_height.split('o', 2))
@@ -491,3 +491,29 @@ class XlFont():
     def color_code_for_xl(self):
         return web_safe_color_code_to_xl(self._web_safe_color_code)
 
+
+##############
+# MARK: Canvas
+##############
+class Canvas():
+    """キャンバス
+    """
+
+
+    def from_dict(canvas_dict):
+
+        rect_obj = None
+        if 'rect' in canvas_dict and (rect_dict := canvas_dict['rect']):
+            rect_obj = Rectangle.from_dict(rect_dict)
+
+        return Canvas(
+                rect_obj=rect_obj)
+
+
+    def __init__(self, rect_obj):
+        self._rect_obj = rect_obj
+
+
+    @property
+    def rect_obj(self):
+        return self._rect_obj

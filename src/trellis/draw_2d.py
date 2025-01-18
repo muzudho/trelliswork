@@ -2,7 +2,7 @@ import openpyxl as xl
 from openpyxl.styles import Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
-from .share import tone_and_color_name_to_web_safe_color_code, Rectangle, XlAlignment
+from .share import tone_and_color_name_to_web_safe_color_code, Rectangle, XlAlignment, Canvas
 
 
 def edit_canvas(ws, document):
@@ -15,7 +15,8 @@ def edit_canvas(ws, document):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    canvas_rect = Rectangle.from_dict(document['canvas'])
+    canvas_obj = Canvas.from_dict(document['canvas'])
+    canvas_rect = canvas_obj.rect_obj
 
     # 横幅または縦幅が１アウト未満の場合は、定規は描画しません
     if canvas_rect.width_obj.total_of_out_counts_qty < 1 or canvas_rect.height_obj.total_of_out_counts_qty < 1:

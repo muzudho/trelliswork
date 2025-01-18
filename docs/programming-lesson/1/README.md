@@ -41,10 +41,12 @@ py trellis.py init
 ```json
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 100,
-        "height": 100
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 100,
+            "height": 100
+        }
     },
     "ruler": {
         "visible": true
@@ -122,10 +124,12 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 ```json
 {
     "canvas": {
-        "left": "0o1",
-        "top": "0o2",
-        "width": "10o1",
-        "height": "10o2"
+        "rect": {
+            "left": "0o1",
+            "top": "0o2",
+            "width": "10o1",
+            "height": "10o2"
+        }
     },
     "ruler": {
         "visible": true
@@ -155,10 +159,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "left": "0o1",
-        "top": "0o2",
-        "width": "10o1",
-        "height": "10o2"
+        "rect": {
+            "left": "0o1",
+            "top": "0o2",
+            "width": "10o1",
+            "height": "10o2"
+        }
     },
     "ruler": {
         "visible": false

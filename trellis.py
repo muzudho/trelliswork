@@ -47,10 +47,12 @@ def main():
 
             document = {
                 "canvas": {
-                    "left": 0,
-                    "top": 0,
-                    "width": canvas_width_obj.var_value,
-                    "height": canvas_height_obj.var_value
+                    "rect": {
+                        "left": 0,
+                        "top": 0,
+                        "width": canvas_width_obj.var_value,
+                        "height": canvas_height_obj.var_value
+                    }
                 },
                 "ruler": {
                     "visible": True,

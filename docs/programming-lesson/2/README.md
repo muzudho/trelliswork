@@ -18,10 +18,12 @@
 ```json
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 10,
-        "height": 10
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 10,
+            "height": 10
+        }
     },
     "ruler": {
         "visible": true,
@@ -59,10 +61,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 10,
-        "height": 10
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 10,
+            "height": 10
+        }
     },
     "ruler": {
         "visible": true,
@@ -99,10 +103,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 10,
-        "height": 10
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 10,
+            "height": 10
+        }
     },
     "ruler": {
         "visible": true,
@@ -140,10 +146,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ```json
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 10,
-        "height": 10
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 10,
+            "height": 10
+        }
     },
     "ruler": {
         "visible": true,
