@@ -1,7 +1,8 @@
 import openpyxl as xl
+from openpyxl.styles import Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
-from .share import tone_and_color_name_to_color_code, Rectangle, XlAlignment
+from .share import tone_and_color_name_to_web_safe_color_code, Rectangle, XlAlignment
 
 
 def edit_canvas(ws, document):
@@ -60,67 +61,67 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
     # ‘mediumDashed’, ‘mediumDashDotDot’, ‘dashDot’, ‘dashed’, ‘slantDashDot’, ‘dashDotDot’, ‘thick’, ‘thin’, ‘dotted’, ‘double’, ‘medium’, ‘hair’, ‘mediumDashDot’
 
     if 'top' in xl_border_dict and (top_dict := xl_border_dict['top']):
-        color_code = None
+        web_safe_color_code = None
         style = None
 
         if 'color' in top_dict and (color := top_dict['color']):
-            color_code = tone_and_color_name_to_color_code(color)
+            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xl_style' in top_dict and (style := top_dict['xl_style']):
             pass
 
         try:
-            top_side = Side(style=style, color=color_code)
+            top_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
 
     if 'right' in xl_border_dict and (right_dict := xl_border_dict['right']):
-        color_code = None
+        web_safe_color_code = None
         style = None
 
         if 'color' in right_dict and (color := right_dict['color']):
-            color_code = tone_and_color_name_to_color_code(color)
+            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xl_style' in right_dict and (style := right_dict['xl_style']):
             pass
 
         try:
-            right_side = Side(style=style, color=color_code)
+            right_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
 
     if 'bottom' in xl_border_dict and (bottom_dict := xl_border_dict['bottom']):
-        color_code = None
+        web_safe_color_code = None
         style = None
 
         if 'color' in bottom_dict and (color := bottom_dict['color']):
-            color_code = tone_and_color_name_to_color_code(color)
+            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xl_style' in bottom_dict and (style := bottom_dict['xl_style']):
             pass
 
         try:
-            bottom_side = Side(style=style, color=color_code)
+            bottom_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
 
     if 'left' in xl_border_dict and (left_dict := xl_border_dict['left']):
-        color_code = None
+        web_safe_color_code = None
         style = None
 
         if 'color' in left_dict and (color := left_dict['color']):
-            color_code = tone_and_color_name_to_color_code(color)
+            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xl_style' in left_dict and (style := left_dict['xl_style']):
             pass
 
         try:
-            left_side = Side(style=style, color=color_code)
+            left_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
 
     # TODO 厚みが１のケースや、角は、２辺に線を引く
@@ -224,19 +225,29 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         cell.border = Border(top=top_side, right=right_side, bottom=bottom_side, left=left_side)
 
 
-def print_text(ws, xl_text_dict, column_th, row_th, columns, rows, text):
+def print_text(ws, rect_obj, text, xl_alignment_obj, xl_font_obj):
     """テキスト描画
     """
 
-    # TODO width と height が 1 のとき
-    column_letter = xl.utils.get_column_letter(column_th)
-    cell = ws[f'{column_letter}{row_th}']
-    cell.value = text
-
     # テキストの位置
-    if 'xl_alignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xl_alignment']):
+    column_th = rect_obj.left_obj.total_of_out_counts_th
+    row_th = rect_obj.top_obj.total_of_out_counts_th
+    columns = rect_obj.width_obj.total_of_out_counts_qty
+    rows = rect_obj.height_obj.total_of_out_counts_qty
+
+    # テキスト設定
+    if 0 < columns and 0 < rows:
+        column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
-        xl_alignment_obj = XlAlignment.from_dict(xl_alignment_dict)
+        cell.value = text
+
+    # フォント設定
+    if xl_font_obj:
+        print(f'★print_text {xl_font_obj.color_code_for_xl=}')
+        cell.font = Font(color=xl_font_obj.color_code_for_xl)
+
+    # テキストの位置揃え
+    if xl_alignment_obj:
         cell.alignment = Alignment(
                 horizontal=xl_alignment_obj.xl_horizontal,
                 vertical=xl_alignment_obj.xl_vertical)

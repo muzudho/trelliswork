@@ -193,19 +193,25 @@ def render_all_xl_texts(ws, document):
         for xl_text_dict in xl_texts:
 
             if 'text' in xl_text_dict and (text := xl_text_dict['text']):
-                text_rect = Rectangle.from_dict(xl_text_dict)
+                rect_obj = Rectangle.from_dict(xl_text_dict)
+
+                # テキストの位置揃え
+                xl_alignment_obj = None
+                if 'xl_alignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xl_alignment']):
+                    xl_alignment_obj = XlAlignment.from_dict(xl_alignment_dict)
+
+                # フォント
+                xl_font_obj = None
+                if 'xl_font' in xl_text_dict and (xl_font_dict := xl_text_dict['xl_font']):
+                    xl_font_obj = XlFont.from_dict(xl_font_dict)
 
                 # テキストを入力する
                 print_text(
                         ws=ws,
-                        xl_text_dict=xl_text_dict,
-                        column_th=text_rect.left_obj.total_of_out_counts_th,
-                        row_th=text_rect.top_obj.total_of_out_counts_th,
-                        columns=text_rect.width_obj.total_of_out_counts_qty,
-                        rows=text_rect.height_obj.total_of_out_counts_qty,
-                        text=text)
-
-                pass
+                        rect_obj=rect_obj,
+                        text=text,
+                        xl_alignment_obj=xl_alignment_obj,
+                        xl_font_obj=xl_font_obj)
 
 
 def render_all_pillar_rugs(ws, document):

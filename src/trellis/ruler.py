@@ -54,10 +54,10 @@ def render_ruler(ws, document):
                     #font_list[index] = Font(color=None)   # フォントに使うと黒になる
                     raise ValueError(f'fgColor に paper_color を指定してはいけません {index=}')
 
-                elif (web_safe_color_code_of_font := tone_and_color_name_to_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
+                elif (web_safe_color_code_of_font := tone_and_color_name_to_web_safe_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
                     try:
                         xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
-                        font_list[index] = Font(color=xl_font_obj.web_safe_color_code)
+                        font_list[index] = Font(color=xl_font_obj.color_code_for_xl)
                     except:
                         print(f'ERROR: {index=} {web_safe_color_code_of_font=}')
                         raise
@@ -82,11 +82,13 @@ def render_ruler(ws, document):
                 if bg_color_text == 'paper_color':
                     pattern_fill_list[index] = PatternFill(patternType=None)
 
-                elif (pattern_fill_text := tone_and_color_name_to_color_code(bg_color_text)) and pattern_fill_text is not None:
+                elif (web_safe_color_code := tone_and_color_name_to_web_safe_color_code(bg_color_text)) and web_safe_color_code is not None:
                     try:
-                        pattern_fill_list[index] = PatternFill(patternType='solid', fgColor=pattern_fill_text)
+                        pattern_fill_list[index] = PatternFill(
+                                patternType='solid',
+                                fgColor=web_safe_color_code_to_xl(web_safe_color_code))
                     except:
-                        print(f'ERROR: {index=} {pattern_fill_text=}')
+                        print(f'ERROR: {index=} {web_safe_color_code=}')
                         raise
 
     else:
@@ -536,7 +538,7 @@ def render_ruler(ws, document):
 def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect):
     """定規上のテキスト表示
 
-    TODO 位置とテキストの生成と、その表示は分けたい。 column_th, row_th, text, alignment_obj, font_obj
+    TODO 位置とテキストの生成と、その表示は分けたい。 column_th, row_th, text, xl_alignment_obj, xl_font_obj
     """
 
 
