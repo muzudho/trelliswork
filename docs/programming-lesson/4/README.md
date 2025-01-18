@@ -69,5 +69,10 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 
 👆　テキストを描画できた。  
 
-`xl_horizontal` には `fill`, `left`, `distributed`, `justify`, `center`, `general`, `centerContinuous`, `right` が入れられるはず。  
-`xl_vertical` には `distributed`, `justify`, `center`, `bottom`, `top` が入れられるはず。  
+* `xl_horizontal` には `fill`, `left`, `distributed`, `justify`, `center`, `general`, `centerContinuous`, `right` が入れられるはず。  
+* `xl_vertical` には `distributed`, `justify`, `center`, `bottom`, `top` が入れられるはず。  
+
+
+## 次回
+
+次回は［トレリスでの影表示］を予定しています。  
