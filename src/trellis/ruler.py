@@ -471,8 +471,8 @@ def render_ruler(ws, document):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
 
 
-    # 定規上のテキスト描画
-    __paint_all_texts(
+    # 定規上のテキスト表示
+    __print_all_texts(
             ws=ws,
             vertical_ruler_width=VERTICAL_RULER_WIDTH,
             horizontal_ruler_height=HORIZONTAL_RULER_HEIGHT,
@@ -532,12 +532,14 @@ def render_ruler(ws, document):
     render_ruler_merge_cells_right_end_fraction_on_bottom()
 
 
-def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect):
-    """定規上のテキスト描画
+def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect):
+    """定規上のテキスト表示
+
+    TODO 位置とテキストの生成と、その表示は分けたい
     """
 
 
-    def render_ruler_numbering_of_top_edge():
+    def print_all_texts_on_top_edge():
         """定規の採番　＞　上辺
 
                 横幅が３で割り切れるとき、１投球回は 4th から始まる。２投球回を最終表示にするためには、横幅を 3 シュリンクする
@@ -584,15 +586,12 @@ def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
             # dark     light    dark     light
             #
             ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_left_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
+            cell.value = ruler_number
+            cell.alignment = center_center_alignment
+            cell.font = font_list[ruler_number % len(font_list)]
 
 
-    def render_ruler_numbering_of_left_edge():
+    def print_all_texts_on_left_edge():
         """定規の採番　＞　左辺
 
         縦幅が３で割り切れるとき、１投球回は 1th から始まる。最後の投球回は、端数なしで表示できる
@@ -623,15 +622,12 @@ def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
             cell = ws[f'{column_letter}{row_th}']
 
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_top_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
+            cell.value = ruler_number
+            cell.alignment = center_center_alignment
+            cell.font = font_list[ruler_number % len(font_list)]
 
 
-    def render_ruler_numbering_of_bottom_edge():
+    def print_all_texts_on_bottom_edge():
         """定規の採番　＞　下辺
         """
 
@@ -648,15 +644,12 @@ def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
             ruler_number = (column_th - canvas_rect.left_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_left_end = (column_th - canvas_rect.left_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_left_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
+            cell.value = ruler_number
+            cell.alignment = center_center_alignment
+            cell.font = font_list[ruler_number % len(font_list)]
 
 
-    def render_ruler_numbering_of_right_edge():
+    def print_all_texts_on_right_edge():
         """定規の採番　＞　右辺
         """
 
@@ -675,19 +668,16 @@ def __paint_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
             cell = ws[f'{column_letter}{row_th}']
 
             ruler_number = (row_th - canvas_rect.top_obj.total_of_out_counts_th) // OUT_COUNTS_THAT_CHANGE_INNING
-            is_top_end = (row_th - canvas_rect.top_obj.total_of_out_counts_th) % OUT_COUNTS_THAT_CHANGE_INNING == 0
-
-            if is_top_end:
-                cell.value = ruler_number
-                cell.alignment = center_center_alignment
-                cell.font = font_list[ruler_number % len(font_list)]
+            cell.value = ruler_number
+            cell.alignment = center_center_alignment
+            cell.font = font_list[ruler_number % len(font_list)]
 
 
     # 定規の採番　＞　上辺
-    render_ruler_numbering_of_top_edge()
+    print_all_texts_on_top_edge()
     # 定規の採番　＞　左辺
-    render_ruler_numbering_of_left_edge()
+    print_all_texts_on_left_edge()
     # 定規の採番　＞　下辺
-    render_ruler_numbering_of_bottom_edge()
+    print_all_texts_on_bottom_edge()
     # 定規の採番　＞　右辺
-    render_ruler_numbering_of_right_edge()
+    print_all_texts_on_right_edge()
