@@ -226,21 +226,18 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         cell.border = Border(top=top_side, right=right_side, bottom=bottom_side, left=left_side)
 
 
-def print_text(ws, rect_obj, text, xl_alignment_obj, xl_font_obj):
+def print_text(ws, location_obj, text, xl_alignment_obj, xl_font_obj):
     """テキスト描画
     """
 
     # テキストの位置
-    column_th = rect_obj.left_obj.total_of_out_counts_th
-    row_th = rect_obj.top_obj.total_of_out_counts_th
-    columns = rect_obj.width_obj.total_of_out_counts_qty
-    rows = rect_obj.height_obj.total_of_out_counts_qty
+    column_th = location_obj.x_obj.total_of_out_counts_th
+    row_th = location_obj.y_obj.total_of_out_counts_th
 
     # テキスト設定
-    if 0 < columns and 0 < rows:
-        column_letter = xl.utils.get_column_letter(column_th)
-        cell = ws[f'{column_letter}{row_th}']
-        cell.value = text
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    cell.value = text
 
     # フォント設定
     if xl_font_obj:
@@ -252,8 +249,3 @@ def print_text(ws, rect_obj, text, xl_alignment_obj, xl_font_obj):
         cell.alignment = Alignment(
                 horizontal=xl_alignment_obj.xl_horizontal,
                 vertical=xl_alignment_obj.xl_vertical)
-
-    # セル結合
-    if 1 < columns or 1 < rows:
-        column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
-        ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')

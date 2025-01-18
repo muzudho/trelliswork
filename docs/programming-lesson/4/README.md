@@ -25,16 +25,31 @@
             "xl_pale.xl_red"
         ]
     },
+    "rectangles" : [
+        {
+            "rect" : {
+                "left": 3,
+                "top": 4,
+                "width": 2,
+                "height": 1
+            },
+            "bgColor": "paper_color",
+            "mergeCells": true
+        }
+    ],
     "xl_texts": [
         {
-            "left": 3,
-            "top": 4,
-            "width": 2,
-            "height": 1,
+            "location": {
+                "x": 3,
+                "y": 4
+            },
             "text": "Hello, world!",
             "xl_alignment" : {
                 "xl_horizontal" : "center",
                 "xl_vertical" : "center"
+            },
+            "xl_font": {
+                "color": "xl_strong.xl_red"
             }
         }
     ]
@@ -50,7 +65,7 @@
 py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
-![テキスト描画](../../img/[20250118-1914]print-text3.png)  
+![テキスト描画](../../img/[20250119-0012]print-text4.png)  
 
 👆　テキストを描画できた。  
 

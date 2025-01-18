@@ -160,27 +160,43 @@ def render_all_rectangles(ws, document):
     if 'rectangles' in document and (rectangles_list := document['rectangles']):
 
         for rectangle_dict in rectangles_list:
-            if 'bgColor' in rectangle_dict and (bg_color := rectangle_dict['bgColor']):
-                rectangle_rect = Rectangle.from_dict(rectangle_dict)
 
-                # もし境界線が指定されていれば、描画する
-                if 'xl_border' in rectangle_dict and (xl_border_dict := rectangle_dict['xl_border']):
-                    draw_xl_border_on_rectangle(
+            rect_obj = None
+            if 'rect' in rectangle_dict and (rect_dict := rectangle_dict['rect']):
+                rect_obj = Rectangle.from_dict(rect_dict)
+
+                # セル結合
+                if 'mergeCells' in rectangle_dict and (is_merge_cells := rectangle_dict['mergeCells']):
+                    if is_merge_cells:
+                        column_th = rect_obj.left_obj.total_of_out_counts_th
+                        row_th = rect_obj.top_obj.total_of_out_counts_th
+                        columns = rect_obj.width_obj.total_of_out_counts_qty
+                        rows = rect_obj.height_obj.total_of_out_counts_qty
+
+                        if 0 < columns and 0 < rows and (1 < columns or 1 < rows):
+                            column_letter = xl.utils.get_column_letter(column_th)
+                            column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
+                            ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')
+
+                if 'bgColor' in rectangle_dict and (bg_color := rectangle_dict['bgColor']):
+                    # もし境界線が指定されていれば、描画する
+                    if 'xl_border' in rectangle_dict and (xl_border_dict := rectangle_dict['xl_border']):
+                        draw_xl_border_on_rectangle(
+                                ws=ws,
+                                xl_border_dict=xl_border_dict,
+                                column_th=rect_obj.left_obj.total_of_out_counts_th,
+                                row_th=rect_obj.top_obj.total_of_out_counts_th,
+                                columns=rect_obj.width_obj.total_of_out_counts_qty,
+                                rows=rect_obj.height_obj.total_of_out_counts_qty)
+
+                    # 矩形を塗りつぶす
+                    fill_rectangle(
                             ws=ws,
-                            xl_border_dict=xl_border_dict,
-                            column_th=rectangle_rect.left_obj.total_of_out_counts_th,
-                            row_th=rectangle_rect.top_obj.total_of_out_counts_th,
-                            columns=rectangle_rect.width_obj.total_of_out_counts_qty,
-                            rows=rectangle_rect.height_obj.total_of_out_counts_qty)
-
-                # 矩形を塗りつぶす
-                fill_rectangle(
-                        ws=ws,
-                        column_th=rectangle_rect.left_obj.total_of_out_counts_th,
-                        row_th=rectangle_rect.top_obj.total_of_out_counts_th,
-                        columns=rectangle_rect.width_obj.total_of_out_counts_qty,
-                        rows=rectangle_rect.height_obj.total_of_out_counts_qty,
-                        fill_obj=tone_and_color_name_to_fill_obj(bg_color))
+                            column_th=rect_obj.left_obj.total_of_out_counts_th,
+                            row_th=rect_obj.top_obj.total_of_out_counts_th,
+                            columns=rect_obj.width_obj.total_of_out_counts_qty,
+                            rows=rect_obj.height_obj.total_of_out_counts_qty,
+                            fill_obj=tone_and_color_name_to_fill_obj(bg_color))
 
 
 def render_all_xl_texts(ws, document):
@@ -192,8 +208,13 @@ def render_all_xl_texts(ws, document):
     if 'xl_texts' in document and (xl_texts := document['xl_texts']):
         for xl_text_dict in xl_texts:
 
+            # テキスト設定
             if 'text' in xl_text_dict and (text := xl_text_dict['text']):
-                rect_obj = Rectangle.from_dict(xl_text_dict)
+
+                # 位置
+                location_obj = None
+                if 'location' in xl_text_dict and (location_dict := xl_text_dict['location']):
+                    location_obj = Point.from_dict(location_dict)
 
                 # テキストの位置揃え
                 xl_alignment_obj = None
@@ -208,7 +229,7 @@ def render_all_xl_texts(ws, document):
                 # テキストを入力する
                 print_text(
                         ws=ws,
-                        rect_obj=rect_obj,
+                        location_obj=location_obj,
                         text=text,
                         xl_alignment_obj=xl_alignment_obj,
                         xl_font_obj=xl_font_obj)

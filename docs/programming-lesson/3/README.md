@@ -29,10 +29,12 @@
     },
     "rectangles": [
         {
-            "left": 3,
-            "top": 2,
-            "width": 4,
-            "height": 1,
+            "rect": {
+                "left": 3,
+                "top": 2,
+                "width": 4,
+                "height": 1
+            },
             "bgColor": "xl_light.xl_green"
         }
     ]
@@ -81,10 +83,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     },
     "rectangles": [
         {
-            "left": 3,
-            "right": 7,
-            "top": 2,
-            "bottom": 3,
+            "rect": {
+                "left": 3,
+                "right": 7,
+                "top": 2,
+                "bottom": 3
+            },
             "bgColor": "xl_light.xl_blue"
         }
     ]
@@ -134,10 +138,12 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     },
     "rectangles": [
         {
-            "left": 2,
-            "top": 2,
-            "width": 6,
-            "height": 6,
+            "rect": {
+                "left": 2,
+                "top": 2,
+                "width": 6,
+                "height": 6
+            },
             "bgColor": "xl_light.xl_blue",
             "xl_border": {
                 "top": {
