@@ -54,11 +54,12 @@ def render_ruler(ws, document):
                     #font_list[index] = Font(color=None)   # フォントに使うと黒になる
                     raise ValueError(f'fgColor に paper_color を指定してはいけません {index=}')
 
-                elif (font_text := tone_and_color_name_to_color_code(fg_color_text)) and font_text is not None:
+                elif (web_safe_color_code_of_font := tone_and_color_name_to_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
                     try:
-                        font_list[index] = Font(color=font_text)
+                        xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
+                        font_list[index] = Font(color=xl_font_obj.web_safe_color_code)
                     except:
-                        print(f'ERROR: {index=} {font_text=}')
+                        print(f'ERROR: {index=} {web_safe_color_code_of_font=}')
                         raise
 
     else:
@@ -535,7 +536,7 @@ def render_ruler(ws, document):
 def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect):
     """定規上のテキスト表示
 
-    TODO 位置とテキストの生成と、その表示は分けたい
+    TODO 位置とテキストの生成と、その表示は分けたい。 column_th, row_th, text, alignment_obj, font_obj
     """
 
 

@@ -408,7 +408,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
 # MARK: XlAlignment
 ###################
 class XlAlignment():
-    """矩形
+    """Excel 用テキスト位置
     """
 
 
@@ -446,3 +446,32 @@ class XlAlignment():
     @property
     def xl_vertical(self):
         return self._xl_vertical
+
+
+##############
+# MARK: XlFont
+##############
+class XlFont():
+    """Excel 用フォント
+    """
+
+
+    @staticmethod
+    def from_dict(xl_font_dict):
+        """辞書を元に生成
+        """
+        web_safe_color_code = None
+        if 'color' in xl_font_dict:
+            web_safe_color_code = xl_font_dict['color']
+
+        return XlFont(
+                web_safe_color_code=web_safe_color_code)
+
+
+    def __init__(self, web_safe_color_code):
+        self._web_safe_color_code = web_safe_color_code
+
+
+    @property
+    def web_safe_color_code(self):
+        return self._web_safe_color_code
