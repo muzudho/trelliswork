@@ -1,9 +1,11 @@
 {
     "canvas": {
-        "left": 0,
-        "top": 0,
-        "width": 119,
-        "height": 149
+        "rect": {
+            "left": 0,
+            "top": 0,
+            "width": 119,
+            "height": 149
+        }
     },
     "ruler": {
         "visible": true,
