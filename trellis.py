@@ -133,7 +133,8 @@ def main():
             # ワークシート
             ws = wb['Sheet']
 
-            # 全てのテキストの描画（テープ除く）
+            # 全てのテキストの描画（定規の番号除く）
+            tr.render_all_xl_texts(ws, document)
 
             # 全ての矩形の描画
             tr.render_all_rectangles(ws, document)

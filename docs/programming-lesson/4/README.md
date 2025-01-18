@@ -1,4 +1,4 @@
-# プログラミング・レッスン４：　トレリスのテキスト描画
+# プログラミング・レッスン４：　トレリスのテキスト表示
 
 ## 手順１
 
@@ -43,3 +43,7 @@
 ```shell
 py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
+
+![テキスト描画](../../img/[20250118-1805]print-text.png)  
+
+👆　テキストを描画できた。  

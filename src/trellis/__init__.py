@@ -6,7 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .draw_2d import fill_rectangle, draw_xl_border_on_rectangle
+from .draw_2d import fill_rectangle, draw_xl_border_on_rectangle, print_text
 from .ruler import render_ruler
 from .share import *
 
@@ -182,6 +182,30 @@ def render_all_rectangles(ws, document):
                         columns=rectangle_rect.width_obj.total_of_out_counts_qty,
                         rows=rectangle_rect.height_obj.total_of_out_counts_qty,
                         fill_obj=tone_and_color_name_to_fill_obj(bg_color))
+
+
+def render_all_xl_texts(ws, document):
+    """全てのテキストの描画（定規の番号除く）
+    """
+    print('🔧　全てのテキストの描画')
+
+    # もし、テキストのリストがあれば
+    if 'xl_texts' in document and (xl_texts := document['xl_texts']):
+        for xl_text_dict in xl_texts:
+
+            if 'text' in xl_text_dict and (text := xl_text_dict['text']):
+                text_rect = Rectangle.from_dict(xl_text_dict)
+
+                # テキストを入力する
+                print_text(
+                        ws=ws,
+                        column_th=text_rect.left_obj.total_of_out_counts_th,
+                        row_th=text_rect.top_obj.total_of_out_counts_th,
+                        columns=text_rect.width_obj.total_of_out_counts_qty,
+                        rows=text_rect.height_obj.total_of_out_counts_qty,
+                        text=text)
+
+                pass
 
 
 def render_all_pillar_rugs(ws, document):
@@ -941,6 +965,12 @@ class TrellisInSrc():
     def render_all_rectangles(ws, document):
         global render_all_rectangles
         render_all_rectangles(ws, document)
+
+
+    @staticmethod
+    def render_all_xl_texts(ws, document):
+        global render_all_xl_texts
+        render_all_xl_texts(ws, document)
 
 
     @staticmethod

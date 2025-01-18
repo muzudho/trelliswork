@@ -191,3 +191,15 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         cell.border = Border(top=top_side, right=right_side, bottom=bottom_side, left=left_side)
+
+
+def print_text(ws, column_th, row_th, columns, rows, text):
+    """テキスト描画
+    """
+
+    # TODO width と height が 1 のとき
+    column_letter = xl.utils.get_column_letter(column_th)
+    cell = ws[f'{column_letter}{row_th}']
+    cell.value = text
+
+    # TODO width と height はセル結合したい

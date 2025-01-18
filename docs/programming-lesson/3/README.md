@@ -168,4 +168,4 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 
 ## 次回
 
-次回は色の合成を予定しています。  
+次回の記事：　📖 [トレリスのテキスト表示](../4/README.md)  
