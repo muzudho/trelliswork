@@ -133,6 +133,9 @@ def main():
             # ワークシート
             ws = wb['Sheet']
 
+            # キャンバスの編集
+            tr.edit_canvas(ws, document)
+
             # 全てのテキストの描画（定規の番号除く）
             tr.render_all_xl_texts(ws, document)
 

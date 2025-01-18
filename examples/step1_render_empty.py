@@ -22,6 +22,9 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
+# キャンバスの編集
+tr.edit_canvas(ws, document)
+
 # 定規の描画
 tr.render_ruler(ws, document)
 

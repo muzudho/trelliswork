@@ -5,7 +5,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .draw_2d import fill_rectangle, draw_xl_border_on_rectangle, print_text
+from .draw_2d import edit_canvas, fill_rectangle, draw_xl_border_on_rectangle, print_text
 from .ruler import render_ruler
 from .share import *
 
@@ -953,6 +953,12 @@ class TrellisInSrc():
             return InningsPitched.from_integer_and_decimal_part(integer_part, decimal_part)
         else:
             raise ValueError(f'{var_value=} {integer_part=} {decimal_part=}')
+
+
+    @staticmethod
+    def edit_canvas(ws, document):
+        global edit_canvas
+        edit_canvas(ws, document)
 
 
     @staticmethod
