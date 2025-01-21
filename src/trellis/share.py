@@ -300,7 +300,17 @@ class Rectangle():
 ####################
 # MARK: Color system
 ####################
-none_pattern_fill = PatternFill(patternType=None)
+class ColorSystem():
+    """色システム
+    """
+
+    _none_pattern_fill = PatternFill(patternType=None)
+
+    @classmethod
+    def none_pattern_fill(clazz):
+        return clazz._none_pattern_fill
+
+
 # エクセルの色システム（勝手に作ったったもの）
 web_safe_color_code_dict = {
     'xlTheme' : {
@@ -396,6 +406,43 @@ def web_safe_color_code_to_xl(web_safe_color_code):
     return web_safe_color_code[1:]
 
 
+WEB_SAFE_COLOR = 'webSafeColor'
+AUTO = 'auto'
+PAPER_COLOR = 'paperColor'
+TONE_AND_COLOR_NAME = 'toneAndColorName'
+
+def what_is_tone_and_color_name(tone_and_color_name):
+    """TODO トーン名・色名の欄に何が入っているか判定します
+    """
+
+    # 何も入っていない、または False が入っている
+    if not tone_and_color_name:
+        return False
+
+    # ナンが入っている
+    if tone_and_color_name is None:
+        return None
+
+    # ウェブ・セーフ・カラーが入っている
+    #
+    #   とりあえず、 `#` で始まるなら、ウェブセーフカラーとして扱う
+    #
+    if tone_and_color_name.startswith('#'):
+        return WEB_SAFE_COLOR
+
+    # 色相名と色名だ
+    if '.' in tone_and_color_name:
+        return TONE_AND_COLOR_NAME
+
+    # "auto", "paperColor" キーワードのいずれかが入っている
+    if tone_and_color_name in [AUTO, PAPER_COLOR]:
+        return tone_and_color_name
+    
+    raise ValueError(f"""ERROR: what_is_tone_and_color_name: undefined {tone_and_color_name=}""")
+
+
+
+
 def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
     """トーン名・色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
     """
@@ -445,7 +492,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
 
     # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
     if tone_and_color_name == 'paperColor':
-        return none_pattern_fill
+        return ColorSystem.none_pattern_fill
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
@@ -469,7 +516,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
                     fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict[tone][color]))
 
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
-    return none_pattern_fill
+    return ColorSystem.none_pattern_fill
 
 
 ###################
