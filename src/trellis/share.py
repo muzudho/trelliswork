@@ -304,100 +304,107 @@ class ColorSystem():
     """色システム
     """
 
+
     _none_pattern_fill = PatternFill(patternType=None)
 
     @classmethod
+    @property
     def none_pattern_fill(clazz):
         return clazz._none_pattern_fill
 
 
-# エクセルの色システム（勝手に作ったったもの）
-web_safe_color_code_dict = {
-    'xlTheme' : {
-        'xlWhite' : '#FFFFFF',
-        'xlBlack' : '#000000',
-        'xlRed_gray' : '#E7E6E6',
-        'xlBlueGray' : '#44546A',
-        'xlBlue' : '#5B9BD5',
-        'xlRed' : '#ED7D31',
-        'xlGray' : '#A5A5A5',
-        'xlYellow' : '#FFC000',
-        'xlNaviy' : '#4472C4',
-        'xlGreen' : '#70AD47',
-    },
-    'xlPale' : {
-        'xlWhite' : '#F2F2F2',
-        'xlBlack' : '#808080',
-        'xlRed_gray' : '#AEAAAA',
-        'xlBlueGray' : '#D6DCE4',
-        'xlBlue' : '#DDEBF7',
-        'xlRed' : '#FCE4D6',
-        'xlGray' : '#EDEDED',
-        'xlYellow' : '#FFF2CC',
-        'xlNaviy' : '#D9E1F2',
-        'xlGreen' : '#E2EFDA',
-    },
-    'xlLight' : {
-        'xlWhite' : '#D9D9D9',
-        'xlBlack' : '#595959',
-        'xlRed_gray' : '#757171',
-        'xlBlueGray' : '#ACB9CA',
-        'xlBlue' : '#BDD7EE',
-        'xlRed' : '#F8CBAD',
-        'xlGray' : '#DBDBDB',
-        'xlYellow' : '#FFE699',
-        'xlNaviy' : '#B4C6E7',
-        'xlGreen' : '#C6E0B4',
-    },
-    'xlSoft' : {
-        'xlWhite' : '#BFBFBF',
-        'xlBlack' : '#404040',
-        'xlRed_gray' : '#3A3838',
-        'xlBlueGray' : '#8497B0',
-        'xlBlue' : '#9BC2E6',
-        'xlRed' : '#F4B084',
-        'xlGray' : '#C9C9C9',
-        'xlYellow' : '#FFD966',
-        'xlNaviy' : '#8EA9DB',
-        'xlGreen' : '#A9D08E',
-    },
-    'xlStrong' : {
-        'xlWhite' : '#A6A6A6',
-        'xlBlack' : '#262626',
-        'xlRed_gray' : '#3A3838',
-        'xlBlueGray' : '#333F4F',
-        'xlBlue' : '#2F75B5',
-        'xlRed' : '#C65911',
-        'xlGray' : '#7B7B7B',
-        'xlYellow' : '#BF8F00',
-        'xlNaviy' : '#305496',
-        'xlGreen' : '#548235',
-    },
-    'xlDeep' : {
-        'xlWhite' : '#808080',
-        'xlBlack' : '#0D0D0D',
-        'xlRed_gray' : '#161616',
-        'xlBlueGray' : '#161616',
-        'xlBlue' : '#1F4E78',
-        'xlRed' : '#833C0C',
-        'xlGray' : '#525252',
-        'xlYellow' : '#806000',
-        'xlNaviy' : '#203764',
-        'xlGreen' : '#375623',
-    },
-    'xlStandard' : {
-        'xlRed' : '#C00000',
-        'xlRed' : '#FF0000',
-        'xlOrange' : '#FFC000',
-        'xlYellow' : '#FFFF00',
-        'xlYellowGreen' : '#92D050',
-        'xlGreen' : '#00B050',
-        'xlDodgerBlue' : '#00B0F0',
-        'xlBlue' : '#0070C0',
-        'xlNaviy' : '#002060',
-        'xlViolet' : '#7030A0',
+    # エクセルの色システム（勝手に作ったったもの）
+    _xl_color_code_to_web_safe_color_dict = {
+        'xlTheme' : {
+            'xlWhite' : '#FFFFFF',
+            'xlBlack' : '#000000',
+            'xlRed_gray' : '#E7E6E6',
+            'xlBlueGray' : '#44546A',
+            'xlBlue' : '#5B9BD5',
+            'xlRed' : '#ED7D31',
+            'xlGray' : '#A5A5A5',
+            'xlYellow' : '#FFC000',
+            'xlNaviy' : '#4472C4',
+            'xlGreen' : '#70AD47',
+        },
+        'xlPale' : {
+            'xlWhite' : '#F2F2F2',
+            'xlBlack' : '#808080',
+            'xlRed_gray' : '#AEAAAA',
+            'xlBlueGray' : '#D6DCE4',
+            'xlBlue' : '#DDEBF7',
+            'xlRed' : '#FCE4D6',
+            'xlGray' : '#EDEDED',
+            'xlYellow' : '#FFF2CC',
+            'xlNaviy' : '#D9E1F2',
+            'xlGreen' : '#E2EFDA',
+        },
+        'xlLight' : {
+            'xlWhite' : '#D9D9D9',
+            'xlBlack' : '#595959',
+            'xlRed_gray' : '#757171',
+            'xlBlueGray' : '#ACB9CA',
+            'xlBlue' : '#BDD7EE',
+            'xlRed' : '#F8CBAD',
+            'xlGray' : '#DBDBDB',
+            'xlYellow' : '#FFE699',
+            'xlNaviy' : '#B4C6E7',
+            'xlGreen' : '#C6E0B4',
+        },
+        'xlSoft' : {
+            'xlWhite' : '#BFBFBF',
+            'xlBlack' : '#404040',
+            'xlRed_gray' : '#3A3838',
+            'xlBlueGray' : '#8497B0',
+            'xlBlue' : '#9BC2E6',
+            'xlRed' : '#F4B084',
+            'xlGray' : '#C9C9C9',
+            'xlYellow' : '#FFD966',
+            'xlNaviy' : '#8EA9DB',
+            'xlGreen' : '#A9D08E',
+        },
+        'xlStrong' : {
+            'xlWhite' : '#A6A6A6',
+            'xlBlack' : '#262626',
+            'xlRed_gray' : '#3A3838',
+            'xlBlueGray' : '#333F4F',
+            'xlBlue' : '#2F75B5',
+            'xlRed' : '#C65911',
+            'xlGray' : '#7B7B7B',
+            'xlYellow' : '#BF8F00',
+            'xlNaviy' : '#305496',
+            'xlGreen' : '#548235',
+        },
+        'xlDeep' : {
+            'xlWhite' : '#808080',
+            'xlBlack' : '#0D0D0D',
+            'xlRed_gray' : '#161616',
+            'xlBlueGray' : '#161616',
+            'xlBlue' : '#1F4E78',
+            'xlRed' : '#833C0C',
+            'xlGray' : '#525252',
+            'xlYellow' : '#806000',
+            'xlNaviy' : '#203764',
+            'xlGreen' : '#375623',
+        },
+        'xlStandard' : {
+            'xlRed' : '#C00000',
+            'xlRed' : '#FF0000',
+            'xlOrange' : '#FFC000',
+            'xlYellow' : '#FFFF00',
+            'xlYellowGreen' : '#92D050',
+            'xlGreen' : '#00B050',
+            'xlDodgerBlue' : '#00B0F0',
+            'xlBlue' : '#0070C0',
+            'xlNaviy' : '#002060',
+            'xlViolet' : '#7030A0',
+        }
     }
-}
+
+    @classmethod
+    @property
+    def xl_color_code_to_web_safe_color_dict(clazz):
+        return clazz._xl_color_code_to_web_safe_color_dict
 
 
 def web_safe_color_code_to_xl(web_safe_color_code):
@@ -457,7 +464,7 @@ def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
-        return web_safe_color_code_dict['xlTheme']['xlBlack']
+        return ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']
 
     # `#` で始まるなら、ウェブセーフカラーとして扱う
     if tone_and_color_name.startswith('#'):
@@ -474,9 +481,9 @@ def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
     tone = tone.strip()
     color = color.strip()
 
-    if tone in web_safe_color_code_dict:
-        if color in web_safe_color_code_dict[tone]:
-            return web_safe_color_code_dict[tone][color]
+    if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
+        if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
+            return ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]
 
     print(f'tone_and_color_name_to_web_safe_color_code: 色がない {tone_and_color_name=}')
     return None
@@ -498,7 +505,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     if tone_and_color_name == 'auto':
         return PatternFill(
                 patternType='solid',
-                fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict['xlTheme']['xlBlack']))
+                fgColor=web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
 
     try:
         tone, color = tone_and_color_name.split('.', 2)
@@ -509,11 +516,11 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     tone = tone.strip()
     color = color.strip()
 
-    if tone in web_safe_color_code_dict:
-        if color in web_safe_color_code_dict[tone]:
+    if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
+        if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
             return PatternFill(
                     patternType='solid',
-                    fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict[tone][color]))
+                    fgColor=web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
 
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
     return ColorSystem.none_pattern_fill
