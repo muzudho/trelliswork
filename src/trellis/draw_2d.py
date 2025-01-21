@@ -241,7 +241,6 @@ def print_text(ws, location_obj, text, xl_alignment_obj, xl_font_obj):
 
     # フォント設定
     if xl_font_obj:
-        print(f'★print_text {xl_font_obj.color_code_for_xl=}')
         cell.font = Font(color=xl_font_obj.color_code_for_xl)
 
     # テキストの位置揃え

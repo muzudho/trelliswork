@@ -305,87 +305,87 @@ none_pattern_fill = PatternFill(patternType=None)
 web_safe_color_code_dict = {
     'xlTheme' : {
         'xlWhite' : '#FFFFFF',
-        'xl_black' : '#000000',
+        'xlBlack' : '#000000',
         'xlRed_gray' : '#E7E6E6',
-        'xl_blue_gray' : '#44546A',
+        'xlBlueGray' : '#44546A',
         'xlBlue' : '#5B9BD5',
         'xlRed' : '#ED7D31',
-        'xl_gray' : '#A5A5A5',
+        'xlGray' : '#A5A5A5',
         'xlYellow' : '#FFC000',
         'xlNaviy' : '#4472C4',
         'xlGreen' : '#70AD47',
     },
     'xlPale' : {
         'xlWhite' : '#F2F2F2',
-        'xl_black' : '#808080',
+        'xlBlack' : '#808080',
         'xlRed_gray' : '#AEAAAA',
-        'xl_blue_gray' : '#D6DCE4',
+        'xlBlueGray' : '#D6DCE4',
         'xlBlue' : '#DDEBF7',
         'xlRed' : '#FCE4D6',
-        'xl_gray' : '#EDEDED',
+        'xlGray' : '#EDEDED',
         'xlYellow' : '#FFF2CC',
         'xlNaviy' : '#D9E1F2',
         'xlGreen' : '#E2EFDA',
     },
     'xlLight' : {
         'xlWhite' : '#D9D9D9',
-        'xl_black' : '#595959',
+        'xlBlack' : '#595959',
         'xlRed_gray' : '#757171',
-        'xl_blue_gray' : '#ACB9CA',
+        'xlBlueGray' : '#ACB9CA',
         'xlBlue' : '#BDD7EE',
         'xlRed' : '#F8CBAD',
-        'xl_gray' : '#DBDBDB',
+        'xlGray' : '#DBDBDB',
         'xlYellow' : '#FFE699',
         'xlNaviy' : '#B4C6E7',
         'xlGreen' : '#C6E0B4',
     },
     'xlSoft' : {
         'xlWhite' : '#BFBFBF',
-        'xl_black' : '#404040',
+        'xlBlack' : '#404040',
         'xlRed_gray' : '#3A3838',
-        'xl_blue_gray' : '#8497B0',
+        'xlBlueGray' : '#8497B0',
         'xlBlue' : '#9BC2E6',
         'xlRed' : '#F4B084',
-        'xl_gray' : '#C9C9C9',
+        'xlGray' : '#C9C9C9',
         'xlYellow' : '#FFD966',
         'xlNaviy' : '#8EA9DB',
         'xlGreen' : '#A9D08E',
     },
     'xlStrong' : {
         'xlWhite' : '#A6A6A6',
-        'xl_black' : '#262626',
+        'xlBlack' : '#262626',
         'xlRed_gray' : '#3A3838',
-        'xl_blue_gray' : '#333F4F',
+        'xlBlueGray' : '#333F4F',
         'xlBlue' : '#2F75B5',
         'xlRed' : '#C65911',
-        'xl_gray' : '#7B7B7B',
+        'xlGray' : '#7B7B7B',
         'xlYellow' : '#BF8F00',
         'xlNaviy' : '#305496',
         'xlGreen' : '#548235',
     },
     'xlDeep' : {
         'xlWhite' : '#808080',
-        'xl_black' : '#0D0D0D',
+        'xlBlack' : '#0D0D0D',
         'xlRed_gray' : '#161616',
-        'xl_blue_gray' : '#161616',
+        'xlBlueGray' : '#161616',
         'xlBlue' : '#1F4E78',
         'xlRed' : '#833C0C',
-        'xl_gray' : '#525252',
+        'xlGray' : '#525252',
         'xlYellow' : '#806000',
         'xlNaviy' : '#203764',
         'xlGreen' : '#375623',
     },
-    'xl_standard' : {
+    'xlStandard' : {
         'xlRed' : '#C00000',
         'xlRed' : '#FF0000',
-        'xl_orange' : '#FFC000',
+        'xlOrange' : '#FFC000',
         'xlYellow' : '#FFFF00',
-        'xl_yellow_green' : '#92D050',
+        'xlYellowGreen' : '#92D050',
         'xlGreen' : '#00B050',
-        'xl_dodger_blue' : '#00B0F0',
+        'xlDodgerBlue' : '#00B0F0',
         'xlBlue' : '#0070C0',
         'xlNaviy' : '#002060',
-        'xl_violet' : '#7030A0',
+        'xlViolet' : '#7030A0',
     }
 }
 
@@ -410,7 +410,7 @@ def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
-        return web_safe_color_code_dict['xlTheme']['xl_black']
+        return web_safe_color_code_dict['xlTheme']['xlBlack']
 
     # `#` で始まるなら、ウェブセーフカラーとして扱う
     if tone_and_color_name.startswith('#'):
@@ -451,7 +451,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     if tone_and_color_name == 'auto':
         return PatternFill(
                 patternType='solid',
-                fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict['xlTheme']['xl_black']))
+                fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict['xlTheme']['xlBlack']))
 
     try:
         tone, color = tone_and_color_name.split('.', 2)

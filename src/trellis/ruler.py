@@ -538,8 +538,6 @@ def render_ruler(ws, document):
 
 def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect_obj):
     """定規上のテキスト表示
-
-    TODO 位置とテキストの生成と、その表示は分けたい。 column_th, row_th, text, xl_alignment_obj, xl_font_obj
     """
 
 
