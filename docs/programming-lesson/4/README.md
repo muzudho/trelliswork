@@ -33,7 +33,7 @@
                 "width": 2,
                 "height": 1
             },
-            "bgColor": "paperColor",
+            "color": "paperColor",
             "mergeCells": true
         }
     ],

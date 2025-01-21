@@ -178,7 +178,7 @@ def render_all_rectangles(ws, document):
                             column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
                             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')
 
-                if 'bgColor' in rectangle_dict and (bg_color := rectangle_dict['bgColor']):
+                if 'color' in rectangle_dict and (bg_color := rectangle_dict['color']):
                     # もし境界線が指定されていれば、描画する
                     if 'xlBorder' in rectangle_dict and (xl_border_dict := rectangle_dict['xlBorder']):
                         draw_xl_border_on_rectangle(

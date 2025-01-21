@@ -35,7 +35,7 @@
                 "width": 4,
                 "height": 1
             },
-            "bgColor": "xlLight.xlGreen"
+            "color": "xlLight.xlGreen"
         }
     ]
 }
@@ -89,7 +89,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 3
             },
-            "bgColor": "xlLight.xlBlue"
+            "color": "xlLight.xlBlue"
         }
     ]
 }
@@ -144,7 +144,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "width": 6,
                 "height": 6
             },
-            "bgColor": "xlLight.xlBlue",
+            "color": "xlLight.xlBlue",
             "xlBorder": {
                 "top": {
                     "color": "xlStrong.xlRed",

@@ -33,7 +33,7 @@
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlRed"
+            "color": "xlPale.xlRed"
         },
         {
             "bounds" : {
@@ -42,7 +42,7 @@
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlGreen"
+            "color": "xlPale.xlGreen"
         },
         {
             "bounds" : {
@@ -51,7 +51,7 @@
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlBlue"
+            "color": "xlPale.xlBlue"
         }
     ]
 }
@@ -101,7 +101,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlRed"
+            "color": "xlPale.xlRed"
         },
         {
             "bounds" : {
@@ -110,7 +110,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlGreen"
+            "color": "xlPale.xlGreen"
         },
         {
             "bounds" : {
@@ -119,7 +119,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlBlue"
+            "color": "xlPale.xlBlue"
         },
         {
             "bounds" : {
@@ -128,7 +128,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 4,
                 "bottom": 5
             },
-            "bgColor": "xlPale.xlYellow"
+            "color": "xlPale.xlYellow"
         },
         {
             "bounds" : {
@@ -137,7 +137,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 5,
                 "bottom": 6
             },
-            "bgColor": "xlLight.xlWhite"
+            "color": "xlLight.xlWhite"
         }
     ]
 }
@@ -187,7 +187,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
             "paperColor": "xlPale.xlWhite",
             "xlPale.xlRed": "xlLight.xlRed",
             "xlPale.xlGreen": "xlLight.xlGreen",
-            "xlPale.xlBlue": "xlLight.xlBlue",
+            "xlPale.xlBlue": "xlLight.xlBlue"
         }
     },
     "rectangles" : [
@@ -198,7 +198,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlRed"
+            "color": "xlPale.xlRed"
         },
         {
             "bounds" : {
@@ -207,7 +207,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlGreen"
+            "color": "xlPale.xlGreen"
         },
         {
             "bounds" : {
@@ -216,7 +216,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 8
             },
-            "bgColor": "xlPale.xlBlue"
+            "color": "xlPale.xlBlue"
         },
         {
             "bounds" : {
@@ -225,7 +225,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 4,
                 "bottom": 5
             },
-            "bgColor": "xlPale.xlYellow"
+            "color": "xlPale.xlYellow"
         },
         {
             "bounds" : {
@@ -234,7 +234,9 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 5,
                 "bottom": 6
             },
-            "bgColor": "xlLight.xlWhite"
+            "colorFunc": {
+                "darkness": 1
+            }
         }
     ]
 }
