@@ -196,7 +196,7 @@ def render_all_rectangles(ws, document):
                             row_th=rect_obj.top_obj.total_of_out_counts_th,
                             columns=rect_obj.width_obj.total_of_out_counts_qty,
                             rows=rect_obj.height_obj.total_of_out_counts_qty,
-                            fill_obj=tone_and_color_name_to_fill_obj(bg_color))
+                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(bg_color))
 
 
 def render_all_xl_texts(ws, document):
@@ -256,7 +256,7 @@ def render_all_pillar_rugs(ws, document):
                         row_th=pillar_rect_obj.top_obj.total_of_out_counts_th,
                         columns=pillar_rect_obj.width_obj.total_of_out_counts_qty,
                         rows=pillar_rect_obj.height_obj.total_of_out_counts_qty,
-                        fill_obj=tone_and_color_name_to_fill_obj(baseColor))
+                        fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(baseColor))
 
 
 def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
@@ -272,7 +272,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
                 row_th=row_th,
                 columns=columns,
                 rows=1 * OUT_COUNTS_THAT_CHANGE_INNING,   # １行分
-                fill_obj=tone_and_color_name_to_fill_obj(baseColor))
+                fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(baseColor))
 
     # インデント
     if 'indent' in paper_strip:
@@ -359,7 +359,7 @@ def render_all_card_shadows(ws, document):
                                 row_th=card_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                 columns=card_rect_obj.width_obj.total_of_out_counts_qty,
                                 rows=card_rect_obj.height_obj.total_of_out_counts_qty,
-                                fill_obj=tone_and_color_name_to_fill_obj(card_shadow_color))
+                                fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(card_shadow_color))
 
 
 def render_all_cards(ws, document):
@@ -438,7 +438,7 @@ def render_all_terminal_shadows(ws, document):
                             row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,
                             rows=9,
-                            fill_obj=tone_and_color_name_to_fill_obj(terminal_shadow_color))
+                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(terminal_shadow_color))
 
 
 def render_all_terminals(ws, document):
@@ -496,7 +496,7 @@ def render_all_line_tape_shadows(ws, document):
                             row_th=segment_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,
                             rows=segment_rect.height_obj.total_of_out_counts_qty,
-                            fill_obj=tone_and_color_name_to_fill_obj(line_tape_shadow_color))
+                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(line_tape_shadow_color))
 
 
 def render_all_line_tapes(ws, document):
@@ -527,7 +527,7 @@ def render_all_line_tapes(ws, document):
                     segment_rect = Rectangle.from_dict(segment_dict)
 
                     # ラインテープを描く
-                    fill_obj = tone_and_color_name_to_fill_obj(line_tape_color)
+                    fill_obj = ColorSystem.tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
                             column_th=segment_rect.left_obj.total_of_out_counts_th,
@@ -538,7 +538,7 @@ def render_all_line_tapes(ws, document):
 
                     # （あれば）アウトラインを描く
                     if line_tape_outline_color and line_tape_direction:
-                        outline_fill_obj = tone_and_color_name_to_fill_obj(line_tape_outline_color)
+                        outline_fill_obj = ColorSystem.tone_and_color_name_to_fill_obj(line_tape_outline_color)
 
                         # （共通処理）垂直方向
                         if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up', 'after_go_left.turn_falling_down']:

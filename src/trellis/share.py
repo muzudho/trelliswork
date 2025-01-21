@@ -509,41 +509,42 @@ class ColorSystem():
         return None
 
 
-def tone_and_color_name_to_fill_obj(tone_and_color_name):
-    """トーン名・色名を FillPattern オブジェクトに変換します
-    """
+    @staticmethod
+    def tone_and_color_name_to_fill_obj(tone_and_color_name):
+        """トーン名・色名を FillPattern オブジェクトに変換します
+        """
 
-    # 色が指定されていないとき、この関数を呼び出してはいけません
-    if tone_and_color_name is None:
-        raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
+        # 色が指定されていないとき、この関数を呼び出してはいけません
+        if tone_and_color_name is None:
+            raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
 
-    # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-    if tone_and_color_name == 'paperColor':
-        return ColorSystem.none_pattern_fill
+        # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
+        if tone_and_color_name == 'paperColor':
+            return ColorSystem.none_pattern_fill
 
-    # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-    if tone_and_color_name == 'auto':
-        return PatternFill(
-                patternType='solid',
-                fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
-
-    try:
-        tone, color = tone_and_color_name.split('.', 2)
-    except:
-        print(f'ERROR: {tone_and_color_name=}')
-        raise
-
-    tone = tone.strip()
-    color = color.strip()
-
-    if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
-        if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
+        # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
+        if tone_and_color_name == 'auto':
             return PatternFill(
                     patternType='solid',
-                    fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
+                    fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
 
-    print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
-    return ColorSystem.none_pattern_fill
+        try:
+            tone, color = tone_and_color_name.split('.', 2)
+        except:
+            print(f'ERROR: {tone_and_color_name=}')
+            raise
+
+        tone = tone.strip()
+        color = color.strip()
+
+        if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
+            if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
+                return PatternFill(
+                        patternType='solid',
+                        fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
+
+        print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
+        return ColorSystem.none_pattern_fill
 
 
 ###################
