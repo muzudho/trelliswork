@@ -2,7 +2,7 @@ import openpyxl as xl
 from openpyxl.styles import Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
-from .share import tone_and_color_name_to_web_safe_color_code, Rectangle, XlAlignment, Canvas
+from .share import ColorSystem, Rectangle, XlAlignment, Canvas
 
 
 def edit_canvas(ws, document):
@@ -66,7 +66,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         style = None
 
         if 'color' in top_dict and (color := top_dict['color']):
-            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
+            web_safe_color_code = ColorSystem.tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xlStyle' in top_dict and (style := top_dict['xlStyle']):
             pass
@@ -82,7 +82,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         style = None
 
         if 'color' in right_dict and (color := right_dict['color']):
-            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
+            web_safe_color_code = ColorSystem.tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xlStyle' in right_dict and (style := right_dict['xlStyle']):
             pass
@@ -98,7 +98,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         style = None
 
         if 'color' in bottom_dict and (color := bottom_dict['color']):
-            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
+            web_safe_color_code = ColorSystem.tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xlStyle' in bottom_dict and (style := bottom_dict['xlStyle']):
             pass
@@ -114,7 +114,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         style = None
 
         if 'color' in left_dict and (color := left_dict['color']):
-            web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
+            web_safe_color_code = ColorSystem.tone_and_color_name_to_web_safe_color_code(color)
 
         if 'xlStyle' in left_dict and (style := left_dict['xlStyle']):
             pass
