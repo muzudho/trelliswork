@@ -416,14 +416,14 @@ class ColorSystem():
 
     @staticmethod
     @property
-    def WEB_SAFE_COLOR():
-        return 'webSafeColor'
-    
+    def AUTO():
+        return 'auto'
+
 
     @staticmethod
     @property
-    def AUTO():
-        return 'auto'
+    def DARKNESS():
+        return 'darkness'
 
 
     @staticmethod
@@ -439,99 +439,111 @@ class ColorSystem():
 
 
     @staticmethod
-    def what_is_tone_and_color_name(tone_and_color_name):
+    @property
+    def WEB_SAFE_COLOR():
+        return 'webSafeColor'
+
+
+    @staticmethod
+    def what_is_var_color_name(var_color_name):
         """TODO トーン名・色名の欄に何が入っているか判定します
         """
 
         # 何も入っていない、または False が入っている
-        if not tone_and_color_name:
+        if not var_color_name:
             return False
 
         # ナンが入っている
-        if tone_and_color_name is None:
+        if var_color_name is None:
             return None
 
         # ウェブ・セーフ・カラーが入っている
         #
         #   とりあえず、 `#` で始まるなら、ウェブセーフカラーとして扱う
         #
-        if tone_and_color_name.startswith('#'):
+        if var_color_name.startswith('#'):
             return ColorSystem.WEB_SAFE_COLOR
 
         # 色相名と色名だ
-        if '.' in tone_and_color_name:
+        if '.' in var_color_name:
             return ColorSystem.TONE_AND_COLOR_NAME
 
         # "auto", "paperColor" キーワードのいずれかが入っている
-        if tone_and_color_name in [ColorSystem.AUTO, ColorSystem.PAPER_COLOR]:
-            return tone_and_color_name
+        if var_color_name in [ColorSystem.AUTO, ColorSystem.PAPER_COLOR]:
+            return var_color_name
         
-        raise ValueError(f"""ERROR: what_is_tone_and_color_name: undefined {tone_and_color_name=}""")
+        raise ValueError(f"""ERROR: what_is_var_color_name: undefined {var_color_name=}""")
 
 
     @staticmethod
-    def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
-        """トーン名・色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
-        """
-
-        # 色が指定されていないとき、この関数を呼び出してはいけません
-        if tone_and_color_name is None:
-            raise Exception(f'tone_and_color_name_to_web_safe_color_code: 色が指定されていません')
-
-        # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-        if tone_and_color_name == 'paperColor':
-            raise Exception(f'tone_and_color_name_to_web_safe_color_code: 透明色には対応していません')
-
-        # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-        if tone_and_color_name == 'auto':
-            return ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']
-
-        # `#` で始まるなら、ウェブセーフカラーとして扱う
-        if tone_and_color_name.startswith('#'):
-            return tone_and_color_name
-
-
+    def solve_tone_and_color_name(tone_and_color_name):
         try:
             tone, color = tone_and_color_name.split('.', 2)
         except:
-            print(f'tone_and_color_name_to_web_safe_color_code: tone.color の形式でない {tone_and_color_name=}')
+            print(f'solve_tone_and_color_name: tone.color の形式でない {tone_and_color_name=}')
             raise
 
 
         tone = tone.strip()
         color = color.strip()
 
-        if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
-            if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
-                return ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]
+        if tone in ColorSystem.xl_color_code_to_web_safe_color_dict and (tone_dict := ColorSystem.xl_color_code_to_web_safe_color_dict[tone]):
+            if color in tone_dict and (web_safe_color_code := tone_dict[color]):
+                return web_safe_color_code
 
-        print(f'tone_and_color_name_to_web_safe_color_code: 色がない {tone_and_color_name=}')
+        print(f'var_color_name_to_web_safe_color_code: 色がない {tone_and_color_name=}')
         return None
 
 
+
     @staticmethod
-    def tone_and_color_name_to_fill_obj(tone_and_color_name):
-        """トーン名・色名を FillPattern オブジェクトに変換します
+    def var_color_name_to_web_safe_color_code(var_color_name):
+        """様々な色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
         """
 
         # 色が指定されていないとき、この関数を呼び出してはいけません
-        if tone_and_color_name is None:
-            raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
+        if var_color_name is None:
+            raise Exception(f'var_color_name_to_web_safe_color_code: 色が指定されていません')
 
         # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-        if tone_and_color_name == 'paperColor':
+        if var_color_name == 'paperColor':
+            raise Exception(f'var_color_name_to_web_safe_color_code: 透明色には対応していません')
+
+        # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
+        if var_color_name == 'auto':
+            return ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']
+
+        # `#` で始まるなら、ウェブセーフカラーとして扱う
+        if var_color_name.startswith('#'):
+            return var_color_name
+
+
+        return ColorSystem.solve_tone_and_color_name(tone_and_color_name=var_color_name)
+
+
+    @staticmethod
+    def var_color_name_to_fill_obj(var_color_name):
+        """様々な色名を FillPattern オブジェクトに変換します
+        """
+
+        # 色が指定されていないとき、この関数を呼び出してはいけません
+        if var_color_name is None:
+            raise Exception(f'var_color_name_to_fill_obj: 色が指定されていません')
+
+        # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
+        if var_color_name == 'paperColor':
             return ColorSystem.none_pattern_fill
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-        if tone_and_color_name == 'auto':
+        if var_color_name == 'auto':
             return PatternFill(
                     patternType='solid',
                     fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
 
         try:
-            tone, color = tone_and_color_name.split('.', 2)
+            tone, color = var_color_name.split('.', 2)
         except:
-            print(f'ERROR: {tone_and_color_name=}')
+            print(f'ERROR: {var_color_name=}')
             raise
 
         tone = tone.strip()
@@ -543,8 +555,43 @@ class ColorSystem():
                         patternType='solid',
                         fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
 
-        print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
+        print(f'var_color_name_to_fill_obj: 色がない {var_color_name=}')
         return ColorSystem.none_pattern_fill
+
+
+    _darkness_dict = {        
+    }
+
+
+    @classmethod
+    def set_color_system(clazz, ws, document):
+        """TODO 色システムの設定
+        """
+
+        if 'colorSystem' in document and (color_system_dict := document['colorSystem']):
+            if 'darkness' in color_system_dict and (darkness_dict := color_system_dict['darkness']):
+                darkness_dict_edit = dict(darkness_dict)
+
+                # TODO 変換できる色名は、変換したい
+                for var_color_name_before_change, var_color_name_after_change in darkness_dict_edit.items():
+
+                    color_type = ColorSystem.what_is_var_color_name(var_color_name_before_change)
+                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                        tlanslated_var_color_name_before_change = ColorSystem.solve_tone_and_color_name(tone_and_color_name=var_color_name_before_change)
+
+                        if var_color_name_before_change != tlanslated_var_color_name_before_change:
+                            old_value = darkness_dict_edit[var_color_name_before_change]
+                            del darkness_dict_edit[var_color_name_before_change]
+                            darkness_dict_edit[tlanslated_var_color_name_before_change] = old_value
+
+                clazz._darkness_dict = darkness_dict_edit
+
+
+    @staticmethod
+    def solve_darkness(darkness, web_safe_color_code):
+        """TODO
+        """
+        return
 
 
 ###################
@@ -605,7 +652,7 @@ class XlFont():
         """
         web_safe_color_code = None
         if 'color' in xl_font_dict:
-            web_safe_color_code = ColorSystem.tone_and_color_name_to_web_safe_color_code(xl_font_dict['color'])
+            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(xl_font_dict['color'])
 
         return XlFont(
                 web_safe_color_code=web_safe_color_code)
@@ -666,7 +713,7 @@ class Pillar():
         if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
             rect_obj = Rectangle.from_dict(bounds_dict)
 
-        # FIXME: if 'baseColor' in pillar_dict and (tone_and_color_name := pillar_dict['baseColor']):
+        # FIXME: if 'baseColor' in pillar_dict and (var_color_name := pillar_dict['baseColor']):
 
 
         return Canvas(

@@ -55,7 +55,7 @@ def render_ruler(ws, document):
                     #font_list[index] = Font(color=None)   # フォントに使うと黒になる
                     raise ValueError(f'fgColor に paperColor を指定してはいけません {index=}')
 
-                elif (web_safe_color_code_of_font := ColorSystem.tone_and_color_name_to_web_safe_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
+                elif (web_safe_color_code_of_font := ColorSystem.var_color_name_to_web_safe_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
                     try:
                         xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
                         font_list[index] = Font(color=xl_font_obj.color_code_for_xl)
@@ -83,7 +83,7 @@ def render_ruler(ws, document):
                 if bg_color_text == 'paperColor':
                     pattern_fill_list[index] = PatternFill(patternType=None)
 
-                elif (web_safe_color_code := ColorSystem.tone_and_color_name_to_web_safe_color_code(bg_color_text)) and web_safe_color_code is not None:
+                elif (web_safe_color_code := ColorSystem.var_color_name_to_web_safe_color_code(bg_color_text)) and web_safe_color_code is not None:
                     try:
                         pattern_fill_list[index] = PatternFill(
                                 patternType='solid',

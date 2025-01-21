@@ -135,6 +135,9 @@ def main():
             # ワークシート
             ws = wb['Sheet']
 
+            # 色システムの設定
+            tr.set_color_system(ws, document)
+
             # キャンバスの編集
             tr.edit_canvas(ws, document)
 

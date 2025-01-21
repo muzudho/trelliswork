@@ -196,7 +196,7 @@ def render_all_rectangles(ws, document):
                             row_th=rect_obj.top_obj.total_of_out_counts_th,
                             columns=rect_obj.width_obj.total_of_out_counts_qty,
                             rows=rect_obj.height_obj.total_of_out_counts_qty,
-                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(bg_color))
+                            color=bg_color)
 
 
 def render_all_xl_texts(ws, document):
@@ -246,7 +246,7 @@ def render_all_pillar_rugs(ws, document):
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
 
-            if 'baseColor' in pillar_dict and (baseColor := pillar_dict['baseColor']):
+            if 'baseColor' in pillar_dict and (base_color := pillar_dict['baseColor']):
                 pillar_rect_obj = pillar_obj.rect_obj
 
                 # 矩形を塗りつぶす
@@ -256,7 +256,7 @@ def render_all_pillar_rugs(ws, document):
                         row_th=pillar_rect_obj.top_obj.total_of_out_counts_th,
                         columns=pillar_rect_obj.width_obj.total_of_out_counts_qty,
                         rows=pillar_rect_obj.height_obj.total_of_out_counts_qty,
-                        fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(baseColor))
+                        color=base_color)
 
 
 def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
@@ -264,7 +264,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
     """
 
     # 柱のヘッダーの背景色
-    if 'bgColor' in paper_strip and (baseColor := paper_strip['bgColor']):
+    if 'bgColor' in paper_strip and (base_color := paper_strip['bgColor']):
         # 矩形を塗りつぶす
         fill_rectangle(
                 ws=ws,
@@ -272,7 +272,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
                 row_th=row_th,
                 columns=columns,
                 rows=1 * OUT_COUNTS_THAT_CHANGE_INNING,   # １行分
-                fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(baseColor))
+                color=base_color)
 
     # インデント
     if 'indent' in paper_strip:
@@ -359,7 +359,7 @@ def render_all_card_shadows(ws, document):
                                 row_th=card_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                 columns=card_rect_obj.width_obj.total_of_out_counts_qty,
                                 rows=card_rect_obj.height_obj.total_of_out_counts_qty,
-                                fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(card_shadow_color))
+                                color=card_shadow_color)
 
 
 def render_all_cards(ws, document):
@@ -377,7 +377,7 @@ def render_all_cards(ws, document):
             if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                 continue
 
-            baseColor = pillar_dict['baseColor']
+            base_color = pillar_dict['baseColor']
             card_list = pillar_dict['cards']
 
             for card_dict in card_list:
@@ -438,7 +438,7 @@ def render_all_terminal_shadows(ws, document):
                             row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,
                             rows=9,
-                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(terminal_shadow_color))
+                            color=terminal_shadow_color)
 
 
 def render_all_terminals(ws, document):
@@ -496,7 +496,7 @@ def render_all_line_tape_shadows(ws, document):
                             row_th=segment_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,
                             rows=segment_rect.height_obj.total_of_out_counts_qty,
-                            fill_obj=ColorSystem.tone_and_color_name_to_fill_obj(line_tape_shadow_color))
+                            color=line_tape_shadow_color)
 
 
 def render_all_line_tapes(ws, document):
@@ -527,18 +527,17 @@ def render_all_line_tapes(ws, document):
                     segment_rect = Rectangle.from_dict(segment_dict)
 
                     # ラインテープを描く
-                    fill_obj = ColorSystem.tone_and_color_name_to_fill_obj(line_tape_color)
                     fill_rectangle(
                             ws=ws,
                             column_th=segment_rect.left_obj.total_of_out_counts_th,
                             row_th=segment_rect.top_obj.total_of_out_counts_th,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,
                             rows=segment_rect.height_obj.total_of_out_counts_qty,
-                            fill_obj=fill_obj)
+                            color=line_tape_color)
 
                     # （あれば）アウトラインを描く
                     if line_tape_outline_color and line_tape_direction:
-                        outline_fill_obj = ColorSystem.tone_and_color_name_to_fill_obj(line_tape_outline_color)
+                        outline_fill_obj = ColorSystem.var_color_name_to_fill_obj(line_tape_outline_color)
 
                         # （共通処理）垂直方向
                         if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up', 'after_go_left.turn_falling_down']:
@@ -549,7 +548,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
                                     rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 右辺を描く
                             fill_rectangle(
@@ -558,7 +557,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
                                     rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # （共通処理）水平方向
                         elif line_tape_direction in ['after_falling_down.turn_right', 'continue.go_right', 'after_falling_down.turn_left', 'continue.go_left', 'after_up.turn_right', 'from_here.go_right']:
@@ -569,7 +568,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -578,7 +577,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # ここから落ちていく
                         if line_tape_direction == 'from_here.falling_down':
@@ -589,7 +588,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 右辺を描く
                             fill_rectangle(
@@ -598,7 +597,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 落ちたあと、右折
                         elif line_tape_direction == 'after_falling_down.turn_right':
@@ -609,7 +608,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -618,7 +617,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # そのまま右進
                         elif line_tape_direction == 'continue.go_right':
@@ -629,7 +628,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -638,7 +637,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 右進から落ちていく
                         elif line_tape_direction == 'after_go_right.turn_falling_down':
@@ -649,7 +648,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -658,7 +657,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 右辺を描く
                             fill_rectangle(
@@ -667,7 +666,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 落ちたあと左折
                         elif line_tape_direction == 'after_falling_down.turn_left':
@@ -678,7 +677,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=2,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -687,7 +686,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # そのまま左進
                         elif line_tape_direction == 'continue.go_left':
@@ -698,7 +697,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -707,7 +706,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 左進から上っていく
                         elif line_tape_direction == 'after_go_left.turn_up':
@@ -718,7 +717,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
                                     columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 左辺を描く
                             fill_rectangle(
@@ -727,7 +726,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=1,
                                     rows=3,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 右辺（横長）を描く
                             fill_rectangle(
@@ -736,7 +735,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 上がってきて右折
                         elif line_tape_direction == 'after_up.turn_right':
@@ -747,7 +746,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 上辺を描く
                             fill_rectangle(
@@ -756,7 +755,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # 左進から落ちていく
                         elif line_tape_direction == 'after_go_left.turn_falling_down':
@@ -767,7 +766,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 左辺を描く
                             fill_rectangle(
@@ -776,7 +775,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
                                     rows=segment_rect.height_obj.total_of_out_counts_qty,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 右辺（横長）を描く
                             fill_rectangle(
@@ -785,7 +784,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING - 1,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                         # ここから右進
                         elif line_tape_direction == 'from_here.go_right':
@@ -796,7 +795,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
                             # 下辺を描く
                             fill_rectangle(
@@ -805,7 +804,7 @@ def render_all_line_tapes(ws, document):
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=OUT_COUNTS_THAT_CHANGE_INNING,
                                     rows=1,
-                                    fill_obj=outline_fill_obj)
+                                    color=line_tape_outline_color)
 
 
 def resolve_auto_shadow(document, column_th, row_th):
@@ -860,11 +859,11 @@ def edit_document_and_solve_auto_shadow(document):
 
                             # 影に自動が設定されていたら、解決する
                             try:
-                                if solved_tone_and_color_name := resolve_auto_shadow(
+                                if solved_var_color_name := resolve_auto_shadow(
                                         document=document,
                                         column_th=card_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                         row_th=card_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
-                                    card_dict['shadowColor'] = solved_tone_and_color_name
+                                    card_dict['shadowColor'] = solved_var_color_name
                             except:
                                 print(f'ERROR: edit_document_and_solve_auto_shadow: {card_dict=}')
                                 raise
@@ -881,11 +880,11 @@ def edit_document_and_solve_auto_shadow(document):
                         if terminal_shadow_color == 'auto':
 
                             # 影に自動が設定されていたら、解決する
-                            if solved_tone_and_color_name := resolve_auto_shadow(
+                            if solved_var_color_name := resolve_auto_shadow(
                                     document=document,
                                     column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
-                                terminal_dict['shadowColor'] = solved_tone_and_color_name
+                                terminal_dict['shadowColor'] = solved_var_color_name
 
     # もし、ラインテープのリストがあれば
     if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
@@ -901,11 +900,11 @@ def edit_document_and_solve_auto_shadow(document):
                         # NOTE 影が指定されているということは、浮いているということでもある
 
                         # 影に自動が設定されていたら、解決する
-                        if solved_tone_and_color_name := resolve_auto_shadow(
+                        if solved_var_color_name := resolve_auto_shadow(
                                 document=document,
                                 column_th=segment_rect.left_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING,
                                 row_th=segment_rect.top_obj.total_of_out_counts_th + OUT_COUNTS_THAT_CHANGE_INNING):
-                            segment_dict['shadowColor'] = solved_tone_and_color_name
+                            segment_dict['shadowColor'] = solved_var_color_name
 
 
 def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_dict):
@@ -1021,6 +1020,12 @@ class TrellisInSrc():
     def render_ruler(ws, document):
         global render_ruler
         render_ruler(ws, document)
+
+
+    @staticmethod
+    def set_color_system(ws, document):
+        global ColorSystem
+        ColorSystem.set_color_system(ws, document)
 
 
     @staticmethod
