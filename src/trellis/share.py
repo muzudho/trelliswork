@@ -407,10 +407,11 @@ class ColorSystem():
         return clazz._xl_color_code_to_web_safe_color_dict
 
 
-def web_safe_color_code_to_xl(web_safe_color_code):
-    """頭の `#` を外します
-    """
-    return web_safe_color_code[1:]
+    @staticmethod
+    def web_safe_color_code_to_xl(web_safe_color_code):
+        """頭の `#` を外します
+        """
+        return web_safe_color_code[1:]
 
 
 WEB_SAFE_COLOR = 'webSafeColor'
@@ -505,7 +506,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
     if tone_and_color_name == 'auto':
         return PatternFill(
                 patternType='solid',
-                fgColor=web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
+                fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
 
     try:
         tone, color = tone_and_color_name.split('.', 2)
@@ -520,7 +521,7 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
         if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
             return PatternFill(
                     patternType='solid',
-                    fgColor=web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
+                    fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
 
     print(f'tone_and_color_name_to_fill_obj: 色がない {tone_and_color_name=}')
     return ColorSystem.none_pattern_fill
@@ -601,7 +602,7 @@ class XlFont():
 
     @property
     def color_code_for_xl(self):
-        return web_safe_color_code_to_xl(self._web_safe_color_code)
+        return ColorSystem.web_safe_color_code_to_xl(self._web_safe_color_code)
 
 
 ##############

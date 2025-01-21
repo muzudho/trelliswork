@@ -87,7 +87,7 @@ def render_ruler(ws, document):
                     try:
                         pattern_fill_list[index] = PatternFill(
                                 patternType='solid',
-                                fgColor=web_safe_color_code_to_xl(web_safe_color_code))
+                                fgColor=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
                     except:
                         print(f'ERROR: {index=} {web_safe_color_code=}')
                         raise

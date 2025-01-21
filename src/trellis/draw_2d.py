@@ -72,7 +72,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
             pass
 
         try:
-            top_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
+            top_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -88,7 +88,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
             pass
 
         try:
-            right_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
+            right_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -104,7 +104,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
             pass
 
         try:
-            bottom_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
+            bottom_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -120,7 +120,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
             pass
 
         try:
-            left_side = Side(style=style, color=web_safe_color_code_to_xl(web_safe_color_code))
+            left_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
