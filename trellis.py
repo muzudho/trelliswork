@@ -57,12 +57,12 @@ def main():
                 "ruler": {
                     "visible": True,
                     "fgColor": [
-                        "xl_pale.xl_white",
-                        "xl_deep.xl_white"
+                        "xlPale.xlWhite",
+                        "xlDeep.xlWhite"
                     ],
                     "bgColor": [
-                        "xl_deep.xl_white",
-                        "xl_pale.xl_white"
+                        "xlDeep.xlWhite",
+                        "xlPale.xlWhite"
                     ]
                 }
             }

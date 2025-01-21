@@ -17,14 +17,14 @@
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_deep.xl_red",
-            "xl_deep.xl_green",
-            "xl_deep.xl_blue"
+            "xlDeep.xlRed",
+            "xlDeep.xlGreen",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "xl_pale.xl_red",
-            "xl_pale.xl_green",
-            "xl_pale.xl_blue"
+            "xlPale.xlRed",
+            "xlPale.xlGreen",
+            "xlPale.xlBlue"
         ]
     },
     "rectangles": [
@@ -35,7 +35,7 @@
                 "width": 4,
                 "height": 1
             },
-            "bgColor": "xl_light.xl_green"
+            "bgColor": "xlLight.xlGreen"
         }
     ]
 }
@@ -71,14 +71,14 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_deep.xl_red",
-            "xl_deep.xl_green",
-            "xl_deep.xl_blue"
+            "xlDeep.xlRed",
+            "xlDeep.xlGreen",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "xl_pale.xl_red",
-            "xl_pale.xl_green",
-            "xl_pale.xl_blue"
+            "xlPale.xlRed",
+            "xlPale.xlGreen",
+            "xlPale.xlBlue"
         ]
     },
     "rectangles": [
@@ -89,7 +89,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "top": 2,
                 "bottom": 3
             },
-            "bgColor": "xl_light.xl_blue"
+            "bgColor": "xlLight.xlBlue"
         }
     ]
 }
@@ -126,14 +126,14 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_deep.xl_red",
-            "xl_deep.xl_green",
-            "xl_deep.xl_blue"
+            "xlDeep.xlRed",
+            "xlDeep.xlGreen",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "xl_pale.xl_red",
-            "xl_pale.xl_green",
-            "xl_pale.xl_blue"
+            "xlPale.xlRed",
+            "xlPale.xlGreen",
+            "xlPale.xlBlue"
         ]
     },
     "rectangles": [
@@ -144,23 +144,23 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
                 "width": 6,
                 "height": 6
             },
-            "bgColor": "xl_light.xl_blue",
-            "xl_border": {
+            "bgColor": "xlLight.xlBlue",
+            "xlBorder": {
                 "top": {
-                    "color": "xl_strong.xl_red",
-                    "xl_style": "thick"
+                    "color": "xlStrong.xlRed",
+                    "xlStyle": "thick"
                 },
                 "right": {
-                    "color": "xl_strong.xl_green",
-                    "xl_style": "thick"
+                    "color": "xlStrong.xlGreen",
+                    "xlStyle": "thick"
                 },
                 "bottom": {
-                    "color": "xl_strong.xl_blue",
-                    "xl_style": "thick"
+                    "color": "xlStrong.xlBlue",
+                    "xlStyle": "thick"
                 },
                 "left": {
-                    "color": "xl_strong.xl_yellow",
-                    "xl_style": "thick"
+                    "color": "xlStrong.xlYellow",
+                    "xlStyle": "thick"
                 }
             }
         }
@@ -168,10 +168,10 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 }
 ```
 
-👆　`["rectangles"]["xl_border"]` 辞書を追加しました。  
-ここで `["rectangles"]["xl_border"]["top"]["xl_style"]` には、 `mediumDashed`, `mediumDashDotDot`, `dashDot`, `dashed`, `slantDashDot`, `dashDotDot`, `thick`, `thin`, `dotted`, `double`, `medium`, `hair`, `mediumDashDot` のいずれかを入れることができると思います。  
+👆　`["rectangles"]["xlBorder"]` 辞書を追加しました。  
+ここで `["rectangles"]["xlBorder"]["top"]["xlStyle"]` には、 `mediumDashed`, `mediumDashDotDot`, `dashDot`, `dashed`, `slantDashDot`, `dashDotDot`, `thick`, `thin`, `dotted`, `double`, `medium`, `hair`, `mediumDashDot` のいずれかを入れることができると思います。  
 
-![境界線](../../img/[20250117-2257]xl_border.png)  
+![境界線](../../img/[20250117-2257]xlBorder.png)  
 
 👆　境界線を引けました。 Microsoft Excel をディスプレイと考えているケースでだけ使えることを想定しています。  
 

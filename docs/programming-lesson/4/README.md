@@ -17,12 +17,12 @@
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_pale.xl_red",
-            "xl_deep.xl_red"
+            "xlPale.xlRed",
+            "xlDeep.xlRed"
         ],
         "bgColor": [
-            "xl_deep.xl_red",
-            "xl_pale.xl_red"
+            "xlDeep.xlRed",
+            "xlPale.xlRed"
         ]
     },
     "rectangles" : [
@@ -33,30 +33,30 @@
                 "width": 2,
                 "height": 1
             },
-            "bgColor": "paper_color",
+            "bgColor": "paperColor",
             "mergeCells": true
         }
     ],
-    "xl_texts": [
+    "xlTexts": [
         {
             "location": {
                 "x": 3,
                 "y": 4
             },
             "text": "Hello, world!",
-            "xl_alignment" : {
-                "xl_horizontal" : "center",
-                "xl_vertical" : "center"
+            "xlAlignment" : {
+                "xlHorizontal" : "center",
+                "xlVertical" : "center"
             },
-            "xl_font": {
-                "color": "xl_strong.xl_red"
+            "xlFont": {
+                "color": "xlStrong.xlRed"
             }
         }
     ]
 }
 ```
 
-👆　`["xl_texts"]` の辺りを説明していきます。  
+👆　`["xlTexts"]` の辺りを説明していきます。  
 色は趣味で設定してください。  
 
 そして、以下のコマンドを打鍵してください。  
@@ -69,8 +69,8 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 
 👆　テキストを描画できた。  
 
-* `xl_horizontal` には `fill`, `left`, `distributed`, `justify`, `center`, `general`, `centerContinuous`, `right` が入れられるはず。  
-* `xl_vertical` には `distributed`, `justify`, `center`, `bottom`, `top` が入れられるはず。  
+* `xlHorizontal` には `fill`, `left`, `distributed`, `justify`, `center`, `general`, `centerContinuous`, `right` が入れられるはず。  
+* `xlVertical` には `distributed`, `justify`, `center`, `bottom`, `top` が入れられるはず。  
 
 
 ## 次回

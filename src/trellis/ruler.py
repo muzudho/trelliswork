@@ -51,9 +51,9 @@ def render_ruler(ws, document):
             font_list = [None] * len(fg_color_list)
             
             for index, fg_color_text in enumerate(fg_color_list):
-                if fg_color_text == 'paper_color':
+                if fg_color_text == 'paperColor':
                     #font_list[index] = Font(color=None)   # フォントに使うと黒になる
-                    raise ValueError(f'fgColor に paper_color を指定してはいけません {index=}')
+                    raise ValueError(f'fgColor に paperColor を指定してはいけません {index=}')
 
                 elif (web_safe_color_code_of_font := tone_and_color_name_to_web_safe_color_code(fg_color_text)) and web_safe_color_code_of_font is not None:
                     try:
@@ -80,7 +80,7 @@ def render_ruler(ws, document):
             pattern_fill_list = [None] * len(bg_color_list)
             
             for index, bg_color_text in enumerate(bg_color_list):
-                if bg_color_text == 'paper_color':
+                if bg_color_text == 'paperColor':
                     pattern_fill_list[index] = PatternFill(patternType=None)
 
                 elif (web_safe_color_code := tone_and_color_name_to_web_safe_color_code(bg_color_text)) and web_safe_color_code is not None:

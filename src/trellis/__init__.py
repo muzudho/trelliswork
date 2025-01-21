@@ -180,7 +180,7 @@ def render_all_rectangles(ws, document):
 
                 if 'bgColor' in rectangle_dict and (bg_color := rectangle_dict['bgColor']):
                     # もし境界線が指定されていれば、描画する
-                    if 'xl_border' in rectangle_dict and (xl_border_dict := rectangle_dict['xl_border']):
+                    if 'xlBorder' in rectangle_dict and (xl_border_dict := rectangle_dict['xlBorder']):
                         draw_xl_border_on_rectangle(
                                 ws=ws,
                                 xl_border_dict=xl_border_dict,
@@ -205,8 +205,8 @@ def render_all_xl_texts(ws, document):
     print('🔧　全てのテキストの描画')
 
     # もし、テキストのリストがあれば
-    if 'xl_texts' in document and (xl_texts := document['xl_texts']):
-        for xl_text_dict in xl_texts:
+    if 'xlTexts' in document and (xlTexts := document['xlTexts']):
+        for xl_text_dict in xlTexts:
 
             # テキスト設定
             if 'text' in xl_text_dict and (text := xl_text_dict['text']):
@@ -218,12 +218,12 @@ def render_all_xl_texts(ws, document):
 
                 # テキストの位置揃え
                 xl_alignment_obj = None
-                if 'xl_alignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xl_alignment']):
+                if 'xlAlignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xlAlignment']):
                     xl_alignment_obj = XlAlignment.from_dict(xl_alignment_dict)
 
                 # フォント
                 xl_font_obj = None
-                if 'xl_font' in xl_text_dict and (xl_font_dict := xl_text_dict['xl_font']):
+                if 'xlFont' in xl_text_dict and (xl_font_dict := xl_text_dict['xlFont']):
                     xl_font_obj = XlFont.from_dict(xl_font_dict)
 
                 # テキストを入力する
@@ -834,7 +834,7 @@ def resolve_auto_shadow(document, column_th, row_th):
                     return shadow_color_dict[base_color]
 
     # 該当なし
-    return shadow_color_dict['paper_color']
+    return shadow_color_dict['paperColor']
 
 
 def edit_document_and_solve_auto_shadow(document):

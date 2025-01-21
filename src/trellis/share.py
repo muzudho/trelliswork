@@ -303,88 +303,88 @@ class Rectangle():
 none_pattern_fill = PatternFill(patternType=None)
 # エクセルの色システム（勝手に作ったったもの）
 web_safe_color_code_dict = {
-    'xl_theme' : {
-        'xl_white' : '#FFFFFF',
+    'xlTheme' : {
+        'xlWhite' : '#FFFFFF',
         'xl_black' : '#000000',
-        'xl_red_gray' : '#E7E6E6',
+        'xlRed_gray' : '#E7E6E6',
         'xl_blue_gray' : '#44546A',
-        'xl_blue' : '#5B9BD5',
-        'xl_red' : '#ED7D31',
+        'xlBlue' : '#5B9BD5',
+        'xlRed' : '#ED7D31',
         'xl_gray' : '#A5A5A5',
-        'xl_yellow' : '#FFC000',
-        'xl_naviy' : '#4472C4',
-        'xl_green' : '#70AD47',
+        'xlYellow' : '#FFC000',
+        'xlNaviy' : '#4472C4',
+        'xlGreen' : '#70AD47',
     },
-    'xl_pale' : {
-        'xl_white' : '#F2F2F2',
+    'xlPale' : {
+        'xlWhite' : '#F2F2F2',
         'xl_black' : '#808080',
-        'xl_red_gray' : '#AEAAAA',
+        'xlRed_gray' : '#AEAAAA',
         'xl_blue_gray' : '#D6DCE4',
-        'xl_blue' : '#DDEBF7',
-        'xl_red' : '#FCE4D6',
+        'xlBlue' : '#DDEBF7',
+        'xlRed' : '#FCE4D6',
         'xl_gray' : '#EDEDED',
-        'xl_yellow' : '#FFF2CC',
-        'xl_naviy' : '#D9E1F2',
-        'xl_green' : '#E2EFDA',
+        'xlYellow' : '#FFF2CC',
+        'xlNaviy' : '#D9E1F2',
+        'xlGreen' : '#E2EFDA',
     },
-    'xl_light' : {
-        'xl_white' : '#D9D9D9',
+    'xlLight' : {
+        'xlWhite' : '#D9D9D9',
         'xl_black' : '#595959',
-        'xl_red_gray' : '#757171',
+        'xlRed_gray' : '#757171',
         'xl_blue_gray' : '#ACB9CA',
-        'xl_blue' : '#BDD7EE',
-        'xl_red' : '#F8CBAD',
+        'xlBlue' : '#BDD7EE',
+        'xlRed' : '#F8CBAD',
         'xl_gray' : '#DBDBDB',
-        'xl_yellow' : '#FFE699',
-        'xl_naviy' : '#B4C6E7',
-        'xl_green' : '#C6E0B4',
+        'xlYellow' : '#FFE699',
+        'xlNaviy' : '#B4C6E7',
+        'xlGreen' : '#C6E0B4',
     },
-    'xl_soft' : {
-        'xl_white' : '#BFBFBF',
+    'xlSoft' : {
+        'xlWhite' : '#BFBFBF',
         'xl_black' : '#404040',
-        'xl_red_gray' : '#3A3838',
+        'xlRed_gray' : '#3A3838',
         'xl_blue_gray' : '#8497B0',
-        'xl_blue' : '#9BC2E6',
-        'xl_red' : '#F4B084',
+        'xlBlue' : '#9BC2E6',
+        'xlRed' : '#F4B084',
         'xl_gray' : '#C9C9C9',
-        'xl_yellow' : '#FFD966',
-        'xl_naviy' : '#8EA9DB',
-        'xl_green' : '#A9D08E',
+        'xlYellow' : '#FFD966',
+        'xlNaviy' : '#8EA9DB',
+        'xlGreen' : '#A9D08E',
     },
-    'xl_strong' : {
-        'xl_white' : '#A6A6A6',
+    'xlStrong' : {
+        'xlWhite' : '#A6A6A6',
         'xl_black' : '#262626',
-        'xl_red_gray' : '#3A3838',
+        'xlRed_gray' : '#3A3838',
         'xl_blue_gray' : '#333F4F',
-        'xl_blue' : '#2F75B5',
-        'xl_red' : '#C65911',
+        'xlBlue' : '#2F75B5',
+        'xlRed' : '#C65911',
         'xl_gray' : '#7B7B7B',
-        'xl_yellow' : '#BF8F00',
-        'xl_naviy' : '#305496',
-        'xl_green' : '#548235',
+        'xlYellow' : '#BF8F00',
+        'xlNaviy' : '#305496',
+        'xlGreen' : '#548235',
     },
-    'xl_deep' : {
-        'xl_white' : '#808080',
+    'xlDeep' : {
+        'xlWhite' : '#808080',
         'xl_black' : '#0D0D0D',
-        'xl_red_gray' : '#161616',
+        'xlRed_gray' : '#161616',
         'xl_blue_gray' : '#161616',
-        'xl_blue' : '#1F4E78',
-        'xl_red' : '#833C0C',
+        'xlBlue' : '#1F4E78',
+        'xlRed' : '#833C0C',
         'xl_gray' : '#525252',
-        'xl_yellow' : '#806000',
-        'xl_naviy' : '#203764',
-        'xl_green' : '#375623',
+        'xlYellow' : '#806000',
+        'xlNaviy' : '#203764',
+        'xlGreen' : '#375623',
     },
     'xl_standard' : {
-        'xl_red' : '#C00000',
-        'xl_red' : '#FF0000',
+        'xlRed' : '#C00000',
+        'xlRed' : '#FF0000',
         'xl_orange' : '#FFC000',
-        'xl_yellow' : '#FFFF00',
+        'xlYellow' : '#FFFF00',
         'xl_yellow_green' : '#92D050',
-        'xl_green' : '#00B050',
+        'xlGreen' : '#00B050',
         'xl_dodger_blue' : '#00B0F0',
-        'xl_blue' : '#0070C0',
-        'xl_naviy' : '#002060',
+        'xlBlue' : '#0070C0',
+        'xlNaviy' : '#002060',
         'xl_violet' : '#7030A0',
     }
 }
@@ -405,12 +405,12 @@ def tone_and_color_name_to_web_safe_color_code(tone_and_color_name):
         raise Exception(f'tone_and_color_name_to_web_safe_color_code: 色が指定されていません')
 
     # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-    if tone_and_color_name == 'paper_color':
+    if tone_and_color_name == 'paperColor':
         raise Exception(f'tone_and_color_name_to_web_safe_color_code: 透明色には対応していません')
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
-        return web_safe_color_code_dict['xl_theme']['xl_black']
+        return web_safe_color_code_dict['xlTheme']['xl_black']
 
     # `#` で始まるなら、ウェブセーフカラーとして扱う
     if tone_and_color_name.startswith('#'):
@@ -444,14 +444,14 @@ def tone_and_color_name_to_fill_obj(tone_and_color_name):
         raise Exception(f'tone_and_color_name_to_fill_obj: 色が指定されていません')
 
     # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-    if tone_and_color_name == 'paper_color':
+    if tone_and_color_name == 'paperColor':
         return none_pattern_fill
 
     # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
     if tone_and_color_name == 'auto':
         return PatternFill(
                 patternType='solid',
-                fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict['xl_theme']['xl_black']))
+                fgColor=web_safe_color_code_to_xl(web_safe_color_code_dict['xlTheme']['xl_black']))
 
     try:
         tone, color = tone_and_color_name.split('.', 2)
@@ -488,31 +488,31 @@ class XlAlignment():
         horizontal: Value must be one of {‘fill’, ‘left’, ‘distributed’, ‘justify’, ‘center’, ‘general’, ‘centerContinuous’, ‘right’}
         vertical: Value must be one of {‘distributed’, ‘justify’, ‘center’, ‘bottom’, ‘top’}
         """
-        xl_horizontal = None
-        xl_vertical = None
-        if 'xl_horizontal' in xl_alignment_dict:
-            xl_horizontal = xl_alignment_dict['xl_horizontal']
+        xlHorizontal = None
+        xlVertical = None
+        if 'xlHorizontal' in xl_alignment_dict:
+            xlHorizontal = xl_alignment_dict['xlHorizontal']
 
-        if 'xl_vertical' in xl_alignment_dict:
-            xl_vertical = xl_alignment_dict['xl_vertical']
+        if 'xlVertical' in xl_alignment_dict:
+            xlVertical = xl_alignment_dict['xlVertical']
 
         return XlAlignment(
-                xl_horizontal=xl_horizontal,
-                xl_vertical=xl_vertical)
+                xlHorizontal=xlHorizontal,
+                xlVertical=xlVertical)
 
 
-    def __init__(self, xl_horizontal, xl_vertical):
-        self._xl_horizontal = xl_horizontal
-        self._xl_vertical = xl_vertical
+    def __init__(self, xlHorizontal, xlVertical):
+        self._xl_horizontal = xlHorizontal
+        self._xl_vertical = xlVertical
 
 
     @property
-    def xl_horizontal(self):
+    def xlHorizontal(self):
         return self._xl_horizontal
 
 
     @property
-    def xl_vertical(self):
+    def xlVertical(self):
         return self._xl_vertical
 
 

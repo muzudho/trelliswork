@@ -68,7 +68,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         if 'color' in top_dict and (color := top_dict['color']):
             web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
-        if 'xl_style' in top_dict and (style := top_dict['xl_style']):
+        if 'xlStyle' in top_dict and (style := top_dict['xlStyle']):
             pass
 
         try:
@@ -84,7 +84,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         if 'color' in right_dict and (color := right_dict['color']):
             web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
-        if 'xl_style' in right_dict and (style := right_dict['xl_style']):
+        if 'xlStyle' in right_dict and (style := right_dict['xlStyle']):
             pass
 
         try:
@@ -100,7 +100,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         if 'color' in bottom_dict and (color := bottom_dict['color']):
             web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
-        if 'xl_style' in bottom_dict and (style := bottom_dict['xl_style']):
+        if 'xlStyle' in bottom_dict and (style := bottom_dict['xlStyle']):
             pass
 
         try:
@@ -116,7 +116,7 @@ def draw_xl_border_on_rectangle(ws, xl_border_dict, column_th, row_th, columns, 
         if 'color' in left_dict and (color := left_dict['color']):
             web_safe_color_code = tone_and_color_name_to_web_safe_color_code(color)
 
-        if 'xl_style' in left_dict and (style := left_dict['xl_style']):
+        if 'xlStyle' in left_dict and (style := left_dict['xlStyle']):
             pass
 
         try:
@@ -247,5 +247,5 @@ def print_text(ws, location_obj, text, xl_alignment_obj, xl_font_obj):
     # テキストの位置揃え
     if xl_alignment_obj:
         cell.alignment = Alignment(
-                horizontal=xl_alignment_obj.xl_horizontal,
-                vertical=xl_alignment_obj.xl_vertical)
+                horizontal=xl_alignment_obj.xlHorizontal,
+                vertical=xl_alignment_obj.xlVertical)

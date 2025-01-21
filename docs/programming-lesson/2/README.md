@@ -8,7 +8,7 @@
 わたしが勝手に色に名前を付けたものです。  
 
 トーンと色の、２つの名前を使って１つの色を指定する仕組みです。  
-トレリスでは、例えば上図 G列7行 にある黒色は `xl_theme.wl_white` と、スペースを開けずに詰めた名前で色を指定できるものとします。  
+トレリスでは、例えば上図 G列7行 にある黒色は `xlTheme.wl_white` と、スペースを開けずに詰めた名前で色を指定できるものとします。  
 
 
 ## 手順２
@@ -28,20 +28,20 @@
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_pale.xl_red",
-            "xl_deep.xl_blue"
+            "xlPale.xlRed",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "xl_deep.xl_green",
-            "xl_pale.xl_yellow"
+            "xlDeep.xlGreen",
+            "xlPale.xlYellow"
         ]
     }
 }
 ```
 
 👆　特に注意する点としては、 `["ruler"]["visible"]` の値を true に、  
-`["ruler"]["fgColor"]` の値を `["xl_pale.xl_red", "xl_deep.xl_blue"]` に、  
-`["ruler"]["bgColor"]` の値を `["xl_pale.xl_green", "xl_deep.xl_yellow"]` に変えてください。  
+`["ruler"]["fgColor"]` の値を `["xlPale.xlRed", "xlDeep.xlBlue"]` に、  
+`["ruler"]["bgColor"]` の値を `["xlPale.xlGreen", "xlDeep.xlYellow"]` に変えてください。  
 
 そして［プログラミング・レッスン１の手順８］と同様に、以下のコマンドを打鍵してください。  
 
@@ -71,18 +71,18 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_pale.xl_red",
-            "xl_deep.xl_blue"
+            "xlPale.xlRed",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "paper_color",
-            "paper_color"
+            "paperColor",
+            "paperColor"
         ]
     }
 }
 ```
 
-👆　`["ruler"]["bgColor"]` の値を `["paper_color", "paper_color"]` に変えてください。  
+👆　`["ruler"]["bgColor"]` の値を `["paperColor", "paperColor"]` に変えてください。  
 
 そして手順２と同様に、以下のコマンドを打鍵してください。  
 
@@ -93,7 +93,7 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
 ![紙の地の色に変更](../../img/[20250115-2201]paper-color.png)  
 
 👆　［定規］の背景色をワークシートの地の色に変更しました。（塗りつぶしを無しにしました）  
-`paper_color` キーワードは `fgColor` には使えません。  
+`paperColor` キーワードは `fgColor` には使えません。  
 
 
 ## 手順４
@@ -113,14 +113,14 @@ py trellis.py compile --file ./temp/lesson/hello_world.json --temp ./temp --outp
     "ruler": {
         "visible": true,
         "fgColor": [
-            "xl_deep.xl_red",
-            "xl_deep.xl_green",
-            "xl_deep.xl_blue"
+            "xlDeep.xlRed",
+            "xlDeep.xlGreen",
+            "xlDeep.xlBlue"
         ],
         "bgColor": [
-            "xl_pale.xl_red",
-            "xl_pale.xl_green",
-            "xl_pale.xl_blue"
+            "xlPale.xlRed",
+            "xlPale.xlGreen",
+            "xlPale.xlBlue"
         ]
     }
 }
