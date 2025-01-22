@@ -5,7 +5,9 @@
 import json
 import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
+
 from src.trellis import trellis_in_src as tr
+from src.trellis.compiler import AutoShadowSolver
 
 
 print('step 4: auto shadow')
@@ -18,7 +20,7 @@ with open(json_file_name, encoding='utf-8') as f:
 
 
 # ドキュメントに対して、影の自動設定の編集を行います
-tr.edit_document_and_solve_auto_shadow(document)
+AutoShadowSolver.edit_document(document)
 
 json_file_name_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 print(f"write json_file_name_2 = {json_file_name_2}")

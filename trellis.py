@@ -4,7 +4,9 @@ import json
 import os
 import openpyxl as xl
 import traceback
+
 from src.trellis import trellis_in_src as tr
+from src.trellis.compiler import AutoShadowSolver
 
 
 def main():
@@ -117,7 +119,7 @@ def main():
             # 自動化レベル１
             if 0 < automation_level:
                 # ドキュメントに対して、影の自動設定の編集を行います
-                tr.edit_document_and_solve_auto_shadow(document)
+                AutoShadowSolver.edit_document(document)
 
                 file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
 

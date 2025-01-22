@@ -6,9 +6,17 @@ from openpyxl.drawing.image import Image as XlImage
 import json
 
 
-# 3 ということが言いたいだけの、長い定数名。
-# Trellis では、3x3cells で［大グリッド１マス分］とします
-OUT_COUNTS_THAT_CHANGE_INNING = 3
+class Share():
+    """共有
+    """
+
+    @classmethod
+    @property
+    def OUT_COUNTS_THAT_CHANGE_INNING(clazz):
+        """3 ということが言いたいだけの、長い定数名。
+        Trellis では、3x3cells で［大グリッド１マス分］とします
+        """
+        return 3
 
 
 ######################
@@ -62,7 +70,7 @@ class InningsPitched():
         else:
             self._var_value = f'{self._integer_part}o{self._decimal_part}'
 
-        self._total_of_out_counts_qty = self._integer_part * OUT_COUNTS_THAT_CHANGE_INNING + self._decimal_part
+        self._total_of_out_counts_qty = self._integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + self._decimal_part
 
 
     @property
@@ -103,10 +111,10 @@ class InningsPitched():
         l = self                       # Left operand
         r = InningsPitched.from_var_value(var_value)  # Right operand
         sum_decimal_part = l.decimal_part + r.decimal_part
-        integer_part = l.integer_part + r.integer_part + sum_decimal_part // OUT_COUNTS_THAT_CHANGE_INNING
+        integer_part = l.integer_part + r.integer_part + sum_decimal_part // Share.OUT_COUNTS_THAT_CHANGE_INNING
         return InningsPitched.from_integer_and_decimal_part(
                 integer_part=integer_part,
-                decimal_part=sum_decimal_part % OUT_COUNTS_THAT_CHANGE_INNING)
+                decimal_part=sum_decimal_part % Share.OUT_COUNTS_THAT_CHANGE_INNING)
 
 
 #############
@@ -248,15 +256,15 @@ class Rectangle():
     def _calculate_right(self):
         sum_decimal_part = self._left_obj.decimal_part + self._width_obj.decimal_part
         self._right_obj = InningsPitched.from_integer_and_decimal_part(
-                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_decimal_part // OUT_COUNTS_THAT_CHANGE_INNING,
-                decimal_part=sum_decimal_part % OUT_COUNTS_THAT_CHANGE_INNING)
+                integer_part=self._left_obj.integer_part + self._width_obj.integer_part + sum_decimal_part // Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                decimal_part=sum_decimal_part % Share.OUT_COUNTS_THAT_CHANGE_INNING)
 
 
     def _calculate_bottom(self):
         sum_decimal_part = self._top_obj.decimal_part + self._height_obj.decimal_part
         self._bottom_obj = InningsPitched.from_integer_and_decimal_part(
-                integer_part=self._top_obj.integer_part + self._height_obj.integer_part + sum_decimal_part // OUT_COUNTS_THAT_CHANGE_INNING,
-                decimal_part=sum_decimal_part % OUT_COUNTS_THAT_CHANGE_INNING)
+                integer_part=self._top_obj.integer_part + self._height_obj.integer_part + sum_decimal_part // Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                decimal_part=sum_decimal_part % Share.OUT_COUNTS_THAT_CHANGE_INNING)
 
 
     @property
