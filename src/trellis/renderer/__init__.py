@@ -5,7 +5,7 @@ from openpyxl.styles.borders import Border, Side
 from ..share import ColorSystem, Rectangle, XlAlignment, Canvas
 
 
-def edit_canvas(ws, document):
+def render_canvas(ws, document):
     """キャンバスの編集
     """
     print("🔧　キャンバスの編集")
@@ -34,6 +34,90 @@ def edit_canvas(ws, document):
             canvas_rect.top_obj.total_of_out_counts_th,
             canvas_rect.top_obj.total_of_out_counts_th + canvas_rect.height_obj.total_of_out_counts_qty):
         ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
+
+
+def render_all_xl_texts(ws, document):
+    """全てのテキストの描画（定規の番号除く）
+    """
+    print('🔧　全てのテキストの描画')
+
+    # もし、テキストのリストがあれば
+    if 'xlTexts' in document and (xlTexts := document['xlTexts']):
+        for xl_text_dict in xlTexts:
+
+            # テキスト設定
+            if 'text' in xl_text_dict and (text := xl_text_dict['text']):
+
+                # 位置
+                location_obj = None
+                if 'location' in xl_text_dict and (location_dict := xl_text_dict['location']):
+                    location_obj = Point.from_dict(location_dict)
+
+                # テキストの位置揃え
+                xl_alignment_obj = None
+                if 'xlAlignment' in xl_text_dict and (xl_alignment_dict := xl_text_dict['xlAlignment']):
+                    xl_alignment_obj = XlAlignment.from_dict(xl_alignment_dict)
+
+                # フォント
+                xl_font_obj = None
+                if 'xlFont' in xl_text_dict and (xl_font_dict := xl_text_dict['xlFont']):
+                    xl_font_obj = XlFont.from_dict(xl_font_dict)
+
+                # テキストを入力する
+                print_text(
+                        ws=ws,
+                        location_obj=location_obj,
+                        text=text,
+                        xl_alignment_obj=xl_alignment_obj,
+                        xl_font_obj=xl_font_obj)
+
+
+def render_all_rectangles(ws, document):
+    """全ての矩形の描画
+    """
+    print('🔧　全ての矩形の描画')
+
+    # もし、矩形のリストがあれば
+    if 'rectangles' in document and (rectangles_list := document['rectangles']):
+
+        for rectangle_dict in rectangles_list:
+
+            rect_obj = None
+            if 'bounds' in rectangle_dict and (bounds_dict := rectangle_dict['bounds']):
+                rect_obj = Rectangle.from_dict(bounds_dict)
+
+                # セル結合
+                if 'mergeCells' in rectangle_dict and (is_merge_cells := rectangle_dict['mergeCells']):
+                    if is_merge_cells:
+                        column_th = rect_obj.left_obj.total_of_out_counts_th
+                        row_th = rect_obj.top_obj.total_of_out_counts_th
+                        columns = rect_obj.width_obj.total_of_out_counts_qty
+                        rows = rect_obj.height_obj.total_of_out_counts_qty
+
+                        if 0 < columns and 0 < rows and (1 < columns or 1 < rows):
+                            column_letter = xl.utils.get_column_letter(column_th)
+                            column_letter2 = xl.utils.get_column_letter(column_th + columns - 1)
+                            ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + rows - 1}')
+
+                if 'color' in rectangle_dict and (bg_color := rectangle_dict['color']):
+                    # もし境界線が指定されていれば、描画する
+                    if 'xlBorder' in rectangle_dict and (xl_border_dict := rectangle_dict['xlBorder']):
+                        draw_xl_border_on_rectangle(
+                                ws=ws,
+                                xl_border_dict=xl_border_dict,
+                                column_th=rect_obj.left_obj.total_of_out_counts_th,
+                                row_th=rect_obj.top_obj.total_of_out_counts_th,
+                                columns=rect_obj.width_obj.total_of_out_counts_qty,
+                                rows=rect_obj.height_obj.total_of_out_counts_qty)
+
+                    # 矩形を塗りつぶす
+                    fill_rectangle(
+                            ws=ws,
+                            column_th=rect_obj.left_obj.total_of_out_counts_th,
+                            row_th=rect_obj.top_obj.total_of_out_counts_th,
+                            columns=rect_obj.width_obj.total_of_out_counts_qty,
+                            rows=rect_obj.height_obj.total_of_out_counts_qty,
+                            color=bg_color)
 
 
 def fill_rectangle(ws, column_th, row_th, columns, rows, color):
