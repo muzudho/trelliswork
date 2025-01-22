@@ -36,9 +36,14 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def build(contents_doc, wb_path_to_write):
+    def build(config_doc, contents_doc, wb_path_to_write):
         """ビルド
         """
+
+        # コンパイル
+        TrellisInSrc.compile(
+                contents_doc=contents_doc,
+                config_doc=config_doc)
 
         # ワークブックを新規生成
         wb = xl.Workbook()
@@ -70,12 +75,16 @@ class TrellisInSrc():
                     file_path_of_contents_doc_object = auto_split_pillar_dict['objectFile']
 
                     print(f"""\
-        auto-split-pillar
-            {file_path_of_contents_doc_object=}""")
-
+        🔧　write {file_path_of_contents_doc_object} file
+            auto-split-pillar""")
 
                     # ドキュメントに対して、自動ピラー分割の編集を行います
                     AutoSplitPillarSolver.edit_document(contents_doc)
+
+                    # ディレクトリーが存在しなければ作成する
+                    directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                    os.makedirs(directory_path, exist_ok=True)
+
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
                         f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
@@ -91,11 +100,15 @@ class TrellisInSrc():
                     file_path_of_contents_doc_object = auto_shadow_dict['objectFile']
 
                     print(f"""\
-        auto_shadow
-            {file_path_of_contents_doc_object=}""")
+        🔧　write {file_path_of_contents_doc_object} file
+            auto_shadow""")
 
                     # ドキュメントに対して、影の自動設定の編集を行います
                     AutoShadowSolver.edit_document(contents_doc)
+
+                    # ディレクトリーが存在しなければ作成する
+                    directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                    os.makedirs(directory_path, exist_ok=True)
 
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
                         f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))

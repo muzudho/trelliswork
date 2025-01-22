@@ -15,11 +15,6 @@ def main():
         parser.add_argument("command", help="コマンド名")
         parser.add_argument("-c", "--config", help="設定であるJSON形式ファイルへのパス")
         parser.add_argument("-s", "--source", help="描画の指示であるJSON形式ファイルへのパス")
-        parser.add_argument("-l", "--level", type=int, default=0, help="""自動化レベルです。既定値は 0。
-0 で自動化は行いません。
-1 で影の色の自動設定を行います。
-2 で柱を跨るラインテープを自動的に別セグメントとして分割します。
-""")
         parser.add_argument("-o", "--output", help="書出し先となるExcelワークブック・ファイルへのパス")
         parser.add_argument("-t", "--temp", help="テンポラリー・ディレクトリー。削除してもよいファイルを置けるディレクトリーへのパス")
         args = parser.parse_args()
@@ -81,7 +76,6 @@ def main():
         elif args.command == 'build':
             config_doc_path_to_read = args.config   # json path
             contents_doc_path_to_read = args.source   # json path
-            automation_level = args.level
             wb_path_to_write = args.output
             temporary_directory_path = args.temp
 
@@ -125,39 +119,10 @@ def main():
             with open(contents_doc_path_to_read, encoding='utf-8') as f:
                 contents_doc = json.load(f)
 
-            # 自動化レベル２
-            if 1 < automation_level:
-                # ドキュメントに対して、自動ピラー分割の編集を行います
-                AutoSplitPillarSolver.edit_document(contents_doc)
-
-                file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{contents_doc_basename_without_ext}.in-auto-gen-2-more-steps{contents_doc_extension_with_dot}""")
-
-                print(f"🔧　write {file_path_in_2_more_steps} file")
-                with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
-                    f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-                print(f"🔧　read {file_path_in_2_more_steps} file")
-                with open(file_path_in_2_more_steps, mode='r', encoding='utf-8') as f:
-                    contents_doc = json.load(f)
-
-            # 自動化レベル１
-            if 0 < automation_level:
-                # ドキュメントに対して、影の自動設定の編集を行います
-                AutoShadowSolver.edit_document(contents_doc)
-
-                file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{contents_doc_basename_without_ext}.in-auto-gen-1-more-step{contents_doc_extension_with_dot}""")
-
-                print(f"🔧　write {file_path_in_1_more_step} file")
-                with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
-                    f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-                print(f"🔧　read {file_path_in_1_more_step} file")
-                with open(file_path_in_1_more_step, mode='r', encoding='utf-8') as f:
-                    contents_doc = json.load(f)
-
 
             # ビルド
             tr.build(
+                    config_doc=config_doc,
                     contents_doc=contents_doc,
                     wb_path_to_write=wb_path_to_write)
 

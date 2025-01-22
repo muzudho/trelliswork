@@ -35,12 +35,8 @@ with open(file_path_of_contents_doc, encoding='utf-8') as f:
     contents_doc = json.load(f)
 
 
-# コンパイル
-tr.compile(
-        contents_doc=contents_doc,
-        config_doc=config_doc)
-
 # ビルド
 tr.build(
+        config_doc=config_doc,
         contents_doc=contents_doc,
         wb_path_to_write=file_path_of_output)

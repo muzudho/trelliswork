@@ -1,6 +1,13 @@
 {
     "compiler": {
-
+        "auto-split-pillar": {
+            "enabled": true,
+            "objectFile": "./temp/objects/after-auto-split-pillar.json"
+        },
+        "auto-shadow": {
+            "enabled": true,
+            "objectFile": "./temp/objects/after-auto-shadow.json"
+        }
     },
     "render": {
         
