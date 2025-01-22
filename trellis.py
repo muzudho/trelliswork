@@ -2,11 +2,9 @@ import argparse
 import datetime
 import json
 import os
-import openpyxl as xl
 import traceback
 
 from src.trellis import trellis_in_src as tr
-from src.trellis.compiler import AutoShadowSolver, AutoSplitPillarSolver
 
 
 def main():

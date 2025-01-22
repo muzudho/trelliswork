@@ -3,8 +3,7 @@
 """
 
 import json
-import openpyxl as xl
-from openpyxl.styles import PatternFill, Font
+
 from src.trellis import trellis_in_src as tr
 
 

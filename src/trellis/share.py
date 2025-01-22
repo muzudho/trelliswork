@@ -572,7 +572,7 @@ class ColorSystem():
 
 
     @classmethod
-    def set_color_system(clazz, ws, contents_doc):
+    def set_color_system(clazz, config_doc, contents_doc, ws):
         """TODO 色システムの設定
         """
 

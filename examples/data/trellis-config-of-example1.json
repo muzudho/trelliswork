@@ -5,6 +5,9 @@
     "compiler": {
     },
     "renderer": {
-        "--output": "./temp/examples/no1_new_paper.xlsx"
+        "--output": "./temp/examples/no1_new_paper.xlsx",
+        "xlTexts": {
+            "enabled": false
+        }
     }
 }

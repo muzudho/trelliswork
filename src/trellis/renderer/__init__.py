@@ -9,7 +9,7 @@ from openpyxl.styles.borders import Border, Side
 from ..share import Canvas, Card, ColorSystem, Pillar, Rectangle, Share, Terminal, XlAlignment
 
 
-def render_canvas(ws, contents_doc):
+def render_canvas(config_doc, contents_doc, ws):
     """キャンバスの編集
     """
     print("🔧　キャンバスの編集")
@@ -40,10 +40,22 @@ def render_canvas(ws, contents_doc):
         ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
 
-def render_all_xl_texts(ws, contents_doc):
+def render_all_xl_texts(config_doc, contents_doc, ws):
     """全てのテキストの描画（定規の番号除く）
     """
-    print('🔧　全てのテキストの描画')
+
+    # 処理しないフラグ
+    #
+    #   TODO xlTexts を使わないテキスト出力が短冊にある。仕様を統一したい
+    #
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'xlTexts' in renderer_dict and (xl_texts_dict := renderer_dict['xlTexts']):
+            if 'enabled' in xl_texts_dict:
+                enabled = xl_texts_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
+    print(f'🔧　全てのテキストの描画')
 
     # もし、テキストのリストがあれば
     if 'xlTexts' in contents_doc and (xlTexts := contents_doc['xlTexts']):

@@ -12,7 +12,7 @@ from ..share import Canvas, ColorSystem, Share, XlFont
 #############
 # MARK: Ruler
 #############
-def render_ruler(ws, contents_doc):
+def render_ruler(config_doc, contents_doc, ws):
     """定規の描画
     """
     print("🔧　定規の描画")

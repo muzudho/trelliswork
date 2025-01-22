@@ -61,7 +61,10 @@ class TrellisInSrc():
         ws = wb['Sheet']
 
         # ワークシートへの描画
-        TrellisInSrc.render_to_worksheet(ws, contents_doc)
+        TrellisInSrc.render_to_worksheet(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # ワークブックの保存
         print(f"🔧　write {wb_path_to_write} file")
@@ -127,18 +130,27 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_to_worksheet(ws, contents_doc):
+    def render_to_worksheet(config_doc, contents_doc, ws):
         """ワークシートへの描画
         """
         # 色システムの設定
         global ColorSystem
-        ColorSystem.set_color_system(ws, contents_doc)
+        ColorSystem.set_color_system(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # キャンバスの編集
-        render_canvas(ws, contents_doc)
+        render_canvas(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全てのテキストの描画（定規の番号除く）
-        render_all_xl_texts(ws, contents_doc)
+        render_all_xl_texts(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全ての矩形の描画
         render_all_rectangles(ws, contents_doc)
@@ -166,7 +178,10 @@ class TrellisInSrc():
 
         # 定規の描画
         #       柱を上から塗りつぶすように描きます
-        render_ruler(ws, contents_doc)
+        render_ruler(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
 
 ######################
