@@ -23,7 +23,7 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
 
 
 # ソースファイル（JSON形式）
-file_path_of_contents_doc = './examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json'
+file_path_of_contents_doc = config_doc['compiler']['--source']
 # オブジェクトファイル（JSON形式）
 file_path_of_contents_doc_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 # 出力ファイル（JSON形式）

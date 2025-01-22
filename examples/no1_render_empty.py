@@ -21,7 +21,7 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
 
 
 # ソースファイル（JSON形式）
-file_path_of_contents_doc = './examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json'
+file_path_of_contents_doc = config_doc['compiler']['--source']
 # 出力ファイル（JSON形式）
 file_path_of_output = config_doc['compiler']['--output']
 
