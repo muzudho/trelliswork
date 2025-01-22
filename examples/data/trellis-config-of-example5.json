@@ -1,7 +1,9 @@
 {
+    "bulid": {
+
+    },
     "compiler": {
         "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json",
-        "--output": "./temp/examples/no5_auto_split_pillar.xlsx",
         "auto-split-pillar": {
             "enabled": true,
             "objectFile": "./temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar_done.json"
@@ -11,7 +13,7 @@
             "objectFile": "./temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step4_auto_shadow_done.json"
         }
     },
-    "render": {
-        
+    "renderer": {
+        "--output": "./temp/examples/no5_auto_split_pillar.xlsx"
     }
 }

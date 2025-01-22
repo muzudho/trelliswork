@@ -1,4 +1,7 @@
 {
+    "bulid": {
+
+    },
     "compiler": {
         "auto-split-pillar": {
             "enabled": true,
@@ -9,7 +12,7 @@
             "objectFile": "./temp/objects/after-auto-shadow.json"
         }
     },
-    "render": {
+    "renderer": {
         
     }
 }

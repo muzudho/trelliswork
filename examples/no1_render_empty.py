@@ -23,7 +23,7 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
 # ソースファイル（JSON形式）
 file_path_of_contents_doc = config_doc['compiler']['--source']
 # 出力ファイル（JSON形式）
-file_path_of_output = config_doc['compiler']['--output']
+file_path_of_output = config_doc['renderer']['--output']
 
 print(f"""\
     {file_path_of_contents_doc=}

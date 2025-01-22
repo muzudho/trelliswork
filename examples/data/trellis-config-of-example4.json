@@ -1,13 +1,15 @@
 {
+    "bulid": {
+
+    },
     "compiler": {
         "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json",
-        "--output": "./temp/examples/no4_auto_shadow.xlsx",
         "auto-shadow": {
             "enabled": true,
             "objectFile": "./temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json"
         }
     },
-    "render": {
-        
+    "renderer": {
+        "--output": "./temp/examples/no4_auto_shadow.xlsx"
     }
 }

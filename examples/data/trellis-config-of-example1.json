@@ -1,9 +1,11 @@
 {
-    "compiler": {
-        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json",
-        "--output": "./temp/examples/no1_new_paper.xlsx"
+    "bulid": {
+
     },
-    "render": {
-        
+    "compiler": {
+        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json"
+    },
+    "renderer": {
+        "--output": "./temp/examples/no1_new_paper.xlsx"
     }
 }
