@@ -1,7 +1,7 @@
 from ..share import InningsPitched, Pillar, Rectangle, Share
 
 
-class AutoSplitPillarSolver():
+class AutoSplitSegmentByPillarSolver():
 
 
     @staticmethod
@@ -21,10 +21,11 @@ class AutoSplitPillarSolver():
                         # もし、影があれば
                         if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
                             # 柱を跨ぐとき、ラインテープを分割します
-                            new_splitting_segments.extend(AutoSplitPillarSolver._split_segment_by_pillar(
-                                    contents_doc=contents_doc,
-                                    line_tape_segment_list=line_tape_segment_list,
-                                    line_tape_segment_dict=line_tape_segment_dict))
+                            new_splitting_segments.extend(
+                                    AutoSplitSegmentByPillarSolver._split_segment_by_pillar(
+                                            contents_doc=contents_doc,
+                                            line_tape_segment_list=line_tape_segment_list,
+                                            line_tape_segment_dict=line_tape_segment_dict))
 
         # 削除用ループが終わってから追加する。そうしないと無限ループしてしまう
         for splitting_segments in new_splitting_segments:

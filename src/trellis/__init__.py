@@ -6,7 +6,7 @@ from openpyxl.drawing.image import Image as XlImage
 import json
 
 from .compiler.auto_shadow import AutoShadowSolver
-from .compiler.auto_split_pillar import AutoSplitPillarSolver
+from .compiler.auto_split_pillar import AutoSplitSegmentByPillarSolver
 from .renderer import render_canvas, render_all_xl_texts, render_all_rectangles, render_all_pillar_rugs, render_all_card_shadows, render_all_terminal_shadows, render_all_line_tape_shadows, render_all_cards, render_all_terminals, render_all_line_tapes
 from .renderer.ruler import render_ruler
 from .share import ColorSystem
@@ -80,19 +80,19 @@ class TrellisInSrc():
         """
         if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
 
-            # auto-split-pillar
-            # -----------------
-            if 'auto-split-pillar' in compiler_dict and (auto_split_pillar_dict := compiler_dict['auto-split-pillar']):
-                if 'enabled' in auto_split_pillar_dict and (enabled := auto_split_pillar_dict['enabled']) and enabled:
+            # autoSplitSegmentByPillar
+            # ------------------------
+            if 'autoSplitSegmentByPillar' in compiler_dict and (auto_split_segment_by_pillar_dict := compiler_dict['autoSplitSegmentByPillar']):
+                if 'enabled' in auto_split_segment_by_pillar_dict and (enabled := auto_split_segment_by_pillar_dict['enabled']) and enabled:
                     # 中間ファイル（JSON形式）
-                    file_path_of_contents_doc_object = auto_split_pillar_dict['objectFile']
+                    file_path_of_contents_doc_object = auto_split_segment_by_pillar_dict['objectFile']
 
                     print(f"""\
         🔧　write {file_path_of_contents_doc_object} file
-            auto-split-pillar""")
+            autoSplitSegmentByPillar""")
 
                     # ドキュメントに対して、自動ピラー分割の編集を行います
-                    AutoSplitPillarSolver.edit_document(contents_doc)
+                    AutoSplitSegmentByPillarSolver.edit_document(contents_doc)
 
                     # ディレクトリーが存在しなければ作成する
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
@@ -103,9 +103,9 @@ class TrellisInSrc():
                         f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
 
-            # auto_shadow
-            # -----------
-            if 'auto-shadow' in compiler_dict and (auto_shadow_dict := compiler_dict['auto-shadow']):
+            # autoShadow
+            # ----------
+            if 'autoShadow' in compiler_dict and (auto_shadow_dict := compiler_dict['autoShadow']):
                 if 'enabled' in auto_shadow_dict and (enabled := auto_shadow_dict['enabled']) and enabled:
                     # 中間ファイル（JSON形式）
                     file_path_of_contents_doc_object = auto_shadow_dict['objectFile']

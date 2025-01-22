@@ -3,11 +3,11 @@
 
     },
     "compiler": {
-        "auto-split-pillar": {
+        "autoSplitSegmentByPillar": {
             "enabled": true,
             "objectFile": "./temp/objects/after-auto-split-pillar.json"
         },
-        "auto-shadow": {
+        "autoShadow": {
             "enabled": true,
             "objectFile": "./temp/objects/after-auto-shadow.json"
         }

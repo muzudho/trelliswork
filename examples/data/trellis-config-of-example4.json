@@ -3,7 +3,7 @@
         "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json"
     },
     "compiler": {
-        "auto-shadow": {
+        "autoShadow": {
             "enabled": true,
             "objectFile": "./temp/examples/no4_auto_shadow.after_auto_shadow.json"
         }
