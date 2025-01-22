@@ -22,14 +22,8 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
-# 色システムの設定
-tr.set_color_system(ws, document)
-
-# キャンバスの編集
-tr.edit_canvas(ws, document)
-
-# 定規の描画
-tr.render_ruler(ws, document)
+# ワークシートへの描画
+tr.render_to_worksheet(ws, document)
 
 # ワークブックの保存            
 wb.save('./temp/examples/step1_new_paper.xlsx')

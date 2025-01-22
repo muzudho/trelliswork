@@ -903,6 +903,48 @@ class TrellisInSrc():
         render_all_line_tapes(ws, document)
 
 
+    @staticmethod
+    def render_to_worksheet(ws, document):
+        """ワークシートへの描画
+        """
+        # 色システムの設定
+        TrellisInSrc.set_color_system(ws, document)
+
+        # キャンバスの編集
+        TrellisInSrc.edit_canvas(ws, document)
+
+        # 全てのテキストの描画（定規の番号除く）
+        TrellisInSrc.render_all_xl_texts(ws, document)
+
+        # 全ての矩形の描画
+        TrellisInSrc.render_all_rectangles(ws, document)
+
+        # 全ての柱の敷物の描画
+        TrellisInSrc.render_all_pillar_rugs(ws, document)
+
+        # 全てのカードの影の描画
+        TrellisInSrc.render_all_card_shadows(ws, document)
+
+        # 全ての端子の影の描画
+        TrellisInSrc.render_all_terminal_shadows(ws, document)
+
+        # 全てのラインテープの影の描画
+        TrellisInSrc.render_all_line_tape_shadows(ws, document)
+
+        # 全てのカードの描画
+        TrellisInSrc.render_all_cards(ws, document)
+
+        # 全ての端子の描画
+        TrellisInSrc.render_all_terminals(ws, document)
+
+        # 全てのラインテープの描画
+        TrellisInSrc.render_all_line_tapes(ws, document)
+
+        # 定規の描画
+        #       柱を上から塗りつぶすように描きます
+        TrellisInSrc.render_ruler(ws, document)
+
+
 ######################
 # MARK: trellis_in_src
 ######################

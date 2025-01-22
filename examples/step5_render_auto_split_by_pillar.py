@@ -49,39 +49,8 @@ wb = xl.Workbook()
 # ワークシート
 ws = wb['Sheet']
 
-# 色システムの設定
-tr.set_color_system(ws, document)
-
-# キャンバスの編集
-tr.edit_canvas(ws, document)
-
-# 全ての矩形の描画
-tr.render_all_rectangles(ws, document)
-
-# 全ての柱の敷物の描画
-tr.render_all_pillar_rugs(ws, document)
-
-# 全てのカードの影の描画
-tr.render_all_card_shadows(ws, document)
-
-# 全ての端子の影の描画
-tr.render_all_terminal_shadows(ws, document)
-
-# 全てのラインテープの影の描画
-tr.render_all_line_tape_shadows(ws, document)
-
-# 全てのカードの描画
-tr.render_all_cards(ws, document)
-
-# 全ての端子の描画
-tr.render_all_terminals(ws, document)
-
-# 全てのラインテープの描画
-tr.render_all_line_tapes(ws, document)
-
-# 定規の描画
-#       柱を上から塗りつぶすように描きます
-tr.render_ruler(ws, document)
+# ワークシートへの描画
+tr.render_to_worksheet(ws, document)
 
 # ワークブックの保存            
 wb.save('./temp/examples/step5_auto_split_pillar.xlsx')
