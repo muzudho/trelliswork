@@ -14,7 +14,7 @@ def main():
         parser = argparse.ArgumentParser()
         parser.add_argument("command", help="コマンド名")
         parser.add_argument("-c", "--config", help="設定であるJSON形式ファイルへのパス")
-        parser.add_argument("-f", "--file", help="描画の指示であるJSON形式ファイルへのパス")
+        parser.add_argument("-s", "--source", help="描画の指示であるJSON形式ファイルへのパス")
         parser.add_argument("-l", "--level", type=int, default=0, help="""自動化レベルです。既定値は 0。
 0 で自動化は行いません。
 1 で影の色の自動設定を行います。
@@ -80,7 +80,7 @@ def main():
 
         elif args.command == 'build':
             config_doc_path_to_read = args.config   # json path
-            contents_doc_path_to_read = args.file   # json path
+            contents_doc_path_to_read = args.source   # json path
             automation_level = args.level
             wb_path_to_write = args.output
             temporary_directory_path = args.temp
@@ -90,7 +90,7 @@ def main():
                 return
 
             if not contents_doc_path_to_read:
-                print(f"""ERROR: build コマンドには --file オプションを付けて、描画の設定が書かれた JSON ファイルへのパスを指定してください""")
+                print(f"""ERROR: build コマンドには --source オプションを付けて、描画の設定が書かれた JSON ファイルへのパスを指定してください""")
                 return
 
             if not temporary_directory_path:

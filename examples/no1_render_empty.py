@@ -26,7 +26,6 @@ file_path_of_contents_doc = './examples/data/battle_sequence_of_unfair_cointoss.
 file_path_of_output = config_doc['compiler']['--output']
 
 print(f"""\
-    {file_path_of_config_doc=}
     {file_path_of_contents_doc=}
     {file_path_of_output=}""")
 

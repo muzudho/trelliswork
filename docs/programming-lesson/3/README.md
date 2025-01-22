@@ -46,7 +46,7 @@
 そして、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --file ./temp/lesson/hello_world.json --config ./trellis-config.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![矩形描画](../../img/[20250116-0015]rectangle.png)  
@@ -101,7 +101,7 @@ py trellis.py build --file ./temp/lesson/hello_world.json --config ./trellis-con
 そして、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --file ./temp/lesson/hello_world.json --config ./trellis-config.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![右と下を使って矩形描画](../../img/[20250116-0020]right-bottom.png)  
