@@ -34,17 +34,7 @@ with open(file_path_of_contents_doc, encoding='utf-8') as f:
     contents_doc = json.load(f)
 
 
-# ワークブックを新規生成
-wb = xl.Workbook()
-
-# ワークシート
-ws = wb['Sheet']
-
-# ワークシートへの描画
-tr.render_to_worksheet(ws, contents_doc)
-
-
 # ビルド
 tr.build(
-        wb=wb,
+        contents_doc=contents_doc,
         wb_path_to_write=file_path_of_output)

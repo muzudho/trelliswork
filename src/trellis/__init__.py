@@ -36,9 +36,18 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def build(wb, wb_path_to_write):
+    def build(contents_doc, wb_path_to_write):
         """ビルド
         """
+
+        # ワークブックを新規生成
+        wb = xl.Workbook()
+
+        # ワークシート
+        ws = wb['Sheet']
+
+        # ワークシートへの描画
+        TrellisInSrc.render_to_worksheet(ws, contents_doc)
 
         # ワークブックの保存
         print(f"🔧　write {wb_path_to_write} file")

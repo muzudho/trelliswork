@@ -40,17 +40,7 @@ tr.compile(
         contents_doc=contents_doc,
         config_doc=config_doc)
 
-# ワークブックを新規生成
-wb = xl.Workbook()
-
-# ワークシート
-ws = wb['Sheet']
-
-# ワークシートへの描画
-tr.render_to_worksheet(ws, contents_doc)
-
-
 # ビルド
 tr.build(
-        wb=wb,
+        contents_doc=contents_doc,
         wb_path_to_write=file_path_of_output)
