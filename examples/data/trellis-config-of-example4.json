@@ -5,7 +5,7 @@
     "compiler": {
         "auto-shadow": {
             "enabled": true,
-            "objectFile": "./temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json"
+            "objectFile": "./temp/examples/no4_auto_shadow.after_auto_shadow.json"
         }
     },
     "renderer": {
