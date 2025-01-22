@@ -12,20 +12,27 @@ from src.trellis.compiler import AutoShadowSolver
 
 # 設定ファイル（JSON形式）
 file_path_of_config_doc = './examples/data/trellis-config-of-example4.json'
+
+print(f"""\
+example 4: auto shadow
+    {file_path_of_config_doc=}""")
+
+# 設定ファイル（JSON形式）を読込
+with open(file_path_of_config_doc, encoding='utf-8') as f:
+    config_doc = json.load(f)
+
+
 # ソースファイル（JSON形式）
 file_path_of_contents_doc = './examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json'
 # オブジェクトファイル（JSON形式）
 file_path_of_contents_doc_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 # 出力ファイル（JSON形式）
-file_path_of_output = './temp/examples/step4_auto_shadow.xlsx'
+file_path_of_output = config_doc['compiler']['--output']
 
 print(f"""\
-example 4: auto shadow
-    {file_path_of_config_doc=}
     {file_path_of_contents_doc=}
     {file_path_of_contents_doc_2=}
-    {file_path_of_output=}
-""")
+    {file_path_of_output=}""")
 
 # ソースファイル（JSON形式）を読込
 with open(file_path_of_contents_doc, encoding='utf-8') as f:

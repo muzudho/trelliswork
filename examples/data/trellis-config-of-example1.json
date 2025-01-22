@@ -1,6 +1,6 @@
 {
     "compiler": {
-
+        "--output": "./temp/examples/no1_new_paper.xlsx"
     },
     "render": {
         

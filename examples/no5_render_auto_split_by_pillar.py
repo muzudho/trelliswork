@@ -12,20 +12,28 @@ from src.trellis.compiler import AutoShadowSolver, AutoSplitPillar
 
 # 設定ファイル（JSON形式）
 file_path_of_config_doc = './examples/data/trellis-config-of-example5.json'
+
+print(f"""\
+example 5: auto split pillar
+    {file_path_of_config_doc=}""")
+
+# 設定ファイル（JSON形式）を読込
+with open(file_path_of_config_doc, encoding='utf-8') as f:
+    config_doc = json.load(f)
+
+
 # ソースファイル（JSON形式）
 file_path_of_contents_doc = './examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json'
 file_path_of_contents_doc_3 = './temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar_done.json'
 file_path_of_contents_doc_2 = './temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step4_auto_shadow_done.json'
 # 出力ファイル（JSON形式）
-file_path_of_output = './temp/examples/step5_auto_split_pillar.xlsx'
+file_path_of_output = config_doc['compiler']['--output']
 
-print(f"""example 5: auto split pillar\
-    {file_path_of_config_doc=}
+print(f"""\
     {file_path_of_contents_doc=}
     {file_path_of_contents_doc_3=}
     {file_path_of_contents_doc_2=}
-    {file_path_of_output=}
-""")
+    {file_path_of_output=}""")
 
 # ソースファイル（JSON形式）を読込
 with open(file_path_of_contents_doc, encoding='utf-8') as f:

@@ -1,6 +1,6 @@
 {
     "compiler": {
-
+        "--output": "./temp/examples/no2_pillars.xlsx"
     },
     "render": {
         

@@ -1,6 +1,6 @@
 {
     "compiler": {
-
+        "--output": "./temp/examples/no4_auto_shadow.xlsx"
     },
     "render": {
         
