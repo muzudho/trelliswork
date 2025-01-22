@@ -27,7 +27,7 @@ class AutoShadowSolver():
 
                                 # 影に自動が設定されていたら、解決する
                                 try:
-                                    if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
+                                    if solved_var_color_name := AutoShadowSolver._resolve_auto_shadow(
                                             contents_doc=contents_doc,
                                             column_th=card_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             row_th=card_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
@@ -48,7 +48,7 @@ class AutoShadowSolver():
                             if terminal_shadow_color == 'auto':
 
                                 # 影に自動が設定されていたら、解決する
-                                if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
+                                if solved_var_color_name := AutoShadowSolver._resolve_auto_shadow(
                                         contents_doc=contents_doc,
                                         column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                         row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
@@ -68,7 +68,7 @@ class AutoShadowSolver():
                             # NOTE 影が指定されているということは、浮いているということでもある
 
                             # 影に自動が設定されていたら、解決する
-                            if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
+                            if solved_var_color_name := AutoShadowSolver._resolve_auto_shadow(
                                     contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
@@ -76,7 +76,7 @@ class AutoShadowSolver():
 
 
     @staticmethod
-    def resolve_auto_shadow(contents_doc, column_th, row_th):
+    def _resolve_auto_shadow(contents_doc, column_th, row_th):
         """影の自動設定を解決する"""
 
         # もし、影の色の対応付けがあれば
@@ -105,7 +105,7 @@ class AutoShadowSolver():
         return shadow_color_dict['paperColor']
 
 
-class AutoSplitPillar():
+class AutoSplitPillarSolver():
 
 
     @staticmethod
@@ -125,7 +125,7 @@ class AutoSplitPillar():
                         # もし、影があれば
                         if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
                             # 柱を跨ぐとき、ラインテープを分割します
-                            new_splitting_segments.extend(AutoSplitPillar.split_segment_by_pillar(
+                            new_splitting_segments.extend(AutoSplitPillarSolver._split_segment_by_pillar(
                                     contents_doc=contents_doc,
                                     line_tape_segment_list=line_tape_segment_list,
                                     line_tape_segment_dict=line_tape_segment_dict))
@@ -136,7 +136,7 @@ class AutoSplitPillar():
 
 
     @staticmethod
-    def split_segment_by_pillar(contents_doc, line_tape_segment_list, line_tape_segment_dict):
+    def _split_segment_by_pillar(contents_doc, line_tape_segment_list, line_tape_segment_dict):
         """柱を跨ぐとき、ラインテープを分割します
         NOTE 柱は左から並んでいるものとする
         NOTE 柱の縦幅は十分に広いものとする
