@@ -165,10 +165,13 @@ def main():
             tr.render_to_worksheet(ws, contents_doc)
 
             # ワークブックの保存
-            print(f"🔧　write {wb_path_to_write} file")
             wb.save(wb_path_to_write)
 
-            print(f"Finished. Please look {wb_path_to_write} file.")
+
+            # ビルド
+            tr.build(
+                    wb=wb,
+                    wb_path_to_write=wb_path_to_write)
 
         else:
             raise ValueError(f'unsupported command: {args.command}')

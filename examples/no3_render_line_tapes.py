@@ -43,5 +43,8 @@ ws = wb['Sheet']
 # ワークシートへの描画
 tr.render_to_worksheet(ws, contents_doc)
 
-# ワークブックの保存            
-wb.save(file_path_of_output)
+
+# ビルド
+tr.build(
+        wb=wb,
+        wb_path_to_write=file_path_of_output)

@@ -36,6 +36,18 @@ class TrellisInSrc():
 
 
     @staticmethod
+    def build(wb, wb_path_to_write):
+        """ビルド
+        """
+
+        # ワークブックの保存
+        print(f"🔧　write {wb_path_to_write} file")
+        wb.save(wb_path_to_write)
+
+        print(f"Finished. Please look {wb_path_to_write} file.")
+
+
+    @staticmethod
     def compile(contents_doc, config_doc):
         """コンパイル
         """
