@@ -63,6 +63,7 @@ def main():
                 }
             }
 
+            print(f"🔧　write {json_path_to_write} file")
             with open(json_path_to_write, mode='w', encoding='utf-8') as f:
                 f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 

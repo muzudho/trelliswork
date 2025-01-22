@@ -97,11 +97,9 @@ class TrellisInSrc():
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
                     os.makedirs(directory_path, exist_ok=True)
 
+                    print(f"🔧　write {file_path_of_contents_doc_object} file")
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
                         f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-                    # with open(file_path_of_contents_doc_object, mode='r', encoding='utf-8') as f:
-                    #     contents_doc = json.load(f)
 
 
             # auto_shadow
@@ -122,11 +120,9 @@ class TrellisInSrc():
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
                     os.makedirs(directory_path, exist_ok=True)
 
+                    print(f"🔧　write {file_path_of_contents_doc_object} file")
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
                         f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-                    # with open(file_path_of_contents_doc_object, mode='r', encoding='utf-8') as f:
-                    #     contents_doc = json.load(f)
 
 
     @staticmethod
