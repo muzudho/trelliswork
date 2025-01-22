@@ -21,18 +21,6 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
     config_doc = json.load(f)
 
 
-# ソースファイル（JSON形式）
-file_path_of_contents_doc = config_doc['compiler']['--source']
-
-print(f"""\
-    {file_path_of_contents_doc=}""")
-
-# ソースファイル（JSON形式）を読込
-with open(file_path_of_contents_doc, encoding='utf-8') as f:
-    contents_doc = json.load(f)
-
-
 # ビルド
 tr.build(
-        config_doc=config_doc,
-        contents_doc=contents_doc)
+        config_doc=config_doc)

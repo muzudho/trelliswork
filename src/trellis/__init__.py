@@ -36,9 +36,15 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def build(config_doc, contents_doc):
+    def build(config_doc):
         """ビルド
         """
+
+        # ソースファイル（JSON形式）読込
+        file_path_of_contents_doc = config_doc['builder']['--source']
+        print(f"🔧　read {file_path_of_contents_doc} file")
+        with open(file_path_of_contents_doc, encoding='utf-8') as f:
+            contents_doc = json.load(f)
 
         # 出力ファイル（JSON形式）
         wb_path_to_write = config_doc['renderer']['--output']

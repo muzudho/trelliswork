@@ -1,9 +1,8 @@
 {
-    "bulid": {
-
+    "builder": {
+        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json"
     },
     "compiler": {
-        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json"
     },
     "renderer": {
         "--output": "./temp/examples/no3_line_tapes.xlsx"

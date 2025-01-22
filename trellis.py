@@ -91,21 +91,21 @@ def main():
                 print(f"""ERROR: build コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
                 return
 
+# デバッグ用
+#             def get_paths(path_to_read):
+#                 directory_path = os.path.split(path_to_read)[0]
+#                 basename_without_ext = os.path.splitext(os.path.basename(path_to_read))[0]
+#                 extension_with_dot = os.path.splitext(path_to_read)[1]
+#                 print(f"""\
+# {directory_path=}
+# {basename_without_ext=}
+# {extension_with_dot=}
+# """)
+#                 return directory_path, basename_without_ext, extension_with_dot
 
-            def get_paths(path_to_read):
-                directory_path = os.path.split(path_to_read)[0]
-                basename_without_ext = os.path.splitext(os.path.basename(path_to_read))[0]
-                extension_with_dot = os.path.splitext(path_to_read)[1]
-                print(f"""\
-{directory_path=}
-{basename_without_ext=}
-{extension_with_dot=}
-""")
-                return directory_path, basename_without_ext, extension_with_dot
 
-
-            config_doc_directory_path, config_doc_basename_without_ext, config_doc_extension_with_dot = get_paths(config_doc_path_to_read)
-            contents_doc_directory_path, contents_doc_basename_without_ext, contents_doc_extension_with_dot = get_paths(contents_doc_path_to_read)
+#             config_doc_directory_path, config_doc_basename_without_ext, config_doc_extension_with_dot = get_paths(config_doc_path_to_read)
+#             contents_doc_directory_path, contents_doc_basename_without_ext, contents_doc_extension_with_dot = get_paths(contents_doc_path_to_read)
 
 
             # ソースファイル（JSON形式）を読込
@@ -114,20 +114,24 @@ def main():
                 config_doc = json.load(f)
 
 
-            # ソースファイル（JSON形式）を読込
-            print(f"🔧　read {contents_doc_path_to_read} file")
-            with open(contents_doc_path_to_read, encoding='utf-8') as f:
-                contents_doc = json.load(f)
-
-
             # コマンドライン引数で設定を上書き
+            if 'builder' not in config_doc:
+                config_doc['builder'] = {}
+            
+            config_doc['builder']['--source'] = contents_doc_path_to_read
+
+            if 'compiler' not in config_doc:
+                config_doc['compiler'] = {}
+
+            if 'renderer' not in config_doc:
+                config_doc['renderer'] = {}
+
             config_doc['renderer']['--output'] = wb_path_to_write
 
 
             # ビルド
             tr.build(
-                    config_doc=config_doc,
-                    contents_doc=contents_doc)
+                    config_doc=config_doc)
 
         else:
             raise ValueError(f'unsupported command: {args.command}')

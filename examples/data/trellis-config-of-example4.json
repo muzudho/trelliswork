@@ -1,9 +1,8 @@
 {
-    "bulid": {
-
+    "builder": {
+        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json"
     },
     "compiler": {
-        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json",
         "auto-shadow": {
             "enabled": true,
             "objectFile": "./temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json"
