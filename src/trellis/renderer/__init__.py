@@ -2,7 +2,7 @@ import openpyxl as xl
 from openpyxl.styles import Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
-from .share import ColorSystem, Rectangle, XlAlignment, Canvas
+from ..share import ColorSystem, Rectangle, XlAlignment, Canvas
 
 
 def edit_canvas(ws, document):
