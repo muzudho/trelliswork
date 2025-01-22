@@ -1,12 +1,12 @@
 import os
 import openpyxl as xl
-from openpyxl.styles import PatternFill, Font
+from openpyxl.styles import Font, PatternFill
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .share import *
+from ..share import Canvas, ColorSystem, Share, XlFont
 
 
 #############
