@@ -14,7 +14,7 @@ print('step 1: render empty')
 json_file_name = './examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json'
 print(f"json_file_name = {json_file_name}")
 with open(json_file_name, encoding='utf-8') as f:
-    document = json.load(f)
+    contents_doc = json.load(f)
 
 # ワークブックを新規生成
 wb = xl.Workbook()
@@ -23,7 +23,7 @@ wb = xl.Workbook()
 ws = wb['Sheet']
 
 # ワークシートへの描画
-tr.render_to_worksheet(ws, document)
+tr.render_to_worksheet(ws, contents_doc)
 
 # ワークブックの保存            
 wb.save('./temp/examples/step1_new_paper.xlsx')

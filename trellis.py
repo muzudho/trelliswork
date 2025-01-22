@@ -13,7 +13,8 @@ def main():
     try:
         parser = argparse.ArgumentParser()
         parser.add_argument("command", help="コマンド名")
-        parser.add_argument("-f", "--file", help="元となるJSON形式ファイルへのパス")
+        parser.add_argument("-c", "--config", help="設定であるJSON形式ファイルへのパス")
+        parser.add_argument("-f", "--file", help="描画の指示であるJSON形式ファイルへのパス")
         parser.add_argument("-l", "--level", type=int, default=0, help="""自動化レベルです。既定値は 0。
 0 で自動化は行いません。
 1 で影の色の自動設定を行います。
@@ -47,7 +48,7 @@ def main():
 # > """)
             print(f'{json_path_to_write=}')
 
-            document = {
+            contents_doc = {
                 "canvas": {
                     "bounds": {
                         "left": 0,
@@ -70,66 +71,89 @@ def main():
             }
 
             with open(json_path_to_write, mode='w', encoding='utf-8') as f:
-                f.write(json.dumps(document, indent=4, ensure_ascii=False))
+                f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
             print(f"""\
 {json_path_to_write} ファイルを書き出しました。確認してください。
 """)
 
 
-        elif args.command == 'compile':
-            json_path_to_read = args.file
+        elif args.command == 'build':
+            config_doc_path_to_read = args.config   # json path
+            contents_doc_path_to_read = args.file   # json path
             automation_level = args.level
             wb_path_to_write = args.output
             temporary_directory_path = args.temp
 
-            if not temporary_directory_path:
-                print(f"""ERROR: compile コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
+            if not config_doc_path_to_read:
+                print(f"""ERROR: build コマンドには --config オプションを付けて、トレリスの設定が書かれた JSON ファイルへのパスを指定してください""")
                 return
 
-            source_file_directory_path = os.path.split(json_path_to_read)[0]
-            source_file_basename_without_ext = os.path.splitext(os.path.basename(json_path_to_read))[0]
-            source_file_extension_with_dot = os.path.splitext(json_path_to_read)[1]
-            print(f"""\
-{source_file_directory_path=}
-{source_file_basename_without_ext=}
-{source_file_extension_with_dot=}
+            if not contents_doc_path_to_read:
+                print(f"""ERROR: build コマンドには --file オプションを付けて、描画の設定が書かれた JSON ファイルへのパスを指定してください""")
+                return
+
+            if not temporary_directory_path:
+                print(f"""ERROR: build コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
+                return
+
+
+            def get_paths(path_to_read):
+                directory_path = os.path.split(path_to_read)[0]
+                basename_without_ext = os.path.splitext(os.path.basename(path_to_read))[0]
+                extension_with_dot = os.path.splitext(path_to_read)[1]
+                print(f"""\
+{directory_path=}
+{basename_without_ext=}
+{extension_with_dot=}
 """)
+                return directory_path, basename_without_ext, extension_with_dot
+
+
+            config_doc_directory_path, config_doc_basename_without_ext, config_doc_extension_with_dot = get_paths(config_doc_path_to_read)
+            contents_doc_directory_path, contents_doc_basename_without_ext, contents_doc_extension_with_dot = get_paths(contents_doc_path_to_read)
+
 
             # ソースファイル（JSON形式）を読込
-            print(f"🔧　read {json_path_to_read} file")
-            with open(json_path_to_read, encoding='utf-8') as f:
-                document = json.load(f)
+            print(f"🔧　read {config_doc_path_to_read} file")
+            with open(config_doc_path_to_read, encoding='utf-8') as f:
+                config_doc = json.load(f)
+
+
+            # ソースファイル（JSON形式）を読込
+            print(f"🔧　read {contents_doc_path_to_read} file")
+            with open(contents_doc_path_to_read, encoding='utf-8') as f:
+                contents_doc = json.load(f)
 
             # 自動化レベル２
             if 1 < automation_level:
                 # ドキュメントに対して、自動ピラー分割の編集を行います
-                AutoSplitPillar.edit_document(document)
+                AutoSplitPillar.edit_document(contents_doc)
 
-                file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
+                file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{contents_doc_basename_without_ext}.in-auto-gen-2-more-steps{contents_doc_extension_with_dot}""")
 
                 print(f"🔧　write {file_path_in_2_more_steps} file")
                 with open(file_path_in_2_more_steps, mode='w', encoding='utf-8') as f:
-                    f.write(json.dumps(document, indent=4, ensure_ascii=False))
+                    f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
                 print(f"🔧　read {file_path_in_2_more_steps} file")
                 with open(file_path_in_2_more_steps, mode='r', encoding='utf-8') as f:
-                    document = json.load(f)
+                    contents_doc = json.load(f)
 
             # 自動化レベル１
             if 0 < automation_level:
                 # ドキュメントに対して、影の自動設定の編集を行います
-                AutoShadowSolver.edit_document(document)
+                AutoShadowSolver.edit_document(contents_doc)
 
-                file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-1-more-step{source_file_extension_with_dot}""")
+                file_path_in_1_more_step = os.path.join(temporary_directory_path, f"""{contents_doc_basename_without_ext}.in-auto-gen-1-more-step{contents_doc_extension_with_dot}""")
 
                 print(f"🔧　write {file_path_in_1_more_step} file")
                 with open(file_path_in_1_more_step, mode='w', encoding='utf-8') as f:
-                    f.write(json.dumps(document, indent=4, ensure_ascii=False))
+                    f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
                 print(f"🔧　read {file_path_in_1_more_step} file")
                 with open(file_path_in_1_more_step, mode='r', encoding='utf-8') as f:
-                    document = json.load(f)
+                    contents_doc = json.load(f)
 
             # ワークブックを新規生成
             wb = xl.Workbook()
@@ -138,7 +162,7 @@ def main():
             ws = wb['Sheet']
 
             # ワークシートへの描画
-            tr.render_to_worksheet(ws, document)
+            tr.render_to_worksheet(ws, contents_doc)
 
             # ワークブックの保存
             print(f"🔧　write {wb_path_to_write} file")

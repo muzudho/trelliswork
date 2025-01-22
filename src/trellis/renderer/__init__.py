@@ -9,7 +9,7 @@ from openpyxl.styles.borders import Border, Side
 from ..share import Canvas, Card, ColorSystem, Pillar, Rectangle, Share, Terminal, XlAlignment
 
 
-def render_canvas(ws, document):
+def render_canvas(ws, contents_doc):
     """キャンバスの編集
     """
     print("🔧　キャンバスの編集")
@@ -19,7 +19,7 @@ def render_canvas(ws, document):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    canvas_obj = Canvas.from_dict(document['canvas'])
+    canvas_obj = Canvas.from_dict(contents_doc['canvas'])
     canvas_rect = canvas_obj.rect_obj
 
     # 横幅または縦幅が１アウト未満の場合は、定規は描画しません
@@ -40,13 +40,13 @@ def render_canvas(ws, document):
         ws.row_dimensions[row_th].height = 15    # 15 points = about 30 pixels
 
 
-def render_all_xl_texts(ws, document):
+def render_all_xl_texts(ws, contents_doc):
     """全てのテキストの描画（定規の番号除く）
     """
     print('🔧　全てのテキストの描画')
 
     # もし、テキストのリストがあれば
-    if 'xlTexts' in document and (xlTexts := document['xlTexts']):
+    if 'xlTexts' in contents_doc and (xlTexts := contents_doc['xlTexts']):
         for xl_text_dict in xlTexts:
 
             # テキスト設定
@@ -76,13 +76,13 @@ def render_all_xl_texts(ws, document):
                         xl_font_obj=xl_font_obj)
 
 
-def render_all_rectangles(ws, document):
+def render_all_rectangles(ws, contents_doc):
     """全ての矩形の描画
     """
     print('🔧　全ての矩形の描画')
 
     # もし、矩形のリストがあれば
-    if 'rectangles' in document and (rectangles_list := document['rectangles']):
+    if 'rectangles' in contents_doc and (rectangles_list := contents_doc['rectangles']):
 
         for rectangle_dict in rectangles_list:
 
@@ -124,13 +124,13 @@ def render_all_rectangles(ws, document):
                             color=bg_color)
 
 
-def render_all_pillar_rugs(ws, document):
+def render_all_pillar_rugs(ws, contents_doc):
     """全ての柱の敷物の描画
     """
     print('🔧　全ての柱の敷物の描画')
 
     # もし、柱のリストがあれば
-    if 'pillars' in document and (pillars_list := document['pillars']):
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
@@ -148,13 +148,13 @@ def render_all_pillar_rugs(ws, document):
                         color=base_color)
 
 
-def render_all_card_shadows(ws, document):
+def render_all_card_shadows(ws, contents_doc):
     """全てのカードの影の描画
     """
     print('🔧　全てのカードの影の描画')
 
     # もし、柱のリストがあれば
-    if 'pillars' in document and (pillars_list := document['pillars']):
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
@@ -180,13 +180,13 @@ def render_all_card_shadows(ws, document):
                                 color=card_shadow_color)
 
 
-def render_all_terminal_shadows(ws, document):
+def render_all_terminal_shadows(ws, contents_doc):
     """全ての端子の影の描画
     """
     print('🔧　全ての端子の影の描画')
 
     # もし、柱のリストがあれば
-    if 'pillars' in document and (pillars_list := document['pillars']):
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
@@ -210,13 +210,13 @@ def render_all_terminal_shadows(ws, document):
                             color=terminal_shadow_color)
 
 
-def render_all_line_tape_shadows(ws, document):
+def render_all_line_tape_shadows(ws, contents_doc):
     """全てのラインテープの影の描画
     """
     print('🔧　全てのラインテープの影の描画')
 
     # もし、ラインテープの配列があれば
-    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+    if 'lineTapes' in contents_doc and (line_tape_list := contents_doc['lineTapes']):
 
         for line_tape_dict in line_tape_list:
             for segment_dict in line_tape_dict['segments']:
@@ -233,13 +233,13 @@ def render_all_line_tape_shadows(ws, document):
                             color=line_tape_shadow_color)
 
 
-def render_all_cards(ws, document):
+def render_all_cards(ws, contents_doc):
     """全てのカードの描画
     """
     print('🔧　全てのカードの描画')
 
     # もし、柱のリストがあれば
-    if 'pillars' in document and (pillars_list := document['pillars']):
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
@@ -282,13 +282,13 @@ def render_all_cards(ws, document):
                                 rows=card_rect_obj.height_obj.total_of_out_counts_qty)
 
 
-def render_all_terminals(ws, document):
+def render_all_terminals(ws, contents_doc):
     """全ての端子の描画
     """
     print('🔧　全ての端子の描画')
 
     # もし、柱のリストがあれば
-    if 'pillars' in document and (pillars_list := document['pillars']):
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
@@ -317,13 +317,13 @@ def render_all_terminals(ws, document):
                             row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
 
 
-def render_all_line_tapes(ws, document):
+def render_all_line_tapes(ws, contents_doc):
     """全てのラインテープの描画
     """
     print('🔧　全てのラインテープの描画')
 
     # もし、ラインテープの配列があれば
-    if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+    if 'lineTapes' in contents_doc and (line_tape_list := contents_doc['lineTapes']):
 
         # 各ラインテープ
         for line_tape_dict in line_tape_list:

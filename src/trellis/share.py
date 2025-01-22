@@ -572,11 +572,11 @@ class ColorSystem():
 
 
     @classmethod
-    def set_color_system(clazz, ws, document):
+    def set_color_system(clazz, ws, contents_doc):
         """TODO 色システムの設定
         """
 
-        if 'colorSystem' in document and (color_system_dict := document['colorSystem']):
+        if 'colorSystem' in contents_doc and (color_system_dict := contents_doc['colorSystem']):
             if 'darkness' in color_system_dict and (darkness_dict := color_system_dict['darkness']):
                 darkness_dict_edit = dict(darkness_dict)
 

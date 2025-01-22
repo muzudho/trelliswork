@@ -12,7 +12,7 @@ from ..share import Canvas, ColorSystem, Share, XlFont
 #############
 # MARK: Ruler
 #############
-def render_ruler(ws, document):
+def render_ruler(ws, contents_doc):
     """定規の描画
     """
     print("🔧　定規の描画")
@@ -22,18 +22,18 @@ def render_ruler(ws, document):
 
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
-    canvas_obj = Canvas.from_dict(document['canvas'])
+    canvas_obj = Canvas.from_dict(contents_doc['canvas'])
     canvas_rect_obj = canvas_obj.rect_obj
 
     # 定規を描画しないケース
     if (
             # ruler 項目がない、 
-            'ruler' not in document or
+            'ruler' not in contents_doc or
             # ruler 項目にヌルが設定されている
-            (ruler_dict := document['ruler']) is None or
-            # document.visibule プロパティがない
+            (ruler_dict := contents_doc['ruler']) is None or
+            # contents_doc.visibule プロパティがない
             'visible' not in ruler_dict or
-            # document.visibule プロパティがヌルか偽だ
+            # contents_doc.visibule プロパティがヌルか偽だ
             ruler_dict['visible'] in [None, False]):
         return
 

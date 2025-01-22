@@ -17,7 +17,7 @@ class TrellisInSrc():
 
     とインポートしたとき、
 
-    tr.render_ruler(ws, document)
+    tr.render_ruler(ws, contents_doc)
 
     という形で関数を呼び出せるようにしたラッパー
     """
@@ -35,46 +35,46 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def render_to_worksheet(ws, document):
+    def render_to_worksheet(ws, contents_doc):
         """ワークシートへの描画
         """
         # 色システムの設定
         global ColorSystem
-        ColorSystem.set_color_system(ws, document)
+        ColorSystem.set_color_system(ws, contents_doc)
 
         # キャンバスの編集
-        render_canvas(ws, document)
+        render_canvas(ws, contents_doc)
 
         # 全てのテキストの描画（定規の番号除く）
-        render_all_xl_texts(ws, document)
+        render_all_xl_texts(ws, contents_doc)
 
         # 全ての矩形の描画
-        render_all_rectangles(ws, document)
+        render_all_rectangles(ws, contents_doc)
 
         # 全ての柱の敷物の描画
-        render_all_pillar_rugs(ws, document)
+        render_all_pillar_rugs(ws, contents_doc)
 
         # 全てのカードの影の描画
-        render_all_card_shadows(ws, document)
+        render_all_card_shadows(ws, contents_doc)
 
         # 全ての端子の影の描画
-        render_all_terminal_shadows(ws, document)
+        render_all_terminal_shadows(ws, contents_doc)
 
         # 全てのラインテープの影の描画
-        render_all_line_tape_shadows(ws, document)
+        render_all_line_tape_shadows(ws, contents_doc)
 
         # 全てのカードの描画
-        render_all_cards(ws, document)
+        render_all_cards(ws, contents_doc)
 
         # 全ての端子の描画
-        render_all_terminals(ws, document)
+        render_all_terminals(ws, contents_doc)
 
         # 全てのラインテープの描画
-        render_all_line_tapes(ws, document)
+        render_all_line_tapes(ws, contents_doc)
 
         # 定規の描画
         #       柱を上から塗りつぶすように描きます
-        render_ruler(ws, document)
+        render_ruler(ws, contents_doc)
 
 
 ######################

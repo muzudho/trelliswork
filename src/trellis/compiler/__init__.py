@@ -4,12 +4,12 @@ from ..share import Card, InningsPitched, Pillar, Rectangle, Share, Terminal
 class AutoShadowSolver():
 
     @staticmethod
-    def edit_document(document):
+    def edit_document(contents_doc):
         """ドキュメントに対して、影の自動設定の編集を行います
         """
 
         # もし、柱のリストがあれば
-        if 'pillars' in document and (pillars_list := document['pillars']):
+        if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
             for pillar_dict in pillars_list:
                 pillar_obj = Pillar.from_dict(pillar_dict)
@@ -28,7 +28,7 @@ class AutoShadowSolver():
                                 # 影に自動が設定されていたら、解決する
                                 try:
                                     if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
-                                            document=document,
+                                            contents_doc=contents_doc,
                                             column_th=card_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             row_th=card_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                         card_dict['shadowColor'] = solved_var_color_name
@@ -49,13 +49,13 @@ class AutoShadowSolver():
 
                                 # 影に自動が設定されていたら、解決する
                                 if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
-                                        document=document,
+                                        contents_doc=contents_doc,
                                         column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                         row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                     terminal_dict['shadowColor'] = solved_var_color_name
 
         # もし、ラインテープのリストがあれば
-        if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+        if 'lineTapes' in contents_doc and (line_tape_list := contents_doc['lineTapes']):
 
             for line_tape_dict in line_tape_list:
                 # もし、セグメントのリストがあれば
@@ -69,21 +69,21 @@ class AutoShadowSolver():
 
                             # 影に自動が設定されていたら、解決する
                             if solved_var_color_name := AutoShadowSolver.resolve_auto_shadow(
-                                    document=document,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                 segment_dict['shadowColor'] = solved_var_color_name
 
 
     @staticmethod
-    def resolve_auto_shadow(document, column_th, row_th):
+    def resolve_auto_shadow(contents_doc, column_th, row_th):
         """影の自動設定を解決する"""
 
         # もし、影の色の対応付けがあれば
-        if 'shadowColorMappings' in document and (shadow_color_dict := document['shadowColorMappings']):
+        if 'shadowColorMappings' in contents_doc and (shadow_color_dict := contents_doc['shadowColorMappings']):
 
             # もし、柱のリストがあれば
-            if 'pillars' in document and (pillars_list := document['pillars']):
+            if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
                 for pillar_dict in pillars_list:
                     pillar_obj = Pillar.from_dict(pillar_dict)
@@ -109,13 +109,13 @@ class AutoSplitPillar():
 
 
     @staticmethod
-    def edit_document(document):
+    def edit_document(contents_doc):
         """ドキュメントに対して、影の自動設定の編集を行います
         """
         new_splitting_segments = []
 
         # もし、ラインテープのリストがあれば
-        if 'lineTapes' in document and (line_tape_list := document['lineTapes']):
+        if 'lineTapes' in contents_doc and (line_tape_list := contents_doc['lineTapes']):
 
             for line_tape_dict in line_tape_list:
                 # もし、セグメントのリストがあれば
@@ -126,7 +126,7 @@ class AutoSplitPillar():
                         if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
                             # 柱を跨ぐとき、ラインテープを分割します
                             new_splitting_segments.extend(AutoSplitPillar.split_segment_by_pillar(
-                                    document=document,
+                                    contents_doc=contents_doc,
                                     line_tape_segment_list=line_tape_segment_list,
                                     line_tape_segment_dict=line_tape_segment_dict))
 
@@ -136,7 +136,7 @@ class AutoSplitPillar():
 
 
     @staticmethod
-    def split_segment_by_pillar(document, line_tape_segment_list, line_tape_segment_dict):
+    def split_segment_by_pillar(contents_doc, line_tape_segment_list, line_tape_segment_dict):
         """柱を跨ぐとき、ラインテープを分割します
         NOTE 柱は左から並んでいるものとする
         NOTE 柱の縦幅は十分に広いものとする
@@ -157,7 +157,7 @@ class AutoSplitPillar():
         if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'from_here.go_right', 'after_falling_down.turn_left']:
 
             # もし、柱のリストがあれば
-            if 'pillars' in document and (pillars_list := document['pillars']):
+            if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
                 # 各柱
                 for pillar_dict in pillars_list:
