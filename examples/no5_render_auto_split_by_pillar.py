@@ -7,7 +7,6 @@ import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 
 from src.trellis import trellis_in_src as tr
-from src.trellis.compiler import AutoShadowSolver, AutoSplitPillarSolver
 
 
 # 設定ファイル（JSON形式）
@@ -36,47 +35,10 @@ with open(file_path_of_contents_doc, encoding='utf-8') as f:
     contents_doc = json.load(f)
 
 
-if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
-
-    # auto-split-pillar
-    # -----------------
-    if 'auto-split-pillar' in compiler_dict and (auto_split_pillar_dict := compiler_dict['auto-split-pillar']):
-        if 'enabled' in auto_split_pillar_dict and (enabled := auto_split_pillar_dict['enabled']) and enabled:
-            # 中間ファイル（JSON形式）
-            file_path_of_contents_doc_3 = auto_split_pillar_dict['objectFile']
-
-            print(f"""\
-                {file_path_of_contents_doc_3=}""")
-
-
-            # ドキュメントに対して、自動ピラー分割の編集を行います
-            AutoSplitPillarSolver.edit_document(contents_doc)
-            with open(file_path_of_contents_doc_3, mode='w', encoding='utf-8') as f:
-                f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-            with open(file_path_of_contents_doc_3, mode='r', encoding='utf-8') as f:
-                contents_doc = json.load(f)
-
-
-    # auto_shadow
-    # -----------
-    if 'auto-shadow' in compiler_dict and (auto_shadow_dict := compiler_dict['auto-shadow']):
-        if 'enabled' in auto_shadow_dict and (enabled := auto_shadow_dict['enabled']) and enabled:
-            # 中間ファイル（JSON形式）
-            file_path_of_contents_doc_2 = auto_shadow_dict['objectFile']
-
-            print(f"""\
-                {file_path_of_contents_doc_2=}""")
-
-            # ドキュメントに対して、影の自動設定の編集を行います
-            AutoShadowSolver.edit_document(contents_doc)
-
-            with open(file_path_of_contents_doc_2, mode='w', encoding='utf-8') as f:
-                f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-            with open(file_path_of_contents_doc_2, mode='r', encoding='utf-8') as f:
-                contents_doc = json.load(f)
-
+# コンパイル
+tr.compile(
+        contents_doc=contents_doc,
+        config_doc=config_doc)
 
 # ワークブックを新規生成
 wb = xl.Workbook()

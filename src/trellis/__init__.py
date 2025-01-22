@@ -5,6 +5,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
+from .compiler import AutoShadowSolver, AutoSplitPillarSolver
 from .renderer import render_canvas, render_all_xl_texts, render_all_rectangles, render_all_pillar_rugs, render_all_card_shadows, render_all_terminal_shadows, render_all_line_tape_shadows, render_all_cards, render_all_terminals, render_all_line_tapes
 from .renderer.ruler import render_ruler
 from .share import ColorSystem
@@ -32,6 +33,54 @@ class TrellisInSrc():
             return InningsPitched.from_integer_and_decimal_part(integer_part, decimal_part)
         else:
             raise ValueError(f'{var_value=} {integer_part=} {decimal_part=}')
+
+
+    @staticmethod
+    def compile(contents_doc, config_doc):
+        """コンパイル
+        """
+        if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
+
+            # auto-split-pillar
+            # -----------------
+            if 'auto-split-pillar' in compiler_dict and (auto_split_pillar_dict := compiler_dict['auto-split-pillar']):
+                if 'enabled' in auto_split_pillar_dict and (enabled := auto_split_pillar_dict['enabled']) and enabled:
+                    # 中間ファイル（JSON形式）
+                    file_path_of_contents_doc_object = auto_split_pillar_dict['objectFile']
+
+                    print(f"""\
+        auto-split-pillar
+            {file_path_of_contents_doc_object=}""")
+
+
+                    # ドキュメントに対して、自動ピラー分割の編集を行います
+                    AutoSplitPillarSolver.edit_document(contents_doc)
+                    with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                        f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+
+                    # with open(file_path_of_contents_doc_object, mode='r', encoding='utf-8') as f:
+                    #     contents_doc = json.load(f)
+
+
+            # auto_shadow
+            # -----------
+            if 'auto-shadow' in compiler_dict and (auto_shadow_dict := compiler_dict['auto-shadow']):
+                if 'enabled' in auto_shadow_dict and (enabled := auto_shadow_dict['enabled']) and enabled:
+                    # 中間ファイル（JSON形式）
+                    file_path_of_contents_doc_object = auto_shadow_dict['objectFile']
+
+                    print(f"""\
+        auto_shadow
+            {file_path_of_contents_doc_object=}""")
+
+                    # ドキュメントに対して、影の自動設定の編集を行います
+                    AutoShadowSolver.edit_document(contents_doc)
+
+                    with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                        f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+
+                    # with open(file_path_of_contents_doc_object, mode='r', encoding='utf-8') as f:
+                    #     contents_doc = json.load(f)
 
 
     @staticmethod
