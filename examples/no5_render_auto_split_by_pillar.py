@@ -23,12 +23,9 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
 
 # ソースファイル（JSON形式）
 file_path_of_contents_doc = config_doc['compiler']['--source']
-# 出力ファイル（JSON形式）
-file_path_of_output = config_doc['renderer']['--output']
 
 print(f"""\
-    {file_path_of_contents_doc=}
-    {file_path_of_output=}""")
+    {file_path_of_contents_doc=}""")
 
 # ソースファイル（JSON形式）を読込
 with open(file_path_of_contents_doc, encoding='utf-8') as f:
@@ -38,5 +35,4 @@ with open(file_path_of_contents_doc, encoding='utf-8') as f:
 # ビルド
 tr.build(
         config_doc=config_doc,
-        contents_doc=contents_doc,
-        wb_path_to_write=file_path_of_output)
+        contents_doc=contents_doc)

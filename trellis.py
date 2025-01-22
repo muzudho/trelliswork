@@ -120,11 +120,14 @@ def main():
                 contents_doc = json.load(f)
 
 
+            # コマンドライン引数で設定を上書き
+            config_doc['renderer']['--output'] = wb_path_to_write
+
+
             # ビルド
             tr.build(
                     config_doc=config_doc,
-                    contents_doc=contents_doc,
-                    wb_path_to_write=wb_path_to_write)
+                    contents_doc=contents_doc)
 
         else:
             raise ValueError(f'unsupported command: {args.command}')

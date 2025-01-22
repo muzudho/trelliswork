@@ -36,9 +36,12 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def build(config_doc, contents_doc, wb_path_to_write):
+    def build(config_doc, contents_doc):
         """ビルド
         """
+
+        # 出力ファイル（JSON形式）
+        wb_path_to_write = config_doc['renderer']['--output']
 
         # コンパイル
         TrellisInSrc.compile(
