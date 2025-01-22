@@ -52,7 +52,7 @@ class TrellisInSrc():
 
         # コンパイル
         TrellisInSrc.compile(
-                contents_doc=contents_doc,
+                contents_doc_rw=contents_doc,
                 config_doc=config_doc)
 
         # ワークブックを新規生成
@@ -75,8 +75,13 @@ class TrellisInSrc():
 
 
     @staticmethod
-    def compile(contents_doc, config_doc):
+    def compile(contents_doc_rw, config_doc):
         """コンパイル
+
+        Parameters
+        ----------
+        contents_doc_rw : dict
+            読み書き両用
         """
         if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
 
@@ -92,7 +97,8 @@ class TrellisInSrc():
             autoSplitSegmentByPillar""")
 
                     # ドキュメントに対して、自動ピラー分割の編集を行います
-                    AutoSplitSegmentByPillarSolver.edit_document(contents_doc)
+                    AutoSplitSegmentByPillarSolver.edit_document(
+                                contents_doc_rw=contents_doc_rw)
 
                     # ディレクトリーが存在しなければ作成する
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
@@ -100,7 +106,7 @@ class TrellisInSrc():
 
                     print(f"🔧　write {file_path_of_contents_doc_object} file")
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                        f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+                        f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
 
 
             # autoShadow
@@ -115,7 +121,8 @@ class TrellisInSrc():
             auto_shadow""")
 
                     # ドキュメントに対して、影の自動設定の編集を行います
-                    AutoShadowSolver.edit_document(contents_doc)
+                    AutoShadowSolver.edit_document(
+                                contents_doc_rw=contents_doc_rw)
 
                     # ディレクトリーが存在しなければ作成する
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
@@ -123,7 +130,7 @@ class TrellisInSrc():
 
                     print(f"🔧　write {file_path_of_contents_doc_object} file")
                     with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                        f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+                        f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
 
 
     @staticmethod
