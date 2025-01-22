@@ -12,6 +12,15 @@ from ..share import Canvas, Card, ColorSystem, Pillar, Rectangle, Share, Termina
 def render_canvas(config_doc, contents_doc, ws):
     """キャンバスの編集
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'canvas' in renderer_dict and (canvas_dict := renderer_dict['canvas']):
+            if 'enabled' in canvas_dict:
+                enabled = canvas_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print("🔧　キャンバスの編集")
 
     # ウィンドウ枠の固定
@@ -88,9 +97,18 @@ def render_all_xl_texts(config_doc, contents_doc, ws):
                         xl_font_obj=xl_font_obj)
 
 
-def render_all_rectangles(ws, contents_doc):
+def render_all_rectangles(config_doc, contents_doc, ws):
     """全ての矩形の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'rectangles' in renderer_dict and (rectangles_dict := renderer_dict['rectangles']):
+            if 'enabled' in rectangles_dict:
+                enabled = rectangles_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全ての矩形の描画')
 
     # もし、矩形のリストがあれば
@@ -136,9 +154,18 @@ def render_all_rectangles(ws, contents_doc):
                             color=bg_color)
 
 
-def render_all_pillar_rugs(ws, contents_doc):
+def render_all_pillar_rugs(config_doc, contents_doc, ws):
     """全ての柱の敷物の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'pillars' in renderer_dict and (pillars_dict := renderer_dict['pillars']):
+            if 'enabled' in pillars_dict:
+                enabled = pillars_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全ての柱の敷物の描画')
 
     # もし、柱のリストがあれば
@@ -160,9 +187,18 @@ def render_all_pillar_rugs(ws, contents_doc):
                         color=base_color)
 
 
-def render_all_card_shadows(ws, contents_doc):
+def render_all_card_shadows(config_doc, contents_doc, ws):
     """全てのカードの影の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'shadowOfPillars' in renderer_dict and (shadow_of_pillars_dict := renderer_dict['shadowOfPillars']):
+            if 'enabled' in shadow_of_pillars_dict:
+                enabled = shadow_of_pillars_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全てのカードの影の描画')
 
     # もし、柱のリストがあれば
@@ -192,9 +228,18 @@ def render_all_card_shadows(ws, contents_doc):
                                 color=card_shadow_color)
 
 
-def render_all_terminal_shadows(ws, contents_doc):
+def render_all_terminal_shadows(config_doc, contents_doc, ws):
     """全ての端子の影の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'shadowOfTerminals' in renderer_dict and (shadow_of_terminals_dict := renderer_dict['shadowOfTerminals']):
+            if 'enabled' in shadow_of_terminals_dict:
+                enabled = shadow_of_terminals_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全ての端子の影の描画')
 
     # もし、柱のリストがあれば
@@ -222,9 +267,18 @@ def render_all_terminal_shadows(ws, contents_doc):
                             color=terminal_shadow_color)
 
 
-def render_all_line_tape_shadows(ws, contents_doc):
+def render_all_line_tape_shadows(config_doc, contents_doc, ws):
     """全てのラインテープの影の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'shadowOfLineTapes' in renderer_dict and (shadow_of_line_tapes_dict := renderer_dict['shadowOfLineTapes']):
+            if 'enabled' in shadow_of_line_tapes_dict:
+                enabled = shadow_of_line_tapes_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全てのラインテープの影の描画')
 
     # もし、ラインテープの配列があれば
@@ -245,9 +299,18 @@ def render_all_line_tape_shadows(ws, contents_doc):
                             color=line_tape_shadow_color)
 
 
-def render_all_cards(ws, contents_doc):
+def render_all_cards(config_doc, contents_doc, ws):
     """全てのカードの描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'cards' in renderer_dict and (cards_dict := renderer_dict['cards']):
+            if 'enabled' in cards_dict:
+                enabled = cards_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全てのカードの描画')
 
     # もし、柱のリストがあれば
@@ -294,9 +357,18 @@ def render_all_cards(ws, contents_doc):
                                 rows=card_rect_obj.height_obj.total_of_out_counts_qty)
 
 
-def render_all_terminals(ws, contents_doc):
+def render_all_terminals(config_doc, contents_doc, ws):
     """全ての端子の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'terminals' in renderer_dict and (terminals_dict := renderer_dict['terminals']):
+            if 'enabled' in terminals_dict:
+                enabled = terminals_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全ての端子の描画')
 
     # もし、柱のリストがあれば
@@ -329,9 +401,18 @@ def render_all_terminals(ws, contents_doc):
                             row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
 
 
-def render_all_line_tapes(ws, contents_doc):
+def render_all_line_tapes(config_doc, contents_doc, ws):
     """全てのラインテープの描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'lineTapes' in renderer_dict and (line_tapes_dict := renderer_dict['lineTapes']):
+            if 'enabled' in line_tapes_dict:
+                enabled = line_tapes_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print('🔧　全てのラインテープの描画')
 
     # もし、ラインテープの配列があれば

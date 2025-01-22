@@ -6,8 +6,38 @@
     },
     "renderer": {
         "--output": "./temp/examples/no1_new_paper.xlsx",
+        "canvas": {
+            "enabled": true
+        },
+        "ruler": {
+            "enabled": true
+        },
         "xlTexts": {
             "enabled": false
-        }
+        },
+        "rectangles": {
+            "enabled": false
+        },
+        "pillars": {
+            "enabled": false
+        },
+        "shadowOfPillars": {
+            "enabled": false
+        },
+        "shadowOfTerminals": {
+            "enabled": false
+        },
+        "shadowOfLineTapes": {
+            "enabled": false
+        },
+        "cards": {
+            "enabled": false
+        },
+        "terminals": {
+            "enabled": false
+        },
+        "lineTapes": {
+            "enabled": false
+        }        
     }
 }

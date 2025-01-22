@@ -15,6 +15,15 @@ from ..share import Canvas, ColorSystem, Share, XlFont
 def render_ruler(config_doc, contents_doc, ws):
     """定規の描画
     """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'ruler' in renderer_dict and (ruler_dict := renderer_dict['ruler']):
+            if 'enabled' in ruler_dict:
+                enabled = ruler_dict['enabled'] # False 値を取りたい
+                if not enabled:
+                    return
+
     print("🔧　定規の描画")
 
     HORIZONTAL_RULER_HEIGHT = 1     # 水平定規の縦幅

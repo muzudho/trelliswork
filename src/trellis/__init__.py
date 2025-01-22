@@ -153,28 +153,52 @@ class TrellisInSrc():
                 ws=ws)
 
         # 全ての矩形の描画
-        render_all_rectangles(ws, contents_doc)
+        render_all_rectangles(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全ての柱の敷物の描画
-        render_all_pillar_rugs(ws, contents_doc)
+        render_all_pillar_rugs(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全てのカードの影の描画
-        render_all_card_shadows(ws, contents_doc)
+        render_all_card_shadows(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全ての端子の影の描画
-        render_all_terminal_shadows(ws, contents_doc)
+        render_all_terminal_shadows(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全てのラインテープの影の描画
-        render_all_line_tape_shadows(ws, contents_doc)
+        render_all_line_tape_shadows(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全てのカードの描画
-        render_all_cards(ws, contents_doc)
+        render_all_cards(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全ての端子の描画
-        render_all_terminals(ws, contents_doc)
+        render_all_terminals(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 全てのラインテープの描画
-        render_all_line_tapes(ws, contents_doc)
+        render_all_line_tapes(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
 
         # 定規の描画
         #       柱を上から塗りつぶすように描きます
