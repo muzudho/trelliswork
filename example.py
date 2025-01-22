@@ -20,11 +20,11 @@ if __name__ == '__main__':
 
         if 1 < len(args):
             if args[1] == 'all':
-                from examples.step1_render_empty import *
-                from examples.step2_render_pillars import *
-                from examples.step3_render_line_tapes import *
-                from examples.step4_render_auto_shadow import *
-                from examples.step5_render_auto_split_by_pillar import *
+                from examples.no1_render_empty import *
+                from examples.no2_render_pillars import *
+                from examples.no3_render_line_tapes import *
+                from examples.no4_render_auto_shadow import *
+                from examples.no5_render_auto_split_by_pillar import *
 
             else:
                 raise ValueError(f'unsupported {args[1]=}')
