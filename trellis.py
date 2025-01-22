@@ -6,7 +6,7 @@ import openpyxl as xl
 import traceback
 
 from src.trellis import trellis_in_src as tr
-from src.trellis.compiler import AutoShadowSolver
+from src.trellis.compiler import AutoShadowSolver, AutoSplitPillar
 
 
 def main():
@@ -104,7 +104,7 @@ def main():
             # 自動化レベル２
             if 1 < automation_level:
                 # ドキュメントに対して、自動ピラー分割の編集を行います
-                tr.edit_document_and_solve_auto_split_pillar(document)
+                AutoSplitPillar.edit_document(document)
 
                 file_path_in_2_more_steps = os.path.join(temporary_directory_path, f"""{source_file_basename_without_ext}.in-auto-gen-2-more-steps{source_file_extension_with_dot}""")
 

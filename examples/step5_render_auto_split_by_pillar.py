@@ -7,7 +7,7 @@ import openpyxl as xl
 from openpyxl.styles import PatternFill, Font
 
 from src.trellis import trellis_in_src as tr
-from src.trellis.compiler import AutoShadowSolver
+from src.trellis.compiler import AutoShadowSolver, AutoSplitPillar
 
 
 print('step 5: auto split pillar')
@@ -20,7 +20,7 @@ with open(json_file_name, encoding='utf-8') as f:
 
 
 # ドキュメントに対して、自動ピラー分割の編集を行います
-tr.edit_document_and_solve_auto_split_pillar(document)
+AutoSplitPillar.edit_document(document)
 json_file_name_3 = './temp/examples/data_step5_battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar_done.json'
 print(f"write json_file_name_3 = {json_file_name_3}")
 with open(json_file_name_3, mode='w', encoding='utf-8') as f:
