@@ -24,14 +24,11 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
 
 # ソースファイル（JSON形式）
 file_path_of_contents_doc = config_doc['compiler']['--source']
-# オブジェクトファイル（JSON形式）
-file_path_of_contents_doc_2 = './temp/examples/data_step4_battle_sequence_of_unfair_cointoss.step4_auto_shadow.compiled.json'
 # 出力ファイル（JSON形式）
 file_path_of_output = config_doc['compiler']['--output']
 
 print(f"""\
     {file_path_of_contents_doc=}
-    {file_path_of_contents_doc_2=}
     {file_path_of_output=}""")
 
 # ソースファイル（JSON形式）を読込
@@ -39,14 +36,26 @@ with open(file_path_of_contents_doc, encoding='utf-8') as f:
     contents_doc = json.load(f)
 
 
-# ドキュメントに対して、影の自動設定の編集を行います
-AutoShadowSolver.edit_document(contents_doc)
+if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
 
-with open(file_path_of_contents_doc_2, mode='w', encoding='utf-8') as f:
-    f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+    # auto_shadow
+    # -----------
+    if 'auto-shadow' in compiler_dict and (auto_shadow_dict := compiler_dict['auto-shadow']):
+        if ('enabled' in auto_shadow_dict and (enabled := auto_shadow_dict['enabled'])) and enabled:
+            # オブジェクトファイル（JSON形式）
+            file_path_of_contents_doc_2 = auto_shadow_dict['objectFile']
 
-with open(file_path_of_contents_doc_2, mode='r', encoding='utf-8') as f:
-    contents_doc = json.load(f)
+            print(f"""\
+                {file_path_of_contents_doc_2=}""")
+
+            # ドキュメントに対して、影の自動設定の編集を行います
+            AutoShadowSolver.edit_document(contents_doc)
+
+            with open(file_path_of_contents_doc_2, mode='w', encoding='utf-8') as f:
+                f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
+
+            with open(file_path_of_contents_doc_2, mode='r', encoding='utf-8') as f:
+                contents_doc = json.load(f)
 
 
 # ワークブックを新規生成
