@@ -101,9 +101,9 @@ class TrellisInSrc():
                 object_file_prefix = ''
 
 
-            def create_file_path_of_contents_doc_object(source_fp, feature_dict):
+            def create_file_path_of_contents_doc_object(source_fp, object_file_dict):
                 """中間ファイルのパス作成"""
-                object_suffix = feature_dict['objectFileSuffix']
+                object_suffix = object_file_dict['suffix']
                 basename = f'{object_file_prefix}__{source_fp.basename_without_ext}__{object_suffix}.json'
                 return os.path.join(get_object_folder(), basename)
 
@@ -112,17 +112,18 @@ class TrellisInSrc():
             # ------------------------
             if 'autoSplitSegmentByPillar' in compiler_dict and (feature_dict := compiler_dict['autoSplitSegmentByPillar']):
                 if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
+                    # ドキュメントに対して、自動ピラー分割の編集を行います
+                    AutoSplitSegmentByPillarSolver.edit_document(
+                                contents_doc_rw=contents_doc_rw)
+
+                if 'objectFile' in feature_dict and (object_file_dict := feature_dict['objectFile']):
                     file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
                             source_fp=source_fp,
-                            feature_dict=feature_dict)
+                            object_file_dict=object_file_dict)
 
                     print(f"""\
         🔧　write {file_path_of_contents_doc_object} file
             autoSplitSegmentByPillar""")
-
-                    # ドキュメントに対して、自動ピラー分割の編集を行います
-                    AutoSplitSegmentByPillarSolver.edit_document(
-                                contents_doc_rw=contents_doc_rw)
 
                     # ディレクトリーが存在しなければ作成する
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]
@@ -137,17 +138,18 @@ class TrellisInSrc():
             # ----------
             if 'autoShadow' in compiler_dict and (feature_dict := compiler_dict['autoShadow']):
                 if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
+                    # ドキュメントに対して、影の自動設定の編集を行います
+                    AutoShadowSolver.edit_document(
+                                contents_doc_rw=contents_doc_rw)
+
+                if 'objectFile' in feature_dict and (object_file_dict := feature_dict['objectFile']):
                     file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
                             source_fp=source_fp,
-                            feature_dict=feature_dict)
+                            object_file_dict=object_file_dict)
 
                     print(f"""\
         🔧　write {file_path_of_contents_doc_object} file
             auto_shadow""")
-
-                    # ドキュメントに対して、影の自動設定の編集を行います
-                    AutoShadowSolver.edit_document(
-                                contents_doc_rw=contents_doc_rw)
 
                     # ディレクトリーが存在しなければ作成する
                     directory_path = os.path.split(file_path_of_contents_doc_object)[0]

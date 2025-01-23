@@ -7,11 +7,17 @@
         "objectFilePrefix": null,
         "autoSplitSegmentByPillar": {
             "enabled": true,
-            "objectFileSuffix": "after_auto_split_by_pillar"
+            "objectFile": {
+                "write": true,
+                "suffix": "after_auto_split_by_pillar"
+            }
         },
         "autoShadow": {
             "enabled": true,
-            "objectFileSuffix": "after_auto_shadow"
+            "objectFile": {
+                "write": true,
+                "suffix": "after_auto_shadow"
+            }
         }
     },
     "renderer": {
