@@ -120,6 +120,27 @@ class TrellisInSrc():
                     return os.path.join(get_object_folder(), basename)
 
 
+                def write_object_file(comment):
+                    """中間ファイルの書出し
+                    """
+                    if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
+                        file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                                source_fp=source_fp,
+                                object_file_dict=object_file_dict)
+
+                        print(f"""\
+🔧　write {file_path_of_contents_doc_object} file
+    {comment}""")
+
+                        # ディレクトリーが存在しなければ作成する
+                        directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                        os.makedirs(directory_path, exist_ok=True)
+
+                        print(f"🔧　write {file_path_of_contents_doc_object} file")
+                        with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                            f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+
+
                 for key, translator_dict in translators_dict.items():
                     if key == 'autoSplitSegmentByPillar':
                         if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
@@ -127,22 +148,8 @@ class TrellisInSrc():
                             AutoSplitSegmentByPillarSolver.edit_document(
                                     contents_doc_rw=contents_doc_rw)
 
-                        if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
-                            file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
-                                    source_fp=source_fp,
-                                    object_file_dict=object_file_dict)
-
-                            print(f"""\
-🔧　write {file_path_of_contents_doc_object} file
-    autoSplitSegmentByPillar""")
-
-                            # ディレクトリーが存在しなければ作成する
-                            directory_path = os.path.split(file_path_of_contents_doc_object)[0]
-                            os.makedirs(directory_path, exist_ok=True)
-
-                            print(f"🔧　write {file_path_of_contents_doc_object} file")
-                            with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                                f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+                        # （場合により）中間ファイルの書出し
+                        write_object_file(comment='autoSplitSegmentByPillar')
 
 
                     elif key == 'autoShadow':
@@ -151,22 +158,8 @@ class TrellisInSrc():
                             AutoShadowSolver.edit_document(
                                     contents_doc_rw=contents_doc_rw)
 
-                        if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
-                            file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
-                                    source_fp=source_fp,
-                                    object_file_dict=object_file_dict)
-
-                            print(f"""\
-🔧　write {file_path_of_contents_doc_object} file
-    auto_shadow""")
-
-                            # ディレクトリーが存在しなければ作成する
-                            directory_path = os.path.split(file_path_of_contents_doc_object)[0]
-                            os.makedirs(directory_path, exist_ok=True)
-
-                            print(f"🔧　write {file_path_of_contents_doc_object} file")
-                            with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                                f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+                        # （場合により）中間ファイルの書出し
+                        write_object_file(comment='auto_shadow')
 
 
     @staticmethod

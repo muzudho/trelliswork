@@ -24,7 +24,7 @@ def render_canvas(config_doc, contents_doc, ws):
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
     canvas_obj = Canvas.from_dict(contents_doc['canvas'])
-    canvas_rect = canvas_obj.rect_obj
+    canvas_rect = canvas_obj.bounds_obj
 
     # 横幅または縦幅が１アウト未満の場合は、定規は描画しません
     if canvas_rect.width_obj.total_of_out_counts_qty < 1 or canvas_rect.height_obj.total_of_out_counts_qty < 1:

@@ -32,16 +32,16 @@ def render_all_cards(config_doc, contents_doc, ws):
 
             for card_dict in card_list:
                 card_obj = Card.from_dict(card_dict)
-                card_rect_obj = card_obj.rect_obj
+                card_bounds_obj = card_obj.bounds_obj
 
                 try:
                     # ヘッダーの矩形の枠線を描きます
                     draw_rectangle(
                             ws=ws,
-                            column_th=card_rect_obj.left_obj.total_of_out_counts_th,
-                            row_th=card_rect_obj.top_obj.total_of_out_counts_th,
-                            columns=card_rect_obj.width_obj.total_of_out_counts_qty,
-                            rows=card_rect_obj.height_obj.total_of_out_counts_qty)
+                            column_th=card_bounds_obj.left_obj.total_of_out_counts_th,
+                            row_th=card_bounds_obj.top_obj.total_of_out_counts_th,
+                            columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
+                            rows=card_bounds_obj.height_obj.total_of_out_counts_qty)
                 except:
                     print(f'ERROR: render_all_cards: {card_dict=}')
                     raise
@@ -55,7 +55,7 @@ def render_all_cards(config_doc, contents_doc, ws):
                         render_paper_strip(
                                 ws=ws,
                                 paper_strip=paper_strip,
-                                column_th=card_rect_obj.left_obj.total_of_out_counts_th,
-                                row_th=index * Share.OUT_COUNTS_THAT_CHANGE_INNING + card_rect_obj.top_obj.total_of_out_counts_th,
-                                columns=card_rect_obj.width_obj.total_of_out_counts_qty,
-                                rows=card_rect_obj.height_obj.total_of_out_counts_qty)
+                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th,
+                                row_th=index * Share.OUT_COUNTS_THAT_CHANGE_INNING + card_bounds_obj.top_obj.total_of_out_counts_th,
+                                columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
+                                rows=card_bounds_obj.height_obj.total_of_out_counts_qty)

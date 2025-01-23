@@ -33,7 +33,7 @@ def render_ruler(config_doc, contents_doc, ws):
     # Trellis では、タテ：ヨコ＝３：３ で、１ユニットセルとします。
     # また、上辺、右辺、下辺、左辺に、１セル幅の定規を置きます
     canvas_obj = Canvas.from_dict(contents_doc['canvas'])
-    canvas_rect_obj = canvas_obj.rect_obj
+    canvas_bounds_obj = canvas_obj.bounds_obj
 
     # 定規を描画しないケース
     if (
@@ -113,16 +113,16 @@ def render_ruler(config_doc, contents_doc, ws):
     def render_coloring_of_top_edge():
         """定規の着色　＞　上辺
         """
-        row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
+        row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
 
-            ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -131,20 +131,20 @@ def render_ruler(config_doc, contents_doc, ws):
         """
 
         # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.left_obj.total_of_out_counts_th
+        column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th
         column_letter = xl.utils.get_column_letter(column_th)
-        shrink = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        shrink = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - shrink,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - shrink,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             cell = ws[f'{column_letter}{row_th}']
 
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -153,14 +153,14 @@ def render_ruler(config_doc, contents_doc, ws):
 
                 最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
         """
-        vertical_remain = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
-        #print(f'左辺 h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
+        vertical_remain = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        #print(f'左辺 h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
 
         if vertical_remain != 0:
-            column_th = canvas_rect_obj.left_obj.total_of_out_counts_th
+            column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th
             column_letter = xl.utils.get_column_letter(column_th)
-            row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - vertical_remain
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - vertical_remain
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             #print(f"""左辺の最後の要素の左上へ着色 {row_th=} {ruler_number=}""")
             cell = ws[f'{column_letter}{row_th}']
 
@@ -178,18 +178,18 @@ def render_ruler(config_doc, contents_doc, ws):
         """
 
         # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.height_obj.total_of_out_counts_qty < 2:
+        if canvas_bounds_obj.height_obj.total_of_out_counts_qty < 2:
             return
 
-        row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - 1
+        row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - 1
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
-            ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -198,20 +198,20 @@ def render_ruler(config_doc, contents_doc, ws):
         """
 
         # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
+        column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
-        shrink = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        shrink = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - shrink,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - shrink,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             cell = ws[f'{column_letter}{row_th}']
 
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
 
 
@@ -220,14 +220,14 @@ def render_ruler(config_doc, contents_doc, ws):
 
                 最後の端数の要素に色を塗ってもらいたいから、もう１要素着色しておく
         """
-        vertical_remain = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
-        #print(f'右辺 h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
+        vertical_remain = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        #print(f'右辺 h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {shrink=} {vertical_remain=}')
 
         if vertical_remain != 0:
-            column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
+            column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
             column_letter = xl.utils.get_column_letter(column_th)
-            row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - vertical_remain
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - vertical_remain
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             #print(f"""右辺の最後の要素の左上へ着色 {row_th=} {ruler_number=}""")
             cell = ws[f'{column_letter}{row_th}']
 
@@ -243,9 +243,9 @@ def render_ruler(config_doc, contents_doc, ws):
     def render_ruler_coloring_of_top_left_spacing():
         """定規の着色　＞　左上の１セルの隙間
         """
-        column_th = canvas_rect_obj.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
-        row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
-        ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+        column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
+        row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
+        ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
@@ -254,17 +254,17 @@ def render_ruler(config_doc, contents_doc, ws):
     def render_ruler_coloring_right_end_spacing_on_top():
         """定規の着色　＞　上の水平定規の右端の隙間の先頭
         """
-        horizontal_remain = canvas_rect_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        horizontal_remain = canvas_bounds_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if horizontal_remain in [1, 2]:
             return
 
-        row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
+        row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
 
         # 何アウト余るか
-        spacing = (canvas_rect_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = (canvas_bounds_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         # 隙間の先頭
-        column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
+        column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
         column_letter = xl.utils.get_column_letter(column_th)
 
         # 隙間に表示される定規の番号
@@ -277,10 +277,10 @@ def render_ruler(config_doc, contents_doc, ws):
     def render_ruler_coloring_of_bottom_left_spacing():
         """定規の着色　＞　左下の１セルの隙間
         """
-        column_th = canvas_rect_obj.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
-        row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - 1
+        column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th + VERTICAL_RULER_WIDTH
+        row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - 1
 
-        ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+        ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
         column_letter = xl.utils.get_column_letter(column_th)
         cell = ws[f'{column_letter}{row_th}']
         cell.fill = pattern_fill_list[ruler_number % len(pattern_fill_list)]
@@ -289,17 +289,17 @@ def render_ruler(config_doc, contents_doc, ws):
     def render_ruler_coloring_right_end_spacing_on_bottom():
         """定規の着色　＞　下の水平定規の右端の隙間の先頭
         """
-        horizontal_remain = canvas_rect_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        horizontal_remain = canvas_bounds_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if horizontal_remain in [1, 2]:
             return
 
-        row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - 1
+        row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - 1
 
         # 何アウト余るか
-        spacing = (canvas_rect_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = (canvas_bounds_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         # 隙間の先頭
-        column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
+        column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
         column_letter = xl.utils.get_column_letter(column_th)
 
         # 隙間に表示される定規の番号
@@ -325,7 +325,7 @@ def render_ruler(config_doc, contents_doc, ws):
         ■■                    ■■
         """
         skip_left = Share.OUT_COUNTS_THAT_CHANGE_INNING
-        horizontal_remain = canvas_rect_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        horizontal_remain = canvas_bounds_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if horizontal_remain == 0:
             shrink_right = 3
         elif horizontal_remain == 1:
@@ -333,11 +333,11 @@ def render_ruler(config_doc, contents_doc, ws):
         else:
             shrink_right = 2
 
-        row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
+        row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + skip_left,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - shrink_right,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + skip_left,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - shrink_right,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             column_letter2 = xl.utils.get_column_letter(column_th + 2)
@@ -361,36 +361,36 @@ def render_ruler(config_doc, contents_doc, ws):
         """
 
         # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.left_obj.total_of_out_counts_th
+        column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
         # 高さが１イニング未満の場合、最後の要素はありません
-        if canvas_rect_obj.height_obj.total_of_out_counts_qty < Share.OUT_COUNTS_THAT_CHANGE_INNING:
+        if canvas_bounds_obj.height_obj.total_of_out_counts_qty < Share.OUT_COUNTS_THAT_CHANGE_INNING:
             return
         
         # 最後の要素
-        spacing = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 0:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING
-            #print(f'マージセルA h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING
+            #print(f'マージセルA h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
         elif spacing == 1:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th
-            #print(f'マージセルB {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_rect_obj.height_obj.integer_part=}')
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th
+            #print(f'マージセルB {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_bounds_obj.height_obj.integer_part=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
         elif spacing == 2:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th
-            #print(f'マージセルH h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th
+            #print(f'マージセルH h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
@@ -398,11 +398,11 @@ def render_ruler(config_doc, contents_doc, ws):
         """定規のセル結合　＞　下辺"""
 
         # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.height_obj.total_of_out_counts_qty < 2:
+        if canvas_bounds_obj.height_obj.total_of_out_counts_qty < 2:
             return
 
         skip_left = Share.OUT_COUNTS_THAT_CHANGE_INNING
-        horizontal_remain = canvas_rect_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        horizontal_remain = canvas_bounds_obj.width_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if horizontal_remain == 0:
             shrink_right = 3
         elif horizontal_remain == 1:
@@ -410,11 +410,11 @@ def render_ruler(config_doc, contents_doc, ws):
         else:
             shrink_right = 2
 
-        row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - 1
+        row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - 1
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + skip_left,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - shrink_right,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + skip_left,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - shrink_right,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             column_letter2 = xl.utils.get_column_letter(column_th + 2)
@@ -425,35 +425,35 @@ def render_ruler(config_doc, contents_doc, ws):
         """定規のセル結合　＞　右辺"""
 
         # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
+        column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH
         column_letter = xl.utils.get_column_letter(column_th)
         column_letter2 = xl.utils.get_column_letter(column_th + 1)
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
 
         # 高さが１イニング未満の場合、最後の要素はありません
-        if canvas_rect_obj.height_obj.total_of_out_counts_qty < Share.OUT_COUNTS_THAT_CHANGE_INNING:
+        if canvas_bounds_obj.height_obj.total_of_out_counts_qty < Share.OUT_COUNTS_THAT_CHANGE_INNING:
             return
         
         # 最後の要素
-        spacing = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 0:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING
-            #print(f'マージセルC h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING
+            #print(f'マージセルC h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
         elif spacing == 1:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th}')
         elif spacing == 2:
-            row_th = canvas_rect_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_rect_obj.top_obj.total_of_out_counts_th
-            #print(f'マージセルD h_qty={canvas_rect_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
+            row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th
+            #print(f'マージセルD h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
             ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 1}')
 
 
@@ -461,10 +461,10 @@ def render_ruler(config_doc, contents_doc, ws):
         """上側の水平［定規］の右端の端数のセル結合"""
 
         # 隙間の幅
-        spacing = (canvas_rect_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = (canvas_bounds_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 2:
-            column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
-            row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
+            column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
+            row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
             column_letter = xl.utils.get_column_letter(column_th)
             column_letter2 = xl.utils.get_column_letter(column_th + spacing - 1)
             #print(f"""マージセルE {column_th=} {row_th=} {column_letter=} {column_letter2=}""")
@@ -475,10 +475,10 @@ def render_ruler(config_doc, contents_doc, ws):
         """下側の水平［定規］の右端の端数のセル結合"""
 
         # 隙間の幅
-        spacing = (canvas_rect_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        spacing = (canvas_bounds_obj.width_obj.total_of_out_counts_qty - VERTICAL_RULER_WIDTH) % Share.OUT_COUNTS_THAT_CHANGE_INNING
         if spacing == 2:
-            column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
-            row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - 1
+            column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - VERTICAL_RULER_WIDTH - spacing
+            row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - 1
             column_letter = xl.utils.get_column_letter(column_th)
             column_letter2 = xl.utils.get_column_letter(column_th + spacing - 1)
             #print(f"""マージセルF {column_th=} {row_th=} {column_letter=} {column_letter2=}""")
@@ -492,7 +492,7 @@ def render_ruler(config_doc, contents_doc, ws):
             horizontal_ruler_height=HORIZONTAL_RULER_HEIGHT,
             font_list=font_list,
             center_center_alignment=center_center_alignment,
-            canvas_rect_obj=canvas_rect_obj)
+            canvas_bounds_obj=canvas_bounds_obj)
 
 
     # 定規の着色　＞　上辺
@@ -546,7 +546,7 @@ def render_ruler(config_doc, contents_doc, ws):
     render_ruler_merge_cells_right_end_fraction_on_bottom()
 
 
-def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_rect_obj):
+def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_list, center_center_alignment, canvas_bounds_obj):
     """定規上のテキスト表示
     """
 
@@ -566,11 +566,11 @@ def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
                 ■■□[  1 ][  2 ][  3 ]■■
                 ■■                    ■■
         """
-        row_th = canvas_rect_obj.top_obj.total_of_out_counts_th
+        row_th = canvas_bounds_obj.top_obj.total_of_out_counts_th
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
@@ -597,7 +597,7 @@ def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
             # -------- -------- -------- --------
             # dark     light    dark     light
             #
-            ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.value = ruler_number
             cell.alignment = center_center_alignment
             cell.font = font_list[ruler_number % len(font_list)]
@@ -620,20 +620,20 @@ def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
         """
 
         # 幅が４アウト未満の場合、左辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.left_obj.total_of_out_counts_th
+        column_th = canvas_bounds_obj.left_obj.total_of_out_counts_th
         column_letter = xl.utils.get_column_letter(column_th)
-        shrink = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        shrink = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - shrink,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - shrink,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             cell = ws[f'{column_letter}{row_th}']
 
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.value = ruler_number
             cell.alignment = center_center_alignment
             cell.font = font_list[ruler_number % len(font_list)]
@@ -644,18 +644,18 @@ def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
         """
 
         # 高さが２投球回未満の場合、下辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.height_obj.total_of_out_counts_qty < 2:
+        if canvas_bounds_obj.height_obj.total_of_out_counts_qty < 2:
             return
 
-        row_th = canvas_rect_obj.bottom_obj.total_of_out_counts_th - horizontal_ruler_height
+        row_th = canvas_bounds_obj.bottom_obj.total_of_out_counts_th - horizontal_ruler_height
 
         for column_th in range(
-                canvas_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                canvas_rect_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                canvas_bounds_obj.right_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             column_letter = xl.utils.get_column_letter(column_th)
             cell = ws[f'{column_letter}{row_th}']
-            ruler_number = (column_th - canvas_rect_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (column_th - canvas_bounds_obj.left_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.value = ruler_number
             cell.alignment = center_center_alignment
             cell.font = font_list[ruler_number % len(font_list)]
@@ -666,20 +666,20 @@ def __print_all_texts(ws, vertical_ruler_width, horizontal_ruler_height, font_li
         """
 
         # 幅が４アウト未満の場合、右辺のルーラーは描かないものとします（上、右、下、左の辺の定規のセル結合が被ってしまうため、上辺だけ残します）
-        if canvas_rect_obj.width_obj.total_of_out_counts_qty < 4:
+        if canvas_bounds_obj.width_obj.total_of_out_counts_qty < 4:
             return
 
-        column_th = canvas_rect_obj.right_obj.total_of_out_counts_th - vertical_ruler_width
+        column_th = canvas_bounds_obj.right_obj.total_of_out_counts_th - vertical_ruler_width
         column_letter = xl.utils.get_column_letter(column_th)
-        shrink = canvas_rect_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        shrink = canvas_bounds_obj.height_obj.total_of_out_counts_qty % Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         for row_th in range(
-                canvas_rect_obj.top_obj.total_of_out_counts_th,
-                canvas_rect_obj.bottom_obj.total_of_out_counts_th - shrink,
+                canvas_bounds_obj.top_obj.total_of_out_counts_th,
+                canvas_bounds_obj.bottom_obj.total_of_out_counts_th - shrink,
                 Share.OUT_COUNTS_THAT_CHANGE_INNING):
             cell = ws[f'{column_letter}{row_th}']
 
-            ruler_number = (row_th - canvas_rect_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
+            ruler_number = (row_th - canvas_bounds_obj.top_obj.total_of_out_counts_th) // Share.OUT_COUNTS_THAT_CHANGE_INNING
             cell.value = ruler_number
             cell.alignment = center_center_alignment
             cell.font = font_list[ruler_number % len(font_list)]

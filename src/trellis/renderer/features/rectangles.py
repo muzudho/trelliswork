@@ -22,17 +22,17 @@ def render_all_rectangles(config_doc, contents_doc, ws):
 
         for rectangle_dict in rectangles_list:
 
-            rect_obj = None
+            bounds_obj = None
             if 'bounds' in rectangle_dict and (bounds_dict := rectangle_dict['bounds']):
-                rect_obj = Rectangle.from_dict(bounds_dict)
+                bounds_obj = Rectangle.from_dict(bounds_dict)
 
                 # セル結合
                 if 'mergeCells' in rectangle_dict and (is_merge_cells := rectangle_dict['mergeCells']):
                     if is_merge_cells:
-                        column_th = rect_obj.left_obj.total_of_out_counts_th
-                        row_th = rect_obj.top_obj.total_of_out_counts_th
-                        columns = rect_obj.width_obj.total_of_out_counts_qty
-                        rows = rect_obj.height_obj.total_of_out_counts_qty
+                        column_th = bounds_obj.left_obj.total_of_out_counts_th
+                        row_th = bounds_obj.top_obj.total_of_out_counts_th
+                        columns = bounds_obj.width_obj.total_of_out_counts_qty
+                        rows = bounds_obj.height_obj.total_of_out_counts_qty
 
                         if 0 < columns and 0 < rows and (1 < columns or 1 < rows):
                             column_letter = xl.utils.get_column_letter(column_th)
@@ -45,16 +45,16 @@ def render_all_rectangles(config_doc, contents_doc, ws):
                         draw_xl_border_on_rectangle(
                                 ws=ws,
                                 xl_border_dict=xl_border_dict,
-                                column_th=rect_obj.left_obj.total_of_out_counts_th,
-                                row_th=rect_obj.top_obj.total_of_out_counts_th,
-                                columns=rect_obj.width_obj.total_of_out_counts_qty,
-                                rows=rect_obj.height_obj.total_of_out_counts_qty)
+                                column_th=bounds_obj.left_obj.total_of_out_counts_th,
+                                row_th=bounds_obj.top_obj.total_of_out_counts_th,
+                                columns=bounds_obj.width_obj.total_of_out_counts_qty,
+                                rows=bounds_obj.height_obj.total_of_out_counts_qty)
 
                     # 矩形を塗りつぶす
                     fill_rectangle(
                             ws=ws,
-                            column_th=rect_obj.left_obj.total_of_out_counts_th,
-                            row_th=rect_obj.top_obj.total_of_out_counts_th,
-                            columns=rect_obj.width_obj.total_of_out_counts_qty,
-                            rows=rect_obj.height_obj.total_of_out_counts_qty,
+                            column_th=bounds_obj.left_obj.total_of_out_counts_th,
+                            row_th=bounds_obj.top_obj.total_of_out_counts_th,
+                            columns=bounds_obj.width_obj.total_of_out_counts_qty,
+                            rows=bounds_obj.height_obj.total_of_out_counts_qty,
                             color=bg_color)

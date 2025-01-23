@@ -28,15 +28,15 @@ def render_shadow_of_all_terminals(config_doc, contents_doc, ws):
 
                 for terminal_dict in terminals_list:
                     terminal_obj = Terminal.from_dict(terminal_dict)
-                    terminal_rect_obj = terminal_obj.rect_obj
+                    terminal_bounds_obj = terminal_obj.bounds_obj
 
                     terminal_shadow_color = terminal_dict['shadowColor']
 
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
-                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,
                             rows=9,
                             color=terminal_shadow_color)

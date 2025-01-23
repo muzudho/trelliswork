@@ -32,13 +32,13 @@ def render_shadow_of_all_cards(config_doc, contents_doc, ws):
                     if 'shadowColor' in card_dict:
                         card_shadow_color = card_dict['shadowColor']
 
-                        card_rect_obj = card_obj.rect_obj
+                        card_bounds_obj = card_obj.bounds_obj
 
                         # 端子の影を描く
                         fill_rectangle(
                                 ws=ws,
-                                column_th=card_rect_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                row_th=card_rect_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                columns=card_rect_obj.width_obj.total_of_out_counts_qty,
-                                rows=card_rect_obj.height_obj.total_of_out_counts_qty,
+                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
+                                rows=card_bounds_obj.height_obj.total_of_out_counts_qty,
                                 color=card_shadow_color)

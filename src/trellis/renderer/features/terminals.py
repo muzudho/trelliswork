@@ -28,7 +28,7 @@ def render_all_terminals(config_doc, contents_doc, ws):
 
                 for terminal_dict in terminals_list:
                     terminal_obj = Terminal.from_dict(terminal_dict)
-                    terminal_rect_obj = terminal_obj.rect_obj
+                    terminal_bounds_obj = terminal_obj.bounds_obj
 
                     terminal_pixel_art = terminal_dict['pixelArt']
 
@@ -36,12 +36,12 @@ def render_all_terminals(config_doc, contents_doc, ws):
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
-                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th,
-                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
+                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th,
+                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th)
 
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
-                            column_th=terminal_rect_obj.left_obj.total_of_out_counts_th,
-                            row_th=terminal_rect_obj.top_obj.total_of_out_counts_th)
+                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th,
+                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th)

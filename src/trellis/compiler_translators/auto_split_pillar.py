@@ -40,6 +40,7 @@ class AutoSplitSegmentByPillarSolver():
     @staticmethod
     def _split_segment_by_pillar(contents_doc, line_tape_segment_list_rw, line_tape_segment_dict):
         """柱を跨ぐとき、ラインテープを分割します
+
         NOTE 柱は左から並んでいるものとする
         NOTE 柱の縦幅は十分に広いものとする
         NOTE テープは浮いています
@@ -63,16 +64,16 @@ class AutoSplitSegmentByPillarSolver():
         # 右進でも、左進でも、同じコードでいけるようだ
         if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'from_here.go_right', 'after_falling_down.turn_left']:
 
-            # もし、柱のリストがあれば
+            # ['pillars']['bounds']
             if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
                 # 各柱
                 for pillar_dict in pillars_list:
                     pillar_obj = Pillar.from_dict(pillar_dict)
-                    pillar_rect_obj = pillar_obj.rect_obj
+                    pillar_bounds_obj = pillar_obj.bounds_obj
 
                     # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                    if segment_rect.left_obj.total_of_out_counts_th < pillar_rect_obj.right_obj.total_of_out_counts_th and pillar_rect_obj.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
+                    if segment_rect.left_obj.total_of_out_counts_th < pillar_bounds_obj.right_obj.total_of_out_counts_th and pillar_bounds_obj.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
                         # 既存のセグメントを削除
                         line_tape_segment_list_rw.remove(line_tape_segment_dict)
 
@@ -80,14 +81,14 @@ class AutoSplitSegmentByPillarSolver():
                         # （計算を簡単にするため）width は使わず right を使う
                         left_segment_dict = dict(line_tape_segment_dict)
                         left_segment_dict.pop('width', None)
-                        left_segment_dict['right'] = InningsPitched.from_var_value(pillar_rect_obj.right_obj.var_value).offset(-1).var_value
+                        left_segment_dict['right'] = InningsPitched.from_var_value(pillar_bounds_obj.right_obj.var_value).offset(-1).var_value
                         new_segment_list.append(left_segment_dict)
 
                         # 右側のセグメントを新規作成し、既存リストに追加
                         # （計算を簡単にするため）width は使わず right を使う
                         right_segment_dict = dict(line_tape_segment_dict)
                         right_segment_dict.pop('width', None)
-                        right_segment_dict['left'] = pillar_rect_obj.right_obj.offset(-1).var_value
+                        right_segment_dict['left'] = pillar_bounds_obj.right_obj.offset(-1).var_value
                         right_segment_dict['right'] = segment_rect.right_obj.var_value
                         line_tape_segment_list_rw.append(right_segment_dict)
                         line_tape_segment_dict = right_segment_dict          # 入れ替え

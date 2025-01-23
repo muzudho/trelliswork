@@ -726,21 +726,21 @@ class Canvas():
 
     def from_dict(canvas_dict):
 
-        rect_obj = None
+        bounds_obj = None
         if 'bounds' in canvas_dict and (bounds_dict := canvas_dict['bounds']):
-            rect_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
-                rect_obj=rect_obj)
+                bounds_obj=bounds_obj)
 
 
-    def __init__(self, rect_obj):
-        self._rect_obj = rect_obj
+    def __init__(self, bounds_obj):
+        self._bounds_obj = bounds_obj
 
 
     @property
-    def rect_obj(self):
-        return self._rect_obj
+    def bounds_obj(self):
+        return self._bounds_obj
 
 
 ##############
@@ -753,24 +753,24 @@ class Pillar():
 
     def from_dict(pillar_dict):
 
-        rect_obj = None
+        bounds_obj = None
         if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
-            rect_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_dict(bounds_dict)
 
         # FIXME: if 'baseColor' in pillar_dict and (var_color_name := pillar_dict['baseColor']):
 
 
         return Canvas(
-                rect_obj=rect_obj)
+                bounds_obj=bounds_obj)
 
 
-    def __init__(self, rect_obj):
-        self._rect_obj = rect_obj
+    def __init__(self, bounds_obj):
+        self._bounds_obj = bounds_obj
 
 
     @property
-    def rect_obj(self):
-        return self._rect_obj
+    def bounds_obj(self):
+        return self._bounds_obj
 
 
 ############
@@ -783,21 +783,21 @@ class Card():
 
     def from_dict(card_dict):
 
-        rect_obj = None
+        bounds_obj = None
         if 'bounds' in card_dict and (bounds_dict := card_dict['bounds']):
-            rect_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
-                rect_obj=rect_obj)
+                bounds_obj=bounds_obj)
 
 
-    def __init__(self, rect_obj):
-        self._rect_obj = rect_obj
+    def __init__(self, bounds_obj):
+        self._bounds_obj = bounds_obj
 
 
     @property
-    def rect_obj(self):
-        return self._rect_obj
+    def bounds_obj(self):
+        return self._bounds_obj
 
 
 ################
@@ -810,18 +810,18 @@ class Terminal():
 
     def from_dict(terminal_dict):
 
-        rect_obj = None
+        bounds_obj = None
         if 'bounds' in terminal_dict and (bounds_dict := terminal_dict['bounds']):
-            rect_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(
-                rect_obj=rect_obj)
+                bounds_obj=bounds_obj)
 
 
-    def __init__(self, rect_obj):
-        self._rect_obj = rect_obj
+    def __init__(self, bounds_obj):
+        self._bounds_obj = bounds_obj
 
 
     @property
-    def rect_obj(self):
-        return self._rect_obj
+    def bounds_obj(self):
+        return self._bounds_obj
