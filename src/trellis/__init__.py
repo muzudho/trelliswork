@@ -5,8 +5,8 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .compiler.auto_shadow import AutoShadowSolver
-from .compiler.auto_split_pillar import AutoSplitSegmentByPillarSolver
+from .compiler_translators.auto_shadow import AutoShadowSolver
+from .compiler_translators.auto_split_pillar import AutoSplitSegmentByPillarSolver
 from .renderer import render_canvas, render_all_xl_texts, render_all_rectangles, render_all_pillar_rugs, render_all_card_shadows, render_all_terminal_shadows, render_all_line_tape_shadows, render_all_cards, render_all_terminals, render_all_line_tapes
 from .renderer.ruler import render_ruler
 from .share import ColorSystem, FilePath
