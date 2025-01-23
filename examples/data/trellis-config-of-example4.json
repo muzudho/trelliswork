@@ -5,11 +5,13 @@
     "compiler": {
         "objectFolder": "./temp/examples",
         "objectFilePrefix": null,
-        "autoShadow": {
-            "enabled": true,
-            "objectFile": {
-                "write": true,
-                "suffix": "after_auto_shadow"
+        "tlanslators": {
+            "autoShadow": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_auto_shadow"
+                }
             }
         }
     },

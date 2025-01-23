@@ -101,63 +101,63 @@ class TrellisInSrc():
                 object_file_prefix = ''
 
 
-            def create_file_path_of_contents_doc_object(source_fp, object_file_dict):
-                """中間ファイルのパス作成"""
-                object_suffix = object_file_dict['suffix']
-                basename = f'{object_file_prefix}__{source_fp.basename_without_ext}__{object_suffix}.json'
-                return os.path.join(get_object_folder(), basename)
+            if 'tlanslators' in compiler_dict and (translators_dict := compiler_dict['tlanslators']):
 
 
-            # autoSplitSegmentByPillar
-            # ------------------------
-            if 'autoSplitSegmentByPillar' in compiler_dict and (feature_dict := compiler_dict['autoSplitSegmentByPillar']):
-                if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
-                    # ドキュメントに対して、自動ピラー分割の編集を行います
-                    AutoSplitSegmentByPillarSolver.edit_document(
-                                contents_doc_rw=contents_doc_rw)
-
-                if 'objectFile' in feature_dict and (object_file_dict := feature_dict['objectFile']):
-                    file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
-                            source_fp=source_fp,
-                            object_file_dict=object_file_dict)
-
-                    print(f"""\
-        🔧　write {file_path_of_contents_doc_object} file
-            autoSplitSegmentByPillar""")
-
-                    # ディレクトリーが存在しなければ作成する
-                    directory_path = os.path.split(file_path_of_contents_doc_object)[0]
-                    os.makedirs(directory_path, exist_ok=True)
-
-                    print(f"🔧　write {file_path_of_contents_doc_object} file")
-                    with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                        f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+                def create_file_path_of_contents_doc_object(source_fp, object_file_dict):
+                    """中間ファイルのパス作成"""
+                    object_suffix = object_file_dict['suffix']
+                    basename = f'{object_file_prefix}__{source_fp.basename_without_ext}__{object_suffix}.json'
+                    return os.path.join(get_object_folder(), basename)
 
 
-            # autoShadow
-            # ----------
-            if 'autoShadow' in compiler_dict and (feature_dict := compiler_dict['autoShadow']):
-                if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
-                    # ドキュメントに対して、影の自動設定の編集を行います
-                    AutoShadowSolver.edit_document(
-                                contents_doc_rw=contents_doc_rw)
+                for key, translator_dict in translators_dict.items():
+                    if key == 'autoSplitSegmentByPillar':
+                        if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
+                            # ドキュメントに対して、自動ピラー分割の編集を行います
+                            AutoSplitSegmentByPillarSolver.edit_document(
+                                    contents_doc_rw=contents_doc_rw)
 
-                if 'objectFile' in feature_dict and (object_file_dict := feature_dict['objectFile']):
-                    file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
-                            source_fp=source_fp,
-                            object_file_dict=object_file_dict)
+                        if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
+                            file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                                    source_fp=source_fp,
+                                    object_file_dict=object_file_dict)
 
-                    print(f"""\
-        🔧　write {file_path_of_contents_doc_object} file
-            auto_shadow""")
+                            print(f"""\
+🔧　write {file_path_of_contents_doc_object} file
+    autoSplitSegmentByPillar""")
 
-                    # ディレクトリーが存在しなければ作成する
-                    directory_path = os.path.split(file_path_of_contents_doc_object)[0]
-                    os.makedirs(directory_path, exist_ok=True)
+                            # ディレクトリーが存在しなければ作成する
+                            directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                            os.makedirs(directory_path, exist_ok=True)
 
-                    print(f"🔧　write {file_path_of_contents_doc_object} file")
-                    with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                        f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+                            print(f"🔧　write {file_path_of_contents_doc_object} file")
+                            with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                                f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
+
+
+                    elif key == 'autoShadow':
+                        if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
+                            # ドキュメントに対して、影の自動設定の編集を行います
+                            AutoShadowSolver.edit_document(
+                                    contents_doc_rw=contents_doc_rw)
+
+                        if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
+                            file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                                    source_fp=source_fp,
+                                    object_file_dict=object_file_dict)
+
+                            print(f"""\
+🔧　write {file_path_of_contents_doc_object} file
+    auto_shadow""")
+
+                            # ディレクトリーが存在しなければ作成する
+                            directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                            os.makedirs(directory_path, exist_ok=True)
+
+                            print(f"🔧　write {file_path_of_contents_doc_object} file")
+                            with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                                f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
 
 
     @staticmethod

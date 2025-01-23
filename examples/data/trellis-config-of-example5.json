@@ -5,18 +5,20 @@
     "compiler": {
         "objectFolder": "./temp/examples",
         "objectFilePrefix": null,
-        "autoSplitSegmentByPillar": {
-            "enabled": true,
-            "objectFile": {
-                "write": true,
-                "suffix": "after_auto_split_by_pillar"
-            }
-        },
-        "autoShadow": {
-            "enabled": true,
-            "objectFile": {
-                "write": true,
-                "suffix": "after_auto_shadow"
+        "tlanslators": {
+            "autoSplitSegmentByPillar": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_auto_split_by_pillar"
+                }
+            },
+            "autoShadow": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_auto_shadow"
+                }
             }
         }
     },
