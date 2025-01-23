@@ -20,6 +20,10 @@ with open(file_path_of_config_doc, encoding='utf-8') as f:
     config_doc = json.load(f)
 
 
+# 設定ファイルを加工
+config_doc['compiler']['objectFilePrefix'] = 'no1'
+
+
 # ビルド
 tr.build(
         config_doc=config_doc)

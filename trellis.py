@@ -90,22 +90,6 @@ def main():
                 print(f"""ERROR: build コマンドには --temp オプションを付けて、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
                 return
 
-# デバッグ用
-#             def get_paths(path_to_read):
-#                 directory_path = os.path.split(path_to_read)[0]
-#                 basename_without_ext = os.path.splitext(os.path.basename(path_to_read))[0]
-#                 extension_with_dot = os.path.splitext(path_to_read)[1]
-#                 print(f"""\
-# {directory_path=}
-# {basename_without_ext=}
-# {extension_with_dot=}
-# """)
-#                 return directory_path, basename_without_ext, extension_with_dot
-
-
-#             config_doc_directory_path, config_doc_basename_without_ext, config_doc_extension_with_dot = get_paths(config_doc_path_to_read)
-#             contents_doc_directory_path, contents_doc_basename_without_ext, contents_doc_extension_with_dot = get_paths(contents_doc_path_to_read)
-
 
             # ソースファイル（JSON形式）を読込
             print(f"🔧　read {config_doc_path_to_read} file")

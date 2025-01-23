@@ -3,13 +3,15 @@
 
     },
     "compiler": {
+        "objectFolder": "./temp/objects",
+        "objectFilePrefix": null,
         "autoSplitSegmentByPillar": {
             "enabled": true,
-            "objectFile": "./temp/objects/after-auto-split-pillar.json"
+            "objectFileSuffix": "after-auto-split-pillar"
         },
         "autoShadow": {
             "enabled": true,
-            "objectFile": "./temp/objects/after-auto-shadow.json"
+            "objectFileSuffix": "after-auto-shadow"
         }
     },
     "renderer": {

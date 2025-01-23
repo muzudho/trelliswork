@@ -9,7 +9,7 @@ from .compiler.auto_shadow import AutoShadowSolver
 from .compiler.auto_split_pillar import AutoSplitSegmentByPillarSolver
 from .renderer import render_canvas, render_all_xl_texts, render_all_rectangles, render_all_pillar_rugs, render_all_card_shadows, render_all_terminal_shadows, render_all_line_tape_shadows, render_all_cards, render_all_terminals, render_all_line_tapes
 from .renderer.ruler import render_ruler
-from .share import ColorSystem
+from .share import ColorSystem, FilePath
 
 
 class TrellisInSrc():
@@ -83,14 +83,38 @@ class TrellisInSrc():
         contents_doc_rw : dict
             読み書き両用
         """
+
+        source_fp = FilePath(config_doc['builder']['--source'])
+
         if 'compiler' in config_doc and (compiler_dict := config_doc['compiler']):
+
+            def get_object_folder():
+                if 'objectFolder' not in compiler_dict:
+                    raise ValueError("""設定ファイルでコンパイラーの処理結果を中間ファイルとして出力する設定にした場合は、['compiler']['objectFolder']が必要です。""")
+
+                return compiler_dict['objectFolder']
+
+
+            if 'objectFilePrefix' in compiler_dict and (object_file_prefix := compiler_dict['objectFilePrefix']) and object_file_prefix is not None:
+                pass
+            else:
+                object_file_prefix = ''
+
+
+            def create_file_path_of_contents_doc_object(source_fp, feature_dict):
+                """中間ファイルのパス作成"""
+                object_suffix = feature_dict['objectFileSuffix']
+                basename = f'{object_file_prefix}__{source_fp.basename_without_ext}__{object_suffix}.json'
+                return os.path.join(get_object_folder(), basename)
+
 
             # autoSplitSegmentByPillar
             # ------------------------
-            if 'autoSplitSegmentByPillar' in compiler_dict and (auto_split_segment_by_pillar_dict := compiler_dict['autoSplitSegmentByPillar']):
-                if 'enabled' in auto_split_segment_by_pillar_dict and (enabled := auto_split_segment_by_pillar_dict['enabled']) and enabled:
-                    # 中間ファイル（JSON形式）
-                    file_path_of_contents_doc_object = auto_split_segment_by_pillar_dict['objectFile']
+            if 'autoSplitSegmentByPillar' in compiler_dict and (feature_dict := compiler_dict['autoSplitSegmentByPillar']):
+                if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
+                    file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                            source_fp=source_fp,
+                            feature_dict=feature_dict)
 
                     print(f"""\
         🔧　write {file_path_of_contents_doc_object} file
@@ -111,10 +135,11 @@ class TrellisInSrc():
 
             # autoShadow
             # ----------
-            if 'autoShadow' in compiler_dict and (auto_shadow_dict := compiler_dict['autoShadow']):
-                if 'enabled' in auto_shadow_dict and (enabled := auto_shadow_dict['enabled']) and enabled:
-                    # 中間ファイル（JSON形式）
-                    file_path_of_contents_doc_object = auto_shadow_dict['objectFile']
+            if 'autoShadow' in compiler_dict and (feature_dict := compiler_dict['autoShadow']):
+                if 'enabled' in feature_dict and (enabled := feature_dict['enabled']) and enabled:
+                    file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                            source_fp=source_fp,
+                            feature_dict=feature_dict)
 
                     print(f"""\
         🔧　write {file_path_of_contents_doc_object} file

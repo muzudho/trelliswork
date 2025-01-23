@@ -3,13 +3,15 @@
         "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json"
     },
     "compiler": {
+        "objectFolder": "./temp/examples",
+        "objectFilePrefix": null,
         "autoSplitSegmentByPillar": {
             "enabled": true,
-            "objectFile": "./temp/examples/no5_auto_split_pillar.after_auto_split_by_pillar.json"
+            "objectFileSuffix": "after_auto_split_by_pillar"
         },
         "autoShadow": {
             "enabled": true,
-            "objectFile": "./temp/examples/no5_auto_split_pillar.after_auto_shadow.json"
+            "objectFileSuffix": "after_auto_shadow"
         }
     },
     "renderer": {
