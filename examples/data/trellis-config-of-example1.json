@@ -10,34 +10,34 @@
             "canvas": {
                 "enabled": true
             },
-            "ruler": {
-                "enabled": true
-            },
-            "xlTexts": {
+            "cards": {
                 "enabled": false
             },
-            "rectangles": {
+            "lineTapes": {
                 "enabled": false
             },
             "pillars": {
                 "enabled": false
             },
-            "shadowOfPillars": {
+            "rectangles": {
                 "enabled": false
             },
-            "shadowOfTerminals": {
+            "ruler": {
+                "enabled": true
+            },
+            "shadowOfCards": {
                 "enabled": false
             },
             "shadowOfLineTapes": {
                 "enabled": false
             },
-            "cards": {
+            "shadowOfTerminals": {
                 "enabled": false
             },
             "terminals": {
                 "enabled": false
             },
-            "lineTapes": {
+            "xlTexts": {
                 "enabled": false
             }        
         }

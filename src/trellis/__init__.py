@@ -7,9 +7,16 @@ import json
 
 from .compiler_translators.auto_shadow import AutoShadowSolver
 from .compiler_translators.auto_split_pillar import AutoSplitSegmentByPillarSolver
-from .renderer import render_all_rectangles, render_all_pillar_rugs, render_all_card_shadows, render_all_terminal_shadows, render_all_line_tape_shadows, render_all_cards, render_all_terminals, render_all_line_tapes
 from .renderer.features.canvas import render_canvas
+from .renderer.features.cards import render_all_cards
+from .renderer.features.line_tapes import render_all_line_tapes
+from .renderer.features.pillars import render_all_pillar_rugs
+from .renderer.features.rectangles import render_all_rectangles
 from .renderer.features.ruler import render_ruler
+from .renderer.features.shadow_of_cards import render_shadow_of_all_cards
+from .renderer.features.shadow_of_line_tapes import render_shadow_of_all_line_tapes
+from .renderer.features.shadow_of_terminals import render_shadow_of_all_terminals
+from .renderer.features.terminals import render_all_terminals
 from .renderer.features.xl_text import render_all_xl_texts
 from .share import ColorSystem, FilePath
 
@@ -198,19 +205,19 @@ class TrellisInSrc():
                 ws=ws)
 
         # 全てのカードの影の描画
-        render_all_card_shadows(
+        render_shadow_of_all_cards(
                 config_doc=config_doc,
                 contents_doc=contents_doc,
                 ws=ws)
 
         # 全ての端子の影の描画
-        render_all_terminal_shadows(
+        render_shadow_of_all_terminals(
                 config_doc=config_doc,
                 contents_doc=contents_doc,
                 ws=ws)
 
         # 全てのラインテープの影の描画
-        render_all_line_tape_shadows(
+        render_shadow_of_all_line_tapes(
                 config_doc=config_doc,
                 contents_doc=contents_doc,
                 ws=ws)

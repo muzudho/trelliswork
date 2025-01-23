@@ -1,0 +1,36 @@
+from ...renderer import fill_rectangle
+from ...share import Pillar
+
+
+def render_all_pillar_rugs(config_doc, contents_doc, ws):
+    """全ての柱の敷物の描画
+    """
+
+    # 処理しないフラグ
+    if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
+        if 'features' in renderer_dict and (features_dict := renderer_dict['features']):
+            if 'pillars' in features_dict and (feature_dict := features_dict['pillars']):
+                if 'enabled' in feature_dict:
+                    enabled = feature_dict['enabled'] # False 値を取りたい
+                    if not enabled:
+                        return
+
+    print('🔧　全ての柱の敷物の描画')
+
+    # もし、柱のリストがあれば
+    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
+
+        for pillar_dict in pillars_list:
+            pillar_obj = Pillar.from_dict(pillar_dict)
+
+            if 'baseColor' in pillar_dict and (base_color := pillar_dict['baseColor']):
+                pillar_rect_obj = pillar_obj.rect_obj
+
+                # 矩形を塗りつぶす
+                fill_rectangle(
+                        ws=ws,
+                        column_th=pillar_rect_obj.left_obj.total_of_out_counts_th,
+                        row_th=pillar_rect_obj.top_obj.total_of_out_counts_th,
+                        columns=pillar_rect_obj.width_obj.total_of_out_counts_qty,
+                        rows=pillar_rect_obj.height_obj.total_of_out_counts_qty,
+                        color=base_color)
