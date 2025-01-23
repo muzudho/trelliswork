@@ -18,11 +18,12 @@ def render_ruler(config_doc, contents_doc, ws):
 
     # 処理しないフラグ
     if 'renderer' in config_doc and (renderer_dict := config_doc['renderer']):
-        if 'ruler' in renderer_dict and (ruler_dict := renderer_dict['ruler']):
-            if 'enabled' in ruler_dict:
-                enabled = ruler_dict['enabled'] # False 値を取りたい
-                if not enabled:
-                    return
+        if 'features' in renderer_dict and (features_dict := renderer_dict['features']):
+            if 'ruler' in features_dict and (feature_dict := features_dict['ruler']):
+                if 'enabled' in feature_dict:
+                    enabled = feature_dict['enabled'] # False 値を取りたい
+                    if not enabled:
+                        return
 
     print("🔧　定規の描画")
 

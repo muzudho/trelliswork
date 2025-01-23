@@ -16,6 +16,8 @@
         }
     },
     "renderer": {
-        "--output": "./temp/examples/no4_auto_shadow.xlsx"
+        "--output": "./temp/examples/no4_auto_shadow.xlsx",
+        "features": {
+        }
     }
 }

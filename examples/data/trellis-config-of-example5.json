@@ -23,6 +23,8 @@
         }
     },
     "renderer": {
-        "--output": "./temp/examples/no5_auto_split_pillar.xlsx"
+        "--output": "./temp/examples/no5_auto_split_pillar.xlsx",
+        "features": {
+        }
     }
 }

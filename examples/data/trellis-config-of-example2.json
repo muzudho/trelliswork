@@ -6,38 +6,40 @@
     },
     "renderer": {
         "--output": "./temp/examples/no2_pillars.xlsx",
-        "canvas": {
-            "enabled": true
-        },
-        "ruler": {
-            "enabled": true
-        },
-        "xlTexts": {
-            "enabled": true
-        },
-        "rectangles": {
-            "enabled": true
-        },
-        "pillars": {
-            "enabled": true
-        },
-        "shadowOfPillars": {
-            "enabled": false
-        },
-        "shadowOfTerminals": {
-            "enabled": false
-        },
-        "shadowOfLineTapes": {
-            "enabled": false
-        },
-        "cards": {
-            "enabled": true
-        },
-        "terminals": {
-            "enabled": true
-        },
-        "lineTapes": {
-            "enabled": false
-        }        
+        "features": {
+            "canvas": {
+                "enabled": true
+            },
+            "ruler": {
+                "enabled": true
+            },
+            "xlTexts": {
+                "enabled": true
+            },
+            "rectangles": {
+                "enabled": true
+            },
+            "pillars": {
+                "enabled": true
+            },
+            "shadowOfPillars": {
+                "enabled": false
+            },
+            "shadowOfTerminals": {
+                "enabled": false
+            },
+            "shadowOfLineTapes": {
+                "enabled": false
+            },
+            "cards": {
+                "enabled": true
+            },
+            "terminals": {
+                "enabled": true
+            },
+            "lineTapes": {
+                "enabled": false
+            }
+        }
     }
 }

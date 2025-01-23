@@ -5,6 +5,8 @@
     "compiler": {
     },
     "renderer": {
-        "--output": "./temp/examples/no3_line_tapes.xlsx"
+        "--output": "./temp/examples/no3_line_tapes.xlsx",
+        "features": {
+        }
     }
 }
