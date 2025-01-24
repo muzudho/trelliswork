@@ -2,7 +2,7 @@
 
 ## 手順１
 
-![色システム](../../img/[20250115-2117]color-system.png)  
+![色システム](../../img/[20250124-1804]colors.png)  
 
 👆　これは Microsoft Excel の色パレットを、 Windows Paint のスポイト機能を使って RGB値を調べ、  
 わたしが勝手に色に名前を付けたものです。  
