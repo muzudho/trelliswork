@@ -55,14 +55,18 @@ def main():
                 },
                 "ruler": {
                     "visible": True,
-                    "fgColor": [
-                        "xlPale.xlWhite",
-                        "xlDeep.xlWhite"
-                    ],
-                    "bgColor": [
-                        "xlDeep.xlWhite",
-                        "xlPale.xlWhite"
-                    ]
+                    "foreground": {
+                        "varColors": [
+                            "xlPale.xlWhite",
+                            "xlDeep.xlWhite"
+                        ]
+                    },
+                    "background": {
+                        "varColors": [
+                            "xlDeep.xlWhite",
+                            "xlPale.xlWhite"
+                        ]
+                    }
                 }
             }
 

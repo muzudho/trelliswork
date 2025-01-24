@@ -30,21 +30,25 @@
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlRed",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "xlDeep.xlGreen",
-            "xlPale.xlYellow"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlDeep.xlGreen",
+                "xlPale.xlYellow"
+            ]
+        }
     }
 }
 ```
 
 👆　特に注意する点としては、 `["ruler"]["visible"]` の値を true に、  
-`["ruler"]["fgColor"]` の値を `["xlPale.xlRed", "xlDeep.xlBlue"]` に、  
-`["ruler"]["bgColor"]` の値を `["xlPale.xlGreen", "xlDeep.xlYellow"]` に変えてください。  
+`["ruler"]["foreground"]["varColors"]` の値を `["xlPale.xlRed", "xlDeep.xlBlue"]` に、  
+`["ruler"]["background"]["varColors"]` の値を `["xlPale.xlGreen", "xlDeep.xlYellow"]` に変えてください。  
 
 そして［プログラミング・レッスン１の手順８］と同様に、以下のコマンドを打鍵してください。  
 
@@ -76,14 +80,18 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlRed",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "paperColor",
-            "paperColor"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "paperColor",
+                "paperColor"
+            ]
+        }
     }
 }
 ```
@@ -99,7 +107,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
 ![紙の地の色に変更](../../img/[20250115-2201]paper-color.png)  
 
 👆　［定規］の背景色をワークシートの地の色に変更しました。（塗りつぶしを無しにしました）  
-`paperColor` キーワードは `fgColor` には使えません。  
+`paperColor` キーワードは `["foreground"]["varColors"]` には使えません。  
 
 
 ## 手順４
@@ -121,21 +129,25 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlDeep.xlRed",
-            "xlDeep.xlGreen",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "xlPale.xlRed",
-            "xlPale.xlGreen",
-            "xlPale.xlBlue"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlDeep.xlRed",
+                "xlDeep.xlGreen",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlPale.xlGreen",
+                "xlPale.xlBlue"
+            ]
+        }
     }
 }
 ```
 
-👆　`["ruler"]["fgColor"]` と `["ruler"]["bgColor"]` の配列の要素を３つにしてください。  
+👆　`["ruler"]["foreground"]["varColors"]` と `["ruler"]["background"]["varColors"]` の配列の要素を３つにしてください。  
 
 そして手順３と同様に、以下のコマンドを打鍵してください。  
 
@@ -167,21 +179,25 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "#FFFF00",
-            "#FF00FF",
-            "#00FFFF"
-        ],
-        "bgColor": [
-            "#FF0000",
-            "#00FF00",
-            "#0000FF"
-        ]
+        "foreground": {
+            "varColors": [
+                "#FFFF00",
+                "#FF00FF",
+                "#00FFFF"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "#FF0000",
+                "#00FF00",
+                "#0000FF"
+            ]
+        }
     }
 }
 ```
 
-👆　`["ruler"]["fgColor"]` と `["ruler"]["bgColor"]` の配列の要素を変更してください。  
+👆　`["ruler"]["foreground"]["varColors"]` と `["ruler"]["background"]["varColors"]` の配列の要素を変更してください。  
 
 そして手順３と同様に、以下のコマンドを打鍵してください。  
 

@@ -19,16 +19,20 @@
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlDeep.xlRed",
-            "xlDeep.xlGreen",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "xlPale.xlRed",
-            "xlPale.xlGreen",
-            "xlPale.xlBlue"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlDeep.xlRed",
+                "xlDeep.xlGreen",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlPale.xlGreen",
+                "xlPale.xlBlue"
+            ]
+        }
     },
     "rectangles": [
         {
@@ -76,16 +80,20 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlDeep.xlRed",
-            "xlDeep.xlGreen",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "xlPale.xlRed",
-            "xlPale.xlGreen",
-            "xlPale.xlBlue"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlDeep.xlRed",
+                "xlDeep.xlGreen",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlPale.xlGreen",
+                "xlPale.xlBlue"
+            ]
+        }
     },
     "rectangles": [
         {
@@ -134,16 +142,20 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlDeep.xlRed",
-            "xlDeep.xlGreen",
-            "xlDeep.xlBlue"
-        ],
-        "bgColor": [
-            "xlPale.xlRed",
-            "xlPale.xlGreen",
-            "xlPale.xlBlue"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlDeep.xlRed",
+                "xlDeep.xlGreen",
+                "xlDeep.xlBlue"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlPale.xlGreen",
+                "xlPale.xlBlue"
+            ]
+        }
     },
     "rectangles": [
         {

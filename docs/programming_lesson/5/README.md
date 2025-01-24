@@ -19,14 +19,18 @@
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlGreen",
-            "xlDeep.xlGreen"
-        ],
-        "bgColor": [
-            "xlDeep.xlGreen",
-            "xlPale.xlGreen"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlGreen",
+                "xlDeep.xlGreen"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlDeep.xlGreen",
+                "xlPale.xlGreen"
+            ]
+        }
     },
     "rectangles" : [
         {
@@ -90,14 +94,18 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlGreen",
-            "xlDeep.xlGreen"
-        ],
-        "bgColor": [
-            "xlDeep.xlGreen",
-            "xlPale.xlGreen"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlGreen",
+                "xlDeep.xlGreen"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlDeep.xlGreen",
+                "xlPale.xlGreen"
+            ]
+        }
     },
     "rectangles" : [
         {
@@ -182,14 +190,18 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlGreen",
-            "xlDeep.xlGreen"
-        ],
-        "bgColor": [
-            "xlDeep.xlGreen",
-            "xlPale.xlGreen"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlGreen",
+                "xlDeep.xlGreen"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlDeep.xlGreen",
+                "xlPale.xlGreen"
+            ]
+        }
     },
     "colorSystem": {
         "shadowColorMappings": {

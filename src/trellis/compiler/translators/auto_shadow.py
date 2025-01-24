@@ -123,11 +123,11 @@ class AutoShadow(Translator):
 
                             if base_color in shadow_color_dict:
                                 shadow_color = shadow_color_dict[base_color]
-                                print(f'★ベースの色に紐づく影の色。 {shadow_color=}')  # FIXME 例えば xlLight.xlYellow とか
+                                #print(f'★ベースの色に紐づく影の色。 {shadow_color=}')  # FIXME 例えば xlLight.xlYellow とか
                                 return shadow_color
 
                             else:
-                                print(f'★ベースの色に紐づく影色が見つからない。 {base_color=}')  # FIXME
+                                #print(f'★ベースの色に紐づく影色が見つからない。 {base_color=}')  # FIXME
                                 #return 'xlLight.xlYellow'   # FIXME この値はいいかげん
                                 #return '#000000'    # FIXME 黒の埋め込みを止めたい
                                 #return base_color

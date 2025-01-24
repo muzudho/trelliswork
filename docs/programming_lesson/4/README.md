@@ -19,14 +19,18 @@
     },
     "ruler": {
         "visible": true,
-        "fgColor": [
-            "xlPale.xlRed",
-            "xlDeep.xlRed"
-        ],
-        "bgColor": [
-            "xlDeep.xlRed",
-            "xlPale.xlRed"
-        ]
+        "foreground": {
+            "varColors": [
+                "xlPale.xlRed",
+                "xlDeep.xlRed"
+            ]
+        },
+        "background": {
+            "varColors": [
+                "xlDeep.xlRed",
+                "xlPale.xlRed"
+            ]
+        }
     },
     "rectangles" : [
         {

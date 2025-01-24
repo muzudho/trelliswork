@@ -16,6 +16,9 @@ class ResolveAliasOfColor(Translator):
             if 'alias' in color_system_dict_rw and (alias_dict_rw := color_system_dict_rw['alias']):
                 pass
 
+            else:
+                return
+
 
             new_dict = {}
             delete_keys = []
@@ -91,18 +94,29 @@ class ResolveAliasOfColor(Translator):
                 shadow_color_mappings_dict_rw[key] = value
 
 
-        # ［柱］の基調色
-        if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
+            # # ［ルーラー］の前景色、背景色
+            # if 'ruler' in contents_doc_rw and (ruler_dict_rw := contents_doc_rw['ruler']):
 
-            for pillar_dict_rw in pillars_list_rw:
+            #     if 'fgColor' in ruler_dict_rw and (fg_color_list_rw := ruler_dict_rw['fgColor']):
+            #         pass
 
-                if 'baseColor' in pillar_dict_rw and (base_var_color_name := pillar_dict_rw['baseColor']):
-                    color_type = ColorSystem.what_is_var_color_name(
-                            var_color_name=base_var_color_name)
 
-                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
-                        web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                                contents_doc=contents_doc_rw,
-                                tone_and_color_name=base_var_color_name)
+            # ［柱］の基調色
+            if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
 
-                        pillar_dict_rw['baseColor'] = web_safe_color_code
+                for pillar_dict_rw in pillars_list_rw:
+
+                    if 'baseColor' in pillar_dict_rw and (base_var_color_name := pillar_dict_rw['baseColor']):
+                        color_type = ColorSystem.what_is_var_color_name(
+                                var_color_name=base_var_color_name)
+
+                        if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                            web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                                    contents_doc=contents_doc_rw,
+                                    tone_and_color_name=base_var_color_name)
+
+                            pillar_dict_rw['baseColor'] = web_safe_color_code
+
+
+            # # TODO 別名の対応表の削除
+            # del color_system_dict_rw['alias']

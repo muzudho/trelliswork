@@ -52,64 +52,66 @@ def render_ruler(config_doc, contents_doc, ws):
     black_font = Font(color='000000')
 
     # font_list 作成
-    if 'fgColor' in ruler_dict and (fg_color_list := ruler_dict['fgColor']) is not None:
-        if len(fg_color_list) == 0:
-            # フォントの色の既定値は黒が１つ
-            font_list = [black_font]
+    if 'foreground' in ruler_dict and (foreground_dict := ruler_dict['foreground']) is not None:
+        if 'varColors' in foreground_dict and (var_color_list := foreground_dict['varColors']) is not None:
+            if len(var_color_list) == 0:
+                # フォントの色の既定値は黒が１つ
+                font_list = [black_font]
+
+            else:
+                font_list = [None] * len(var_color_list)
+                
+                for index, fg_color_text in enumerate(var_color_list):
+                    if fg_color_text == 'paperColor':
+                        #font_list[index] = Font(color=None)   # フォントに使うと黒になる
+                        raise ValueError(f'foreground.varColors に paperColor を指定してはいけません {index=}')
+
+                    elif (web_safe_color_code_of_font := ColorSystem.var_color_name_to_web_safe_color_code(
+                            contents_doc=contents_doc,
+                            var_color_name=fg_color_text)) and web_safe_color_code_of_font is not None:
+
+                        try:
+                            xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
+                            font_list[index] = Font(color=xl_font_obj.color_code_for_xl)
+                        except:
+                            print(f'ERROR: {index=} {web_safe_color_code_of_font=}')
+                            raise
 
         else:
-            font_list = [None] * len(fg_color_list)
-            
-            for index, fg_color_text in enumerate(fg_color_list):
-                if fg_color_text == 'paperColor':
-                    #font_list[index] = Font(color=None)   # フォントに使うと黒になる
-                    raise ValueError(f'fgColor に paperColor を指定してはいけません {index=}')
-
-                elif (web_safe_color_code_of_font := ColorSystem.var_color_name_to_web_safe_color_code(
-                        contents_doc=contents_doc,
-                        var_color_name=fg_color_text)) and web_safe_color_code_of_font is not None:
-
-                    try:
-                        xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
-                        font_list[index] = Font(color=xl_font_obj.color_code_for_xl)
-                    except:
-                        print(f'ERROR: {index=} {web_safe_color_code_of_font=}')
-                        raise
-
-    else:
-        # フォントの色の既定値は黒が１つ
-        font_list = [black_font]
+            # フォントの色の既定値は黒が１つ
+            font_list = [black_font]
 
     # 定規の背景色
     pattern_fill_list = None
 
     # pattern_fill_list 作成
-    if 'bgColor' in ruler_dict and (bg_color_list := ruler_dict['bgColor']) is not None:
-        if len(bg_color_list) == 0:
+    if 'background' in ruler_dict and (background_dict := ruler_dict['background']) is not None:
+        if 'varColors' in background_dict and (var_color_list := background_dict['varColors']) is not None:
+            if len(var_color_list) == 0:
+                # 背景色の既定値は［塗りつぶし無し］
+                pattern_fill_list = [PatternFill(patternType=None)]
+            
+            else:
+                pattern_fill_list = [None] * len(var_color_list)
+                
+                for index, bg_color_text in enumerate(var_color_list):
+                    if bg_color_text == 'paperColor':
+                        pattern_fill_list[index] = PatternFill(patternType=None)
+
+                    elif (web_safe_color_code := ColorSystem.var_color_name_to_web_safe_color_code(
+                            contents_doc=contents_doc,
+                            var_color_name=bg_color_text)) and web_safe_color_code is not None:
+                        try:
+                            pattern_fill_list[index] = PatternFill(
+                                    patternType='solid',
+                                    fgColor=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+                        except:
+                            print(f'ERROR: {index=} {web_safe_color_code=}')
+                            raise
+
+        else:
             # 背景色の既定値は［塗りつぶし無し］
             pattern_fill_list = [PatternFill(patternType=None)]
-        
-        else:
-            pattern_fill_list = [None] * len(bg_color_list)
-            
-            for index, bg_color_text in enumerate(bg_color_list):
-                if bg_color_text == 'paperColor':
-                    pattern_fill_list[index] = PatternFill(patternType=None)
-
-                elif (web_safe_color_code := ColorSystem.var_color_name_to_web_safe_color_code(
-                        contents_doc=contents_doc,
-                        var_color_name=bg_color_text)) and web_safe_color_code is not None:
-                    try:
-                        pattern_fill_list[index] = PatternFill(
-                                patternType='solid',
-                                fgColor=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
-                    except:
-                        print(f'ERROR: {index=} {web_safe_color_code=}')
-                        raise
-
-    else:
-        # 背景色の既定値は［塗りつぶし無し］
-        pattern_fill_list = [PatternFill(patternType=None)]
 
 
     center_center_alignment = Alignment(horizontal='center', vertical='center')
