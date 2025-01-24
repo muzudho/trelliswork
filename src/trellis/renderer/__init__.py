@@ -334,16 +334,18 @@ def render_paper_strip(ws, contents_doc, paper_strip, column_th, row_th, columns
     """
 
     # 柱のヘッダーの背景色
-    if 'bgColor' in paper_strip and (base_color := paper_strip['bgColor']):
-        # 矩形を塗りつぶす
-        fill_rectangle(
-                ws=ws,
-                contents_doc=contents_doc,
-                column_th=column_th,
-                row_th=row_th,
-                columns=columns,
-                rows=1 * Share.OUT_COUNTS_THAT_CHANGE_INNING,   # １行分
-                color=base_color)
+    if 'background' in paper_strip and (background_dict := paper_strip['background']):
+        if 'varColor' in background_dict and (bg_color := background_dict['varColor']):
+            # 矩形を塗りつぶす
+            fill_rectangle(
+                    ws=ws,
+                    contents_doc=contents_doc,
+                    column_th=column_th,
+                    row_th=row_th,
+                    columns=columns,
+                    rows=1 * Share.OUT_COUNTS_THAT_CHANGE_INNING,   # １行分
+                    color=bg_color)
+
 
     # インデント
     if 'indent' in paper_strip:

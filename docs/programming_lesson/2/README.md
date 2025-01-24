@@ -96,7 +96,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
 }
 ```
 
-👆　`["ruler"]["bgColor"]` の値を `["paperColor", "paperColor"]` に変えてください。  
+👆　`["ruler"]["background"]["varColor"]` の値を `["paperColor", "paperColor"]` に変えてください。  
 
 そして手順２と同様に、以下のコマンドを打鍵してください。  
 
