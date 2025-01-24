@@ -42,7 +42,9 @@
                 "width": 4,
                 "height": 1
             },
-            "color": "xlLight.xlGreen"
+            "background": {
+                "varColor": "xlLight.xlGreen"
+            }
         }
     ]
 }
@@ -103,7 +105,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 3
             },
-            "color": "xlLight.xlBlue"
+            "background": {
+                "varColor": "xlLight.xlBlue"
+            }
         }
     ]
 }
@@ -165,22 +169,32 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "width": 6,
                 "height": 6
             },
-            "color": "xlLight.xlBlue",
+            "background": {
+                "varColor": "xlLight.xlBlue"
+            },
             "xlBorder": {
                 "top": {
-                    "color": "xlStrong.xlRed",
+                    "foreground": {
+                        "varColor": "xlStrong.xlRed"
+                    },
                     "xlStyle": "thick"
                 },
                 "right": {
-                    "color": "xlStrong.xlGreen",
+                    "foreground": {
+                        "varColor": "xlStrong.xlGreen"
+                    },
                     "xlStyle": "thick"
                 },
                 "bottom": {
-                    "color": "xlStrong.xlBlue",
+                    "foreground": {
+                        "varColor": "xlStrong.xlBlue"
+                    },
                     "xlStyle": "thick"
                 },
                 "left": {
-                    "color": "xlStrong.xlYellow",
+                    "foreground": {
+                        "varcolor": "xlStrong.xlYellow"
+                    },
                     "xlStyle": "thick"
                 }
             }

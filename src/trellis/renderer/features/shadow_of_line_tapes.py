@@ -22,15 +22,16 @@ def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
 
         for line_tape_dict in line_tape_list:
             for segment_dict in line_tape_dict['segments']:
-                if 'shadowColor' in segment_dict and (line_tape_shadow_color := segment_dict['shadowColor']):
-                    segment_rect = Rectangle.from_dict(segment_dict)
+                if 'shadow' in segment_dict and (shadow_dict := segment_dict['shadow']):
+                    if 'varColor' in shadow_dict and (shadow_color_value := shadow_dict['varColor']):
+                        segment_rect = Rectangle.from_dict(segment_dict)
 
-                    # 端子の影を描く
-                    fill_rectangle(
-                            ws=ws,
-                            contents_doc=contents_doc,
-                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                            row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                            columns=segment_rect.width_obj.total_of_out_counts_qty,
-                            rows=segment_rect.height_obj.total_of_out_counts_qty,
-                            color=line_tape_shadow_color)
+                        # 端子の影を描く
+                        fill_rectangle(
+                                ws=ws,
+                                contents_doc=contents_doc,
+                                column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                columns=segment_rect.width_obj.total_of_out_counts_qty,
+                                rows=segment_rect.height_obj.total_of_out_counts_qty,
+                                color=shadow_color_value)

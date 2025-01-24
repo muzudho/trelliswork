@@ -24,13 +24,14 @@ class AutoSplitSegmentByPillar(Translator):
 
                     for line_tape_segment_dict in line_tape_segment_list_rw:
                         # もし、影があれば
-                        if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
-                            # 柱を跨ぐとき、ラインテープを分割します
-                            new_splitting_segments.extend(
-                                    AutoSplitSegmentByPillar._split_segment_by_pillar(
-                                            contents_doc=contents_doc_rw,
-                                            line_tape_segment_list_rw=line_tape_segment_list_rw,
-                                            line_tape_segment_dict=line_tape_segment_dict))
+                        if 'shadow' in line_tape_segment_dict and (shadow_dict := line_tape_segment_dict['shadow']):
+                            if 'varColor' in shadow_dict and (shadow_color_value := shadow_dict['varColor']):
+                                # 柱を跨ぐとき、ラインテープを分割します
+                                new_splitting_segments.extend(
+                                        AutoSplitSegmentByPillar._split_segment_by_pillar(
+                                                contents_doc=contents_doc_rw,
+                                                line_tape_segment_list_rw=line_tape_segment_list_rw,
+                                                line_tape_segment_dict=line_tape_segment_dict))
 
         # 削除用ループが終わってから追加する。そうしないと無限ループしてしまう
         for splitting_segments in new_splitting_segments:

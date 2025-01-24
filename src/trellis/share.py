@@ -483,22 +483,23 @@ class ColorSystem():
         """様々な色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
         """
 
+        color_type = ColorSystem.what_is_var_color_name(var_color_name=var_color_name)
+
         # 色が指定されていないとき、この関数を呼び出してはいけません
-        if var_color_name is None:
+        if not color_type:
             raise Exception(f'var_color_name_to_web_safe_color_code: 色が指定されていません')
 
         # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-        if var_color_name == 'paperColor':
+        if color_type == ColorSystem.PAPER_COLOR:
             raise Exception(f'var_color_name_to_web_safe_color_code: 透明色には対応していません')
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-        if var_color_name == 'auto':
+        if color_type == ColorSystem.AUTO:
             return ColorSystem.alias_to_web_safe_color_dict(contents_doc=contents_doc)['xlTheme']['xlBlack']
 
-        # `#` で始まるなら、ウェブセーフカラーとして扱う
-        if var_color_name.startswith('#'):
+        # ウェブセーフカラー
+        if color_type == ColorSystem.WEB_SAFE_COLOR_CODE:
             return var_color_name
-
 
         return ColorSystem.solve_tone_and_color_name(
             contents_doc=contents_doc,
@@ -513,7 +514,7 @@ class ColorSystem():
         color_type = ColorSystem.what_is_var_color_name(var_color_name=var_color_name)
 
         # 色が指定されていないとき、この関数を呼び出してはいけません
-        if color_type is None:
+        if not color_type:
             raise Exception(f'var_color_name_to_fill_obj: 色が指定されていません')
 
         # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
@@ -658,10 +659,11 @@ class XlFont():
         """辞書を元に生成
         """
         web_safe_color_code = None
-        if 'color' in xl_font_dict:
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                    contents_doc=contents_doc,
-                    var_color_name=xl_font_dict['color'])
+        if 'foreground' in xl_font_dict and (foreground_dict := xl_font_dict['foreground']):
+            if 'varColor' in foreground_dict and (fg_color := foreground_dict['varColor']):
+                web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
+                        contents_doc=contents_doc,
+                        var_color_name=fg_color)
 
         return XlFont(
                 web_safe_color_code=web_safe_color_code)

@@ -29,17 +29,18 @@ def render_shadow_of_all_cards(config_doc, contents_doc, ws):
                 for card_dict in card_dict_list:
                     card_obj = Card.from_dict(card_dict)
 
-                    if 'shadowColor' in card_dict:
-                        card_shadow_color = card_dict['shadowColor']
+                    if 'shadow' in card_dict and (shadow_dict := card_dict['shadow']):
+                        if 'varColor' in shadow_dict and (shadow_color_value := shadow_dict['varColor']):
+                            
 
-                        card_bounds_obj = card_obj.bounds_obj
+                            card_bounds_obj = card_obj.bounds_obj
 
-                        # 端子の影を描く
-                        fill_rectangle(
-                                ws=ws,
-                                contents_doc=contents_doc,
-                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
-                                rows=card_bounds_obj.height_obj.total_of_out_counts_qty,
-                                color=card_shadow_color)
+                            # 端子の影を描く
+                            fill_rectangle(
+                                    ws=ws,
+                                    contents_doc=contents_doc,
+                                    column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                    row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                    columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
+                                    rows=card_bounds_obj.height_obj.total_of_out_counts_qty,
+                                    color=shadow_color_value)

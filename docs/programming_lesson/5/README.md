@@ -40,7 +40,9 @@
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlRed"
+            "background": {
+                "varColor": "xlPale.xlRed"
+            }
         },
         {
             "bounds" : {
@@ -49,7 +51,9 @@
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlGreen"
+            "background": {
+                "varColor": "xlPale.xlGreen"
+            }
         },
         {
             "bounds" : {
@@ -58,7 +62,9 @@
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlBlue"
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            }
         }
     ]
 }
@@ -115,7 +121,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlRed"
+            "background": {
+                "varColor": "xlPale.xlRed"
+            }
         },
         {
             "bounds" : {
@@ -124,7 +132,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlGreen"
+            "background": {
+                "varcolor": "xlPale.xlGreen"
+            }
         },
         {
             "bounds" : {
@@ -133,7 +143,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlBlue"
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            }
         },
         {
             "bounds" : {
@@ -142,7 +154,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 4,
                 "bottom": 5
             },
-            "color": "xlPale.xlYellow"
+            "background": {
+                "varColor": "xlPale.xlYellow"
+            }
         },
         {
             "bounds" : {
@@ -151,7 +165,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 5,
                 "bottom": 6
             },
-            "color": "xlLight.xlWhite"
+            "background": {
+                "varColor": "xlLight.xlWhite"
+            }
         }
     ]
 }
@@ -219,7 +235,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlRed"
+            "background": {
+                "varColor": "xlPale.xlRed"
+            }
         },
         {
             "bounds" : {
@@ -228,7 +246,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlGreen"
+            "background": {
+                "varColor": "xlPale.xlGreen"
+            }
         },
         {
             "bounds" : {
@@ -237,7 +257,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 2,
                 "bottom": 8
             },
-            "color": "xlPale.xlBlue"
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            }
         },
         {
             "bounds" : {
@@ -246,7 +268,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 4,
                 "bottom": 5
             },
-            "color": "xlPale.xlYellow"
+            "background": {
+                "varColor": "xlPale.xlYellow"
+            }
         },
         {
             "bounds" : {

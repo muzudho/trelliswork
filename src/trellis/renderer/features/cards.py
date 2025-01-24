@@ -23,13 +23,16 @@ def render_all_cards(config_doc, contents_doc, ws):
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
 
-            # 柱と柱の隙間（隙間柱）は無視する
+            # ［柱の隙間］は無視する
             if 'background' not in pillar_dict:
                 continue
 
             background_dict = pillar_dict['background']
 
             if 'varColor' not in background_dict:
+                continue
+
+            if not background_dict['varColor']:
                 continue
 
 

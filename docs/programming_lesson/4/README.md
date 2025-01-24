@@ -40,7 +40,9 @@
                 "width": 2,
                 "height": 1
             },
-            "color": "paperColor",
+            "background": {
+                "varColor": "paperColor"
+            },
             "mergeCells": true
         }
     ],
@@ -56,7 +58,9 @@
                 "xlVertical" : "center"
             },
             "xlFont": {
-                "color": "xlStrong.xlRed"
+                "foreground": {
+                    "varColor": "xlStrong.xlRed"
+                }
             }
         }
     ]

@@ -8,14 +8,14 @@ class AutoShadow(Translator):
     def translate_document(self, contents_doc_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
-        ['pillars']['cards']['shadowColor'] の値が 'auto' なら、
-        ['pillars']['cards']['shadowColor'] の値を カラーコードに翻訳する
+        ['pillars']['cards']['shadow']['varColor] の値が 'auto' なら、
+        ['pillars']['cards']['shadow']['varColor] の値を カラーコードに翻訳する
         
-        ['pillars']['terminals']['shadowColor'] の値が 'auto' なら、
-        ['pillars']['terminals']['shadowColor'] の値を カラーコードに翻訳する
+        ['pillars']['terminals']['shadow']['varColor] の値が 'auto' なら、
+        ['pillars']['terminals']['shadow']['varColor] の値を カラーコードに翻訳する
         
-        ['lineTapes']['segments']['shadowColor'] の値が 'auto' なら、
-        ['lineTapes']['segments']['shadowColor'] の値を カラーコードに翻訳する
+        ['lineTapes']['segments']['shadow']['varColor] の値が 'auto' なら、
+        ['lineTapes']['segments']['shadow']['varColor] の値を カラーコードに翻訳する
 
         Parameters
         ----------
@@ -33,66 +33,69 @@ class AutoShadow(Translator):
                     for card_dict_rw in card_dict_list_rw:
                         card_obj = Card.from_dict(card_dict_rw)
 
-                        if 'shadowColor' in card_dict_rw and (card_shadow_color := card_dict_rw['shadowColor']):
+                        if 'shadow' in card_dict_rw and (shadow_dict_rw := card_dict_rw['shadow']):
+                            if 'varColor' in shadow_dict_rw and (shadow_color_value := shadow_dict_rw['varColor']):
 
-                            if card_shadow_color == 'auto':
-                                card_bounds_obj = card_obj.bounds_obj
+                                if shadow_color_value == 'auto':
+                                    card_bounds_obj = card_obj.bounds_obj
 
-                                try:
-                                    if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                            contents_doc=contents_doc_rw,
-                                            column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                        card_dict_rw['shadowColor'] = solved_var_color_name
-                                except:
-                                    print(f'ERROR: AutoShadow: {card_dict_rw=}')
-                                    raise
+                                    try:
+                                        if solved_var_color_name := AutoShadow._get_auto_shadow(
+                                                contents_doc=contents_doc_rw,
+                                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                            shadow_dict_rw['varColor'] = solved_var_color_name
+                                    except:
+                                        print(f'ERROR: AutoShadow: {card_dict_rw=}')
+                                        raise
 
                 # もし、端子のリストがあれば
-                if 'terminals' in pillar_dict_rw and (terminals_list := pillar_dict_rw['terminals']):
+                if 'terminals' in pillar_dict_rw and (terminals_list_rw := pillar_dict_rw['terminals']):
 
-                    for terminal_dict in terminals_list:
-                        terminal_obj = Terminal.from_dict(terminal_dict)
+                    for terminal_dict_rw in terminals_list_rw:
+                        terminal_obj = Terminal.from_dict(terminal_dict_rw)
                         terminal_bounds_obj = terminal_obj.bounds_obj
 
-                        if 'shadowColor' in terminal_dict and (terminal_shadow_color := terminal_dict['shadowColor']):
+                        if 'shadow' in terminal_dict_rw and (shadow_dict_rw := terminal_dict_rw['shadow']):
+                            if 'varColor' in shadow_dict_rw and (shadow_color_value := shadow_dict_rw['varColor']):
 
-                            if terminal_shadow_color == 'auto':
+                                if shadow_color_value == 'auto':
+
+                                    try:
+                                        # 影に自動が設定されていたら、解決する
+                                        if solved_var_color_name := AutoShadow._get_auto_shadow(
+                                                contents_doc=contents_doc_rw,
+                                                column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                            shadow_dict_rw['varColor'] = solved_var_color_name
+                                    except:
+                                        print(f'ERROR: AutoShadow: {terminal_dict_rw=}')
+                                        raise
+
+        # もし、ラインテープのリストがあれば
+        if 'lineTapes' in contents_doc_rw and (line_tape_list_rw := contents_doc_rw['lineTapes']):
+
+            for line_tape_dict_rw in line_tape_list_rw:
+                # もし、セグメントのリストがあれば
+                if 'segments' in line_tape_dict_rw and (segment_list_rw := line_tape_dict_rw['segments']):
+
+                    for segment_dict_rw in segment_list_rw:
+                        if 'shadow' in segment_dict_rw and (shadow_dict_rw := segment_dict_rw['shadow']):
+                            if 'varColor' in shadow_dict_rw and (shadow_color_value := shadow_dict_rw['varColor']) and shadow_color_value == 'auto':
+                                segment_rect = Rectangle.from_dict(segment_dict_rw)
+
+                                # NOTE 影が指定されているということは、浮いているということでもある
 
                                 try:
                                     # 影に自動が設定されていたら、解決する
                                     if solved_var_color_name := AutoShadow._get_auto_shadow(
                                             contents_doc=contents_doc_rw,
-                                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                        terminal_dict['shadowColor'] = solved_var_color_name
+                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                        shadow_dict_rw['varColor'] = solved_var_color_name
                                 except:
-                                    print(f'ERROR: AutoShadow: {terminal_dict=}')
+                                    print(f'ERROR: AutoShadow: {segment_dict_rw=}')
                                     raise
-
-        # もし、ラインテープのリストがあれば
-        if 'lineTapes' in contents_doc_rw and (line_tape_list := contents_doc_rw['lineTapes']):
-
-            for line_tape_dict in line_tape_list:
-                # もし、セグメントのリストがあれば
-                if 'segments' in line_tape_dict and (segment_list := line_tape_dict['segments']):
-
-                    for segment_dict in segment_list:
-                        if 'shadowColor' in segment_dict and (segment_shadow_color := segment_dict['shadowColor']) and segment_shadow_color == 'auto':
-                            segment_rect = Rectangle.from_dict(segment_dict)
-
-                            # NOTE 影が指定されているということは、浮いているということでもある
-
-                            try:
-                                # 影に自動が設定されていたら、解決する
-                                if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                        contents_doc=contents_doc_rw,
-                                        column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                        row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                    segment_dict['shadowColor'] = solved_var_color_name
-                            except:
-                                print(f'ERROR: AutoShadow: {segment_dict=}')
-                                raise
 
 
     @staticmethod
