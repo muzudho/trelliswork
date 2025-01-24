@@ -182,7 +182,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             "xlPale.xlGreen"
         ]
     },
-    "colorSystems": {
+    "colorSystem": {
         "darkness": {
             "paperColor": "xlPale.xlWhite",
             "xlPale.xlRed": "xlLight.xlRed",

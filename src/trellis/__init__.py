@@ -8,6 +8,7 @@ import json
 from .compiler.translators.auto_shadow import AutoShadow
 from .compiler.translators.auto_split_pillar import AutoSplitSegmentByPillar
 from .compiler.translators.color_systems_darkness import ColorSystemsDarkness
+from .compiler.translators.imports import Imports
 
 from .renderer.features.canvas import render_canvas
 from .renderer.features.cards import render_all_cards
@@ -147,6 +148,7 @@ class TrellisInSrc():
                 translator_object_dict = {
                     'autoSplitSegmentByPillar': AutoSplitSegmentByPillar(),
                     'autoShadow': AutoShadow(),
+                    'imports': Imports(),
                 }
 
                 # 各［翻訳者］
