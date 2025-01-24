@@ -21,10 +21,12 @@
             "xlPale.xlWhite"
         ]
     },
-    "shadowColorMappings": {
-        "paperColor": "xlPale.xlWhite",
-        "xlPale.xlBlue": "xlLight.xlBlue",
-        "xlPale.xlYellow": "xlLight.xlYellow"        
+    "colorSystem": {
+        "shadowColorMappings": {
+            "paperColor": "xlPale.xlWhite",
+            "xlPale.xlBlue": "xlLight.xlBlue",
+            "xlPale.xlYellow": "xlLight.xlYellow"        
+        }
     },
     "pillars": [
         {
