@@ -151,21 +151,27 @@ class TrellisInSrc():
                     'imports': Imports(),
                 }
 
-                # 各［翻訳者］
-                #
-                #   翻訳者は translate_document(contents_doc_rw) というインスタンス・メソッドを持つ
-                #
-                for key, translator_dict in translators_dict.items():
-                    if key in translator_object_dict:
-                        translator_obj = translator_object_dict[key]
+                # 翻訳の実行順序
+                if 'translationOrder' in compiler_dict and (translation_order_list := compiler_dict['translationOrder']):
 
-                        if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
-                            # ドキュメントに対して、自動ピラー分割の編集を行います
-                            translator_obj.translate_document(
-                                    contents_doc_rw=contents_doc_rw)
+                    for translation_key in translation_order_list:
 
-                        # （場合により）中間ファイルの書出し
-                        write_object_file(comment=key)
+                        # 各［翻訳者］
+                        #
+                        #   翻訳者は translate_document(contents_doc_rw) というインスタンス・メソッドを持つ
+                        #
+                        translator_dict = translators_dict[translation_key]
+
+                        if translation_key in translator_object_dict:
+                            translator_obj = translator_object_dict[translation_key]
+
+                            if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
+                                # ドキュメントに対して、自動ピラー分割の編集を行います
+                                translator_obj.translate_document(
+                                        contents_doc_rw=contents_doc_rw)
+
+                            # （場合により）中間ファイルの書出し
+                            write_object_file(comment=translation_key)
 
 
     @staticmethod

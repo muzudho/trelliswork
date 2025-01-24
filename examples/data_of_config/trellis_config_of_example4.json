@@ -5,6 +5,10 @@
     "compiler": {
         "objectFolder": "./temp/examples",
         "objectFilePrefix": null,
+        "translationOrder": [
+            "imports",
+            "autoShadow"
+        ],
         "tlanslators": {
             "autoShadow": {
                 "enabled": true,

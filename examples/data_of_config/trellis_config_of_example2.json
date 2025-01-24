@@ -5,6 +5,9 @@
     "compiler": {
         "objectFolder": "./temp/examples",
         "objectFilePrefix": null,
+        "translationOrder": [
+            "imports"
+        ],
         "tlanslators": {
             "imports": {
                 "enabled": true,

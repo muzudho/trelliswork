@@ -5,6 +5,11 @@
     "compiler": {
         "objectFolder": "./temp/objects",
         "objectFilePrefix": null,
+        "translationOrder": [
+            "imports",
+            "autoSplitSegmentByPillar",
+            "autoShadow"
+        ],
         "tlanslators": {
             "autoSplitSegmentByPillar": {
                 "enabled": true,
