@@ -20,6 +20,12 @@ class ResolveAliasOfColor(Translator):
                 return
 
 
+            # 再帰的に更新
+            ResolveAliasOfColor.search_dict(
+                    contents_doc_rw=contents_doc_rw,
+                    current_dict_rw=contents_doc_rw)
+
+
             new_dict = {}
             delete_keys = []
 
@@ -94,13 +100,6 @@ class ResolveAliasOfColor(Translator):
                 shadow_color_mappings_dict_rw[key] = value
 
 
-            # # ［ルーラー］の前景色、背景色
-            # if 'ruler' in contents_doc_rw and (ruler_dict_rw := contents_doc_rw['ruler']):
-
-            #     if 'fgColor' in ruler_dict_rw and (fg_color_list_rw := ruler_dict_rw['fgColor']):
-            #         pass
-
-
             # ［柱］の基調色
             if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
 
@@ -120,3 +119,58 @@ class ResolveAliasOfColor(Translator):
 
             # # TODO 別名の対応表の削除
             # del color_system_dict_rw['alias']
+
+
+    @staticmethod
+    def search_dict(contents_doc_rw, current_dict_rw):
+        for key, value in current_dict_rw.items():
+            if key == "varColor":
+
+                if isinstance(value, str):
+                    color_type = ColorSystem.what_is_var_color_name(
+                            var_color_name=value)
+
+                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                        web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                                contents_doc=contents_doc_rw,
+                                tone_and_color_name=value)
+
+                        current_dict_rw[key] = web_safe_color_code
+                
+                continue
+
+            elif key == 'varColors':
+
+                if isinstance(value, list):
+                    ResolveAliasOfColor.search_list(
+                            contents_doc_rw=contents_doc_rw,
+                            current_list_rw=value)
+
+                continue
+
+
+            if isinstance(value, dict):
+                ResolveAliasOfColor.search_dict(
+                        contents_doc_rw=contents_doc_rw,
+                        current_dict_rw=value)
+
+            elif isinstance(value, list):
+                ResolveAliasOfColor.search_list(
+                        contents_doc_rw=contents_doc_rw,
+                        current_list_rw=value)
+
+
+    @staticmethod
+    def search_list(contents_doc_rw, current_list_rw):
+        for index, value in enumerate(current_list_rw):
+
+            if isinstance(value, str):
+                color_type = ColorSystem.what_is_var_color_name(
+                        var_color_name=value)
+
+                if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                    web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                            contents_doc=contents_doc_rw,
+                            tone_and_color_name=value)
+
+                    current_list_rw[index] = web_safe_color_code
