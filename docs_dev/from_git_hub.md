@@ -30,9 +30,9 @@ py example.py all
 以上のファイルは、以下のソースファイルから生成されました。  
 下の物ほど、簡単になります。  
 
-* 📄 `examples/data/battle_sequence_of_unfair_cointoss.step1_full_manual.json` - step1, 2, 3 で使われます。必要な情報を（自動生成ではなく）全て手入力したものです
-* 📄 `examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json` - step4 で使われます。影の作成を自動設定にしたものです
-* 📄 `examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json` - step5 で使われます。柱を跨がるラインテープのセグメント作成を自動設定にしたものです
+* 📄 `examples/data_of_contents/battle_sequence_of_unfair_cointoss.step1_full_manual.json` - step1, 2, 3 で使われます。必要な情報を（自動生成ではなく）全て手入力したものです
+* 📄 `examples/data_of_contents/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json` - step4 で使われます。影の作成を自動設定にしたものです
+* 📄 `examples/data_of_contents/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json` - step5 で使われます。柱を跨がるラインテープのセグメント作成を自動設定にしたものです
 
 
 # 実行
