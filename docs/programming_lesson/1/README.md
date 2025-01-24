@@ -40,6 +40,9 @@ py trellis.py init
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": 0,

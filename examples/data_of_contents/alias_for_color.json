@@ -1,88 +1,92 @@
 {
     "export": {
-        "xlTheme": {
-            "xlWhite": "#FFFFFF",
-            "xlBlack": "#000000",
-            "xlRedGray": "#E7E6E6",
-            "xlBlueGray": "#44546A",
-            "xlBlue": "#5B9BD5",
-            "xlRed": "#ED7D31",
-            "xlGray": "#A5A5A5",
-            "xlYellow": "#FFC000",
-            "xlNaviy": "#4472C4",
-            "xlGreen": "#70AD47"
-        },
-        "xlPale": {
-            "xlWhite": "#F2F2F2",
-            "xlBlack": "#808080",
-            "xlRedGray": "#AEAAAA",
-            "xlBlueGray": "#D6DCE4",
-            "xlBlue": "#DDEBF7",
-            "xlRed": "#FCE4D6",
-            "xlGray": "#EDEDED",
-            "xlYellow": "#FFF2CC",
-            "xlNaviy": "#D9E1F2",
-            "xlGreen": "#E2EFDA"
-        },
-        "xlLight": {
-            "xlWhite": "#D9D9D9",
-            "xlBlack": "#595959",
-            "xlRedGray": "#757171",
-            "xlBlueGray": "#ACB9CA",
-            "xlBlue": "#BDD7EE",
-            "xlRed": "#F8CBAD",
-            "xlGray": "#DBDBDB",
-            "xlYellow": "#FFE699",
-            "xlNaviy": "#B4C6E7",
-            "xlGreen": "#C6E0B4"
-        },
-        "xlSoft": {
-            "xlWhite": "#BFBFBF",
-            "xlBlack": "#404040",
-            "xlRedGray": "#3A3838",
-            "xlBlueGray": "#8497B0",
-            "xlBlue": "#9BC2E6",
-            "xlRed": "#F4B084",
-            "xlGray": "#C9C9C9",
-            "xlYellow": "#FFD966",
-            "xlNaviy": "#8EA9DB",
-            "xlGreen": "#A9D08E"
-        },
-        "xlStrong": {
-            "xlWhite": "#A6A6A6",
-            "xlBlack": "#262626",
-            "xlRedGray": "#3A3838",
-            "xlBlueGray": "#333F4F",
-            "xlBlue": "#2F75B5",
-            "xlRed": "#C65911",
-            "xlGray": "#7B7B7B",
-            "xlYellow": "#BF8F00",
-            "xlNaviy": "#305496",
-            "xlGreen": "#548235"
-        },
-        "xlDeep": {
-            "xlWhite": "#808080",
-            "xlBlack": "#0D0D0D",
-            "xlRedGray": "#161616",
-            "xlBlueGray": "#161616",
-            "xlBlue": "#1F4E78",
-            "xlRed": "#833C0C",
-            "xlGray": "#525252",
-            "xlYellow": "#806000",
-            "xlNaviy": "#203764",
-            "xlGreen": "#375623"
-        },
-        "xlStandard": {
-            "xlBrown": "#C00000",
-            "xlRed": "#FF0000",
-            "xlOrange": "#FFC000",
-            "xlYellow": "#FFFF00",
-            "xlYellowGreen": "#92D050",
-            "xlGreen": "#00B050",
-            "xlDodgerBlue": "#00B0F0",
-            "xlBlue": "#0070C0",
-            "xlNaviy": "#002060",
-            "xlViolet": "#7030A0"
+        "colorSystems": {
+            "alias": {
+                "xlTheme": {
+                    "xlWhite": "#FFFFFF",
+                    "xlBlack": "#000000",
+                    "xlRedGray": "#E7E6E6",
+                    "xlBlueGray": "#44546A",
+                    "xlBlue": "#5B9BD5",
+                    "xlRed": "#ED7D31",
+                    "xlGray": "#A5A5A5",
+                    "xlYellow": "#FFC000",
+                    "xlNaviy": "#4472C4",
+                    "xlGreen": "#70AD47"
+                },
+                "xlPale": {
+                    "xlWhite": "#F2F2F2",
+                    "xlBlack": "#808080",
+                    "xlRedGray": "#AEAAAA",
+                    "xlBlueGray": "#D6DCE4",
+                    "xlBlue": "#DDEBF7",
+                    "xlRed": "#FCE4D6",
+                    "xlGray": "#EDEDED",
+                    "xlYellow": "#FFF2CC",
+                    "xlNaviy": "#D9E1F2",
+                    "xlGreen": "#E2EFDA"
+                },
+                "xlLight": {
+                    "xlWhite": "#D9D9D9",
+                    "xlBlack": "#595959",
+                    "xlRedGray": "#757171",
+                    "xlBlueGray": "#ACB9CA",
+                    "xlBlue": "#BDD7EE",
+                    "xlRed": "#F8CBAD",
+                    "xlGray": "#DBDBDB",
+                    "xlYellow": "#FFE699",
+                    "xlNaviy": "#B4C6E7",
+                    "xlGreen": "#C6E0B4"
+                },
+                "xlSoft": {
+                    "xlWhite": "#BFBFBF",
+                    "xlBlack": "#404040",
+                    "xlRedGray": "#3A3838",
+                    "xlBlueGray": "#8497B0",
+                    "xlBlue": "#9BC2E6",
+                    "xlRed": "#F4B084",
+                    "xlGray": "#C9C9C9",
+                    "xlYellow": "#FFD966",
+                    "xlNaviy": "#8EA9DB",
+                    "xlGreen": "#A9D08E"
+                },
+                "xlStrong": {
+                    "xlWhite": "#A6A6A6",
+                    "xlBlack": "#262626",
+                    "xlRedGray": "#3A3838",
+                    "xlBlueGray": "#333F4F",
+                    "xlBlue": "#2F75B5",
+                    "xlRed": "#C65911",
+                    "xlGray": "#7B7B7B",
+                    "xlYellow": "#BF8F00",
+                    "xlNaviy": "#305496",
+                    "xlGreen": "#548235"
+                },
+                "xlDeep": {
+                    "xlWhite": "#808080",
+                    "xlBlack": "#0D0D0D",
+                    "xlRedGray": "#161616",
+                    "xlBlueGray": "#161616",
+                    "xlBlue": "#1F4E78",
+                    "xlRed": "#833C0C",
+                    "xlGray": "#525252",
+                    "xlYellow": "#806000",
+                    "xlNaviy": "#203764",
+                    "xlGreen": "#375623"
+                },
+                "xlStandard": {
+                    "xlBrown": "#C00000",
+                    "xlRed": "#FF0000",
+                    "xlOrange": "#FFC000",
+                    "xlYellow": "#FFFF00",
+                    "xlYellowGreen": "#92D050",
+                    "xlGreen": "#00B050",
+                    "xlDodgerBlue": "#00B0F0",
+                    "xlBlue": "#0070C0",
+                    "xlNaviy": "#002060",
+                    "xlViolet": "#7030A0"
+                }
+            }
         }
     }
 }

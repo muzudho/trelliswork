@@ -42,6 +42,9 @@ def main():
             print(f'{json_path_to_write=}')
 
             contents_doc = {
+                "imports": [
+                    "./examples/data_of_contents/alias_for_color.json"
+                ],
                 "canvas": {
                     "bounds": {
                         "left": 0,

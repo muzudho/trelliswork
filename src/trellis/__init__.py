@@ -20,7 +20,7 @@ from .renderer.features.shadow_of_line_tapes import render_shadow_of_all_line_ta
 from .renderer.features.shadow_of_terminals import render_shadow_of_all_terminals
 from .renderer.features.terminals import render_all_terminals
 from .renderer.features.xl_text import render_all_xl_texts
-from .share import ColorSystem, FilePath
+from .share import ColorSystem, FilePath, InningsPitched
 
 
 class TrellisInSrc():
