@@ -546,20 +546,17 @@ class ColorSystem():
                     patternType='solid',
                     fgColor=ColorSystem.web_safe_color_code_to_xl(var_color_name))
 
-        try:
+        if color_type == ColorSystem.TONE_AND_COLOR_NAME:
             tone, color = var_color_name.split('.', 2)
-        except:
-            print(f'ERROR: {var_color_name=}')
-            raise
+            tone = tone.strip()
+            color = color.strip()
 
-        tone = tone.strip()
-        color = color.strip()
+            if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
+                if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
+                    return PatternFill(
+                            patternType='solid',
+                            fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]))
 
-        if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
-            if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
-                return PatternFill(
-                        patternType='solid',
-                        fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]))
 
         print(f'var_color_name_to_fill_obj: 色がない {var_color_name=}')
         return ColorSystem.none_pattern_fill

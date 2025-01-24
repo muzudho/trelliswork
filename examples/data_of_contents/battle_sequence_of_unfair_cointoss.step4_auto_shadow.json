@@ -1509,7 +1509,9 @@
     ],
     "lineTapes": [
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1527,7 +1529,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1545,7 +1549,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1563,7 +1569,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1659,7 +1667,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1677,7 +1687,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1773,7 +1785,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1791,7 +1805,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1809,7 +1825,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -1931,7 +1949,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2053,7 +2073,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2123,7 +2145,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2219,7 +2243,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2289,7 +2315,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2359,7 +2387,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2429,7 +2459,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2525,7 +2557,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2595,7 +2629,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2691,7 +2727,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
@@ -2761,7 +2799,9 @@
             ]
         },
         {
-            "outlineColor": "xlTheme.xlWhite",
+            "outline": {
+                "varColor": "xlTheme.xlWhite"
+            },
             "segments": [
                 {
                     "direction": "from_here.falling_down",
