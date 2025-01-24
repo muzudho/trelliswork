@@ -357,98 +357,16 @@ class ColorSystem():
         return clazz._none_pattern_fill
 
 
-    # エクセルの色システム（勝手に作ったったもの）
-    _xl_color_code_to_web_safe_color_dict = {
-        'xlTheme' : {
-            'xlWhite' : '#FFFFFF',
-            'xlBlack' : '#000000',
-            'xlRedGray' : '#E7E6E6',
-            'xlBlueGray' : '#44546A',
-            'xlBlue' : '#5B9BD5',
-            'xlRed' : '#ED7D31',
-            'xlGray' : '#A5A5A5',
-            'xlYellow' : '#FFC000',
-            'xlNaviy' : '#4472C4',
-            'xlGreen' : '#70AD47',
-        },
-        'xlPale' : {
-            'xlWhite' : '#F2F2F2',
-            'xlBlack' : '#808080',
-            'xlRedGray' : '#AEAAAA',
-            'xlBlueGray' : '#D6DCE4',
-            'xlBlue' : '#DDEBF7',
-            'xlRed' : '#FCE4D6',
-            'xlGray' : '#EDEDED',
-            'xlYellow' : '#FFF2CC',
-            'xlNaviy' : '#D9E1F2',
-            'xlGreen' : '#E2EFDA',
-        },
-        'xlLight' : {
-            'xlWhite' : '#D9D9D9',
-            'xlBlack' : '#595959',
-            'xlRedGray' : '#757171',
-            'xlBlueGray' : '#ACB9CA',
-            'xlBlue' : '#BDD7EE',
-            'xlRed' : '#F8CBAD',
-            'xlGray' : '#DBDBDB',
-            'xlYellow' : '#FFE699',
-            'xlNaviy' : '#B4C6E7',
-            'xlGreen' : '#C6E0B4',
-        },
-        'xlSoft' : {
-            'xlWhite' : '#BFBFBF',
-            'xlBlack' : '#404040',
-            'xlRedGray' : '#3A3838',
-            'xlBlueGray' : '#8497B0',
-            'xlBlue' : '#9BC2E6',
-            'xlRed' : '#F4B084',
-            'xlGray' : '#C9C9C9',
-            'xlYellow' : '#FFD966',
-            'xlNaviy' : '#8EA9DB',
-            'xlGreen' : '#A9D08E',
-        },
-        'xlStrong' : {
-            'xlWhite' : '#A6A6A6',
-            'xlBlack' : '#262626',
-            'xlRedGray' : '#3A3838',
-            'xlBlueGray' : '#333F4F',
-            'xlBlue' : '#2F75B5',
-            'xlRed' : '#C65911',
-            'xlGray' : '#7B7B7B',
-            'xlYellow' : '#BF8F00',
-            'xlNaviy' : '#305496',
-            'xlGreen' : '#548235',
-        },
-        'xlDeep' : {
-            'xlWhite' : '#808080',
-            'xlBlack' : '#0D0D0D',
-            'xlRedGray' : '#161616',
-            'xlBlueGray' : '#161616',
-            'xlBlue' : '#1F4E78',
-            'xlRed' : '#833C0C',
-            'xlGray' : '#525252',
-            'xlYellow' : '#806000',
-            'xlNaviy' : '#203764',
-            'xlGreen' : '#375623',
-        },
-        'xlStandard' : {
-            'xlRed' : '#C00000',
-            'xlRed' : '#FF0000',
-            'xlOrange' : '#FFC000',
-            'xlYellow' : '#FFFF00',
-            'xlYellowGreen' : '#92D050',
-            'xlGreen' : '#00B050',
-            'xlDodgerBlue' : '#00B0F0',
-            'xlBlue' : '#0070C0',
-            'xlNaviy' : '#002060',
-            'xlViolet' : '#7030A0',
-        }
-    }
-
     @classmethod
-    @property
-    def xl_color_code_to_web_safe_color_dict(clazz):
-        return clazz._xl_color_code_to_web_safe_color_dict
+    def alias_to_web_safe_color_dict(clazz, contents_doc):
+        # # TODO 前もって作っておきたい
+        # if 'colorSystem' not in contents_doc:
+        #     return {}
+        
+        # if 'alias' not in contents_doc['colorSystem']:
+        #     return {}
+
+        return contents_doc['colorSystem']['alias']
 
 
     @staticmethod
@@ -520,7 +438,7 @@ class ColorSystem():
 
 
     @staticmethod
-    def solve_tone_and_color_name(tone_and_color_name):
+    def solve_tone_and_color_name(contents_doc, tone_and_color_name):
         try:
             tone, color = tone_and_color_name.split('.', 2)
         except:
@@ -531,7 +449,7 @@ class ColorSystem():
         tone = tone.strip()
         color = color.strip()
 
-        if tone in ColorSystem.xl_color_code_to_web_safe_color_dict and (tone_dict := ColorSystem.xl_color_code_to_web_safe_color_dict[tone]):
+        if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc) and (tone_dict := ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]):
             if color in tone_dict and (web_safe_color_code := tone_dict[color]):
                 return web_safe_color_code
 
@@ -541,7 +459,7 @@ class ColorSystem():
 
 
     @staticmethod
-    def var_color_name_to_web_safe_color_code(var_color_name):
+    def var_color_name_to_web_safe_color_code(contents_doc, var_color_name):
         """様々な色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
         """
 
@@ -555,18 +473,20 @@ class ColorSystem():
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
         if var_color_name == 'auto':
-            return ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']
+            return ColorSystem.alias_to_web_safe_color_dict(contents_doc=contents_doc)['xlTheme']['xlBlack']
 
         # `#` で始まるなら、ウェブセーフカラーとして扱う
         if var_color_name.startswith('#'):
             return var_color_name
 
 
-        return ColorSystem.solve_tone_and_color_name(tone_and_color_name=var_color_name)
+        return ColorSystem.solve_tone_and_color_name(
+            contents_doc=contents_doc,
+            tone_and_color_name=var_color_name)
 
 
     @staticmethod
-    def var_color_name_to_fill_obj(var_color_name):
+    def var_color_name_to_fill_obj(contents_doc, var_color_name):
         """様々な色名を FillPattern オブジェクトに変換します
         """
 
@@ -582,7 +502,8 @@ class ColorSystem():
         if var_color_name == 'auto':
             return PatternFill(
                     patternType='solid',
-                    fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict['xlTheme']['xlBlack']))
+                    fgColor=ColorSystem.web_safe_color_code_to_xl(
+                            ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']))
 
         try:
             tone, color = var_color_name.split('.', 2)
@@ -593,11 +514,11 @@ class ColorSystem():
         tone = tone.strip()
         color = color.strip()
 
-        if tone in ColorSystem.xl_color_code_to_web_safe_color_dict:
-            if color in ColorSystem.xl_color_code_to_web_safe_color_dict[tone]:
+        if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
+            if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
                 return PatternFill(
                         patternType='solid',
-                        fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.xl_color_code_to_web_safe_color_dict[tone][color]))
+                        fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]))
 
         print(f'var_color_name_to_fill_obj: 色がない {var_color_name=}')
         return ColorSystem.none_pattern_fill
@@ -621,7 +542,9 @@ class ColorSystem():
 
                     color_type = ColorSystem.what_is_var_color_name(var_color_name_before_change)
                     if color_type == ColorSystem.TONE_AND_COLOR_NAME:
-                        tlanslated_var_color_name_before_change = ColorSystem.solve_tone_and_color_name(tone_and_color_name=var_color_name_before_change)
+                        tlanslated_var_color_name_before_change = ColorSystem.solve_tone_and_color_name(
+                                contents_doc=contents_doc,
+                                tone_and_color_name=var_color_name_before_change)
 
                         if var_color_name_before_change != tlanslated_var_color_name_before_change:
                             old_value = darkness_dict_edit[var_color_name_before_change]
@@ -691,12 +614,14 @@ class XlFont():
 
 
     @staticmethod
-    def from_dict(xl_font_dict):
+    def from_dict(contents_doc, xl_font_dict):
         """辞書を元に生成
         """
         web_safe_color_code = None
         if 'color' in xl_font_dict:
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(xl_font_dict['color'])
+            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
+                    contents_doc=contents_doc,
+                    var_color_name=xl_font_dict['color'])
 
         return XlFont(
                 web_safe_color_code=web_safe_color_code)

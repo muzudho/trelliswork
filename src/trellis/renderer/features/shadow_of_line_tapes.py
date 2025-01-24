@@ -28,6 +28,7 @@ def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
+                            contents_doc=contents_doc,
                             column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                             row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,

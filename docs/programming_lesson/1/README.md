@@ -126,6 +126,9 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": "0o1",
@@ -161,6 +164,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": "0o1",

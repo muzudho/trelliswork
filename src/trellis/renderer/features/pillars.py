@@ -29,6 +29,7 @@ def render_all_pillar_rugs(config_doc, contents_doc, ws):
                 # 矩形を塗りつぶす
                 fill_rectangle(
                         ws=ws,
+                        contents_doc=contents_doc,
                         column_th=pillar_bounds_obj.left_obj.total_of_out_counts_th,
                         row_th=pillar_bounds_obj.top_obj.total_of_out_counts_th,
                         columns=pillar_bounds_obj.width_obj.total_of_out_counts_qty,

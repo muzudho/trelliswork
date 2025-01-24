@@ -1,6 +1,6 @@
 {
     "builder": {
-        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json"
+        "--source": "./examples/data_of_contents/battle_sequence_of_unfair_cointoss.step5_auto_split_by_pillar.json"
     },
     "compiler": {
         "objectFolder": "./temp/examples",
@@ -18,6 +18,13 @@
                 "objectFile": {
                     "write": true,
                     "suffix": "after_auto_shadow"
+                }
+            },
+            "imports": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_imports"
                 }
             }
         }

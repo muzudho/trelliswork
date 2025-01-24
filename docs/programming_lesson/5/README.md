@@ -6,6 +6,9 @@
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": 0,
@@ -74,6 +77,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": 0,
@@ -163,6 +169,9 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
 
 ```json
 {
+    "imports": [
+        "./examples/data_of_contents/alias_for_color.json"
+    ],
     "canvas": {
         "bounds": {
             "left": 0,

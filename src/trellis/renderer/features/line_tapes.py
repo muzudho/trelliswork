@@ -42,6 +42,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                     # ラインテープを描く
                     fill_rectangle(
                             ws=ws,
+                            contents_doc=contents_doc,
                             column_th=segment_rect.left_obj.total_of_out_counts_th,
                             row_th=segment_rect.top_obj.total_of_out_counts_th,
                             columns=segment_rect.width_obj.total_of_out_counts_qty,
@@ -50,13 +51,16 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
 
                     # （あれば）アウトラインを描く
                     if line_tape_outline_color and line_tape_direction:
-                        outline_fill_obj = ColorSystem.var_color_name_to_fill_obj(line_tape_outline_color)
+                        outline_fill_obj = ColorSystem.var_color_name_to_fill_obj(
+                                contents_doc=contents_doc,
+                                var_color_name=line_tape_outline_color)
 
                         # （共通処理）垂直方向
                         if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up', 'after_go_left.turn_falling_down']:
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
@@ -66,6 +70,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=1,
@@ -77,6 +82,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -86,6 +92,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -97,6 +104,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
@@ -106,6 +114,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
@@ -117,6 +126,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
@@ -126,6 +136,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
@@ -137,6 +148,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -146,6 +158,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -157,6 +170,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -166,6 +180,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -175,6 +190,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
@@ -186,6 +202,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
@@ -195,6 +212,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
@@ -206,6 +224,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
@@ -215,6 +234,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=segment_rect.width_obj.total_of_out_counts_qty,
@@ -226,6 +246,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
                                     columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -235,6 +256,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=1,
@@ -244,6 +266,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -255,6 +278,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th,
                                     columns=1,
@@ -264,6 +288,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
@@ -275,6 +300,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -284,6 +310,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 左辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=1,
@@ -293,6 +320,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 右辺（横長）を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING - 1,
@@ -304,6 +332,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 上辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
@@ -313,6 +342,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                             # 下辺を描く
                             fill_rectangle(
                                     ws=ws,
+                                    contents_doc=contents_doc,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
                                     columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,

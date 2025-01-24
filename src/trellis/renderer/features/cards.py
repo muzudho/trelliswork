@@ -54,6 +54,7 @@ def render_all_cards(config_doc, contents_doc, ws):
                         # 短冊１行の描画
                         render_paper_strip(
                                 ws=ws,
+                                contents_doc=contents_doc,
                                 paper_strip=paper_strip,
                                 column_th=card_bounds_obj.left_obj.total_of_out_counts_th,
                                 row_th=index * Share.OUT_COUNTS_THAT_CHANGE_INNING + card_bounds_obj.top_obj.total_of_out_counts_th,

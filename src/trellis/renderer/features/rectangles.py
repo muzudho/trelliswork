@@ -44,6 +44,7 @@ def render_all_rectangles(config_doc, contents_doc, ws):
                     if 'xlBorder' in rectangle_dict and (xl_border_dict := rectangle_dict['xlBorder']):
                         draw_xl_border_on_rectangle(
                                 ws=ws,
+                                contents_doc=contents_doc,
                                 xl_border_dict=xl_border_dict,
                                 column_th=bounds_obj.left_obj.total_of_out_counts_th,
                                 row_th=bounds_obj.top_obj.total_of_out_counts_th,
@@ -53,6 +54,7 @@ def render_all_rectangles(config_doc, contents_doc, ws):
                     # 矩形を塗りつぶす
                     fill_rectangle(
                             ws=ws,
+                            contents_doc=contents_doc,
                             column_th=bounds_obj.left_obj.total_of_out_counts_th,
                             row_th=bounds_obj.top_obj.total_of_out_counts_th,
                             columns=bounds_obj.width_obj.total_of_out_counts_qty,

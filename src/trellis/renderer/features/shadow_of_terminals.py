@@ -35,6 +35,7 @@ def render_shadow_of_all_terminals(config_doc, contents_doc, ws):
                     # 端子の影を描く
                     fill_rectangle(
                             ws=ws,
+                            contents_doc=contents_doc,
                             column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                             row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                             columns=9,

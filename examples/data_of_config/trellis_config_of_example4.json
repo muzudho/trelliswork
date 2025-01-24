@@ -1,0 +1,30 @@
+{
+    "builder": {
+        "--source": "./examples/data_of_contents/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json"
+    },
+    "compiler": {
+        "objectFolder": "./temp/examples",
+        "objectFilePrefix": null,
+        "tlanslators": {
+            "autoShadow": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_auto_shadow"
+                }
+            },
+            "imports": {
+                "enabled": true,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_imports"
+                }
+            }
+        }
+    },
+    "renderer": {
+        "--output": "./temp/examples/no4_auto_shadow.xlsx",
+        "features": {
+        }
+    }
+}

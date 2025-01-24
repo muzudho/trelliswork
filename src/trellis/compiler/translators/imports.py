@@ -23,8 +23,8 @@ class Imports(Translator):
                         print(f'import: {export_key=}')
 
                         if export_key in contents_doc_rw:
-                            # 辞書と辞書をマージにして、新しい辞書とする
-                            contents_doc_rw[export_key] = {**contents_doc_rw[export_key], **export_body}
+                            # 辞書と辞書をマージにして、新しい辞書とする。重複した場合は、後ろに指定した辞書の方で上書きする
+                            contents_doc_rw[export_key] = {**export_body, **contents_doc_rw[export_key]}
                         else:
                             # 新規追加
                             contents_doc_rw[export_key] = export_body

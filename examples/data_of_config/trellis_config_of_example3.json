@@ -1,22 +1,22 @@
 {
     "builder": {
-        "--source": "./examples/data/battle_sequence_of_unfair_cointoss.step4_auto_shadow.json"
+        "--source": "./examples/data_of_contents/battle_sequence_of_unfair_cointoss.step1_full_manual.json"
     },
     "compiler": {
         "objectFolder": "./temp/examples",
         "objectFilePrefix": null,
         "tlanslators": {
-            "autoShadow": {
+            "imports": {
                 "enabled": true,
                 "objectFile": {
                     "write": true,
-                    "suffix": "after_auto_shadow"
+                    "suffix": "after_imports"
                 }
             }
         }
     },
     "renderer": {
-        "--output": "./temp/examples/no4_auto_shadow.xlsx",
+        "--output": "./temp/examples/no3_line_tapes.xlsx",
         "features": {
         }
     }
