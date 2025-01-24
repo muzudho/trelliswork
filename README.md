@@ -39,3 +39,6 @@ Git Hub が何だか分からない人は、この節は読み飛ばしてくだ
 * [x] (2025-01-12) 内部的には、柱と柱の隙間も柱として扱いたい ---> (2025-01-12) Done
 * [x] (2025-01-13) Square, Rectangle オブジェクトを四則演算できるようにしたい ---> (2025-01-12) Done。cell_num, cell_th プロパティ追加
 * [x] (2025-01-13) Square クラスを、 InningsPitched にリネームしたい ---> (2025-01-13) Done
+* [x] (2025-01-25) Pillar の baseColor を "#FFFF00" 形式にすると例外、 "xlPale.xlBlue" 形式なら Ok という不具合がある
+    * `fill_rectangle` がエラーを起こす？ ---> PatternFill を返す関数で、ウェブセーフカラー文字列を返していた
+

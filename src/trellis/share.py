@@ -415,6 +415,12 @@ class ColorSystem():
         return 'webSafeColorCode'
 
 
+    @classmethod
+    @property
+    def XL_COLOR_CODE(clazz):
+        return 'xlColorCode'
+
+
     @staticmethod
     def what_is_var_color_name(var_color_name):
         """TODO トーン名・色名の欄に何が入っているか判定します
@@ -432,11 +438,16 @@ class ColorSystem():
         #
         #   とりあえず、 `#` で始まるなら、ウェブセーフカラーとして扱う
         #
-        if var_color_name.startswith('#'):
+        #if var_color_name.startswith('#'):
+        if re.match(r'^#[0-9a-fA-f]{6}$', var_color_name):
             return ColorSystem.WEB_SAFE_COLOR_CODE
 
+        if re.match(r'^[0-9a-fA-f]{6}$', var_color_name):
+            return ColorSystem.XL_COLOR_CODE
+
         # 色相名と色名だ
-        if '.' in var_color_name:
+        #if '.' in var_color_name:
+        if re.match(r'^[0-9a-zA-Z_]+\.[0-9a-zA-Z_]+$', var_color_name):
             return ColorSystem.TONE_AND_COLOR_NAME
 
         # "auto", "paperColor" キーワードのいずれかが入っている
@@ -509,15 +520,20 @@ class ColorSystem():
         if color_type == ColorSystem.PAPER_COLOR:
             return ColorSystem.none_pattern_fill
 
+        if color_type == ColorSystem.XL_COLOR_CODE:
+            return PatternFill(
+                    patternType='solid',
+                    fgColor=var_color_name)
+
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
         if color_type == ColorSystem.AUTO:
             xl_color_name = ColorSystem.web_safe_color_code_to_xl(
                     ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack'])
 
-            if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
-                raise ValueError(f'色指定がおかしい {xl_color_name=}')
-            else:
-                print(f'★ {xl_color_name=}')
+            #if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
+            #    raise ValueError(f'色指定がおかしい {xl_color_name=}')
+            # else:
+            #     print(f'★ {xl_color_name=}')
 
             return PatternFill(
                     patternType='solid',
@@ -525,7 +541,9 @@ class ColorSystem():
 
         # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
         if color_type == ColorSystem.WEB_SAFE_COLOR_CODE:
-            return ColorSystem.web_safe_color_code_to_xl(var_color_name)
+            return PatternFill(
+                    patternType='solid',
+                    fgColor=ColorSystem.web_safe_color_code_to_xl(var_color_name))
 
         try:
             tone, color = var_color_name.split('.', 2)
