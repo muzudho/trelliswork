@@ -27,7 +27,6 @@ def render_all_cards(config_doc, contents_doc, ws):
             if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
                 continue
 
-            base_color = pillar_dict['baseColor']
             card_list = pillar_dict['cards']
 
             for card_dict in card_list:

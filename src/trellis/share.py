@@ -1,5 +1,7 @@
 import os
 import openpyxl as xl
+import re
+
 from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
@@ -373,6 +375,13 @@ class ColorSystem():
     def web_safe_color_code_to_xl(web_safe_color_code):
         """頭の `#` を外します
         """
+
+        # FIXME チェック★
+        if not re.match(r'^#[0-9a-fA-F]{6}$', web_safe_color_code):
+            raise ValueError(f'web_safe_color_code_to_xl: ウェブ・セーフ・カラーじゃないかも？ {web_safe_color_code=}')
+        
+        #print(f'★ {web_safe_color_code=}')
+
         return web_safe_color_code[1:]
 
 
@@ -502,10 +511,17 @@ class ColorSystem():
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
         if color_type == ColorSystem.AUTO:
+            xl_color_name = ColorSystem.web_safe_color_code_to_xl(
+                    ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack'])
+
+            if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
+                raise ValueError(f'色指定がおかしい {xl_color_name=}')
+            else:
+                print(f'★ {xl_color_name=}')
+
             return PatternFill(
                     patternType='solid',
-                    fgColor=ColorSystem.web_safe_color_code_to_xl(
-                            ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']))
+                    fgColor=xl_color_name)
 
         # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
         if color_type == ColorSystem.WEB_SAFE_COLOR_CODE:
@@ -687,9 +703,6 @@ class Pillar():
         bounds_obj = None
         if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
             bounds_obj = Rectangle.from_dict(bounds_dict)
-
-        # FIXME: if 'baseColor' in pillar_dict and (var_color_name := pillar_dict['baseColor']):
-
 
         return Canvas(
                 bounds_obj=bounds_obj)

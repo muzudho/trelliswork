@@ -45,7 +45,7 @@ class AutoShadow(Translator):
                                             row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                         card_dict_rw['shadowColor'] = solved_var_color_name
                                 except:
-                                    print(f'ERROR: translate_document: {card_dict_rw=}')
+                                    print(f'ERROR: AutoShadow: {card_dict_rw=}')
                                     raise
 
                 # もし、端子のリストがあれば
@@ -59,12 +59,16 @@ class AutoShadow(Translator):
 
                             if terminal_shadow_color == 'auto':
 
-                                # 影に自動が設定されていたら、解決する
-                                if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                        contents_doc=contents_doc_rw,
-                                        column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                        row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                    terminal_dict['shadowColor'] = solved_var_color_name
+                                try:
+                                    # 影に自動が設定されていたら、解決する
+                                    if solved_var_color_name := AutoShadow._get_auto_shadow(
+                                            contents_doc=contents_doc_rw,
+                                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                        terminal_dict['shadowColor'] = solved_var_color_name
+                                except:
+                                    print(f'ERROR: AutoShadow: {terminal_dict=}')
+                                    raise
 
         # もし、ラインテープのリストがあれば
         if 'lineTapes' in contents_doc_rw and (line_tape_list := contents_doc_rw['lineTapes']):
@@ -79,12 +83,16 @@ class AutoShadow(Translator):
 
                             # NOTE 影が指定されているということは、浮いているということでもある
 
-                            # 影に自動が設定されていたら、解決する
-                            if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                    contents_doc=contents_doc_rw,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                    row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                segment_dict['shadowColor'] = solved_var_color_name
+                            try:
+                                # 影に自動が設定されていたら、解決する
+                                if solved_var_color_name := AutoShadow._get_auto_shadow(
+                                        contents_doc=contents_doc_rw,
+                                        column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                        row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                    segment_dict['shadowColor'] = solved_var_color_name
+                            except:
+                                print(f'ERROR: AutoShadow: {segment_dict=}')
+                                raise
 
 
     @staticmethod
@@ -113,7 +121,20 @@ class AutoShadow(Translator):
                         if pillar_bounds_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_bounds_obj.left_obj.total_of_out_counts_th + pillar_bounds_obj.width_obj.total_of_out_counts_qty and \
                             pillar_bounds_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_bounds_obj.top_obj.total_of_out_counts_th + pillar_bounds_obj.height_obj.total_of_out_counts_qty:
 
-                            return shadow_color_dict[base_color]
+                            if base_color in shadow_color_dict:
+                                shadow_color = shadow_color_dict[base_color]
+                                print(f'★ベースの色に紐づく影の色。 {shadow_color=}')  # FIXME 例えば xlLight.xlYellow とか
+                                return shadow_color
+
+                            else:
+                                print(f'★ベースの色に紐づく影色が見つからない。 {base_color=}')  # FIXME
+                                #return 'xlLight.xlYellow'   # FIXME この値はいいかげん
+                                #return '#000000'    # FIXME 黒の埋め込みを止めたい
+                                #return base_color
+                                return None
 
         # 該当なし
-        return shadow_color_dict['paperColor']
+        if 'paperColor' in shadow_color_dict:
+            return shadow_color_dict['paperColor']
+        else:
+            return None

@@ -19,7 +19,7 @@
                 }
             },
             "resolveAliasOfColor": {
-                "enabled": false,
+                "enabled": true,
                 "objectFile": {
                     "write": true,
                     "suffix": "after_resolve_alias_of_color"

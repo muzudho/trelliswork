@@ -1,8 +1,5 @@
 import os
 import openpyxl as xl
-from openpyxl.styles import PatternFill, Font
-from openpyxl.styles.borders import Border, Side
-from openpyxl.drawing.image import Image as XlImage
 import json
 
 from .compiler.translators.auto_shadow import AutoShadow
