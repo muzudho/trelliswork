@@ -48,7 +48,9 @@
                 "width": 9,
                 "height": 148
             },
-            "baseColor": "xlPale.xlBlue",
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -129,7 +131,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlYellow",
+            "background": {
+                "varColor": "xlPale.xlYellow"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -199,7 +203,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlBlue",
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -544,7 +550,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlBlue",
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -748,7 +756,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlBlue",
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -949,7 +959,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlBlue",
+            "background": {
+                "varColor": "xlPale.xlBlue"
+            },
             "cards": [
                 {
                     "bounds": {
@@ -1031,7 +1043,9 @@
                 "top": 1,
                 "height": 148
             },
-            "baseColor": "xlPale.xlYellow",
+            "background": {
+                "varColor": "xlPale.xlYellow"
+            },
             "cards": [
                 {
                     "bounds": {

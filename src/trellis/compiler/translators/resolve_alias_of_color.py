@@ -100,23 +100,6 @@ class ResolveAliasOfColor(Translator):
                 shadow_color_mappings_dict_rw[key] = value
 
 
-            # ［柱］の基調色
-            if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
-
-                for pillar_dict_rw in pillars_list_rw:
-
-                    if 'baseColor' in pillar_dict_rw and (base_var_color_name := pillar_dict_rw['baseColor']):
-                        color_type = ColorSystem.what_is_var_color_name(
-                                var_color_name=base_var_color_name)
-
-                        if color_type == ColorSystem.TONE_AND_COLOR_NAME:
-                            web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                                    contents_doc=contents_doc_rw,
-                                    tone_and_color_name=base_var_color_name)
-
-                            pillar_dict_rw['baseColor'] = web_safe_color_code
-
-
             # # TODO 別名の対応表の削除
             # del color_system_dict_rw['alias']
 
@@ -126,6 +109,7 @@ class ResolveAliasOfColor(Translator):
         for key, value in current_dict_rw.items():
             if key == "varColor":
 
+                # 辞書 varColor の文字列要素
                 if isinstance(value, str):
                     color_type = ColorSystem.what_is_var_color_name(
                             var_color_name=value)
@@ -141,6 +125,7 @@ class ResolveAliasOfColor(Translator):
 
             elif key == 'varColors':
 
+                # 辞書 varColors の配列要素
                 if isinstance(value, list):
                     ResolveAliasOfColor.search_list(
                             contents_doc_rw=contents_doc_rw,
@@ -148,12 +133,13 @@ class ResolveAliasOfColor(Translator):
 
                 continue
 
-
+            # 辞書の任意のキーの辞書要素
             if isinstance(value, dict):
                 ResolveAliasOfColor.search_dict(
                         contents_doc_rw=contents_doc_rw,
                         current_dict_rw=value)
 
+            # 辞書の任意のキーのリスト要素
             elif isinstance(value, list):
                 ResolveAliasOfColor.search_list(
                         contents_doc_rw=contents_doc_rw,
@@ -164,6 +150,7 @@ class ResolveAliasOfColor(Translator):
     def search_list(contents_doc_rw, current_list_rw):
         for index, value in enumerate(current_list_rw):
 
+            # リストの文字列要素
             if isinstance(value, str):
                 color_type = ColorSystem.what_is_var_color_name(
                         var_color_name=value)
@@ -174,3 +161,15 @@ class ResolveAliasOfColor(Translator):
                             tone_and_color_name=value)
 
                     current_list_rw[index] = web_safe_color_code
+
+            # リストの辞書要素
+            elif isinstance(value, dict):
+                ResolveAliasOfColor.search_dict(
+                        contents_doc_rw=contents_doc_rw,
+                        current_dict_rw=value)
+
+            # リストのリスト要素
+            elif isinstance(value, list):
+                ResolveAliasOfColor.search_list(
+                        contents_doc_rw=contents_doc_rw,
+                        current_list_rw=value)

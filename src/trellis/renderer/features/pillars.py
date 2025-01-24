@@ -23,15 +23,17 @@ def render_all_pillar_rugs(config_doc, contents_doc, ws):
         for pillar_dict in pillars_list:
             pillar_obj = Pillar.from_dict(pillar_dict)
 
-            if 'baseColor' in pillar_dict and (base_color := pillar_dict['baseColor']):
-                pillar_bounds_obj = pillar_obj.bounds_obj
+            if 'background' in pillar_dict and (background_dict := pillar_dict['background']):
 
-                # 矩形を塗りつぶす
-                fill_rectangle(
-                        ws=ws,
-                        contents_doc=contents_doc,
-                        column_th=pillar_bounds_obj.left_obj.total_of_out_counts_th,
-                        row_th=pillar_bounds_obj.top_obj.total_of_out_counts_th,
-                        columns=pillar_bounds_obj.width_obj.total_of_out_counts_qty,
-                        rows=pillar_bounds_obj.height_obj.total_of_out_counts_qty,
-                        color=base_color)
+                if 'varColor' in background_dict and (bg_color := background_dict['varColor']):
+                    pillar_bounds_obj = pillar_obj.bounds_obj
+
+                    # 矩形を塗りつぶす
+                    fill_rectangle(
+                            ws=ws,
+                            contents_doc=contents_doc,
+                            column_th=pillar_bounds_obj.left_obj.total_of_out_counts_th,
+                            row_th=pillar_bounds_obj.top_obj.total_of_out_counts_th,
+                            columns=pillar_bounds_obj.width_obj.total_of_out_counts_qty,
+                            rows=pillar_bounds_obj.height_obj.total_of_out_counts_qty,
+                            color=bg_color)

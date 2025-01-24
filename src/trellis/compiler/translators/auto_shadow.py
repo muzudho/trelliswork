@@ -111,26 +111,30 @@ class AutoShadow(Translator):
                         pillar_obj = Pillar.from_dict(pillar_dict)
 
                         # 柱と柱の隙間（隙間柱）は無視する
-                        if 'baseColor' not in pillar_dict or not pillar_dict['baseColor']:
+                        if 'background' not in pillar_dict:
+                            continue
+
+                        background_dict = pillar_dict['background']
+
+                        if 'varColor' not in background_dict:
+                            continue
+
+                        if not (bg_color := background_dict['varColor']):
                             continue
 
                         pillar_bounds_obj = pillar_obj.bounds_obj
-                        base_color = pillar_dict['baseColor']
 
                         # もし、矩形の中に、指定の点が含まれたなら
                         if pillar_bounds_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_bounds_obj.left_obj.total_of_out_counts_th + pillar_bounds_obj.width_obj.total_of_out_counts_qty and \
                             pillar_bounds_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_bounds_obj.top_obj.total_of_out_counts_th + pillar_bounds_obj.height_obj.total_of_out_counts_qty:
 
-                            if base_color in shadow_color_dict:
-                                shadow_color = shadow_color_dict[base_color]
-                                #print(f'★ベースの色に紐づく影の色。 {shadow_color=}')  # FIXME 例えば xlLight.xlYellow とか
+                            # ベースの色に紐づく影の色
+                            if bg_color in shadow_color_dict:
+                                shadow_color = shadow_color_dict[bg_color]
                                 return shadow_color
 
+                            # ベースの色に紐づく影色が見つからない
                             else:
-                                #print(f'★ベースの色に紐づく影色が見つからない。 {base_color=}')  # FIXME
-                                #return 'xlLight.xlYellow'   # FIXME この値はいいかげん
-                                #return '#000000'    # FIXME 黒の埋め込みを止めたい
-                                #return base_color
                                 return None
 
         # 該当なし
