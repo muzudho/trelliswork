@@ -7,8 +7,8 @@ import json
 
 from .compiler.translators.auto_shadow import AutoShadow
 from .compiler.translators.auto_split_pillar import AutoSplitSegmentByPillar
-from .compiler.translators.color_systems_darkness import ColorSystemsDarkness
 from .compiler.translators.imports import Imports
+from .compiler.translators.resolve_alias_of_color import ResolveAliasOfColor
 
 from .renderer.features.canvas import render_canvas
 from .renderer.features.cards import render_all_cards
@@ -149,6 +149,7 @@ class TrellisInSrc():
                     'autoSplitSegmentByPillar': AutoSplitSegmentByPillar(),
                     'autoShadow': AutoShadow(),
                     'imports': Imports(),
+                    'resolveAliasOfColor': ResolveAliasOfColor(),
                 }
 
                 # 翻訳の実行順序

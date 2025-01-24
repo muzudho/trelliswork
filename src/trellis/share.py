@@ -402,8 +402,8 @@ class ColorSystem():
 
     @classmethod
     @property
-    def WEB_SAFE_COLOR(clazz):
-        return 'webSafeColor'
+    def WEB_SAFE_COLOR_CODE(clazz):
+        return 'webSafeColorCode'
 
 
     @staticmethod
@@ -424,7 +424,7 @@ class ColorSystem():
         #   とりあえず、 `#` で始まるなら、ウェブセーフカラーとして扱う
         #
         if var_color_name.startswith('#'):
-            return ColorSystem.WEB_SAFE_COLOR
+            return ColorSystem.WEB_SAFE_COLOR_CODE
 
         # 色相名と色名だ
         if '.' in var_color_name:
@@ -490,20 +490,26 @@ class ColorSystem():
         """様々な色名を FillPattern オブジェクトに変換します
         """
 
+        color_type = ColorSystem.what_is_var_color_name(var_color_name=var_color_name)
+
         # 色が指定されていないとき、この関数を呼び出してはいけません
-        if var_color_name is None:
+        if color_type is None:
             raise Exception(f'var_color_name_to_fill_obj: 色が指定されていません')
 
         # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-        if var_color_name == 'paperColor':
+        if color_type == ColorSystem.PAPER_COLOR:
             return ColorSystem.none_pattern_fill
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-        if var_color_name == 'auto':
+        if color_type == ColorSystem.AUTO:
             return PatternFill(
                     patternType='solid',
                     fgColor=ColorSystem.web_safe_color_code_to_xl(
                             ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']))
+
+        # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
+        if color_type == ColorSystem.WEB_SAFE_COLOR_CODE:
+            return ColorSystem.web_safe_color_code_to_xl(var_color_name)
 
         try:
             tone, color = var_color_name.split('.', 2)
