@@ -5,8 +5,10 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from .compiler_translators.auto_shadow import AutoShadowSolver
-from .compiler_translators.auto_split_pillar import AutoSplitSegmentByPillarSolver
+from .compiler.translators.auto_shadow import AutoShadow
+from .compiler.translators.auto_split_pillar import AutoSplitSegmentByPillar
+from .compiler.translators.color_systems_darkness import ColorSystemsDarkness
+
 from .renderer.features.canvas import render_canvas
 from .renderer.features.cards import render_all_cards
 from .renderer.features.line_tapes import render_all_line_tapes
@@ -141,25 +143,27 @@ class TrellisInSrc():
                             f.write(json.dumps(contents_doc_rw, indent=4, ensure_ascii=False))
 
 
+                # ［翻訳者一覧］
+                translator_object_dict = {
+                    'autoSplitSegmentByPillar': AutoSplitSegmentByPillar(),
+                    'autoShadow': AutoShadow(),
+                }
+
+                # 各［翻訳者］
+                #
+                #   翻訳者は translate_document(contents_doc_rw) というインスタンス・メソッドを持つ
+                #
                 for key, translator_dict in translators_dict.items():
-                    if key == 'autoSplitSegmentByPillar':
+                    if key in translator_object_dict:
+                        translator_obj = translator_object_dict[key]
+
                         if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
                             # ドキュメントに対して、自動ピラー分割の編集を行います
-                            AutoSplitSegmentByPillarSolver.edit_document(
+                            translator_obj.translate_document(
                                     contents_doc_rw=contents_doc_rw)
 
                         # （場合により）中間ファイルの書出し
-                        write_object_file(comment='autoSplitSegmentByPillar')
-
-
-                    elif key == 'autoShadow':
-                        if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
-                            # ドキュメントに対して、影の自動設定の編集を行います
-                            AutoShadowSolver.edit_document(
-                                    contents_doc_rw=contents_doc_rw)
-
-                        # （場合により）中間ファイルの書出し
-                        write_object_file(comment='auto_shadow')
+                        write_object_file(comment=key)
 
 
     @staticmethod

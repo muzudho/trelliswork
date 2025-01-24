@@ -362,7 +362,7 @@ class ColorSystem():
         'xlTheme' : {
             'xlWhite' : '#FFFFFF',
             'xlBlack' : '#000000',
-            'xlRed_gray' : '#E7E6E6',
+            'xlRedGray' : '#E7E6E6',
             'xlBlueGray' : '#44546A',
             'xlBlue' : '#5B9BD5',
             'xlRed' : '#ED7D31',
@@ -374,7 +374,7 @@ class ColorSystem():
         'xlPale' : {
             'xlWhite' : '#F2F2F2',
             'xlBlack' : '#808080',
-            'xlRed_gray' : '#AEAAAA',
+            'xlRedGray' : '#AEAAAA',
             'xlBlueGray' : '#D6DCE4',
             'xlBlue' : '#DDEBF7',
             'xlRed' : '#FCE4D6',
@@ -386,7 +386,7 @@ class ColorSystem():
         'xlLight' : {
             'xlWhite' : '#D9D9D9',
             'xlBlack' : '#595959',
-            'xlRed_gray' : '#757171',
+            'xlRedGray' : '#757171',
             'xlBlueGray' : '#ACB9CA',
             'xlBlue' : '#BDD7EE',
             'xlRed' : '#F8CBAD',
@@ -398,7 +398,7 @@ class ColorSystem():
         'xlSoft' : {
             'xlWhite' : '#BFBFBF',
             'xlBlack' : '#404040',
-            'xlRed_gray' : '#3A3838',
+            'xlRedGray' : '#3A3838',
             'xlBlueGray' : '#8497B0',
             'xlBlue' : '#9BC2E6',
             'xlRed' : '#F4B084',
@@ -410,7 +410,7 @@ class ColorSystem():
         'xlStrong' : {
             'xlWhite' : '#A6A6A6',
             'xlBlack' : '#262626',
-            'xlRed_gray' : '#3A3838',
+            'xlRedGray' : '#3A3838',
             'xlBlueGray' : '#333F4F',
             'xlBlue' : '#2F75B5',
             'xlRed' : '#C65911',
@@ -422,7 +422,7 @@ class ColorSystem():
         'xlDeep' : {
             'xlWhite' : '#808080',
             'xlBlack' : '#0D0D0D',
-            'xlRed_gray' : '#161616',
+            'xlRedGray' : '#161616',
             'xlBlueGray' : '#161616',
             'xlBlue' : '#1F4E78',
             'xlRed' : '#833C0C',
@@ -458,33 +458,33 @@ class ColorSystem():
         return web_safe_color_code[1:]
 
 
-    @staticmethod
+    @classmethod
     @property
-    def AUTO():
+    def AUTO(clazz):
         return 'auto'
 
 
-    @staticmethod
+    @classmethod
     @property
-    def DARKNESS():
+    def DARKNESS(clazz):
         return 'darkness'
 
 
-    @staticmethod
+    @classmethod
     @property
-    def PAPER_COLOR():
+    def PAPER_COLOR(clazz):
         return 'paperColor'
 
 
-    @staticmethod
+    @classmethod
     @property
-    def TONE_AND_COLOR_NAME():
+    def TONE_AND_COLOR_NAME(clazz):
         return 'toneAndColorName'
 
 
-    @staticmethod
+    @classmethod
     @property
-    def WEB_SAFE_COLOR():
+    def WEB_SAFE_COLOR(clazz):
         return 'webSafeColor'
 
 
@@ -516,7 +516,7 @@ class ColorSystem():
         if var_color_name in [ColorSystem.AUTO, ColorSystem.PAPER_COLOR]:
             return var_color_name
         
-        raise ValueError(f"""ERROR: what_is_var_color_name: undefined {var_color_name=}""")
+        raise ValueError(f"""ERROR: what_is_var_color_name: undefined {var_color_name=} {ColorSystem.AUTO=} {ColorSystem.PAPER_COLOR=}""")
 
 
     @staticmethod

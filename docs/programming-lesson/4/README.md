@@ -62,7 +62,7 @@
 そして、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![テキスト描画](../../img/[20250119-0012]print-text4.png)  

@@ -333,7 +333,7 @@ def render_paper_strip(ws, paper_strip, column_th, row_th, columns, rows):
 
     # アイコン（があれば画像をワークシートのセルに挿入）
     if 'icon' in paper_strip:
-        image_basename = paper_strip['icon']  # 例： 'white-game-object.png'
+        image_basename = paper_strip['icon']  # 例： 'white_game_object.png'
 
         cur_column_th = column_th + (indent * Share.OUT_COUNTS_THAT_CHANGE_INNING)
         column_letter = xl.utils.get_column_letter(cur_column_th)

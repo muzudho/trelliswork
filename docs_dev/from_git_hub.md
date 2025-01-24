@@ -45,5 +45,5 @@ py example.py all
 以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```

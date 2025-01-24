@@ -1,11 +1,11 @@
-from ..share import InningsPitched, Pillar, Rectangle, Share
+from ...share import InningsPitched, Pillar, Rectangle, Share
+from ..translator import Translator
 
 
-class AutoSplitSegmentByPillarSolver():
+class AutoSplitSegmentByPillar(Translator):
 
 
-    @staticmethod
-    def edit_document(contents_doc_rw):
+    def translate_document(self, contents_doc_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         Parameters
@@ -27,7 +27,7 @@ class AutoSplitSegmentByPillarSolver():
                         if 'shadowColor' in line_tape_segment_dict and (shadow_color := line_tape_segment_dict['shadowColor']):
                             # 柱を跨ぐとき、ラインテープを分割します
                             new_splitting_segments.extend(
-                                    AutoSplitSegmentByPillarSolver._split_segment_by_pillar(
+                                    AutoSplitSegmentByPillar._split_segment_by_pillar(
                                             contents_doc=contents_doc_rw,
                                             line_tape_segment_list_rw=line_tape_segment_list_rw,
                                             line_tape_segment_dict=line_tape_segment_dict))

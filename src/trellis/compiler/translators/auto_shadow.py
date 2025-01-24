@@ -1,11 +1,11 @@
-from ..share import Card, Pillar, Rectangle, Share, Terminal
+from ...share import Card, Pillar, Rectangle, Share, Terminal
+from ..translator import Translator
 
 
-class AutoShadowSolver():
+class AutoShadow(Translator):
 
 
-    @staticmethod
-    def edit_document(contents_doc_rw):
+    def translate_document(self, contents_doc_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         ['pillars']['cards']['shadowColor'] の値が 'auto' なら、
@@ -39,13 +39,13 @@ class AutoShadowSolver():
                                 card_bounds_obj = card_obj.bounds_obj
 
                                 try:
-                                    if solved_var_color_name := AutoShadowSolver._get_auto_shadow(
+                                    if solved_var_color_name := AutoShadow._get_auto_shadow(
                                             contents_doc=contents_doc_rw,
                                             column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                         card_dict_rw['shadowColor'] = solved_var_color_name
                                 except:
-                                    print(f'ERROR: edit_document_and_solve_auto_shadow: {card_dict_rw=}')
+                                    print(f'ERROR: translate_document: {card_dict_rw=}')
                                     raise
 
                 # もし、端子のリストがあれば
@@ -60,7 +60,7 @@ class AutoShadowSolver():
                             if terminal_shadow_color == 'auto':
 
                                 # 影に自動が設定されていたら、解決する
-                                if solved_var_color_name := AutoShadowSolver._get_auto_shadow(
+                                if solved_var_color_name := AutoShadow._get_auto_shadow(
                                         contents_doc=contents_doc_rw,
                                         column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                         row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
@@ -80,7 +80,7 @@ class AutoShadowSolver():
                             # NOTE 影が指定されているということは、浮いているということでもある
 
                             # 影に自動が設定されていたら、解決する
-                            if solved_var_color_name := AutoShadowSolver._get_auto_shadow(
+                            if solved_var_color_name := AutoShadow._get_auto_shadow(
                                     contents_doc=contents_doc_rw,
                                     column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                     row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):

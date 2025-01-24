@@ -10,14 +10,14 @@
                 "enabled": true,
                 "objectFile": {
                     "write": true,
-                    "suffix": "after-auto-split-pillar"
+                    "suffix": "after_auto_split_pillar"
                 }
             },
             "autoShadow": {
                 "enabled": true,
                 "objectFile": {
                     "write": true,
-                    "suffix": "after-auto-shadow"
+                    "suffix": "after_auto_shadow"
                 }
             }
         }

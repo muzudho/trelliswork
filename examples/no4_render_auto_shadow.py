@@ -8,7 +8,7 @@ from src.trellis import trellis_in_src as tr
 
 
 # 設定ファイル（JSON形式）
-file_path_of_config_doc = './examples/data/trellis-config-of-example4.json'
+file_path_of_config_doc = './examples/data/trellis_config_of_example4.json'
 
 print(f"""\
 example 4: auto shadow""")

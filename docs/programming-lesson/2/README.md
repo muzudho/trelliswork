@@ -46,7 +46,7 @@
 そして［プログラミング・レッスン１の手順８］と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![定規の色を変更](../../img/[20250115-2124]change-ruler-color.png)  
@@ -87,7 +87,7 @@ py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_
 そして手順２と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![紙の地の色に変更](../../img/[20250115-2201]paper-color.png)  
@@ -131,7 +131,7 @@ py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_
 そして手順３と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![紙の地の色に変更](../../img/[20250115-2250]tri-color.png)  
@@ -174,7 +174,7 @@ py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_
 そして手順３と同様に、以下のコマンドを打鍵してください。  
 
 ```shell
-py trellis.py build --config ./trellis-config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
+py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_world.json --temp ./temp --output ./temp/lesson/hello_world.xlsx
 ```
 
 ![紙の地の色に変更](../../img/[20250116-0038]web-safe-color.png)  
