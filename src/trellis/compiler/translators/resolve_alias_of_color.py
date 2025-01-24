@@ -9,7 +9,6 @@ class ResolveAliasOfColor(Translator):
 
     def translate_document(self, contents_doc_rw):
 
-
         if 'colorSystem' in contents_doc_rw and (color_system_dict_rw := contents_doc_rw['colorSystem']):
 
             # 別名の対応表
@@ -30,6 +29,7 @@ class ResolveAliasOfColor(Translator):
 
                     color_type = ColorSystem.what_is_var_color_name(
                             var_color_name=key_vcn)
+
 
                     if color_type == ColorSystem.TONE_AND_COLOR_NAME:
                         key_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
@@ -92,11 +92,11 @@ class ResolveAliasOfColor(Translator):
 
 
         # ［柱］の基調色
-        if 'pillars' in contents_doc_rw and (pillars_list := contents_doc_rw['pillars']):
+        if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
 
-            for pillar_dict in pillars_list:
+            for pillar_dict_rw in pillars_list_rw:
 
-                if 'baseColor' in pillar_dict and (base_var_color_name := pillar_dict['baseColor']):
+                if 'baseColor' in pillar_dict_rw and (base_var_color_name := pillar_dict_rw['baseColor']):
                     color_type = ColorSystem.what_is_var_color_name(
                             var_color_name=base_var_color_name)
 
@@ -105,4 +105,4 @@ class ResolveAliasOfColor(Translator):
                                 contents_doc=contents_doc_rw,
                                 tone_and_color_name=base_var_color_name)
 
-                        pillar_dict['baseColor'] = web_safe_color_code
+                        pillar_dict_rw['baseColor'] = web_safe_color_code

@@ -13,10 +13,16 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
     """矩形を塗りつぶします
     """
     color_type = ColorSystem.what_is_var_color_name(color)
+
+    if not color_type:
+        return
+
+
     if color_type != ColorSystem.DARKNESS:
         fill_obj = ColorSystem.var_color_name_to_fill_obj(
                 contents_doc=contents_doc,
                 var_color_name=color)
+
 
     # 横へ
     for cur_column_th in range(column_th, column_th + columns):
@@ -35,6 +41,7 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
                         contents_doc=contents_doc,
                         var_color_name=color)
             
+
             cell.fill = fill_obj
 
 
