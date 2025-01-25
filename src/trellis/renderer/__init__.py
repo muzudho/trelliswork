@@ -62,74 +62,67 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
 
         if 'color' in top_dict and (color := top_dict['color']):
             var_color_obj = VarColor(color)
-            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+            web_safe_color_obj = var_color_obj.to_web_safe_color_obj(
                     contents_doc=contents_doc)
 
         if 'xlStyle' in top_dict and (style := top_dict['xlStyle']):
             pass
 
         try:
-            web_safe_color_obj = WebSafeColor(web_safe_color_code)
             top_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
+            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_obj.code=}')
 
 
     if 'right' in xl_border_dict and (right_dict := xl_border_dict['right']):
-        web_safe_color_code = None
         style = None
 
         if 'color' in right_dict and (color := right_dict['color']):
             var_color_obj = VarColor(color)
-            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+            web_safe_color_obj = var_color_obj.to_web_safe_color_obj(
                     contents_doc=contents_doc)
 
         if 'xlStyle' in right_dict and (style := right_dict['xlStyle']):
             pass
 
         try:
-            web_safe_color_obj = WebSafeColor(web_safe_color_code)
             right_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
+            print(f'draw_xl_border_on_rectangle: スタイルか、ウェブセーフカラーのいずれかが、未対応の指定： {style=}')
 
 
     if 'bottom' in xl_border_dict and (bottom_dict := xl_border_dict['bottom']):
-        web_safe_color_code = None
         style = None
 
         if 'color' in bottom_dict and (color := bottom_dict['color']):
             var_color_obj = VarColor(color)
-            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+            web_safe_color_obj = var_color_obj.to_web_safe_color_obj(
                     contents_doc=contents_doc)
 
         if 'xlStyle' in bottom_dict and (style := bottom_dict['xlStyle']):
             pass
 
         try:
-            web_safe_color_obj = WebSafeColor(web_safe_color_code)
             bottom_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
+            print(f'draw_xl_border_on_rectangle: スタイルか、ウェブセーフカラーのいずれかが、未対応の指定： {style=}')
 
 
     if 'left' in xl_border_dict and (left_dict := xl_border_dict['left']):
-        web_safe_color_code = None
         style = None
 
         if 'color' in left_dict and (color := left_dict['color']):
             var_color_obj = VarColor(color)
-            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+            web_safe_color_obj = var_color_obj.to_web_safe_color_obj(
                     contents_doc=contents_doc)
 
         if 'xlStyle' in left_dict and (style := left_dict['xlStyle']):
             pass
 
         try:
-            web_safe_color_obj = WebSafeColor(web_safe_color_code)
             left_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
-            print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
+            print(f'draw_xl_border_on_rectangle: スタイルか、ウェブセーフカラーのいずれかが、未対応の指定： {style=}')
 
 
     # TODO 厚みが１のケースや、角は、２辺に線を引く

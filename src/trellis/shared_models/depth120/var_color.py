@@ -110,7 +110,7 @@ class VarColor():
         return self._var_type
 
 
-    def to_web_safe_color_code(self, contents_doc):
+    def to_web_safe_color_obj(self, contents_doc):
         """様々な色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
         """
 
@@ -124,15 +124,17 @@ class VarColor():
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
         if self.var_type == VarColor.AUTO:
-            return ColorSystem.alias_to_web_safe_color_dict(contents_doc=contents_doc)['xlTheme']['xlBlack']
+            web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc=contents_doc)['xlTheme']['xlBlack']
+            return WebSafeColor(web_safe_color_code)
 
         # ウェブセーフカラー
         if self.var_type == VarColor.WEB_SAFE_COLOR:
-            return self.var_color_value
+            return WebSafeColor(self.var_color_value)
 
-        return ColorSystem.solve_tone_and_color_name(
-            contents_doc=contents_doc,
-            tone_and_color_name=self.var_color_value)
+        web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                contents_doc=contents_doc,
+                tone_and_color_name=self.var_color_value)
+        return WebSafeColor(web_safe_color_code)
 
 
     def to_fill_obj(self, contents_doc):

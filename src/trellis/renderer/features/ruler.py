@@ -68,14 +68,14 @@ def render_ruler(config_doc, contents_doc, ws):
                         #font_list[index] = Font(color=None)   # フォントに使うと黒になる
                         raise ValueError(f'foreground.varColors に paperColor を指定してはいけません {index=}')
 
-                    elif (web_safe_color_code_of_font := var_color_obj.to_web_safe_color_code(
-                            contents_doc=contents_doc)) and web_safe_color_code_of_font is not None:
+                    elif (web_safe_color_obj_of_font := var_color_obj.to_web_safe_color_obj(
+                            contents_doc=contents_doc)) and web_safe_color_obj_of_font is not None:
 
                         try:
-                            xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
+                            xl_font_obj = XlFont(web_safe_color_code=web_safe_color_obj_of_font.code)
                             font_list[index] = Font(color=xl_font_obj.color_code_for_xl)
                         except:
-                            print(f'ERROR: {index=} {web_safe_color_code_of_font=}')
+                            print(f'ERROR: render_ruler: {index=}')
                             raise
 
         else:
@@ -101,15 +101,14 @@ def render_ruler(config_doc, contents_doc, ws):
                     if bg_color_text == 'paperColor':
                         pattern_fill_list[index] = PatternFill(patternType=None)
 
-                    elif (web_safe_color_code := var_color_obj.to_web_safe_color_code(
-                            contents_doc=contents_doc)) and web_safe_color_code is not None:
+                    elif (web_safe_color_obj := var_color_obj.to_web_safe_color_obj(
+                            contents_doc=contents_doc)) and web_safe_color_obj is not None:
                         try:
-                            web_safe_color_obj = WebSafeColor(web_safe_color_code)
                             pattern_fill_list[index] = PatternFill(
                                     patternType='solid',
                                     fgColor=web_safe_color_obj.to_xl())
                         except:
-                            print(f'ERROR: {index=} {web_safe_color_code=}')
+                            print(f'ERROR: render_ruler: {index=}')
                             raise
 
         else:
