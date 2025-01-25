@@ -107,42 +107,43 @@ class AutoShadow(Translator):
 
             # もし、影の色の対応付けがあれば
             if 'shadowColorMappings' in color_system_dict and (shadow_color_dict := color_system_dict['shadowColorMappings']):
+                if 'varColorDict' in shadow_color_dict and (var_color_dict := shadow_color_dict['varColorDict']):
 
-                # もし、柱のリストがあれば
-                if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
+                    # もし、柱のリストがあれば
+                    if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
-                    for pillar_dict in pillars_list:
-                        pillar_obj = Pillar.from_dict(pillar_dict)
+                        for pillar_dict in pillars_list:
+                            pillar_obj = Pillar.from_dict(pillar_dict)
 
-                        # 柱と柱の隙間（隙間柱）は無視する
-                        if 'background' not in pillar_dict:
-                            continue
+                            # 柱と柱の隙間（隙間柱）は無視する
+                            if 'background' not in pillar_dict:
+                                continue
 
-                        background_dict = pillar_dict['background']
+                            background_dict = pillar_dict['background']
 
-                        if 'varColor' not in background_dict:
-                            continue
+                            if 'varColor' not in background_dict:
+                                continue
 
-                        if not (bg_color := background_dict['varColor']):
-                            continue
+                            if not (bg_color := background_dict['varColor']):
+                                continue
 
-                        pillar_bounds_obj = pillar_obj.bounds_obj
+                            pillar_bounds_obj = pillar_obj.bounds_obj
 
-                        # もし、矩形の中に、指定の点が含まれたなら
-                        if pillar_bounds_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_bounds_obj.left_obj.total_of_out_counts_th + pillar_bounds_obj.width_obj.total_of_out_counts_qty and \
-                            pillar_bounds_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_bounds_obj.top_obj.total_of_out_counts_th + pillar_bounds_obj.height_obj.total_of_out_counts_qty:
+                            # もし、矩形の中に、指定の点が含まれたなら
+                            if pillar_bounds_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_bounds_obj.left_obj.total_of_out_counts_th + pillar_bounds_obj.width_obj.total_of_out_counts_qty and \
+                                pillar_bounds_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_bounds_obj.top_obj.total_of_out_counts_th + pillar_bounds_obj.height_obj.total_of_out_counts_qty:
 
-                            # ベースの色に紐づく影の色
-                            if bg_color in shadow_color_dict:
-                                shadow_color = shadow_color_dict[bg_color]
-                                return shadow_color
+                                # ベースの色に紐づく影の色
+                                if bg_color in var_color_dict:
+                                    shadow_color = var_color_dict[bg_color]
+                                    return shadow_color
 
-                            # ベースの色に紐づく影色が見つからない
-                            else:
-                                return None
+                                # ベースの色に紐づく影色が見つからない
+                                else:
+                                    return None
 
         # 該当なし
-        if 'paperColor' in shadow_color_dict:
-            return shadow_color_dict['paperColor']
+        if 'paperColor' in var_color_dict:
+            return var_color_dict['paperColor']
         else:
             return None

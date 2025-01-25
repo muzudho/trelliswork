@@ -43,3 +43,4 @@ Git Hub が何だか分からない人は、この節は読み飛ばしてくだ
     * `fill_rectangle` がエラーを起こす？ ---> PatternFill を返す関数で、ウェブセーフカラー文字列を返していた
 * [x] (2025-01-25) Border, Font, Rectangle, Segments の color を varColor に変更したい
 * [ ] (2025-01-26) JSONを生成するコードのテンプレもJSONで用意したい。JSON構造の仕様変更時に対応しやすいように。
+* [ ] (2025-01-26) shadowColorMappings の中に varColorDict を置きたい

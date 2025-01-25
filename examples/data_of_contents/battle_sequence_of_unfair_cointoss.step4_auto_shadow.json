@@ -27,9 +27,11 @@
     },
     "colorSystem": {
         "shadowColorMappings": {
-            "paperColor": "xlPale.xlWhite",
-            "xlPale.xlBlue": "xlLight.xlBlue",
-            "xlPale.xlYellow": "xlLight.xlYellow"        
+            "varColorDict": {
+                "paperColor": "xlPale.xlWhite",
+                "xlPale.xlBlue": "xlLight.xlBlue",
+                "xlPale.xlYellow": "xlLight.xlYellow"
+            }
         }
     },
     "pillars": [

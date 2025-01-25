@@ -33,72 +33,73 @@ class ResolveAliasOfColor(Translator):
 
             # ［影色の対応表］
             if 'shadowColorMappings' in color_system_dict_rw and (shadow_color_mappings_dict_rw := color_system_dict_rw['shadowColorMappings']):
+                if 'varColorDict' in shadow_color_mappings_dict_rw and (var_color_dict := shadow_color_mappings_dict_rw['varColorDict']):
 
-                # key も value も var_color_name 形式
-                for key_vcn, value_vcn in shadow_color_mappings_dict_rw.items():
+                    # key も value も var_color_name 形式
+                    for key_vcn, value_vcn in var_color_dict.items():
 
-                    key_as_var_color_obj = VarColor(key_vcn)
-                    color_type = key_as_var_color_obj.var_type
-
-
-                    if color_type == VarColor.TONE_AND_COLOR_NAME:
-                        key_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                                contents_doc=contents_doc_rw,
-                                tone_and_color_name=key_vcn)
+                        key_as_var_color_obj = VarColor(key_vcn)
+                        color_type = key_as_var_color_obj.var_type
 
 
-                    # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-                    elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
-                        key_web_safe_color_code = key_vcn
+                        if color_type == VarColor.TONE_AND_COLOR_NAME:
+                            key_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                                    contents_doc=contents_doc_rw,
+                                    tone_and_color_name=key_vcn)
 
 
-                    else:
-                        print(f'NOT_IMPLEMENTED: ResoluveAliasOfColor: ★未実装です。 {color_type=}')
-                        continue
+                        # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
+                        elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
+                            key_web_safe_color_code = key_vcn
 
 
-                    value_as_var_color_obj = VarColor(value_vcn)
-                    color_type = value_as_var_color_obj.var_type
-
-                    #print(f'★ {key_web_safe_color_code=} {value_vcn=} {color_type=}')
-
-                    if color_type == VarColor.TONE_AND_COLOR_NAME:
-                        value_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                                contents_doc=contents_doc_rw,
-                                tone_and_color_name=value_vcn)
+                        else:
+                            print(f'NOT_IMPLEMENTED: ResoluveAliasOfColor: ★未実装です。 {color_type=}')
+                            continue
 
 
-                    # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-                    elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
-                        value_web_safe_color_code = value_vcn
+                        value_as_var_color_obj = VarColor(value_vcn)
+                        color_type = value_as_var_color_obj.var_type
+
+                        #print(f'★ {key_web_safe_color_code=} {value_vcn=} {color_type=}')
+
+                        if color_type == VarColor.TONE_AND_COLOR_NAME:
+                            value_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
+                                    contents_doc=contents_doc_rw,
+                                    tone_and_color_name=value_vcn)
 
 
-                    else:
-                        print(f'NOT_IMPLEMENTED: ResoluveAliasOfColor: 未実装です。 {color_type=}')
-                        continue
+                        # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
+                        elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
+                            value_web_safe_color_code = value_vcn
 
 
-                    # 変更される要素のキー名を記憶
-                    delete_keys.append(key_vcn)
+                        else:
+                            print(f'NOT_IMPLEMENTED: ResoluveAliasOfColor: 未実装です。 {color_type=}')
+                            continue
 
-                    #print(f'★翻訳 {key_web_safe_color_code=} {value_vcn=} {value_web_safe_color_code=}')
-                    new_dict[key_web_safe_color_code] = value_web_safe_color_code
+
+                        # 変更される要素のキー名を記憶
+                        delete_keys.append(key_vcn)
+
+                        #print(f'★翻訳 {key_web_safe_color_code=} {value_vcn=} {value_web_safe_color_code=}')
+                        new_dict[key_web_safe_color_code] = value_web_safe_color_code
 
 
             # 変更された要素を削除
             for delete_key in delete_keys:
                 #print(f'★キー名が変わる要素を削除 {delete_key=}')
-                del shadow_color_mappings_dict_rw[delete_key]
+                del var_color_dict[delete_key]
 
 
             # 更新分を追加
             for key, value in new_dict.items():
-                if key in shadow_color_mappings_dict_rw:
+                if key in var_color_dict:
                     # paperColor とか
-                    print(f"""ERROR: ResoluveAliasOfColor: shadowColorMappings 辞書のキーが重複しています。 {key=}""")
+                    print(f"""ERROR: ResoluveAliasOfColor: var_color_dict 辞書のキーが重複しています。 {key=}""")
                     continue
 
-                shadow_color_mappings_dict_rw[key] = value
+                var_color_dict[key] = value
 
 
             # # TODO 別名の対応表の削除

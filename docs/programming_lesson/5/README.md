@@ -221,10 +221,12 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "colorSystem": {
         "shadowColorMappings": {
-            "paperColor": "xlPale.xlWhite",
-            "xlPale.xlRed": "xlLight.xlRed",
-            "xlPale.xlGreen": "xlLight.xlGreen",
-            "xlPale.xlBlue": "xlLight.xlBlue"
+            "varColorDict": {
+                "paperColor": "xlPale.xlWhite",
+                "xlPale.xlRed": "xlLight.xlRed",
+                "xlPale.xlGreen": "xlLight.xlGreen",
+                "xlPale.xlBlue": "xlLight.xlBlue"
+            }
         }
     },
     "rectangles" : [
