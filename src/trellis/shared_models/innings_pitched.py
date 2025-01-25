@@ -54,7 +54,7 @@ class InningsPitched():
 
     @property
     def var_value(self):
-        """投球回の整数だったり、"3o2" 形式の文字列だったりします
+        """投球回の整数だったり、"3o2" 形式の文字列だったりします。ダブルクォーテーションは含まれません
         """
         return self._var_value
 

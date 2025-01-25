@@ -133,3 +133,59 @@ class Rectangle():
     @property
     def height_obj(self):
         return self._height_obj
+
+
+    def to_ltwh_dict(self):
+        """left, top, width, height を含む辞書を作成します
+        """
+
+        left = self._left_obj.var_value
+        if isinstance(left, str):
+            left = f'"{left}"'
+
+        top = self._top_obj.var_value
+        if isinstance(top, str):
+            top = f'"{top}"'
+
+        width = self._width_obj.var_value
+        if isinstance(width, str):
+            width = f'"{width}"'
+
+        height = self._height_obj.var_value
+        if isinstance(height, str):
+            height = f'"{height}"'
+
+        return {
+            "left": left,
+            "top": top,
+            "width": width,
+            "height": height
+        }
+
+
+    def to_lrtb_dict(self):
+        """left, right, top, bottom を含む辞書を作成します
+        """
+
+        left = self._left_obj.var_value
+        if isinstance(left, str):
+            left = f'"{left}"'
+
+        right = self._right_obj.var_value
+        if isinstance(right, str):
+            right = f'"{right}"'
+
+        top = self._top_obj.var_value
+        if isinstance(top, str):
+            top = f'"{top}"'
+
+        bottom = self._bottom_obj.var_value
+        if isinstance(bottom, str):
+            bottom = f'"{bottom}"'
+
+        return {
+            "left": left,
+            "right": right,
+            "top": top,
+            "bottom": bottom
+        }
