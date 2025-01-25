@@ -6,8 +6,7 @@ from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 
-from ..shared_models.color_system import ColorSystem
-from ..shared_models.share import Share
+from ..shared_models import ColorSystem, Share
 
 
 def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):

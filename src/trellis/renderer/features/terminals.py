@@ -1,7 +1,5 @@
 from ...renderer import fill_start_terminal, fill_end_terminal
-
-from ...shared_models.pillar import Pillar
-from ...shared_models.terminal import Terminal
+from ...shared_models import Pillar, Terminal
 
 
 def render_all_terminals(config_doc, contents_doc, ws):

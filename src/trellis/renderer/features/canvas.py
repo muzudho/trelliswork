@@ -1,6 +1,6 @@
 import openpyxl as xl
 
-from ...shared_models.canvas import Canvas
+from ...shared_models import Canvas
 
 
 def render_canvas(config_doc, contents_doc, ws):

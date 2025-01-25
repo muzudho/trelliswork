@@ -1,8 +1,4 @@
-from ...shared_models.card import Card
-from ...shared_models.pillar import Pillar
-from ...shared_models.rectangle import Rectangle
-from ...shared_models.share import Share
-from ...shared_models.terminal import Terminal
+from ...shared_models import Card, Pillar, Rectangle, Share, Terminal
 from ..translator import Translator
 
 

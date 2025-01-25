@@ -1,6 +1,5 @@
 from ...renderer import fill_rectangle
-
-from ...shared_models.pillar import Pillar
+from ...shared_models import Pillar
 
 
 def render_all_pillar_rugs(config_doc, contents_doc, ws):

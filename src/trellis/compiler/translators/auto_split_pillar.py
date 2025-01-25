@@ -1,8 +1,4 @@
-from ...shared_models.innings_pitched import InningsPitched
-from ...shared_models.pillar import Pillar
-from ...shared_models.rectangle import Rectangle
-from ...shared_models.share import Share
-
+from ...shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
 from ..translator import Translator
 
 

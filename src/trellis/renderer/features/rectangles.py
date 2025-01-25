@@ -1,5 +1,5 @@
 from ...renderer import fill_rectangle
-from ...shared_models.rectangle import Rectangle
+from ...shared_models import Rectangle
 
 
 def render_all_rectangles(config_doc, contents_doc, ws):

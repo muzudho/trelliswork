@@ -6,10 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from ...shared_models.canvas import Canvas
-from ...shared_models.color_system import ColorSystem
-from ...shared_models.share import Share
-from ...shared_models.xl_font import XlFont
+from ...shared_models import Canvas, ColorSystem, Share, XlFont
 
 
 #############

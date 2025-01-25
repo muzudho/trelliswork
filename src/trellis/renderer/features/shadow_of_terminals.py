@@ -1,8 +1,5 @@
 from ...renderer import fill_rectangle
-
-from ...shared_models.pillar import Pillar
-from ...shared_models.share import Share
-from ...shared_models.terminal import Terminal
+from ...shared_models import Pillar, Share, Terminal
 
 
 def render_shadow_of_all_terminals(config_doc, contents_doc, ws):
