@@ -1,4 +1,4 @@
-from .share import Share
+from ..depth110 import Share
 
 
 class InningsPitched():

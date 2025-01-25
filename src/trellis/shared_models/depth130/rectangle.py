@@ -1,5 +1,5 @@
-from .innings_pitched import InningsPitched
-from .share import Share
+from ..depth110 import Share
+from ..depth120 import InningsPitched
 
 
 class Rectangle():

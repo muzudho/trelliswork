@@ -6,7 +6,7 @@ from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 
-from ..shared_models import ColorSystem, Share, VarColor
+from ..shared_models import ColorSystem, Share, VarColor, WebSafeColor
 
 
 def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
@@ -69,8 +69,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            o2_var_color_obj = VarColor(web_safe_color_code)
-            top_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
+            web_safe_color_obj = WebSafeColor(web_safe_color_code)
+            top_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -88,8 +88,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            o2_var_color_obj = VarColor(web_safe_color_code)
-            right_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
+            web_safe_color_obj = WebSafeColor(web_safe_color_code)
+            right_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -107,8 +107,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            o2_var_color_obj = VarColor(web_safe_color_code)
-            bottom_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
+            web_safe_color_obj = WebSafeColor(web_safe_color_code)
+            bottom_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -126,8 +126,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            o2_var_color_obj = VarColor(web_safe_color_code)
-            left_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
+            web_safe_color_obj = WebSafeColor(web_safe_color_code)
+            left_side = Side(style=style, color=web_safe_color_obj.to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 

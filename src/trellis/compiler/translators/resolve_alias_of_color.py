@@ -129,7 +129,7 @@ class ResolveAliasOfColor(Translator):
 
 
             # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-            elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
+            elif color_type in [VarColor.WEB_SAFE_COLOR, VarColor.PAPER_COLOR]:
                 key_web_safe_color_code = key_vcn
 
 
@@ -150,7 +150,7 @@ class ResolveAliasOfColor(Translator):
 
 
             # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-            elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
+            elif color_type in [VarColor.WEB_SAFE_COLOR, VarColor.PAPER_COLOR]:
                 value_web_safe_color_code = value_vcn
 
 

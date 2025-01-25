@@ -1,16 +1,16 @@
-from .canvas import Canvas
-from .rectangle import Rectangle
+from ..depth130 import Rectangle
+from ..depth140 import Canvas
 
 
-class Terminal():
-    """端子
+class Pillar():
+    """柱
     """
 
 
-    def from_dict(terminal_dict):
+    def from_dict(pillar_dict):
 
         bounds_obj = None
-        if 'bounds' in terminal_dict and (bounds_dict := terminal_dict['bounds']):
+        if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
             bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(

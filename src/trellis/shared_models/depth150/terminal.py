@@ -1,15 +1,16 @@
-from .rectangle import Rectangle
+from ..depth130 import Rectangle
+from ..depth140 import Canvas
 
 
-class Canvas():
-    """キャンバス
+class Terminal():
+    """端子
     """
 
 
-    def from_dict(canvas_dict):
+    def from_dict(terminal_dict):
 
         bounds_obj = None
-        if 'bounds' in canvas_dict and (bounds_dict := canvas_dict['bounds']):
+        if 'bounds' in terminal_dict and (bounds_dict := terminal_dict['bounds']):
             bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(

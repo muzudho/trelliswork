@@ -1,16 +1,15 @@
-from .rectangle import Rectangle
-from .canvas import Canvas
+from ..depth130 import Rectangle
 
 
-class Pillar():
-    """柱
+class Canvas():
+    """キャンバス
     """
 
 
-    def from_dict(pillar_dict):
+    def from_dict(canvas_dict):
 
         bounds_obj = None
-        if 'bounds' in pillar_dict and (bounds_dict := pillar_dict['bounds']):
+        if 'bounds' in canvas_dict and (bounds_dict := canvas_dict['bounds']):
             bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(

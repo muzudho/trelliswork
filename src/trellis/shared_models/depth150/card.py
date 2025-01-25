@@ -1,5 +1,5 @@
-from .canvas import Canvas
-from .rectangle import Rectangle
+from ..depth130 import Rectangle
+from ..depth140 import Canvas
 
 
 class Card():

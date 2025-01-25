@@ -1,4 +1,5 @@
-from .var_color import VarColor
+from ..depth110 import WebSafeColor
+from ..depth120 import VarColor
 
 
 class XlFont():
@@ -32,5 +33,5 @@ class XlFont():
 
     @property
     def color_code_for_xl(self):
-        o2_var_color_obj = VarColor(self._web_safe_color_code)
-        return o2_var_color_obj.web_safe_color_code_to_xl()
+        web_safe_color_obj = WebSafeColor(self._web_safe_color_code)
+        return web_safe_color_obj.to_xl()

@@ -6,7 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from ...shared_models import Canvas, ColorSystem, Share, VarColor, XlFont
+from ...shared_models import Canvas, ColorSystem, Share, VarColor, WebSafeColor, XlFont
 
 
 #############
@@ -104,10 +104,10 @@ def render_ruler(config_doc, contents_doc, ws):
                     elif (web_safe_color_code := var_color_obj.to_web_safe_color_code(
                             contents_doc=contents_doc)) and web_safe_color_code is not None:
                         try:
-                            o2_var_color_obj = VarColor(web_safe_color_code)
+                            web_safe_color_obj = WebSafeColor(web_safe_color_code)
                             pattern_fill_list[index] = PatternFill(
                                     patternType='solid',
-                                    fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
+                                    fgColor=web_safe_color_obj.to_xl())
                         except:
                             print(f'ERROR: {index=} {web_safe_color_code=}')
                             raise
