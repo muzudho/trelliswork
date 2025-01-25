@@ -44,51 +44,6 @@ class ColorSystem():
 
 
     @staticmethod
-    def what_is_var_color_name(var_color_name):
-        """TODO トーン名・色名の欄に何が入っているか判定します
-        """
-
-        # 何も入っていない、または False が入っている
-        if not var_color_name:
-            return False
-
-        # ナンが入っている
-        if var_color_name is None:
-            return None
-
-        if isinstance(var_color_name, dict):
-            var_color_dict = var_color_name
-            if 'darkness' in var_color_dict:
-                return VarColor.DARKNESS
-            
-            else:
-                raise ValueError(f'未定義の色指定。 {var_color_name=}')
-
-
-        # ウェブ・セーフ・カラーが入っている
-        #
-        #   とりあえず、 `#` で始まるなら、ウェブセーフカラーとして扱う
-        #
-        #if var_color_name.startswith('#'):
-        if re.match(r'^#[0-9a-fA-f]{6}$', var_color_name):
-            return VarColor.WEB_SAFE_COLOR_CODE
-
-        if re.match(r'^[0-9a-fA-f]{6}$', var_color_name):
-            return VarColor.XL_COLOR_CODE
-
-        # 色相名と色名だ
-        #if '.' in var_color_name:
-        if re.match(r'^[0-9a-zA-Z_]+\.[0-9a-zA-Z_]+$', var_color_name):
-            return VarColor.TONE_AND_COLOR_NAME
-
-        # "auto", "paperColor" キーワードのいずれかが入っている
-        if var_color_name in [VarColor.AUTO, VarColor.PAPER_COLOR]:
-            return var_color_name
-        
-        raise ValueError(f"""ERROR: what_is_var_color_name: undefined {var_color_name=}""")
-
-
-    @staticmethod
     def solve_tone_and_color_name(contents_doc, tone_and_color_name):
         try:
             tone, color = tone_and_color_name.split('.', 2)
@@ -114,7 +69,8 @@ class ColorSystem():
         """様々な色名をウェブ・セーフ・カラーの１６進文字列の色コードに変換します
         """
 
-        color_type = ColorSystem.what_is_var_color_name(var_color_name=var_color_name)
+        var_color_obj = VarColor(var_color_name)
+        color_type = var_color_obj.var_type
 
         # 色が指定されていないとき、この関数を呼び出してはいけません
         if not color_type:
@@ -142,7 +98,8 @@ class ColorSystem():
         """様々な色名を FillPattern オブジェクトに変換します
         """
 
-        color_type = ColorSystem.what_is_var_color_name(var_color_name=var_color_name)
+        var_color_obj = VarColor(var_color_name)
+        color_type = var_color_obj.var_type
 
         # 色が指定されていないとき、この関数を呼び出してはいけません
         if not color_type:

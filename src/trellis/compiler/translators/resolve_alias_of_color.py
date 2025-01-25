@@ -37,8 +37,8 @@ class ResolveAliasOfColor(Translator):
                 # key も value も var_color_name 形式
                 for key_vcn, value_vcn in shadow_color_mappings_dict_rw.items():
 
-                    color_type = ColorSystem.what_is_var_color_name(
-                            var_color_name=key_vcn)
+                    key_as_var_color_obj = VarColor(key_vcn)
+                    color_type = key_as_var_color_obj.var_type
 
 
                     if color_type == VarColor.TONE_AND_COLOR_NAME:
@@ -57,8 +57,8 @@ class ResolveAliasOfColor(Translator):
                         continue
 
 
-                    color_type = ColorSystem.what_is_var_color_name(
-                            var_color_name=value_vcn)
+                    value_as_var_color_obj = VarColor(value_vcn)
+                    color_type = value_as_var_color_obj.var_type
 
                     #print(f'★ {key_web_safe_color_code=} {value_vcn=} {color_type=}')
 
@@ -112,8 +112,8 @@ class ResolveAliasOfColor(Translator):
 
                 # 辞書 varColor の文字列要素
                 if isinstance(value, str):
-                    color_type = ColorSystem.what_is_var_color_name(
-                            var_color_name=value)
+                    var_color_obj = VarColor(value)
+                    color_type = var_color_obj.var_type
 
                     if color_type == VarColor.TONE_AND_COLOR_NAME:
                         web_safe_color_code = ColorSystem.solve_tone_and_color_name(
@@ -153,8 +153,8 @@ class ResolveAliasOfColor(Translator):
 
             # リストの文字列要素
             if isinstance(value, str):
-                color_type = ColorSystem.what_is_var_color_name(
-                        var_color_name=value)
+                var_color_obj = VarColor(value)
+                color_type = var_color_obj.var_type
 
                 if color_type == VarColor.TONE_AND_COLOR_NAME:
                     web_safe_color_code = ColorSystem.solve_tone_and_color_name(

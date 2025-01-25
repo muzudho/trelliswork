@@ -12,7 +12,8 @@ from ..shared_models import ColorSystem, Share, VarColor
 def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
     """矩形を塗りつぶします
     """
-    color_type = ColorSystem.what_is_var_color_name(color)
+    var_color_obj = VarColor(color)
+    color_type = var_color_obj.var_type
 
     if not color_type:
         return
