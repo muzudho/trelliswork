@@ -1,3 +1,5 @@
+import copy
+
 from ...shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
 from ..translator import Translator
 
@@ -81,7 +83,7 @@ class AutoSplitSegmentByPillar(Translator):
 
                         # 左側のセグメントを新規作成し、新リストに追加
                         # （計算を簡単にするため）width は使わず right を使う
-                        o1_segment_dict = dict(segment_dict_rw)
+                        o1_segment_dict = copy.deepcopy(segment_dict_rw)
                         o1_bounds_dict = o1_segment_dict['bounds']
                         o1_bounds_dict.pop('width', None)
                         o1_bounds_dict['right'] = InningsPitched.from_var_value(pillar_bounds_obj.right_obj.var_value).offset(-1).var_value
@@ -89,7 +91,7 @@ class AutoSplitSegmentByPillar(Translator):
 
                         # 右側のセグメントを新規作成し、既存リストに追加
                         # （計算を簡単にするため）width は使わず right を使う
-                        o2_segment_dict = dict(segment_dict_rw)
+                        o2_segment_dict = copy.deepcopy(segment_dict_rw)
                         o2_bounds_dict = o2_segment_dict['bounds']
                         o2_bounds_dict.pop('width', None)
                         o2_bounds_dict['left'] = pillar_bounds_obj.right_obj.offset(-1).var_value
