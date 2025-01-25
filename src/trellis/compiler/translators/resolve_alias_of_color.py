@@ -1,4 +1,5 @@
-from ...share import ColorSystem
+from ...shared_models.color_system import ColorSystem
+
 from ..translator import Translator
 
 

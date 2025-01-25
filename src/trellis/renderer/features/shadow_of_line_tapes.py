@@ -1,5 +1,7 @@
 from ...renderer import fill_rectangle
-from ...share import Rectangle, Share
+
+from ...shared_models.rectangle import Rectangle
+from ...shared_models.share import Share
 
 
 def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):

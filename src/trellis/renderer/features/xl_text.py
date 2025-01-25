@@ -1,4 +1,4 @@
-from ...share import XlAlignment
+from ...shared_models.xl_alignment import XlAlignment
 
 
 def render_all_xl_texts(config_doc, contents_doc, ws):

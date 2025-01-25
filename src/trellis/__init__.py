@@ -18,7 +18,10 @@ from .renderer.features.shadow_of_line_tapes import render_shadow_of_all_line_ta
 from .renderer.features.shadow_of_terminals import render_shadow_of_all_terminals
 from .renderer.features.terminals import render_all_terminals
 from .renderer.features.xl_text import render_all_xl_texts
-from .share import ColorSystem, FilePath, InningsPitched
+
+from .shared_models.color_system import ColorSystem
+from .shared_models.file_path import FilePath
+from .shared_models.innings_pitched import InningsPitched
 
 
 class TrellisInSrc():

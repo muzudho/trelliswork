@@ -1,4 +1,8 @@
-from ...share import InningsPitched, Pillar, Rectangle, Share
+from ...shared_models.innings_pitched import InningsPitched
+from ...shared_models.pillar import Pillar
+from ...shared_models.rectangle import Rectangle
+from ...shared_models.share import Share
+
 from ..translator import Translator
 
 
@@ -56,7 +60,7 @@ class AutoSplitSegmentByPillar(Translator):
 
         #print('🔧　柱を跨ぐとき、ラインテープを分割します')
         if 'bounds' in line_tape_segment_dict and (bounds_dict := line_tape_segment_dict['bounds']):
-            segment_rect = Rectangle.from_dict(bounds_dict)
+            segment_rect_obj = Rectangle.from_dict(bounds_dict)
 
         direction = line_tape_segment_dict['direction']
 
@@ -75,23 +79,26 @@ class AutoSplitSegmentByPillar(Translator):
                     pillar_bounds_obj = pillar_obj.bounds_obj
 
                     # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                    if segment_rect.left_obj.total_of_out_counts_th < pillar_bounds_obj.right_obj.total_of_out_counts_th and pillar_bounds_obj.right_obj.total_of_out_counts_th < segment_rect.right_obj.total_of_out_counts_th:
+                    if segment_rect_obj.left_obj.total_of_out_counts_th < pillar_bounds_obj.right_obj.total_of_out_counts_th and pillar_bounds_obj.right_obj.total_of_out_counts_th < segment_rect_obj.right_obj.total_of_out_counts_th:
                         # 既存のセグメントを削除
                         line_tape_segment_list_rw.remove(line_tape_segment_dict)
 
                         # 左側のセグメントを新規作成し、新リストに追加
                         # （計算を簡単にするため）width は使わず right を使う
                         left_segment_dict = dict(line_tape_segment_dict)
-                        left_segment_dict.pop('width', None)
-                        left_segment_dict['right'] = InningsPitched.from_var_value(pillar_bounds_obj.right_obj.var_value).offset(-1).var_value
+                        o1_bounds_dict = left_segment_dict['bounds']
+                        o1_bounds_dict.pop('width', None)
+                        o1_bounds_dict['right'] = InningsPitched.from_var_value(pillar_bounds_obj.right_obj.var_value).offset(-1).var_value
                         new_segment_list.append(left_segment_dict)
 
                         # 右側のセグメントを新規作成し、既存リストに追加
                         # （計算を簡単にするため）width は使わず right を使う
                         right_segment_dict = dict(line_tape_segment_dict)
-                        right_segment_dict.pop('width', None)
-                        right_segment_dict['left'] = pillar_bounds_obj.right_obj.offset(-1).var_value
-                        right_segment_dict['right'] = segment_rect.right_obj.var_value
+                        o2_bounds_dict = left_segment_dict['bounds']
+                        o2_bounds_dict.pop('width', None)
+                        o2_bounds_dict['left'] = pillar_bounds_obj.right_obj.offset(-1).var_value
+                        o2_bounds_dict['right'] = segment_rect_obj.right_obj.var_value
+
                         line_tape_segment_list_rw.append(right_segment_dict)
                         line_tape_segment_dict = right_segment_dict          # 入れ替え
 

@@ -1,5 +1,8 @@
 from ...renderer import fill_rectangle
-from ...share import Card, Pillar, Share
+
+from ...shared_models.card import Card
+from ...shared_models.pillar import Pillar
+from ...shared_models.share import Share
 
 
 def render_shadow_of_all_cards(config_doc, contents_doc, ws):
