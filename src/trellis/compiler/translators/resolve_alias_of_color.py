@@ -27,8 +27,8 @@ class ResolveAliasOfColor(Translator):
                     current_dict_rw=contents_doc_rw)
 
 
-            # # TODO 別名の対応表の削除
-            # del color_system_dict_rw['alias']
+            # 別名の対応表の削除（使い終わったので、もう必要ない）
+            del color_system_dict_rw['alias']
 
 
     @staticmethod

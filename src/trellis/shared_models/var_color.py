@@ -84,9 +84,13 @@ class VarColor():
         if re.match(r'^[0-9a-zA-Z_]+\.[0-9a-zA-Z_]+$', var_color_value):
             return VarColor.TONE_AND_COLOR_NAME
 
-        # "auto", "paperColor" キーワードのいずれかが入っている
-        if var_color_value in ["auto", "paperColor"]:
-            return var_color_value
+        # 影の自動設定
+        if var_color_value == 'auto':
+            return VarColor.AUTO
+        
+        # 紙の色
+        if var_color_value == 'paperColor':
+            return VarColor.PAPER_COLOR
         
         raise ValueError(f"""ERROR: what_am_i: undefined {var_color_value=}""")
 
