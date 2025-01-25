@@ -104,9 +104,10 @@ def render_ruler(config_doc, contents_doc, ws):
                     elif (web_safe_color_code := var_color_obj.to_web_safe_color_code(
                             contents_doc=contents_doc)) and web_safe_color_code is not None:
                         try:
+                            o2_var_color_obj = VarColor(web_safe_color_code)
                             pattern_fill_list[index] = PatternFill(
                                     patternType='solid',
-                                    fgColor=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+                                    fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
                         except:
                             print(f'ERROR: {index=} {web_safe_color_code=}')
                             raise

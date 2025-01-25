@@ -69,7 +69,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            top_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+            o2_var_color_obj = VarColor(web_safe_color_code)
+            top_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -87,7 +88,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            right_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+            o2_var_color_obj = VarColor(web_safe_color_code)
+            right_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -105,7 +107,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            bottom_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+            o2_var_color_obj = VarColor(web_safe_color_code)
+            bottom_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 
@@ -123,7 +126,8 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
             pass
 
         try:
-            left_side = Side(style=style, color=ColorSystem.web_safe_color_code_to_xl(web_safe_color_code))
+            o2_var_color_obj = VarColor(web_safe_color_code)
+            left_side = Side(style=style, color=o2_var_color_obj.web_safe_color_code_to_xl())
         except:
             print(f'draw_xl_border_on_rectangle: いずれかが、未対応の指定： {style=} {web_safe_color_code=}')
 

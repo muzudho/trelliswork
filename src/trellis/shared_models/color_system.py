@@ -29,20 +29,6 @@ class ColorSystem():
 
 
     @staticmethod
-    def web_safe_color_code_to_xl(web_safe_color_code):
-        """頭の `#` を外します
-        """
-
-        # FIXME チェック★
-        if not re.match(r'^#[0-9a-fA-F]{6}$', web_safe_color_code):
-            raise ValueError(f'web_safe_color_code_to_xl: ウェブ・セーフ・カラーじゃないかも？ {web_safe_color_code=}')
-        
-        #print(f'★ {web_safe_color_code=}')
-
-        return web_safe_color_code[1:]
-
-
-    @staticmethod
     def solve_tone_and_color_name(contents_doc, tone_and_color_name):
         try:
             tone, color = tone_and_color_name.split('.', 2)

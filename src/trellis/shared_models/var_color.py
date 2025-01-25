@@ -150,8 +150,9 @@ class VarColor():
 
         # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
         if self.var_type == VarColor.AUTO:
-            xl_color_name = ColorSystem.web_safe_color_code_to_xl(
-                    ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack'])
+            web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']
+            o2_var_color_obj = VarColor(web_safe_color_code)
+            xl_color_name = o2_var_color_obj.web_safe_color_code_to_xl()
 
             #if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
             #    raise ValueError(f'色指定がおかしい {xl_color_name=}')
@@ -164,9 +165,10 @@ class VarColor():
 
         # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
         if self.var_type == VarColor.WEB_SAFE_COLOR_CODE:
+            o2_var_color_obj = VarColor(self.var_color_value)
             return PatternFill(
                     patternType='solid',
-                    fgColor=ColorSystem.web_safe_color_code_to_xl(self.var_color_value))
+                    fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
 
         if self.var_type == VarColor.TONE_AND_COLOR_NAME:
             tone, color = self.var_color_value.split('.', 2)
@@ -175,10 +177,22 @@ class VarColor():
 
             if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
                 if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
+                    web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]
+                    o2_var_color_obj = VarColor(web_safe_color_code)
                     return PatternFill(
                             patternType='solid',
-                            fgColor=ColorSystem.web_safe_color_code_to_xl(ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]))
+                            fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
 
 
         print(f'to_fill_obj: 色がない {self.var_color_value=}')
         return ColorSystem.none_pattern_fill
+
+
+    def web_safe_color_code_to_xl(self):
+        """頭の `#` を外します
+        """
+
+        if self.var_type != VarColor.WEB_SAFE_COLOR_CODE:
+            raise ValueError(f'web_safe_color_code_to_xl: ウェブ・セーフ・カラーじゃない。 {self.var_color_value=}')
+
+        return self.var_color_value[1:]
