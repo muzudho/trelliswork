@@ -165,12 +165,6 @@ class TrellisInSrc():
     def render_to_worksheet(config_doc, contents_doc, ws):
         """ワークシートへの描画
         """
-        # 色システムの設定
-        global ColorSystem
-        ColorSystem.set_color_system(
-                config_doc=config_doc,
-                contents_doc=contents_doc,
-                ws=ws)
 
         # キャンバスの編集
         render_canvas(

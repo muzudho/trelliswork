@@ -279,8 +279,10 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
                 "top": 5,
                 "bottom": 6
             },
-            "colorFunc": {
-                "darkness": 1
+            "background": {
+                "varColor": {
+                    "darkness": 1
+                }
             }
         }
     ]
