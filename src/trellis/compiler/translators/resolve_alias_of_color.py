@@ -87,7 +87,7 @@ class ResolveAliasOfColor(Translator):
 
             # 変更された要素を削除
             for delete_key in delete_keys:
-                print(f'★キー名が変わる要素を削除 {delete_key=}')
+                #print(f'★キー名が変わる要素を削除 {delete_key=}')
                 del shadow_color_mappings_dict_rw[delete_key]
 
 

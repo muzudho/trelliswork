@@ -135,57 +135,63 @@ class VarColor():
         """様々な色名を FillPattern オブジェクトに変換します
         """
 
-        # 色が指定されていないとき、この関数を呼び出してはいけません
-        if not self.var_type:
-            raise Exception(f'to_fill_obj: 色が指定されていません')
+        try:
 
-        # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
-        if self.var_type == VarColor.PAPER_COLOR:
+            # 色が指定されていないとき、この関数を呼び出してはいけません
+            if not self.var_type:
+                raise Exception(f'to_fill_obj: 色が指定されていません')
+
+            # 背景色を［なし］にします。透明（transparent）で上書きするのと同じです
+            if self.var_type == VarColor.PAPER_COLOR:
+                return ColorSystem.none_pattern_fill
+
+            if self.var_type == VarColor.XL_COLOR_CODE:
+                return PatternFill(
+                        patternType='solid',
+                        fgColor=self.var_color_value)
+
+            # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
+            if self.var_type == VarColor.AUTO:
+                web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']
+                o2_var_color_obj = VarColor(web_safe_color_code)
+                xl_color_name = o2_var_color_obj.web_safe_color_code_to_xl()
+
+                #if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
+                #    raise ValueError(f'色指定がおかしい {xl_color_name=}')
+                # else:
+                #     print(f'★ {xl_color_name=}')
+
+                return PatternFill(
+                        patternType='solid',
+                        fgColor=xl_color_name)
+
+            # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
+            if self.var_type == VarColor.WEB_SAFE_COLOR_CODE:
+                o2_var_color_obj = VarColor(self.var_color_value)
+                return PatternFill(
+                        patternType='solid',
+                        fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
+
+            if self.var_type == VarColor.TONE_AND_COLOR_NAME:
+                tone, color = self.var_color_value.split('.', 2)
+                tone = tone.strip()
+                color = color.strip()
+
+                if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
+                    if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
+                        web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]
+                        o2_var_color_obj = VarColor(web_safe_color_code)
+                        return PatternFill(
+                                patternType='solid',
+                                fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
+
+
+            print(f'to_fill_obj: 色がない {self.var_color_value=}')
             return ColorSystem.none_pattern_fill
 
-        if self.var_type == VarColor.XL_COLOR_CODE:
-            return PatternFill(
-                    patternType='solid',
-                    fgColor=self.var_color_value)
-
-        # ［auto］は自動で影の色を設定する機能ですが、その機能をオフにしているときは、とりあえず黒色にします
-        if self.var_type == VarColor.AUTO:
-            web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)['xlTheme']['xlBlack']
-            o2_var_color_obj = VarColor(web_safe_color_code)
-            xl_color_name = o2_var_color_obj.web_safe_color_code_to_xl()
-
-            #if not re.match(r'^[0-9a-fA-f]{6}$', xl_color_name): #FIXME
-            #    raise ValueError(f'色指定がおかしい {xl_color_name=}')
-            # else:
-            #     print(f'★ {xl_color_name=}')
-
-            return PatternFill(
-                    patternType='solid',
-                    fgColor=xl_color_name)
-
-        # ウェブ・セーフ・カラーを、エクセルの引数書式へ変換
-        if self.var_type == VarColor.WEB_SAFE_COLOR_CODE:
-            o2_var_color_obj = VarColor(self.var_color_value)
-            return PatternFill(
-                    patternType='solid',
-                    fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
-
-        if self.var_type == VarColor.TONE_AND_COLOR_NAME:
-            tone, color = self.var_color_value.split('.', 2)
-            tone = tone.strip()
-            color = color.strip()
-
-            if tone in ColorSystem.alias_to_web_safe_color_dict(contents_doc):
-                if color in ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone]:
-                    web_safe_color_code = ColorSystem.alias_to_web_safe_color_dict(contents_doc)[tone][color]
-                    o2_var_color_obj = VarColor(web_safe_color_code)
-                    return PatternFill(
-                            patternType='solid',
-                            fgColor=o2_var_color_obj.web_safe_color_code_to_xl())
-
-
-        print(f'to_fill_obj: 色がない {self.var_color_value=}')
-        return ColorSystem.none_pattern_fill
+        except:
+            print(f'{self.var_color_value=} {self.var_type=}')
+            raise
 
 
     def web_safe_color_code_to_xl(self):
