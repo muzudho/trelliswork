@@ -1,4 +1,4 @@
-from ...shared_models import ColorSystem
+from ...shared_models import ColorSystem, VarColor
 
 from ..translator import Translator
 
@@ -41,14 +41,14 @@ class ResolveAliasOfColor(Translator):
                             var_color_name=key_vcn)
 
 
-                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                    if color_type == VarColor.TONE_AND_COLOR_NAME:
                         key_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
                                 contents_doc=contents_doc_rw,
                                 tone_and_color_name=key_vcn)
 
 
                     # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-                    elif color_type in [ColorSystem.WEB_SAFE_COLOR_CODE, ColorSystem.PAPER_COLOR]:
+                    elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
                         key_web_safe_color_code = key_vcn
 
 
@@ -62,14 +62,14 @@ class ResolveAliasOfColor(Translator):
 
                     #print(f'★ {key_web_safe_color_code=} {value_vcn=} {color_type=}')
 
-                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                    if color_type == VarColor.TONE_AND_COLOR_NAME:
                         value_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
                                 contents_doc=contents_doc_rw,
                                 tone_and_color_name=value_vcn)
 
 
                     # ［ウェブ・セーフ・カラー］、［紙の色］はそのまま
-                    elif color_type in [ColorSystem.WEB_SAFE_COLOR_CODE, ColorSystem.PAPER_COLOR]:
+                    elif color_type in [VarColor.WEB_SAFE_COLOR_CODE, VarColor.PAPER_COLOR]:
                         value_web_safe_color_code = value_vcn
 
 
@@ -115,7 +115,7 @@ class ResolveAliasOfColor(Translator):
                     color_type = ColorSystem.what_is_var_color_name(
                             var_color_name=value)
 
-                    if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                    if color_type == VarColor.TONE_AND_COLOR_NAME:
                         web_safe_color_code = ColorSystem.solve_tone_and_color_name(
                                 contents_doc=contents_doc_rw,
                                 tone_and_color_name=value)
@@ -156,7 +156,7 @@ class ResolveAliasOfColor(Translator):
                 color_type = ColorSystem.what_is_var_color_name(
                         var_color_name=value)
 
-                if color_type == ColorSystem.TONE_AND_COLOR_NAME:
+                if color_type == VarColor.TONE_AND_COLOR_NAME:
                     web_safe_color_code = ColorSystem.solve_tone_and_color_name(
                             contents_doc=contents_doc_rw,
                             tone_and_color_name=value)

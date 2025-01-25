@@ -6,7 +6,7 @@ from openpyxl.styles import PatternFill, Font
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 
-from ..shared_models import ColorSystem, Share
+from ..shared_models import ColorSystem, Share, VarColor
 
 
 def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
@@ -18,7 +18,7 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
         return
 
 
-    if color_type != ColorSystem.DARKNESS:
+    if color_type != VarColor.DARKNESS:
         fill_obj = ColorSystem.var_color_name_to_fill_obj(
                 contents_doc=contents_doc,
                 var_color_name=color)
@@ -32,7 +32,7 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
         for cur_row_th in range(row_th, row_th + rows):
             cell = ws[f'{column_letter}{cur_row_th}']
 
-            if color_type == ColorSystem.DARKNESS:
+            if color_type == VarColor.DARKNESS:
                 # TODO セルの背景色を取得
                 # TODO ウェブ・セーフ・カラーに変換
                 # TODO さらに影の色に変換

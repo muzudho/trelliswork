@@ -14,3 +14,4 @@ from .share import Share
 from .terminal import Terminal
 from .xl_alignment import XlAlignment
 from .xl_font import XlFont
+from .var_color import VarColor
