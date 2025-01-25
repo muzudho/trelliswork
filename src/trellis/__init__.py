@@ -6,19 +6,7 @@ from .compiler.translators.auto_shadow import AutoShadow
 from .compiler.translators.auto_split_pillar import AutoSplitSegmentByPillar
 from .compiler.translators.imports import Imports
 from .compiler.translators.resolve_alias_of_color import ResolveAliasOfColor
-
-from .renderer.features.canvas import render_canvas
-from .renderer.features.cards import render_all_cards
-from .renderer.features.line_tapes import render_all_line_tapes
-from .renderer.features.pillars import render_all_pillar_rugs
-from .renderer.features.rectangles import render_all_rectangles
-from .renderer.features.ruler import render_ruler
-from .renderer.features.shadow_of_cards import render_shadow_of_all_cards
-from .renderer.features.shadow_of_line_tapes import render_shadow_of_all_line_tapes
-from .renderer.features.shadow_of_terminals import render_shadow_of_all_terminals
-from .renderer.features.terminals import render_all_terminals
-from .renderer.features.xl_text import render_all_xl_texts
-
+from .renderer.features import render_canvas, render_all_cards, render_all_line_tapes, render_all_pillar_rugs, render_all_rectangles, render_ruler, render_shadow_of_all_cards, render_shadow_of_all_line_tapes, render_shadow_of_all_terminals, render_all_terminals, render_all_xl_texts
 from .shared_models import ColorSystem, FilePath, InningsPitched
 
 

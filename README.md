@@ -42,3 +42,4 @@ Git Hub が何だか分からない人は、この節は読み飛ばしてくだ
 * [x] (2025-01-25) Pillar の baseColor を "#FFFF00" 形式にすると例外、 "xlPale.xlBlue" 形式なら Ok という不具合がある
     * `fill_rectangle` がエラーを起こす？ ---> PatternFill を返す関数で、ウェブセーフカラー文字列を返していた
 * [x] (2025-01-25) Border, Font, Rectangle, Segments の color を varColor に変更したい
+* [ ] (2025-01-26) JSONを生成するコードのテンプレもJSONで用意したい。JSON構造の仕様変更時に対応しやすいように。
