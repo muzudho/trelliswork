@@ -82,20 +82,21 @@ class AutoShadow(Translator):
                     for segment_dict_rw in segment_list_rw:
                         if 'shadow' in segment_dict_rw and (shadow_dict_rw := segment_dict_rw['shadow']):
                             if 'varColor' in shadow_dict_rw and (shadow_color_value := shadow_dict_rw['varColor']) and shadow_color_value == 'auto':
-                                segment_rect = Rectangle.from_dict(segment_dict_rw)
+                                if 'bounds' in segment_dict_rw and (bounds_dict := segment_dict_rw['bounds']):
+                                    segment_rect = Rectangle.from_dict(bounds_dict)
 
-                                # NOTE 影が指定されているということは、浮いているということでもある
+                                    # NOTE 影が指定されているということは、浮いているということでもある
 
-                                try:
-                                    # 影に自動が設定されていたら、解決する
-                                    if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                            contents_doc=contents_doc_rw,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
-                                        shadow_dict_rw['varColor'] = solved_var_color_name
-                                except:
-                                    print(f'ERROR: AutoShadow: {segment_dict_rw=}')
-                                    raise
+                                    try:
+                                        # 影に自動が設定されていたら、解決する
+                                        if solved_var_color_name := AutoShadow._get_auto_shadow(
+                                                contents_doc=contents_doc_rw,
+                                                column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                            shadow_dict_rw['varColor'] = solved_var_color_name
+                                    except:
+                                        print(f'ERROR: AutoShadow: {segment_dict_rw=}')
+                                        raise
 
 
     @staticmethod

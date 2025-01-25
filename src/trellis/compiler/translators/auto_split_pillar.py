@@ -55,7 +55,8 @@ class AutoSplitSegmentByPillar(Translator):
         new_segment_list = []
 
         #print('🔧　柱を跨ぐとき、ラインテープを分割します')
-        segment_rect = Rectangle.from_dict(line_tape_segment_dict)
+        if 'bounds' in line_tape_segment_dict and (bounds_dict := line_tape_segment_dict['bounds']):
+            segment_rect = Rectangle.from_dict(bounds_dict)
 
         direction = line_tape_segment_dict['direction']
 
