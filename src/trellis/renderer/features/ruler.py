@@ -6,7 +6,7 @@ from openpyxl.styles.borders import Border, Side
 from openpyxl.drawing.image import Image as XlImage
 import json
 
-from ...shared_models import Canvas, ColorSystem, Share, XlFont
+from ...shared_models import Canvas, ColorSystem, Share, VarColor, XlFont
 
 
 #############
@@ -62,13 +62,14 @@ def render_ruler(config_doc, contents_doc, ws):
                 font_list = [None] * len(var_color_list)
                 
                 for index, fg_color_text in enumerate(var_color_list):
+                    var_color_obj = VarColor(fg_color_text)
+
                     if fg_color_text == 'paperColor':
                         #font_list[index] = Font(color=None)   # フォントに使うと黒になる
                         raise ValueError(f'foreground.varColors に paperColor を指定してはいけません {index=}')
 
-                    elif (web_safe_color_code_of_font := ColorSystem.var_color_name_to_web_safe_color_code(
-                            contents_doc=contents_doc,
-                            var_color_name=fg_color_text)) and web_safe_color_code_of_font is not None:
+                    elif (web_safe_color_code_of_font := var_color_obj.to_web_safe_color_code(
+                            contents_doc=contents_doc)) and web_safe_color_code_of_font is not None:
 
                         try:
                             xl_font_obj = XlFont(web_safe_color_code=web_safe_color_code_of_font)
@@ -95,12 +96,13 @@ def render_ruler(config_doc, contents_doc, ws):
                 pattern_fill_list = [None] * len(var_color_list)
                 
                 for index, bg_color_text in enumerate(var_color_list):
+                    var_color_obj = VarColor(bg_color_text)
+
                     if bg_color_text == 'paperColor':
                         pattern_fill_list[index] = PatternFill(patternType=None)
 
-                    elif (web_safe_color_code := ColorSystem.var_color_name_to_web_safe_color_code(
-                            contents_doc=contents_doc,
-                            var_color_name=bg_color_text)) and web_safe_color_code is not None:
+                    elif (web_safe_color_code := var_color_obj.to_web_safe_color_code(
+                            contents_doc=contents_doc)) and web_safe_color_code is not None:
                         try:
                             pattern_fill_list[index] = PatternFill(
                                     patternType='solid',

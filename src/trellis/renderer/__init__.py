@@ -20,9 +20,8 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
 
 
     if color_type != VarColor.DARKNESS:
-        fill_obj = ColorSystem.var_color_name_to_fill_obj(
-                contents_doc=contents_doc,
-                var_color_name=color)
+        fill_obj = var_color_obj.to_fill_obj(
+                contents_doc=contents_doc)
 
 
     # 横へ
@@ -38,9 +37,8 @@ def fill_rectangle(ws, contents_doc, column_th, row_th, columns, rows, color):
                 # TODO ウェブ・セーフ・カラーに変換
                 # TODO さらに影の色に変換
                 # TODO 指定によりそれを複数回
-                fill_obj = ColorSystem.var_color_name_to_fill_obj(
-                        contents_doc=contents_doc,
-                        var_color_name=color)
+                fill_obj = var_color_obj.to_fill_obj(
+                        contents_doc=contents_doc)
             
 
             cell.fill = fill_obj
@@ -63,9 +61,9 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
         style = None
 
         if 'color' in top_dict and (color := top_dict['color']):
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                    contents_doc=contents_doc,
-                    var_color_name=color)
+            var_color_obj = VarColor(color)
+            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+                    contents_doc=contents_doc)
 
         if 'xlStyle' in top_dict and (style := top_dict['xlStyle']):
             pass
@@ -81,9 +79,9 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
         style = None
 
         if 'color' in right_dict and (color := right_dict['color']):
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                    contents_doc=contents_doc,
-                    var_color_name=color)
+            var_color_obj = VarColor(color)
+            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+                    contents_doc=contents_doc)
 
         if 'xlStyle' in right_dict and (style := right_dict['xlStyle']):
             pass
@@ -99,9 +97,9 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
         style = None
 
         if 'color' in bottom_dict and (color := bottom_dict['color']):
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                    contents_doc=contents_doc,
-                    var_color_name=color)
+            var_color_obj = VarColor(color)
+            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+                    contents_doc=contents_doc)
 
         if 'xlStyle' in bottom_dict and (style := bottom_dict['xlStyle']):
             pass
@@ -117,9 +115,9 @@ def draw_xl_border_on_rectangle(ws, contents_doc, xl_border_dict, column_th, row
         style = None
 
         if 'color' in left_dict and (color := left_dict['color']):
-            web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                    contents_doc=contents_doc,
-                    var_color_name=color)
+            var_color_obj = VarColor(color)
+            web_safe_color_code = var_color_obj.to_web_safe_color_code(
+                    contents_doc=contents_doc)
 
         if 'xlStyle' in left_dict and (style := left_dict['xlStyle']):
             pass

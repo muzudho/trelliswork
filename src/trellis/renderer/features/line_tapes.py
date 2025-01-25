@@ -1,5 +1,5 @@
 from ...renderer import fill_rectangle
-from ...shared_models import ColorSystem, Rectangle, Share
+from ...shared_models import ColorSystem, Rectangle, Share, VarColor
 
 
 def render_all_line_tapes(config_doc, contents_doc, ws):
@@ -28,8 +28,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
 
             if 'outline' in line_tape_dict and (outline_dict := line_tape_dict['outline']):
                 if 'varColor' in outline_dict and (outline_color := outline_dict['varColor']):
-                    pass
-                    
+                    outline_as_var_color_obj = VarColor(outline_color)
 
 
             # 各セグメント
@@ -57,9 +56,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
 
                             # （あれば）アウトラインを描く
                             if outline_color and line_tape_direction:
-                                outline_fill_obj = ColorSystem.var_color_name_to_fill_obj(
-                                        contents_doc=contents_doc,
-                                        var_color_name=outline_color)
+                                outline_fill_obj = outline_as_var_color_obj.to_fill_obj(
+                                        contents_doc=contents_doc)
 
                                 # （共通処理）垂直方向
                                 if line_tape_direction in ['from_here.falling_down', 'after_go_right.turn_falling_down', 'after_go_left.turn_up', 'after_go_left.turn_falling_down']:

@@ -13,9 +13,9 @@ class XlFont():
         web_safe_color_code = None
         if 'foreground' in xl_font_dict and (foreground_dict := xl_font_dict['foreground']):
             if 'varColor' in foreground_dict and (fg_color := foreground_dict['varColor']):
-                web_safe_color_code = ColorSystem.var_color_name_to_web_safe_color_code(
-                        contents_doc=contents_doc,
-                        var_color_name=fg_color)
+                var_color_obj = VarColor(fg_color)
+                web_safe_color_code = var_color_obj.to_web_safe_color_code(
+                        contents_doc=contents_doc)
 
         return XlFont(
                 web_safe_color_code=web_safe_color_code)
