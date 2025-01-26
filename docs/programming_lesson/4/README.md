@@ -10,7 +10,7 @@
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -34,7 +34,7 @@
     },
     "rectangles" : [
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 3,
                 "top": 4,
                 "width": 2,

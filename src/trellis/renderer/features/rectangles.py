@@ -23,7 +23,7 @@ def render_all_rectangles(config_doc, contents_doc, ws):
         for rectangle_dict in rectangles_list:
 
             bounds_obj = None
-            if 'bounds' in rectangle_dict and (bounds_dict := rectangle_dict['bounds']):
+            if 'varBounds' in rectangle_dict and (bounds_dict := rectangle_dict['varBounds']):
                 bounds_obj = Rectangle.from_dict(bounds_dict)
 
                 # セル結合

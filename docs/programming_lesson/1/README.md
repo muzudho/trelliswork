@@ -44,7 +44,7 @@ py trellis.py init
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 100,
@@ -130,7 +130,7 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": "0o1",
             "top": "0o2",
             "width": "10o1",
@@ -168,7 +168,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": "0o1",
             "top": "0o2",
             "width": "10o1",

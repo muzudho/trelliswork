@@ -46,7 +46,7 @@ def main():
                     "./examples/data_of_contents/alias_for_color.json"
                 ],
                 "canvas": {
-                    "bounds": {
+                    "varBounds": {
                         "left": 0,
                         "top": 0,
                         "width": canvas_width_obj.var_value,

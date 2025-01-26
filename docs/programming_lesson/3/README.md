@@ -10,7 +10,7 @@
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -36,7 +36,7 @@
     },
     "rectangles": [
         {
-            "bounds": {
+            "varBounds": {
                 "left": 3,
                 "top": 2,
                 "width": 4,
@@ -73,7 +73,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -99,7 +99,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "rectangles": [
         {
-            "bounds": {
+            "varBounds": {
                 "left": 3,
                 "right": 7,
                 "top": 2,
@@ -137,7 +137,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -163,7 +163,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "rectangles": [
         {
-            "bounds": {
+            "varBounds": {
                 "left": 2,
                 "top": 2,
                 "width": 6,

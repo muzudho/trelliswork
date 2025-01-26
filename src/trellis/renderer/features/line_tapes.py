@@ -40,7 +40,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
 
                 if 'background' in segment_dict and (background_dict := segment_dict['background']):
                     if 'varColor' in background_dict and (bg_color := background_dict['varColor']):
-                        if 'bounds' in segment_dict and (bounds_dict := segment_dict['bounds']):
+                        if 'varBounds' in segment_dict and (bounds_dict := segment_dict['varBounds']):
 
                             segment_rect = Rectangle.from_dict(bounds_dict)
 

@@ -3,7 +3,7 @@
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 119,
@@ -36,7 +36,7 @@
     },
     "pillars": [
         {
-            "bounds": {
+            "varBounds": {
                 "left": 0,
                 "right": 4,
                 "top": 1,
@@ -44,7 +44,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 4,
                 "right": 13,
                 "top": 1,
@@ -55,7 +55,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 4,
                         "top": 1,
                         "width": 9,
@@ -79,7 +79,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 3,
                         "top": 10,
                         "width": 9,
@@ -122,7 +122,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "bounds": {
+                    "varBounds": {
                         "left": 6,
                         "top": 5,
                         "width": 3,
@@ -135,7 +135,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 13,
                 "right": 21,
                 "top": 1,
@@ -143,7 +143,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 21,
                 "right": 30,
                 "top": 1,
@@ -154,7 +154,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 21,
                         "top": 1,
                         "width": 9,
@@ -179,7 +179,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 21,
                         "top":15,
                         "width": 9,
@@ -219,7 +219,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 30,
                 "right": 38,
                 "top": 1,
@@ -227,7 +227,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 38,
                 "right": 47,
                 "top": 1,
@@ -238,7 +238,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 38,
                         "top": 1,
                         "width": 9,
@@ -271,7 +271,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 37,
                         "top": 25,
                         "width": 9,
@@ -371,7 +371,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 37,
                         "top": 42,
                         "width": 9,
@@ -437,7 +437,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 37,
                         "top": 61,
                         "width": 9,
@@ -503,7 +503,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 37,
                         "top": 100,
                         "width": 9,
@@ -597,7 +597,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 37,
                         "top": 129,
                         "width": 9,
@@ -657,7 +657,7 @@
             "terminals": [
                 {
                     "pixelArt": "end",
-                    "bounds": {
+                    "varBounds": {
                         "left": 40,
                         "top": 138,
                         "width": 3,
@@ -670,7 +670,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 47,
                 "right": 55,
                 "top": 1,
@@ -678,7 +678,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 55,
                 "right": 64,
                 "top": 1,
@@ -689,7 +689,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 55,
                         "top": 1,
                         "width": 9,
@@ -713,7 +713,7 @@
                     ]                
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 54,
                         "top": 10,
                         "width": 9,
@@ -762,7 +762,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 54,
                         "top": 72,
                         "width": 9,
@@ -802,7 +802,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 54,
                         "top": 86,
                         "width": 9,
@@ -842,7 +842,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 54,
                         "top": 117,
                         "width": 9,
@@ -882,7 +882,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 54,
                         "top": 134,
                         "width": 9,
@@ -919,7 +919,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "bounds": {
+                    "varBounds": {
                         "left": 57,
                         "top": 5,
                         "width": 3,
@@ -932,7 +932,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 64,
                 "right": 72,
                 "top": 1,
@@ -940,7 +940,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 72,
                 "right": 81,
                 "top": 1,
@@ -951,7 +951,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 72,
                         "top": 1,
                         "width": 9,
@@ -975,7 +975,7 @@
                     ]                
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 71,
                         "top": 10,
                         "width": 9,
@@ -1024,7 +1024,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 71,
                         "top": 72,
                         "width": 9,
@@ -1063,7 +1063,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 71,
                         "top": 86,
                         "width": 9,
@@ -1102,7 +1102,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 71,
                         "top": 117,
                         "width": 9,
@@ -1141,7 +1141,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 71,
                         "top": 134,
                         "width": 9,
@@ -1178,7 +1178,7 @@
             "terminals": [
                 {
                     "pixelArt": "start",
-                    "bounds": {
+                    "varBounds": {
                         "left": 74,
                         "top": 5,
                         "width": 3,
@@ -1191,7 +1191,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 81,
                 "right": 89,
                 "top": 1,
@@ -1199,7 +1199,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 89,
                 "right": 98,
                 "top": 1,
@@ -1210,7 +1210,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 89,
                         "top": 1,
                         "width": 9,
@@ -1234,7 +1234,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 88,
                         "top": 52,
                         "width": 9,
@@ -1293,7 +1293,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 98,
                 "right": 106,
                 "top": 1,
@@ -1301,7 +1301,7 @@
             }
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 106,
                 "right": 115,
                 "top": 1,
@@ -1312,7 +1312,7 @@
             },
             "cards": [
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 106,
                         "top": 1,
                         "width": 9,
@@ -1337,7 +1337,7 @@
                     ]                
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 106,
                         "top": 15,
                         "width": 9,
@@ -1367,7 +1367,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 106,
                         "top": 77,
                         "width": 9,
@@ -1411,7 +1411,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 106,
                         "top": 91,
                         "width": 9,
@@ -1455,7 +1455,7 @@
                     ]
                 },
                 {
-                    "bounds": {
+                    "varBounds": {
                         "left": 106,
                         "top": 122,
                         "width": 9,
@@ -1501,7 +1501,7 @@
             ]
         },
         {
-            "bounds": {
+            "varBounds": {
                 "left": 115,
                 "right": 109,
                 "top": 1,
@@ -1523,7 +1523,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 7,
                         "top": 8,
                         "width": 1,
@@ -1545,7 +1545,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": 8,
                         "width": 1,
@@ -1567,7 +1567,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": 8,
                         "width": 1,
@@ -1589,7 +1589,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 7,
                         "top": "13o1",
                         "width": 1,
@@ -1604,7 +1604,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 7,
                         "top": "22o1",
                         "right": 41,
@@ -1619,7 +1619,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "22o1",
                         "width": 1,
@@ -1641,7 +1641,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "36o1",
                         "width": 1,
@@ -1663,7 +1663,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 40,
                         "top": "110o1",
                         "width": 1,
@@ -1678,7 +1678,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 35,
                         "top": "112o1",
                         "right": 41,
@@ -1693,7 +1693,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 34,
                         "top": "40o2",
                         "width": 1,
@@ -1708,7 +1708,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 34,
                         "top": "40o1",
                         "right": 41,
@@ -1723,7 +1723,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "40o1",
                         "width": 1,
@@ -1745,7 +1745,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "65o1",
                         "width": 1,
@@ -1767,7 +1767,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "132o1",
                         "width": 1,
@@ -1789,7 +1789,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "48o1",
                         "width": 1,
@@ -1804,7 +1804,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "50o1",
                         "right": 92,
@@ -1819,7 +1819,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 92,
                         "top": "50o1",
                         "width": 1,
@@ -1841,7 +1841,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 92,
                         "top": "56o1",
                         "width": 1,
@@ -1856,7 +1856,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 42,
                         "top": "59o1",
                         "right": 93,
@@ -1871,7 +1871,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "59o1",
                         "width": 1,
@@ -1893,7 +1893,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 39,
                         "top": "66o1",
                         "width": 1,
@@ -1908,7 +1908,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 39,
                         "top": "70o1",
                         "right": 58,
@@ -1923,7 +1923,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "70o1",
                         "width": 1,
@@ -1945,7 +1945,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 43,
                         "top": "67o1",
                         "width": 1,
@@ -1960,7 +1960,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 43,
                         "top": "69o1",
                         "right": 75,
@@ -1975,7 +1975,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": "69o1",
                         "width": 1,
@@ -1997,7 +1997,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "75o1",
                         "width": 1,
@@ -2012,7 +2012,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "77o1",
                         "right": 75,
@@ -2027,7 +2027,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": "77o1",
                         "width": 1,
@@ -2049,7 +2049,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 73,
                         "top": "75o1",
                         "width": 1,
@@ -2064,7 +2064,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 59,
                         "top": "78o1",
                         "right": 74,
@@ -2079,7 +2079,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "78o1",
                         "width": 1,
@@ -2101,7 +2101,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "89o1",
                         "width": 1,
@@ -2116,7 +2116,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 42,
                         "top": "97o1",
                         "right": 59,
@@ -2131,7 +2131,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "97o1",
                         "width": 1,
@@ -2153,7 +2153,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": "89o1",
                         "width": 1,
@@ -2168,7 +2168,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "98o1",
                         "right": 76,
@@ -2183,7 +2183,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "98o1",
                         "width": 1,
@@ -2205,7 +2205,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 42,
                         "top": "104o1",
                         "width": 1,
@@ -2220,7 +2220,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 42,
                         "top": "115o1",
                         "right": 58,
@@ -2235,7 +2235,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "115o1",
                         "width": 1,
@@ -2257,7 +2257,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 44,
                         "top": "107o1",
                         "width": 1,
@@ -2272,7 +2272,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 44,
                         "top": "114o1",
                         "right": 75,
@@ -2287,7 +2287,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": "114o1",
                         "width": 1,
@@ -2309,7 +2309,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 58,
                         "top": "120o1",
                         "width": 1,
@@ -2324,7 +2324,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "125o1",
                         "right": 59,
@@ -2339,7 +2339,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "125o1",
                         "width": 1,
@@ -2361,7 +2361,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 75,
                         "top": "120o1",
                         "width": 1,
@@ -2376,7 +2376,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 42,
                         "top": "127o1",
                         "right": 76,
@@ -2391,7 +2391,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 41,
                         "top": "127o1",
                         "width": 1,
@@ -2407,7 +2407,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 12,
                         "top": "12o1",
                         "right": 25,
@@ -2419,7 +2419,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 25,
                         "top": "12o1",
                         "width": 1,
@@ -2435,7 +2435,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 63,
                         "top": "12o1",
                         "right": 110,
@@ -2447,7 +2447,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 110,
                         "top": "12o1",
                         "width": 1,
@@ -2463,7 +2463,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 63,
                         "top": "74o1",
                         "right": 110,
@@ -2475,7 +2475,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 110,
                         "top": "74o1",
                         "width": 1,
@@ -2491,7 +2491,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 63,
                         "top": "88o1",
                         "right": 110,
@@ -2503,7 +2503,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 110,
                         "top": "88o1",
                         "width": 1,
@@ -2519,7 +2519,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 63,
                         "top": "119o1",
                         "right": 110,
@@ -2531,7 +2531,7 @@
                     "shadow": {
                         "varColor": "auto"
                     },
-                    "bounds": {
+                    "varBounds": {
                         "left": 110,
                         "top": "119o1",
                         "width": 1,

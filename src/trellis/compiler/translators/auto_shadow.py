@@ -82,7 +82,7 @@ class AutoShadow(Translator):
                     for segment_dict_rw in segment_list_rw:
                         if 'shadow' in segment_dict_rw and (shadow_dict_rw := segment_dict_rw['shadow']):
                             if 'varColor' in shadow_dict_rw and (shadow_color_value := shadow_dict_rw['varColor']) and shadow_color_value == 'auto':
-                                if 'bounds' in segment_dict_rw and (bounds_dict := segment_dict_rw['bounds']):
+                                if 'varBounds' in segment_dict_rw and (bounds_dict := segment_dict_rw['varBounds']):
                                     segment_rect = Rectangle.from_dict(bounds_dict)
 
                                     # NOTE 影が指定されているということは、浮いているということでもある

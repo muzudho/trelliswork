@@ -10,7 +10,7 @@ class Terminal():
     def from_dict(terminal_dict):
 
         bounds_obj = None
-        if 'bounds' in terminal_dict and (bounds_dict := terminal_dict['bounds']):
+        if 'varBounds' in terminal_dict and (bounds_dict := terminal_dict['varBounds']):
             bounds_obj = Rectangle.from_dict(bounds_dict)
 
         return Canvas(

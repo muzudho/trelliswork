@@ -10,7 +10,7 @@
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -34,7 +34,7 @@
     },
     "rectangles" : [
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 2,
                 "right": 4,
                 "top": 2,
@@ -45,7 +45,7 @@
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 4,
                 "right": 6,
                 "top": 2,
@@ -56,7 +56,7 @@
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 6,
                 "right": 8,
                 "top": 2,
@@ -91,7 +91,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -115,7 +115,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "rectangles" : [
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 2,
                 "right": 4,
                 "top": 2,
@@ -126,7 +126,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 4,
                 "right": 6,
                 "top": 2,
@@ -137,7 +137,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 6,
                 "right": 8,
                 "top": 2,
@@ -148,7 +148,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 1,
                 "right": 8,
                 "top": 4,
@@ -159,7 +159,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 2,
                 "right": 9,
                 "top": 5,
@@ -197,7 +197,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -231,7 +231,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
     },
     "rectangles" : [
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 2,
                 "right": 4,
                 "top": 2,
@@ -242,7 +242,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 4,
                 "right": 6,
                 "top": 2,
@@ -253,7 +253,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 6,
                 "right": 8,
                 "top": 2,
@@ -264,7 +264,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 1,
                 "right": 8,
                 "top": 4,
@@ -275,7 +275,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
             }
         },
         {
-            "bounds" : {
+            "varBounds" : {
                 "left": 2,
                 "right": 9,
                 "top": 5,

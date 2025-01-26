@@ -21,7 +21,7 @@
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -71,7 +71,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -120,7 +120,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
@@ -170,7 +170,7 @@ py trellis.py build --config ./trellis_config.json --source ./temp/lesson/hello_
         "./examples/data_of_contents/alias_for_color.json"
     ],
     "canvas": {
-        "bounds": {
+        "varBounds": {
             "left": 0,
             "top": 0,
             "width": 10,
