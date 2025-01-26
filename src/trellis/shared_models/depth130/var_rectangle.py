@@ -2,7 +2,7 @@ from ..depth110 import Share
 from ..depth120 import InningsPitched
 
 
-class Rectangle():
+class VarRectangle():
     """矩形
     """
 
@@ -15,7 +15,7 @@ class Rectangle():
         try:
             main_left = var_bounds_dict['left']
         except:
-            print(f'ERROR: Rectangle.from_var_bounds_dict: {var_bounds_dict=}')
+            print(f'ERROR: VarRectangle.from_var_bounds_dict: {var_bounds_dict=}')
             raise
 
         sub_left = 0
@@ -61,7 +61,7 @@ class Rectangle():
             if isinstance(main_height, str):
                 main_height, sub_height = map(int, main_height.split('o', 2))
 
-        return Rectangle(
+        return VarRectangle(
                 main_left=main_left,
                 sub_left=sub_left,
                 main_top=main_top,
@@ -81,7 +81,7 @@ class Rectangle():
         try:
             sub_left = var_bounds_dict['left']
         except:
-            print(f'ERROR: Rectangle.from_bounds_dict: {var_bounds_dict=}')
+            print(f'ERROR: VarRectangle.from_bounds_dict: {var_bounds_dict=}')
             raise
 
         sub_top = var_bounds_dict['top']
@@ -104,7 +104,7 @@ class Rectangle():
         else:
             sub_height = var_bounds_dict['height']
 
-        return Rectangle(
+        return VarRectangle(
                 main_left=0,
                 sub_left=sub_left,
                 main_top=0,

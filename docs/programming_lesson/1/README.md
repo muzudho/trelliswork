@@ -114,10 +114,10 @@ right は長方形の右側の外、 bottom は長方形の下側の外である
 
 この算術は野球で普通に使われていて珍しいものではないので、使ってみてください。  
 
-上述の Innings pitched と Rectangle はクラスとして実装されています。以下のファイルから探してみてください。  
+上述の Innings pitched と VarRectangle はクラスとして実装されています。以下のファイルから探してみてください。  
 
 * 📄 [Trellis ＞ InningsPitched クラス](../../../src/trellis/share.py) - 正規表現 `class\s+InningsPitched` で検索してください  
-* 📄 [Trellis ＞ Rectangle クラス](../../../src/trellis/share.py) - 正規表現 `class\s+Rectangle` で検索してください  
+* 📄 [Trellis ＞ VarRectangle クラス](../../../src/trellis/shared_models/depth130/rectangle.py) - 正規表現 `class\s+VarRectangle` で検索してください  
 
 
 ## 手順７

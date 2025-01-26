@@ -1,5 +1,5 @@
 from ...renderer import fill_rectangle
-from ...shared_models import Rectangle
+from ...shared_models import VarRectangle
 
 
 def render_all_rectangles(config_doc, contents_doc, ws):
@@ -24,9 +24,9 @@ def render_all_rectangles(config_doc, contents_doc, ws):
 
             bounds_obj = None
             if 'varBounds' in rectangle_dict and (o1_bounds_dict := rectangle_dict['varBounds']):
-                bounds_obj = Rectangle.from_var_bounds_dict(o1_bounds_dict)
+                bounds_obj = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
             elif 'bounds' in rectangle_dict and (o2_bounds_dict := rectangle_dict['bounds']):
-                bounds_obj = Rectangle.from_bounds_dict(o2_bounds_dict)
+                bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
             if bounds_obj:
                 # セル結合
