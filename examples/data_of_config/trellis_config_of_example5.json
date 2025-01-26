@@ -7,8 +7,8 @@
         "objectFilePrefix": null,
         "translationOrder": [
             "imports",
-            "resolveAliasOfColor",
             "resolveVarBounds",
+            "resolveAliasOfColor",
             "autoSplitSegmentByPillar",
             "autoShadow"
         ],
