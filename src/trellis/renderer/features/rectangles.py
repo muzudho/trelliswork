@@ -24,7 +24,7 @@ def render_all_rectangles(config_doc, contents_doc, ws):
 
             bounds_obj = None
             if 'varBounds' in rectangle_dict and (bounds_dict := rectangle_dict['varBounds']):
-                bounds_obj = Rectangle.from_dict(bounds_dict)
+                bounds_obj = Rectangle.from_var_bounds_dict(bounds_dict)
 
                 # セル結合
                 if 'mergeCells' in rectangle_dict and (is_merge_cells := rectangle_dict['mergeCells']):

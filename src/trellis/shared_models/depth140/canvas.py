@@ -10,7 +10,7 @@ class Canvas():
 
         bounds_obj = None
         if 'varBounds' in canvas_dict and (bounds_dict := canvas_dict['varBounds']):
-            bounds_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_var_bounds_dict(bounds_dict)
 
         return Canvas(
                 bounds_obj=bounds_obj)

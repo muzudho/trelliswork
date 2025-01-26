@@ -11,7 +11,7 @@ class Pillar():
 
         bounds_obj = None
         if 'varBounds' in pillar_dict and (bounds_dict := pillar_dict['varBounds']):
-            bounds_obj = Rectangle.from_dict(bounds_dict)
+            bounds_obj = Rectangle.from_var_bounds_dict(bounds_dict)
 
         return Canvas(
                 bounds_obj=bounds_obj)

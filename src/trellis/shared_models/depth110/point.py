@@ -11,7 +11,7 @@ class Point():
         try:
             first_x = point_dict['x']
         except:
-            print(f'ERROR: Rectangle.from_dict: {point_dict=}')
+            print(f'ERROR: Point.from_dict: {point_dict=}')
             raise
 
         second_x = 0

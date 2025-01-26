@@ -42,7 +42,7 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                     if 'varColor' in background_dict and (bg_color := background_dict['varColor']):
                         if 'varBounds' in segment_dict and (bounds_dict := segment_dict['varBounds']):
 
-                            segment_rect = Rectangle.from_dict(bounds_dict)
+                            segment_rect = Rectangle.from_var_bounds_dict(bounds_dict)
 
                             # ラインテープを描く
                             fill_rectangle(
