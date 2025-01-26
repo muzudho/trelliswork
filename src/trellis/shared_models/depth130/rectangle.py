@@ -178,7 +178,7 @@ class Rectangle():
         return self._height_obj
 
 
-    def to_ltwh_dict(self):
+    def to_var_ltwh_dict(self):
         """left, top, width, height を含む辞書を作成します
         """
 
@@ -206,7 +206,7 @@ class Rectangle():
         }
 
 
-    def to_lrtb_dict(self):
+    def to_var_lrtb_dict(self):
         """left, right, top, bottom を含む辞書を作成します
         """
 

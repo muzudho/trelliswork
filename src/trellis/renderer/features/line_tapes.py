@@ -42,10 +42,10 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                     if 'varColor' in background_dict and (bg_color := background_dict['varColor']):
 
                         segment_rect = None
-                        if 'varBounds' in segment_dict and (var_bounds_dict := segment_dict['varBounds']):
-                            segment_rect = Rectangle.from_var_bounds_dict(var_bounds_dict)
-                        elif 'bounds' in segment_dict and (bounds_dict := segment_dict['bounds']):
-                            segment_rect = Rectangle.from_bounds_dict(bounds_dict)
+                        if 'varBounds' in segment_dict and (o1_bounds_dict := segment_dict['varBounds']):
+                            segment_rect = Rectangle.from_var_bounds_dict(o1_bounds_dict)
+                        elif 'bounds' in segment_dict and (o2_bounds_dict := segment_dict['bounds']):
+                            segment_rect = Rectangle.from_bounds_dict(o2_bounds_dict)
 
                         if segment_rect:
                             # ラインテープを描く

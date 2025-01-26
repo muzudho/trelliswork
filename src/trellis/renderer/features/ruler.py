@@ -392,7 +392,17 @@ def render_ruler(config_doc, contents_doc, ws):
         if spacing == 0:
             row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING
             #print(f'マージセルA h_qty={canvas_bounds_obj.height_obj.total_of_out_counts_qty} {row_th=} {spacing=}')
-            ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+            try:
+                ws.merge_cells(f'{column_letter}{row_th}:{column_letter2}{row_th + 2}')
+            except:
+                print(f"""★マージセルＡ失敗：
+{column_letter=}{row_th=}:{column_letter2=}{row_th + 2=}
+{canvas_bounds_obj.height_obj.integer_part=}
+{Share.OUT_COUNTS_THAT_CHANGE_INNING=}
+{canvas_bounds_obj.top_obj.total_of_out_counts_th=}
+{Share.OUT_COUNTS_THAT_CHANGE_INNING=}
+""")
+                raise
         elif spacing == 1:
             row_th = canvas_bounds_obj.height_obj.integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + canvas_bounds_obj.top_obj.total_of_out_counts_th
             #print(f'マージセルB {row_th=} {spacing=} {column_letter=} {column_letter2=} {canvas_bounds_obj.height_obj.integer_part=}')

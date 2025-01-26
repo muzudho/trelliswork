@@ -16,6 +16,8 @@ class InningsPitched():
 
     @staticmethod
     def from_var_value(var_value):
+        """th （序数）なのか qty （量）なのか区別できないので、qty （量）として取り込む
+        """
 
         try:
             # "100" が来たら 100 にする
@@ -41,12 +43,13 @@ class InningsPitched():
 
 
     def __init__(self, integer_part, decimal_part):
-        self._integer_part = integer_part
-        self._decimal_part = decimal_part
+        # 正規化する
+        self._decimal_part = decimal_part % Share.OUT_COUNTS_THAT_CHANGE_INNING
+        self._integer_part = integer_part + decimal_part // Share.OUT_COUNTS_THAT_CHANGE_INNING
 
         if self._decimal_part == 0:
             self._var_value = self._integer_part
-        else:
+        else:            
             self._var_value = f'{self._integer_part}o{self._decimal_part}'
 
         self._total_of_out_counts_qty = self._integer_part * Share.OUT_COUNTS_THAT_CHANGE_INNING + self._decimal_part
@@ -87,8 +90,8 @@ class InningsPitched():
 
     def offset(self, var_value):
         """この投球回に、引数を加算した数を算出して返します"""
-        l = self                       # Left operand
-        r = InningsPitched.from_var_value(var_value)  # Right operand
+        l = self                                        # Left operand
+        r = InningsPitched.from_var_value(var_value)    # Right operand
         sum_decimal_part = l.decimal_part + r.decimal_part
         integer_part = l.integer_part + r.integer_part + sum_decimal_part // Share.OUT_COUNTS_THAT_CHANGE_INNING
         return InningsPitched.from_integer_and_decimal_part(

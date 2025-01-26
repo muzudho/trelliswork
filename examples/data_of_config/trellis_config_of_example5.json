@@ -8,6 +8,7 @@
         "translationOrder": [
             "imports",
             "resolveAliasOfColor",
+            "resolveVarBounds",
             "autoSplitSegmentByPillar",
             "autoShadow"
         ],
@@ -31,6 +32,13 @@
                 "objectFile": {
                     "write": true,
                     "suffix": "after_resolve_alias_of_color"
+                }
+            },
+            "resolveVarBounds": {
+                "enabled": false,
+                "objectFile": {
+                    "write": true,
+                    "suffix": "after_resolve_var_bounds"
                 }
             },
             "imports": {
