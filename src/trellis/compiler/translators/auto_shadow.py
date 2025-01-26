@@ -86,9 +86,7 @@ class AutoShadow(Translator):
                                 # NOTE 影が指定されているということは、浮いているということでもある
 
                                 segment_rect = None
-                                if 'varBounds' in segment_dict_rw and (o1_bounds_dict := segment_dict_rw['varBounds']):
-                                    segment_rect = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
-                                elif 'bounds' in segment_dict_rw and (o2_bounds_dict := segment_dict_rw['bounds']):
+                                if 'bounds' in segment_dict_rw and (o2_bounds_dict := segment_dict_rw['bounds']):
                                     segment_rect = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
                                 if segment_rect:

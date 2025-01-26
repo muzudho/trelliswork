@@ -10,9 +10,7 @@ class Pillar():
     def from_dict(pillar_dict):
 
         bounds_obj = None
-        if 'varBounds' in pillar_dict and (o1_bounds_dict := pillar_dict['varBounds']):
-            bounds_obj = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
-        elif 'bounds' in pillar_dict and (o2_bounds_dict := pillar_dict['bounds']):
+        if 'bounds' in pillar_dict and (o2_bounds_dict := pillar_dict['bounds']):
             bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
         return Canvas(

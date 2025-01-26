@@ -10,9 +10,7 @@ class Card():
     def from_dict(card_dict):
 
         bounds_obj = None
-        if 'varBounds' in card_dict and (o1_bounds_dict := card_dict['varBounds']):
-            bounds_obj = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
-        elif 'bounds' in card_dict and (o2_bounds_dict := card_dict['bounds']):
+        if 'bounds' in card_dict and (o2_bounds_dict := card_dict['bounds']):
             bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
         return Canvas(

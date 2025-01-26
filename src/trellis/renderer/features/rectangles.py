@@ -23,9 +23,7 @@ def render_all_rectangles(config_doc, contents_doc, ws):
         for rectangle_dict in rectangles_list:
 
             bounds_obj = None
-            if 'varBounds' in rectangle_dict and (o1_bounds_dict := rectangle_dict['varBounds']):
-                bounds_obj = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
-            elif 'bounds' in rectangle_dict and (o2_bounds_dict := rectangle_dict['bounds']):
+            if 'bounds' in rectangle_dict and (o2_bounds_dict := rectangle_dict['bounds']):
                 bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
             if bounds_obj:

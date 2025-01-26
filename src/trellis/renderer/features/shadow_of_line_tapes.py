@@ -26,9 +26,7 @@ def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
                     if 'varColor' in shadow_dict and (shadow_color_value := shadow_dict['varColor']):
 
                         segment_rect = None
-                        if 'varBounds' in segment_dict and(o1_bounds_dict := segment_dict['varBounds']):
-                            segment_rect = VarRectangle.from_var_bounds_dict(o1_bounds_dict)
-                        elif 'bounds' in segment_dict and(o2_bounds_dict := segment_dict['bounds']):
+                        if 'bounds' in segment_dict and(o2_bounds_dict := segment_dict['bounds']):
                             segment_rect = VarRectangle.from_bounds_dict(o2_bounds_dict)
 
                         if segment_rect:
