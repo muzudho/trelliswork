@@ -88,7 +88,7 @@ class InningsPitched():
         return self._total_of_out_counts_qty + 1
 
 
-    def offset(self, var_value):
+    def offset_by_var_value(self, var_value):
         """この投球回に、引数を加算した数を算出して返します"""
         l = self                                        # Left operand
         r = InningsPitched.from_var_value(var_value)    # Right operand

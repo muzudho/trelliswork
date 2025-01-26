@@ -27,7 +27,7 @@
                 }
             },
             "resolveVarBounds": {
-                "enabled": false,
+                "enabled": true,
                 "objectFile": {
                     "write": true,
                     "suffix": "after_resolve_var_bounds"

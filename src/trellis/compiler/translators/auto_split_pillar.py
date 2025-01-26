@@ -72,7 +72,6 @@ class AutoSplitSegmentByPillar(Translator):
             # 右進でも、左進でも、同じコードでいけるようだ
             if direction in ['after_falling_down.turn_right', 'after_up.turn_right', 'from_here.go_right', 'after_falling_down.turn_left']:
 
-                # ['pillars']['varBounds']
                 if 'pillars' in contents_doc and (pillars_list := contents_doc['pillars']):
 
                     # 各柱
@@ -88,18 +87,18 @@ class AutoSplitSegmentByPillar(Translator):
                             # 左側のセグメントを新規作成し、新リストに追加
                             # （計算を簡単にするため）width は使わず right を使う
                             o1_segment_dict = copy.deepcopy(segment_dict_rw)
-                            o1_bounds_dict = o1_segment_dict['varBounds']
+                            o1_bounds_dict = o1_segment_dict['bounds']
                             o1_bounds_dict.pop('width', None)
-                            o1_bounds_dict['right'] = InningsPitched.from_var_value(pillar_bounds_obj.right_obj.var_value).offset(-1).var_value
+                            o1_bounds_dict['right'] = pillar_bounds_obj.right_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
                             new_segment_list_w.append(o1_segment_dict)
 
                             # 右側のセグメントを新規作成し、既存リストに追加
                             # （計算を簡単にするため）width は使わず right を使う
                             o2_segment_dict = copy.deepcopy(segment_dict_rw)
-                            o2_bounds_dict = o2_segment_dict['varBounds']
+                            o2_bounds_dict = o2_segment_dict['bounds']
                             o2_bounds_dict.pop('width', None)
-                            o2_bounds_dict['left'] = pillar_bounds_obj.right_obj.offset(-1).var_value
-                            o2_bounds_dict['right'] = segment_rect_obj.right_obj.var_value
+                            o2_bounds_dict['left'] = pillar_bounds_obj.right_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
+                            o2_bounds_dict['right'] = segment_rect_obj.right_obj.total_of_out_counts_qty
 
                             segment_list_rw.append(o2_segment_dict)
                             segment_dict_rw = o2_segment_dict          # 入れ替え
