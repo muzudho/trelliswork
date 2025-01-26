@@ -72,6 +72,49 @@ class Rectangle():
                 sub_height=sub_height)
 
 
+    @staticmethod
+    def from_bounds_dict(var_bounds_dict):
+        """矩形情報を取得
+        left,top,right,bottom,width,height の単位はそれぞれアウトカウント。
+        """
+
+        try:
+            sub_left = var_bounds_dict['left']
+        except:
+            print(f'ERROR: Rectangle.from_bounds_dict: {var_bounds_dict=}')
+            raise
+
+        sub_top = var_bounds_dict['top']
+
+        # right は、その数を含まない。
+        # right が指定されていれば、 width より優先する
+        if 'right' in var_bounds_dict:
+            sub_right = var_bounds_dict['right']
+            sub_width = sub_right - sub_left
+
+        else:
+            sub_width = var_bounds_dict['width']
+
+        # bottom は、その数を含まない。
+        # bottom が指定されていれば、 width より優先する
+        if 'bottom' in var_bounds_dict:
+            sub_bottom = var_bounds_dict['bottom']
+            sub_height = sub_bottom - sub_top
+
+        else:
+            sub_height = var_bounds_dict['height']
+
+        return Rectangle(
+                main_left=0,
+                sub_left=sub_left,
+                main_top=0,
+                sub_top=sub_top,
+                main_width=0,
+                sub_width=sub_width,
+                main_height=0,
+                sub_height=sub_height)
+
+
     def __init__(self, main_left, sub_left, main_top, sub_top, main_width, sub_width, main_height, sub_height):
         """初期化
         """

@@ -24,9 +24,14 @@ def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
             for segment_dict in line_tape_dict['segments']:
                 if 'shadow' in segment_dict and (shadow_dict := segment_dict['shadow']):
                     if 'varColor' in shadow_dict and (shadow_color_value := shadow_dict['varColor']):
-                        if 'varBounds' in segment_dict and(bounds_dict := segment_dict['varBounds']):
-                            segment_rect = Rectangle.from_var_bounds_dict(bounds_dict)
 
+                        segment_rect = None
+                        if 'varBounds' in segment_dict and(var_bounds_dict := segment_dict['varBounds']):
+                            segment_rect = Rectangle.from_var_bounds_dict(var_bounds_dict)
+                        elif 'bounds' in segment_dict and(bounds_dict := segment_dict['bounds']):
+                            segment_rect = Rectangle.from_bounds_dict(bounds_dict)
+
+                        if segment_rect:
                             # 端子の影を描く
                             fill_rectangle(
                                     ws=ws,

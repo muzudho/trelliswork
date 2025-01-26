@@ -57,8 +57,11 @@ class AutoSplitSegmentByPillar(Translator):
         new_segment_list_w = []
 
         #print('🔧　柱を跨ぐとき、ラインテープを分割します')
-        if 'varBounds' in segment_dict_rw and (bounds_dict := segment_dict_rw['varBounds']):
-            segment_rect_obj = Rectangle.from_var_bounds_dict(bounds_dict)
+        segment_rect_obj = None
+        if 'varBounds' in segment_dict_rw and (var_bounds_dict := segment_dict_rw['varBounds']):
+            segment_rect_obj = Rectangle.from_var_bounds_dict(var_bounds_dict)
+        elif 'bounds' in segment_dict_rw and (bounds_dict := segment_dict_rw['bounds']):
+            segment_rect_obj = Rectangle.from_bounds_dict(bounds_dict)
 
         direction = segment_dict_rw['direction']
 
