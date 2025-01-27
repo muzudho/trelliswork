@@ -13,18 +13,18 @@ class Rectangle():
         """
 
         try:
-            left = bounds_dict['left']
+            left_qty = bounds_dict['left']
         except:
-            print(f'ERROR: VarRectangle.from_bounds_dict: {bounds_dict=}')
+            print(f'ERROR: Rectangle.from_bounds_dict: {bounds_dict=}')
             raise
 
-        top = bounds_dict['top']
+        top_qty = bounds_dict['top']
 
         # right は、その数を含まない。
         # right が指定されていれば、 width より優先する
         if 'right' in bounds_dict:
-            right = bounds_dict['right']
-            width = right - left
+            right_qty = bounds_dict['right']
+            width = right_qty - left_qty
 
         else:
             width = bounds_dict['width']
@@ -32,64 +32,89 @@ class Rectangle():
         # bottom は、その数を含まない。
         # bottom が指定されていれば、 width より優先する
         if 'bottom' in bounds_dict:
-            bottom = bounds_dict['bottom']
-            height = bottom - top
+            bottom_qty = bounds_dict['bottom']
+            height = bottom_qty - top_qty
 
         else:
             height = bounds_dict['height']
 
-        return VarRectangle(
-                left=left,
-                top=top,
+        return Rectangle(
+                left_qty=left_qty,
+                top_qty=top_qty,
                 width=width,
                 height=height)
 
 
-    def __init__(self, left, top, width, height):
+    def __init__(self, left_qty, top_qty, width, height):
         """初期化
         """
-        self._left = left
-        self._top = top
+        self._left_qty = left_qty
+        self._top_qty = top_qty
         self._width = width
         self._height = height
-        self._right = None
-        self._bottom = None
+        self._right_qty = None
+        self._bottom_qty = None
 
 
     def _calculate_right(self):
-        self._right = self._left + self._width
+        self._right_qty = self._left_qty + self._width
 
 
     def _calculate_bottom(self):
-        self._bottom = self._top + self._height
+        self._bottom_qty = self._top_qty + self._height
 
 
     @property
-    def left(self):
-        return self._left
+    def left_qty(self):
+        return self._left_qty
 
 
     @property
-    def right(self):
+    def left_th(self):
+        """Excel の列番号が 1 相当から始まるので、それに合わせるのに使う"""
+        return self._left_qty + 1
+
+
+    @property
+    def right_qty(self):
         """矩形の右位置
         """
-        if not self._right:
+        if not self._right_qty:
             self._calculate_right()
-        return self._right
+        return self._right_qty
 
 
     @property
-    def top(self):
-        return self._top
+    def right_th(self):
+        """矩形の右位置。Excel の列番号が 1 相当から始まるので、それに合わせるのに使う"""
+        return self.right_qty + 1
 
 
     @property
-    def bottom(self):
+    def top_qty(self):
+        return self._top_qty
+
+
+    @property
+    def top_th(self):
+        """Excel の行番号が 1 から始まるので、それに合わせるのに使う"""
+        return self._top_qty + 1
+
+
+    @property
+    def bottom_qty(self):
         """矩形の下位置
         """
-        if not self._bottom:
+        if not self._bottom_qty:
             self._calculate_bottom()
-        return self._bottom
+        return self._bottom_qty
+
+
+    @property
+    def bottom_th(self):
+        """矩形の下位置。Excel の行番号が 1 から始まるので、それに合わせるのに使う
+        """
+        return self.bottom_qty + 1
 
 
     @property
@@ -106,13 +131,13 @@ class Rectangle():
         """left, top, width, height を含む辞書を作成します
         """
 
-        left = self._left
-        if isinstance(left, str):
-            left = f'"{left}"'
+        left_qty = self._left_qty
+        if isinstance(left_qty, str):
+            left_qty = f'"{left_qty}"'
 
-        top = self._top
-        if isinstance(top, str):
-            top = f'"{top}"'
+        top_qty = self._top_qty
+        if isinstance(top_qty, str):
+            top_qty = f'"{top_qty}"'
 
         width = self._width
         if isinstance(width, str):
@@ -123,8 +148,8 @@ class Rectangle():
             height = f'"{height}"'
 
         return {
-            "left": left,
-            "top": top,
+            "left": left_qty,
+            "top": top_qty,
             "width": width,
             "height": height
         }
@@ -134,25 +159,25 @@ class Rectangle():
         """left, right, top, bottom を含む辞書を作成します
         """
 
-        left = self._left
-        if isinstance(left, str):
-            left = f'"{left}"'
+        left_qty = self._left_qty
+        if isinstance(left_qty, str):
+            left_qty = f'"{left_qty}"'
 
-        right = self._right
-        if isinstance(right, str):
-            right = f'"{right}"'
+        right_qty = self._right_qty
+        if isinstance(right_qty, str):
+            right_qty = f'"{right_qty}"'
 
-        top = self._top
-        if isinstance(top, str):
-            top = f'"{top}"'
+        top_qty = self._top_qty
+        if isinstance(top_qty, str):
+            top_qty = f'"{top_qty}"'
 
-        bottom = self._bottom
-        if isinstance(bottom, str):
-            bottom = f'"{bottom}"'
+        bottom_qty = self._bottom_qty
+        if isinstance(bottom_qty, str):
+            bottom_qty = f'"{bottom_qty}"'
 
         return {
-            "left": left,
-            "right": right,
-            "top": top,
-            "bottom": bottom
+            "left": left_qty,
+            "right": right_qty,
+            "top": top_qty,
+            "bottom": bottom_qty
         }

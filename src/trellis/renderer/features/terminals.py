@@ -36,12 +36,12 @@ def render_all_terminals(config_doc, contents_doc, ws):
                         # 始端のドット絵を描く
                         fill_start_terminal(
                             ws=ws,
-                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th,
-                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th)
+                            column_th=terminal_bounds_obj.left_th,
+                            row_th=terminal_bounds_obj.top_th)
 
                     elif terminal_pixel_art == 'end':
                         # 終端のドット絵を描く
                         fill_end_terminal(
                             ws=ws,
-                            column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th,
-                            row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th)
+                            column_th=terminal_bounds_obj.left_th,
+                            row_th=terminal_bounds_obj.top_th)

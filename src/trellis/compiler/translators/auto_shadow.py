@@ -1,4 +1,4 @@
-from ...shared_models import Card, Pillar, VarRectangle, Share, Terminal
+from ...shared_models import Card, Pillar, Rectangle, Share, Terminal
 from ..translator import Translator
 
 
@@ -42,8 +42,8 @@ class AutoShadow(Translator):
                                     try:
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
                                                 contents_doc=contents_doc_rw,
-                                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                                row_th=card_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                                column_th=card_bounds_obj.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=card_bounds_obj.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name
                                     except:
                                         print(f'ERROR: AutoShadow: {card_dict_rw=}')
@@ -65,8 +65,8 @@ class AutoShadow(Translator):
                                         # 影に自動が設定されていたら、解決する
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
                                                 contents_doc=contents_doc_rw,
-                                                column_th=terminal_bounds_obj.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                                row_th=terminal_bounds_obj.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                                column_th=terminal_bounds_obj.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=terminal_bounds_obj.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name
                                     except:
                                         print(f'ERROR: AutoShadow: {terminal_dict_rw=}')
@@ -87,15 +87,15 @@ class AutoShadow(Translator):
 
                                 segment_rect = None
                                 if 'bounds' in segment_dict_rw and (o2_bounds_dict := segment_dict_rw['bounds']):
-                                    segment_rect = VarRectangle.from_bounds_dict(o2_bounds_dict)
+                                    segment_rect = Rectangle.from_bounds_dict(o2_bounds_dict)
 
                                 if segment_rect:
                                     try:
                                         # 影に自動が設定されていたら、解決する
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
                                                 contents_doc=contents_doc_rw,
-                                                column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                                row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
+                                                column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                                row_th=segment_rect.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name
                                     except:
                                         print(f'ERROR: AutoShadow: {segment_dict_rw=}')
@@ -133,8 +133,8 @@ class AutoShadow(Translator):
                             pillar_bounds_obj = pillar_obj.bounds_obj
 
                             # もし、矩形の中に、指定の点が含まれたなら
-                            if pillar_bounds_obj.left_obj.total_of_out_counts_th <= column_th and column_th < pillar_bounds_obj.left_obj.total_of_out_counts_th + pillar_bounds_obj.width_obj.total_of_out_counts_qty and \
-                                pillar_bounds_obj.top_obj.total_of_out_counts_th <= row_th and row_th < pillar_bounds_obj.top_obj.total_of_out_counts_th + pillar_bounds_obj.height_obj.total_of_out_counts_qty:
+                            if pillar_bounds_obj.left_th <= column_th and column_th < pillar_bounds_obj.left_th + pillar_bounds_obj.width and \
+                                pillar_bounds_obj.top_th <= row_th and row_th < pillar_bounds_obj.top_th + pillar_bounds_obj.height:
 
                                 # ベースの色に紐づく影の色
                                 if bg_color in var_color_dict:

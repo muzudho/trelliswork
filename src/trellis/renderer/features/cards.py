@@ -46,10 +46,10 @@ def render_all_cards(config_doc, contents_doc, ws):
                     # ヘッダーの矩形の枠線を描きます
                     draw_rectangle(
                             ws=ws,
-                            column_th=card_bounds_obj.left_obj.total_of_out_counts_th,
-                            row_th=card_bounds_obj.top_obj.total_of_out_counts_th,
-                            columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
-                            rows=card_bounds_obj.height_obj.total_of_out_counts_qty)
+                            column_th=card_bounds_obj.left_th,
+                            row_th=card_bounds_obj.top_th,
+                            columns=card_bounds_obj.width,
+                            rows=card_bounds_obj.height)
                 except:
                     print(f'ERROR: render_all_cards: {card_dict=}')
                     raise
@@ -64,7 +64,7 @@ def render_all_cards(config_doc, contents_doc, ws):
                                 ws=ws,
                                 contents_doc=contents_doc,
                                 paper_strip=paper_strip,
-                                column_th=card_bounds_obj.left_obj.total_of_out_counts_th,
-                                row_th=index * Share.OUT_COUNTS_THAT_CHANGE_INNING + card_bounds_obj.top_obj.total_of_out_counts_th,
-                                columns=card_bounds_obj.width_obj.total_of_out_counts_qty,
-                                rows=card_bounds_obj.height_obj.total_of_out_counts_qty)
+                                column_th=card_bounds_obj.left_th,
+                                row_th=index * Share.OUT_COUNTS_THAT_CHANGE_INNING + card_bounds_obj.top_th,
+                                columns=card_bounds_obj.width,
+                                rows=card_bounds_obj.height)

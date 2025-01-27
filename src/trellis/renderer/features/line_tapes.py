@@ -1,5 +1,5 @@
 from ...renderer import fill_rectangle
-from ...shared_models import ColorSystem, VarRectangle, Share, VarColor
+from ...shared_models import ColorSystem, Rectangle, Share, VarColor
 
 
 def render_all_line_tapes(config_doc, contents_doc, ws):
@@ -43,17 +43,17 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
 
                         segment_rect = None
                         if 'bounds' in segment_dict and (o2_bounds_dict := segment_dict['bounds']):
-                            segment_rect = VarRectangle.from_bounds_dict(o2_bounds_dict)
+                            segment_rect = Rectangle.from_bounds_dict(o2_bounds_dict)
 
                         if segment_rect:
                             # ラインテープを描く
                             fill_rectangle(
                                     ws=ws,
                                     contents_doc=contents_doc,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th,
-                                    row_th=segment_rect.top_obj.total_of_out_counts_th,
-                                    columns=segment_rect.width_obj.total_of_out_counts_qty,
-                                    rows=segment_rect.height_obj.total_of_out_counts_qty,
+                                    column_th=segment_rect.left_th,
+                                    row_th=segment_rect.top_th,
+                                    columns=segment_rect.width,
+                                    rows=segment_rect.height,
                                     color=bg_color)
 
                             # （あれば）アウトラインを描く
@@ -67,20 +67,20 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=1,
-                                            rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
+                                            rows=segment_rect.height - 2,
                                             color=outline_color)
 
                                     # 右辺を描く
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th + segment_rect.width,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=1,
-                                            rows=segment_rect.height_obj.total_of_out_counts_qty - 2,
+                                            rows=segment_rect.height - 2,
                                             color=outline_color)
 
                                 # （共通処理）水平方向
@@ -89,9 +89,9 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                            columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th - 1,
+                                            columns=segment_rect.width - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
 
@@ -99,9 +99,9 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
-                                            columns=segment_rect.width_obj.total_of_out_counts_qty - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + segment_rect.height,
+                                            columns=segment_rect.width - 2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
 
@@ -111,8 +111,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th,
                                             columns=1,
                                             rows=1,
                                             color=outline_color)
@@ -121,8 +121,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th,
+                                            column_th=segment_rect.left_th + segment_rect.width,
+                                            row_th=segment_rect.top_th,
                                             columns=1,
                                             rows=1,
                                             color=outline_color)
@@ -133,8 +133,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=1,
                                             rows=2,
                                             color=outline_color)
@@ -143,8 +143,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                             rows=1,
                                             color=outline_color)
@@ -155,8 +155,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -165,8 +165,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -177,8 +177,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -187,8 +187,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -197,8 +197,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th + segment_rect.width,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=1,
                                             rows=2,
                                             color=outline_color)
@@ -209,8 +209,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th + segment_rect.width,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=1,
                                             rows=2,
                                             color=outline_color)
@@ -219,8 +219,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + segment_rect.width_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th + segment_rect.width - Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                             rows=1,
                                             color=outline_color)
@@ -231,9 +231,9 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
-                                            columns=segment_rect.width_obj.total_of_out_counts_qty,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th - 1,
+                                            columns=segment_rect.width,
                                             rows=1,
                                             color=outline_color)
 
@@ -241,9 +241,9 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
-                                            columns=segment_rect.width_obj.total_of_out_counts_qty,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + 1,
+                                            columns=segment_rect.width,
                                             rows=1,
                                             color=outline_color)
 
@@ -253,8 +253,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty,
+                                            column_th=segment_rect.left_th,
+                                            row_th=segment_rect.top_th + segment_rect.height,
                                             columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -263,8 +263,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th + segment_rect.height - 2,
                                             columns=1,
                                             rows=3,
                                             color=outline_color)
@@ -273,8 +273,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + segment_rect.height_obj.total_of_out_counts_qty - 2,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                            row_th=segment_rect.top_th + segment_rect.height - 2,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -285,8 +285,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th,
                                             columns=1,
                                             rows=1,
                                             color=outline_color)
@@ -295,8 +295,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
                                             rows=1,
                                             color=outline_color)
@@ -307,8 +307,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=2 * Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -317,18 +317,18 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th - 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th - 1,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=1,
-                                            rows=segment_rect.height_obj.total_of_out_counts_qty,
+                                            rows=segment_rect.height,
                                             color=outline_color)
 
                                     # 右辺（横長）を描く
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING + 1,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING - 1,
                                             rows=1,
                                             color=outline_color)
@@ -339,8 +339,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th - 1,
+                                            column_th=segment_rect.left_th,
+                                            row_th=segment_rect.top_th - 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)
@@ -349,8 +349,8 @@ def render_all_line_tapes(config_doc, contents_doc, ws):
                                     fill_rectangle(
                                             ws=ws,
                                             contents_doc=contents_doc,
-                                            column_th=segment_rect.left_obj.total_of_out_counts_th,
-                                            row_th=segment_rect.top_obj.total_of_out_counts_th + 1,
+                                            column_th=segment_rect.left_th,
+                                            row_th=segment_rect.top_th + 1,
                                             columns=Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                             rows=1,
                                             color=outline_color)

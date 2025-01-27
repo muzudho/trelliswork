@@ -1,5 +1,5 @@
 from ...renderer import fill_rectangle
-from ...shared_models import VarRectangle, Share
+from ...shared_models import Rectangle, Share
 
 
 def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
@@ -27,15 +27,15 @@ def render_shadow_of_all_line_tapes(config_doc, contents_doc, ws):
 
                         segment_rect = None
                         if 'bounds' in segment_dict and(o2_bounds_dict := segment_dict['bounds']):
-                            segment_rect = VarRectangle.from_bounds_dict(o2_bounds_dict)
+                            segment_rect = Rectangle.from_bounds_dict(o2_bounds_dict)
 
                         if segment_rect:
                             # 端子の影を描く
                             fill_rectangle(
                                     ws=ws,
                                     contents_doc=contents_doc,
-                                    column_th=segment_rect.left_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                    row_th=segment_rect.top_obj.total_of_out_counts_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
-                                    columns=segment_rect.width_obj.total_of_out_counts_qty,
-                                    rows=segment_rect.height_obj.total_of_out_counts_qty,
+                                    column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                    row_th=segment_rect.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
+                                    columns=segment_rect.width,
+                                    rows=segment_rect.height,
                                     color=shadow_color_value)

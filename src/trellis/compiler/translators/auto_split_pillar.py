@@ -1,6 +1,6 @@
 import copy
 
-from ...shared_models import InningsPitched, InningsPitched, Pillar, VarRectangle, Share
+from ...shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
 from ..translator import Translator
 
 
@@ -59,7 +59,7 @@ class AutoSplitSegmentByPillar(Translator):
         #print('🔧　柱を跨ぐとき、ラインテープを分割します')
         segment_rect_obj = None
         if 'bounds' in segment_dict_rw and (o2_bounds_dict := segment_dict_rw['bounds']):
-            segment_rect_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
+            segment_rect_obj = Rectangle.from_bounds_dict(o2_bounds_dict)
 
         if segment_rect_obj:
             direction = segment_dict_rw['direction']
@@ -78,7 +78,7 @@ class AutoSplitSegmentByPillar(Translator):
                         pillar_bounds_obj = pillar_obj.bounds_obj
 
                         # とりあえず、ラインテープの左端と右端の内側に、柱の右端があるか判定
-                        if segment_rect_obj.left_obj.total_of_out_counts_th < pillar_bounds_obj.right_obj.total_of_out_counts_th and pillar_bounds_obj.right_obj.total_of_out_counts_th < segment_rect_obj.right_obj.total_of_out_counts_th:
+                        if segment_rect_obj.left_th < pillar_bounds_obj.right_th and pillar_bounds_obj.right_th < segment_rect_obj.right_th:
                             # 既存のセグメントを削除
                             segment_list_rw.remove(segment_dict_rw)
 
@@ -87,7 +87,7 @@ class AutoSplitSegmentByPillar(Translator):
                             o1_segment_dict = copy.deepcopy(segment_dict_rw)
                             o1_bounds_dict = o1_segment_dict['bounds']
                             o1_bounds_dict.pop('width', None)
-                            o1_bounds_dict['right'] = pillar_bounds_obj.right_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
+                            o1_bounds_dict['right'] = pillar_bounds_obj.right_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
                             new_segment_list_w.append(o1_segment_dict)
 
                             # 右側のセグメントを新規作成し、既存リストに追加
@@ -95,8 +95,8 @@ class AutoSplitSegmentByPillar(Translator):
                             o2_segment_dict = copy.deepcopy(segment_dict_rw)
                             o2_bounds_dict = o2_segment_dict['bounds']
                             o2_bounds_dict.pop('width', None)
-                            o2_bounds_dict['left'] = pillar_bounds_obj.right_obj.total_of_out_counts_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
-                            o2_bounds_dict['right'] = segment_rect_obj.right_obj.total_of_out_counts_qty
+                            o2_bounds_dict['left'] = pillar_bounds_obj.right_qty - Share.OUT_COUNTS_THAT_CHANGE_INNING
+                            o2_bounds_dict['right'] = segment_rect_obj.right_qty
 
                             segment_list_rw.append(o2_segment_dict)
                             segment_dict_rw = o2_segment_dict          # 入れ替え

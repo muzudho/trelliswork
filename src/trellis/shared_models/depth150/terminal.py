@@ -1,4 +1,4 @@
-from ..depth130 import VarRectangle
+from ..depth120 import Rectangle
 from ..depth140 import Canvas
 
 
@@ -11,7 +11,7 @@ class Terminal():
 
         bounds_obj = None
         if 'bounds' in terminal_dict and (o2_bounds_dict := terminal_dict['bounds']):
-            bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
+            bounds_obj = Rectangle.from_bounds_dict(o2_bounds_dict)
 
         return Canvas(
                 bounds_obj=bounds_obj)

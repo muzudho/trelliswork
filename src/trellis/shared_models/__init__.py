@@ -10,10 +10,11 @@ from .depth110.file_path import FilePath
 from .depth120.innings_pitched import InningsPitched
 from .depth150.pillar import Pillar
 from .depth110.point import Point
-from .depth130.var_rectangle import VarRectangle
+from .depth120.rectangle import Rectangle
 from .depth150.terminal import Terminal
 from .depth110.xl_alignment import XlAlignment
 from .depth130.xl_font import XlFont
 from .depth120.var_color import VarColor
 from .depth110.share import Share
+from .depth130.var_rectangle import VarRectangle
 from .depth110.web_safe_color import WebSafeColor

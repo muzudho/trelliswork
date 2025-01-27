@@ -1,4 +1,4 @@
-from ..depth130 import VarRectangle
+from ..depth120 import Rectangle
 
 
 class Canvas():
@@ -10,7 +10,7 @@ class Canvas():
 
         bounds_obj = None
         if 'bounds' in canvas_dict and (o2_bounds_dict := canvas_dict['bounds']):
-            bounds_obj = VarRectangle.from_bounds_dict(o2_bounds_dict)
+            bounds_obj = Rectangle.from_bounds_dict(o2_bounds_dict)
 
         return Canvas(
                 bounds_obj=bounds_obj)
