@@ -8,45 +8,67 @@ class VarRectangle():
 
 
     @staticmethod
-    def from_bounds_dict(bounds_dict):
+    def from_var_bounds_dict(var_bounds_dict):
         """矩形情報を取得
-        left,top,right,bottom,width,height の単位はそれぞれアウトカウント。
         """
 
         try:
-            sub_left = bounds_dict['left']
+            main_left = var_bounds_dict['left']
         except:
-            print(f'ERROR: VarRectangle.from_bounds_dict: {bounds_dict=}')
+            print(f'ERROR: VarRectangle.from_var_bounds_dict: {var_bounds_dict=}')
             raise
 
-        sub_top = bounds_dict['top']
+        sub_left = 0
+        if isinstance(main_left, str):
+            main_left, sub_left = map(int, main_left.split('o', 2))
+
+        main_top = var_bounds_dict['top']
+        sub_top = 0
+        if isinstance(main_top, str):
+            main_top, sub_top = map(int, main_top.split('o', 2))
 
         # right は、その数を含まない。
         # right が指定されていれば、 width より優先する
-        if 'right' in bounds_dict:
-            sub_right = bounds_dict['right']
+        if 'right' in var_bounds_dict:
+            right = var_bounds_dict['right']
+            sub_right = 0
+            if isinstance(right, str):
+                right, sub_right = map(int, right.split('o', 2))
+
+            main_width = right - main_left
             sub_width = sub_right - sub_left
 
         else:
-            sub_width = bounds_dict['width']
+            main_width = var_bounds_dict['width']
+            sub_width = 0
+            if isinstance(main_width, str):
+                main_width, sub_width = map(int, main_width.split('o', 2))
 
         # bottom は、その数を含まない。
         # bottom が指定されていれば、 width より優先する
-        if 'bottom' in bounds_dict:
-            sub_bottom = bounds_dict['bottom']
+        if 'bottom' in var_bounds_dict:
+            bottom = var_bounds_dict['bottom']
+            sub_bottom = 0
+            if isinstance(bottom, str):
+                bottom, sub_bottom = map(int, bottom.split('o', 2))
+
+            main_height = bottom - main_top
             sub_height = sub_bottom - sub_top
 
         else:
-            sub_height = bounds_dict['height']
+            main_height = var_bounds_dict['height']
+            sub_height = 0
+            if isinstance(main_height, str):
+                main_height, sub_height = map(int, main_height.split('o', 2))
 
         return VarRectangle(
-                main_left=0,
+                main_left=main_left,
                 sub_left=sub_left,
-                main_top=0,
+                main_top=main_top,
                 sub_top=sub_top,
-                main_width=0,
+                main_width=main_width,
                 sub_width=sub_width,
-                main_height=0,
+                main_height=main_height,
                 sub_height=sub_height)
 
 
