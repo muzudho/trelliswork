@@ -73,36 +73,36 @@ class VarRectangle():
 
 
     @staticmethod
-    def from_bounds_dict(var_bounds_dict):
+    def from_bounds_dict(bounds_dict):
         """矩形情報を取得
         left,top,right,bottom,width,height の単位はそれぞれアウトカウント。
         """
 
         try:
-            sub_left = var_bounds_dict['left']
+            sub_left = bounds_dict['left']
         except:
-            print(f'ERROR: VarRectangle.from_bounds_dict: {var_bounds_dict=}')
+            print(f'ERROR: VarRectangle.from_bounds_dict: {bounds_dict=}')
             raise
 
-        sub_top = var_bounds_dict['top']
+        sub_top = bounds_dict['top']
 
         # right は、その数を含まない。
         # right が指定されていれば、 width より優先する
-        if 'right' in var_bounds_dict:
-            sub_right = var_bounds_dict['right']
+        if 'right' in bounds_dict:
+            sub_right = bounds_dict['right']
             sub_width = sub_right - sub_left
 
         else:
-            sub_width = var_bounds_dict['width']
+            sub_width = bounds_dict['width']
 
         # bottom は、その数を含まない。
         # bottom が指定されていれば、 width より優先する
-        if 'bottom' in var_bounds_dict:
-            sub_bottom = var_bounds_dict['bottom']
+        if 'bottom' in bounds_dict:
+            sub_bottom = bounds_dict['bottom']
             sub_height = sub_bottom - sub_top
 
         else:
-            sub_height = var_bounds_dict['height']
+            sub_height = bounds_dict['height']
 
         return VarRectangle(
                 main_left=0,
