@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "trellis"
-version = "10001.0.5"
+version = "10004.0.1"
 authors = [
   { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
 ]
@@ -36,5 +36,5 @@ exclude = [
   "*.bak",          # WinMerge
   "*- コピー*",     # Copy file
   "requirements.txt",
-  "trellis.py"
+  "trellis_main.py"
 ]
