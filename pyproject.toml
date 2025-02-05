@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "trellis"
-version = "10001.0.1"
+version = "10001.0.3"
 authors = [
   { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
 ]
@@ -32,7 +32,6 @@ Repository = "https://github.com/muzudho/trellis.git"
 [tool.hatch.build.targets.sdist]
 exclude = [
   "/private",       # 個人用
-  "/temp",
   "*.log",          # Logging
   "*.bak",          # WinMerge
   "*- コピー*",     # Copy file

@@ -7,7 +7,7 @@ from .renderer.features import render_canvas, render_all_cards, render_all_line_
 from .shared_models import ColorSystem, FilePath, InningsPitched
 
 
-class TrellisInSrc():
+class Trellis():
     """例えば
     
     import trellis as tr
@@ -46,7 +46,7 @@ class TrellisInSrc():
         wb_path_to_write = config_doc['renderer']['--output']
 
         # コンパイル
-        TrellisInSrc.compile(
+        Trellis.compile(
                 contents_doc_rw=contents_doc,
                 config_doc=config_doc)
 
@@ -57,7 +57,7 @@ class TrellisInSrc():
         ws = wb['Sheet']
 
         # ワークシートへの描画
-        TrellisInSrc.render_to_worksheet(
+        Trellis.render_to_worksheet(
                 config_doc=config_doc,
                 contents_doc=contents_doc,
                 ws=ws)
@@ -233,6 +233,6 @@ class TrellisInSrc():
 
 
 ######################
-# MARK: trellis_in_src
+# MARK: trellis_obj
 ######################
-trellis_in_src = TrellisInSrc()
+trellis_obj = Trellis()
