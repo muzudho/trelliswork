@@ -1,4 +1,5 @@
 # Trellis
+/private
 /temp/*
 /temp/examples/*
 !/temp/examples/.gitkeep

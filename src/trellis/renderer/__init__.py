@@ -2,7 +2,7 @@ import openpyxl as xl
 import os
 
 from openpyxl.drawing.image import Image as XlImage
-from openpyxl.styles import PatternFill, Font
+from openpyxl.styles import Font, PatternFill
 from openpyxl.styles.alignment import Alignment
 from openpyxl.styles.borders import Border, Side
 

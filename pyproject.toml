@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trellis"
+version = "10001.0.1"
+authors = [
+  { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
+]
+description = "A tool to draw graphs using Excel as a display."
+readme = "README.md"
+requires-python = ">=3.12.3"
+dependencies = [
+  "openpyxl>=3.1.5",
+  "tomlkit>=0.13.2",
+]
+maintainers = [
+  { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
+]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["excel", "console application"]
+classifiers = [
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Repository = "https://github.com/muzudho/trellis.git"
+
+# ビルドツールの設定
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/assets",
+  "/docs",          # 説明書は README.md から GitHub の方へリンクするようにしてください
+  "/docs_dev",
+  "/examples",
+  "/private",       # 個人用
+  "/temp",
+  "*.log",          # Logging
+  "*.bak",          # WinMerge
+  "*- コピー*",     # Copy file
+  "requirements.txt",
+  "trellis_config.json",
+  "trellis.py",
+]
