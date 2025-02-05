@@ -31,16 +31,10 @@ Repository = "https://github.com/muzudho/trellis.git"
 # ビルドツールの設定
 [tool.hatch.build.targets.sdist]
 exclude = [
-  "/assets",
-  "/docs",          # 説明書は README.md から GitHub の方へリンクするようにしてください
-  "/docs_dev",
-  "/examples",
   "/private",       # 個人用
   "/temp",
   "*.log",          # Logging
   "*.bak",          # WinMerge
   "*- コピー*",     # Copy file
   "requirements.txt",
-  "trellis_config.json",
-  "trellis.py",
 ]

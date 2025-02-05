@@ -1,10 +1,7 @@
 # Trellis
 /private
 /temp/*
-/temp/examples/*
-!/temp/examples/.gitkeep
-/temp/lesson/*
-!/temp/lesson/.gitkeep
+!/temp/.gitkeep
 ゴミ箱
 
 # Byte-compiled / optimized / DLL files
