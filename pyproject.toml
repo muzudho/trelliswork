@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "trellis"
-version = "10004.0.1"
+version = "10005.0.1"
 authors = [
   { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
 ]
