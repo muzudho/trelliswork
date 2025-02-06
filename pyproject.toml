@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "trellis"
+name = "trelliswork"
 version = "10007.0.1"
 authors = [
   { name="Takahashi Satoshi", email="muzudho1@gmail.com" },
