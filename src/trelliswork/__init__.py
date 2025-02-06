@@ -210,8 +210,8 @@ def build(config_doc):
     print(f"Finished. Please look {wb_path_to_write} file.")
 
 
-class TrellisInSrc():
-    """トレリス
+class TrellisworkInSrc():
+    """トレリスワーク
     """
 
 
@@ -260,4 +260,4 @@ class TrellisInSrc():
                 ws=ws)
 
 
-trellis_in_src = TrellisInSrc()
+trelliswork_in_src = TrellisworkInSrc()

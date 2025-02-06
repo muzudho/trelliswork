@@ -3,7 +3,7 @@ from ..depth110 import Share
 
 class InningsPitched():
     """投球回。
-    トレリスでは、セル番号を指定するのに使っている
+    トレリスワークでは、セル番号を指定するのに使っている
     """
 
 

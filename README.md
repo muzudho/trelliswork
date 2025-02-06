@@ -1,4 +1,4 @@
-# trellis
+# trelliswork
 
 RPG の自作戦闘を設計するために勝手に作ったった設計図を出力するツール。ＧＵＩはまだ無い  
 
@@ -10,5 +10,5 @@ RPG の自作戦闘を設計するために勝手に作ったった設計図を�
 
 ## 説明
 
-* 📖 [Trellis > 説明書](https://github.com/muzudho/trellis/tree/main/docs)
-* 📖 [Trellis > 実装例](https://github.com/muzudho/trellis-for-b) - ［Trellis for B］リポジトリー
+* 📖 [Trelliswork > 説明書](https://github.com/muzudho/trelliswork/tree/main/docs)
+* 📖 [Trelliswork > 実装例](https://github.com/muzudho/trellis-for-b) - ［Trellis for B］リポジトリー

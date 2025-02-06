@@ -7,7 +7,7 @@
 ### 手順１：　インポート
 
 ```py
-import trellis as tl
+import trelliswork as tl
 ```
 
 👆　特に決まりはありませんが、本記事では `tl` という別名を付けるとしましょう。  
