@@ -10,16 +10,16 @@ class ResolveVarBounds(Translator):
     """
 
 
-    def translate_document(self, contents_doc_rw):
+    def translate_document(self, contents_dict_rw):
 
         # 再帰的に更新
         ResolveVarBounds.search_dict(
-                contents_doc_rw=contents_doc_rw,
-                current_dict_rw=contents_doc_rw)
+                contents_dict_rw=contents_dict_rw,
+                current_dict_rw=contents_dict_rw)
 
 
     @staticmethod
-    def search_dict(contents_doc_rw, current_dict_rw):
+    def search_dict(contents_dict_rw, current_dict_rw):
 
         new_bounds_dict = None
 
@@ -29,7 +29,7 @@ class ResolveVarBounds(Translator):
                 # 辞書 varColorDict の辞書要素
                 if isinstance(value, dict):
                     new_bounds_dict = ResolveVarBounds.search_var_bounds_dict(
-                            contents_doc_rw=contents_doc_rw,
+                            contents_dict_rw=contents_dict_rw,
                             current_var_bounds_dict_rw=value)
                     continue
 
@@ -37,13 +37,13 @@ class ResolveVarBounds(Translator):
             # 辞書の任意のキーの辞書要素
             if isinstance(value, dict):
                 ResolveVarBounds.search_dict(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_dict_rw=value)
 
             # 辞書の任意のキーのリスト要素
             elif isinstance(value, list):
                 ResolveVarBounds.search_list(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_list_rw=value)
 
         # 更新した項目を追加
@@ -53,23 +53,23 @@ class ResolveVarBounds(Translator):
 
 
     @staticmethod
-    def search_list(contents_doc_rw, current_list_rw):
+    def search_list(contents_dict_rw, current_list_rw):
         for index, value in enumerate(current_list_rw):
 
             # リストの辞書要素
             if isinstance(value, dict):
                 ResolveVarBounds.search_dict(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_dict_rw=value)
 
             # リストのリスト要素
             elif isinstance(value, list):
                 ResolveVarBounds.search_list(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_list_rw=value)
 
     @staticmethod
-    def search_var_bounds_dict(contents_doc_rw, current_var_bounds_dict_rw):
+    def search_var_bounds_dict(contents_dict_rw, current_var_bounds_dict_rw):
         """left, top, right, bottom, width, height が［投球回］形式の辞書
         """
         bounds_dict = copy.deepcopy(current_var_bounds_dict_rw)

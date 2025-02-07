@@ -8,9 +8,9 @@ class ResolveAliasOfColor(Translator):
     """
 
 
-    def translate_document(self, contents_doc_rw):
+    def translate_document(self, contents_dict_rw):
 
-        if 'colorSystem' in contents_doc_rw and (color_system_dict_rw := contents_doc_rw['colorSystem']):
+        if 'colorSystem' in contents_dict_rw and (color_system_dict_rw := contents_dict_rw['colorSystem']):
 
             # 別名の対応表
             # alias_dict_rw
@@ -23,8 +23,8 @@ class ResolveAliasOfColor(Translator):
 
             # 再帰的に更新
             ResolveAliasOfColor.search_dict(
-                    contents_doc_rw=contents_doc_rw,
-                    current_dict_rw=contents_doc_rw)
+                    contents_dict_rw=contents_dict_rw,
+                    current_dict_rw=contents_dict_rw)
 
 
             # 別名の対応表の削除（使い終わったので、もう必要ない）
@@ -32,7 +32,7 @@ class ResolveAliasOfColor(Translator):
 
 
     @staticmethod
-    def search_dict(contents_doc_rw, current_dict_rw):
+    def search_dict(contents_dict_rw, current_dict_rw):
         for key, value in current_dict_rw.items():
             if key == "varColor":
 
@@ -43,7 +43,7 @@ class ResolveAliasOfColor(Translator):
 
                     if color_type == VarColor.TONE_AND_COLOR_NAME:
                         web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                                contents_doc=contents_doc_rw,
+                                contents_doc=contents_dict_rw,
                                 tone_and_color_name=value)
 
                         current_dict_rw[key] = web_safe_color_code
@@ -55,7 +55,7 @@ class ResolveAliasOfColor(Translator):
                 # 辞書 varColorDict の辞書要素
                 if isinstance(value, dict):
                     ResolveAliasOfColor.search_var_color_dict(
-                            contents_doc_rw=contents_doc_rw,
+                            contents_dict_rw=contents_dict_rw,
                             current_var_color_dict_rw=value)
                     continue
 
@@ -64,25 +64,25 @@ class ResolveAliasOfColor(Translator):
                 # 辞書 varColors の配列要素
                 if isinstance(value, list):
                     ResolveAliasOfColor.search_list(
-                            contents_doc_rw=contents_doc_rw,
+                            contents_dict_rw=contents_dict_rw,
                             current_list_rw=value)
                     continue
 
             # 辞書の任意のキーの辞書要素
             if isinstance(value, dict):
                 ResolveAliasOfColor.search_dict(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_dict_rw=value)
 
             # 辞書の任意のキーのリスト要素
             elif isinstance(value, list):
                 ResolveAliasOfColor.search_list(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_list_rw=value)
 
 
     @staticmethod
-    def search_list(contents_doc_rw, current_list_rw):
+    def search_list(contents_dict_rw, current_list_rw):
         for index, value in enumerate(current_list_rw):
 
             # リストの文字列要素
@@ -92,7 +92,7 @@ class ResolveAliasOfColor(Translator):
 
                 if color_type == VarColor.TONE_AND_COLOR_NAME:
                     web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                            contents_doc=contents_doc_rw,
+                            contents_doc=contents_dict_rw,
                             tone_and_color_name=value)
 
                     current_list_rw[index] = web_safe_color_code
@@ -100,17 +100,17 @@ class ResolveAliasOfColor(Translator):
             # リストの辞書要素
             elif isinstance(value, dict):
                 ResolveAliasOfColor.search_dict(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_dict_rw=value)
 
             # リストのリスト要素
             elif isinstance(value, list):
                 ResolveAliasOfColor.search_list(
-                        contents_doc_rw=contents_doc_rw,
+                        contents_dict_rw=contents_dict_rw,
                         current_list_rw=value)
 
     @staticmethod
-    def search_var_color_dict(contents_doc_rw, current_var_color_dict_rw):
+    def search_var_color_dict(contents_dict_rw, current_var_color_dict_rw):
         """key も value も var_color_name 形式の辞書
         """
         new_dict = {}
@@ -124,7 +124,7 @@ class ResolveAliasOfColor(Translator):
 
             if color_type == VarColor.TONE_AND_COLOR_NAME:
                 key_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                        contents_doc=contents_doc_rw,
+                        contents_doc=contents_dict_rw,
                         tone_and_color_name=key_vcn)
 
 
@@ -145,7 +145,7 @@ class ResolveAliasOfColor(Translator):
 
             if color_type == VarColor.TONE_AND_COLOR_NAME:
                 value_web_safe_color_code = ColorSystem.solve_tone_and_color_name(
-                        contents_doc=contents_doc_rw,
+                        contents_doc=contents_dict_rw,
                         tone_and_color_name=value_vcn)
 
 

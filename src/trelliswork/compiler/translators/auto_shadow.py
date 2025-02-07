@@ -5,7 +5,7 @@ from ..translator import Translator
 class AutoShadow(Translator):
 
 
-    def translate_document(self, contents_doc_rw):
+    def translate_document(self, contents_dict_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         ['pillars']['cards']['shadow']['varColor] の値が 'auto' なら、
@@ -19,11 +19,11 @@ class AutoShadow(Translator):
 
         Parameters
         ----------
-        contents_doc_rw : dict
+        contents_dict_rw : dict
             読み書き両用
         """
 
-        if 'pillars' in contents_doc_rw and (pillars_list_rw := contents_doc_rw['pillars']):
+        if 'pillars' in contents_dict_rw and (pillars_list_rw := contents_dict_rw['pillars']):
 
             for pillar_dict_rw in pillars_list_rw:
                 pillar_obj = Pillar.from_dict(pillar_dict_rw)
@@ -41,7 +41,7 @@ class AutoShadow(Translator):
 
                                     try:
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                                contents_doc=contents_doc_rw,
+                                                contents_doc=contents_dict_rw,
                                                 column_th=card_bounds_obj.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                                 row_th=card_bounds_obj.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name
@@ -64,7 +64,7 @@ class AutoShadow(Translator):
                                     try:
                                         # 影に自動が設定されていたら、解決する
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                                contents_doc=contents_doc_rw,
+                                                contents_doc=contents_dict_rw,
                                                 column_th=terminal_bounds_obj.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                                 row_th=terminal_bounds_obj.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name
@@ -73,7 +73,7 @@ class AutoShadow(Translator):
                                         raise
 
         # もし、ラインテープのリストがあれば
-        if 'lineTapes' in contents_doc_rw and (line_tape_list_rw := contents_doc_rw['lineTapes']):
+        if 'lineTapes' in contents_dict_rw and (line_tape_list_rw := contents_dict_rw['lineTapes']):
 
             for line_tape_dict_rw in line_tape_list_rw:
                 # もし、セグメントのリストがあれば
@@ -93,7 +93,7 @@ class AutoShadow(Translator):
                                     try:
                                         # 影に自動が設定されていたら、解決する
                                         if solved_var_color_name := AutoShadow._get_auto_shadow(
-                                                contents_doc=contents_doc_rw,
+                                                contents_doc=contents_dict_rw,
                                                 column_th=segment_rect.left_th + Share.OUT_COUNTS_THAT_CHANGE_INNING,
                                                 row_th=segment_rect.top_th + Share.OUT_COUNTS_THAT_CHANGE_INNING):
                                             shadow_dict_rw['varColor'] = solved_var_color_name

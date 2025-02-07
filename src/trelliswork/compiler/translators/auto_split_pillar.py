@@ -7,18 +7,18 @@ from ..translator import Translator
 class AutoSplitSegmentByPillar(Translator):
 
 
-    def translate_document(self, contents_doc_rw):
+    def translate_document(self, contents_dict_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         Parameters
         ----------
-        contents_doc_rw : dict
+        contents_dict_rw : dict
             読み書き両用
         """
         new_splitting_segments = []
 
         # もし、ラインテープのリストがあれば
-        if 'lineTapes' in contents_doc_rw and (line_tape_list_rw := contents_doc_rw['lineTapes']):
+        if 'lineTapes' in contents_dict_rw and (line_tape_list_rw := contents_dict_rw['lineTapes']):
 
             for line_tape_dict_rw in line_tape_list_rw:
                 # もし、セグメントのリストがあれば
@@ -31,7 +31,7 @@ class AutoSplitSegmentByPillar(Translator):
                                 # 柱を跨ぐとき、ラインテープを分割します
                                 new_splitting_segments.extend(
                                         AutoSplitSegmentByPillar._split_segment_by_pillar(
-                                                contents_doc=contents_doc_rw,
+                                                contents_doc=contents_dict_rw,
                                                 segment_list_rw=segment_list_rw,
                                                 segment_dict_rw=segment_dict_rw))
 
