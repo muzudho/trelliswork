@@ -7,69 +7,6 @@ from .renderer.features import render_canvas, render_all_cards, render_all_line_
 from .shared_models import FilePath, InningsPitched
 
 
-def init():
-    canvas_width_var_value = input("""\
-これからキャンバスの横幅を指定してもらいます。
-よくわからないときは 100 を入力してください。
-単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
-例）　100
-> """)
-
-    canvas_width_obj = InningsPitched.from_var_value(var_value=canvas_width_var_value)
-
-    canvas_height_var_value = input("""\
-これからキャンバスの縦幅を指定してもらいます。
-よくわからないときは 100 を入力してください。
-単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
-例）　100
-> """)
-    canvas_height_obj = InningsPitched.from_var_value(var_value=canvas_height_var_value)
-
-    json_path_to_write = input("""\
-これから、JSON形式ファイルの書出し先パスを指定してもらいます。
-よくわからないときは ./temp/lesson/hello_world.json と入力してください、
-例）　./temp/lesson/hello_world.json
-# > """)
-    print(f'{json_path_to_write=}')
-
-    contents_doc = {
-        "imports": [
-            "./examples/data_of_contents/alias_for_color.json"
-        ],
-        "canvas": {
-            "varBounds": {
-                "left": 0,
-                "top": 0,
-                "width": canvas_width_obj.var_value,
-                "height": canvas_height_obj.var_value
-            }
-        },
-        "ruler": {
-            "visible": True,
-            "foreground": {
-                "varColors": [
-                    "xlPale.xlWhite",
-                    "xlDeep.xlWhite"
-                ]
-            },
-            "background": {
-                "varColors": [
-                    "xlDeep.xlWhite",
-                    "xlPale.xlWhite"
-                ]
-            }
-        }
-    }
-
-    print(f"🔧　write {json_path_to_write} file")
-    with open(json_path_to_write, mode='w', encoding='utf-8') as f:
-        f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
-
-    print(f"""\
-{json_path_to_write} ファイルを書き出しました。確認してください。
-""")
-
-
 @staticmethod
 def compile_content(contents_doc_rw, config_doc):
     """コンパイル
@@ -233,41 +170,175 @@ def render_to_worksheet(config_doc, contents_doc, ws):
             ws=ws)
 
 
-@staticmethod
-def build_by_config_doc(config_doc):
-    """ビルド
+class Trellis():
+    """トレリス"""
 
-    compile_content と render_to_worksheet を呼び出します。
-    """
 
-    # ソースファイル（JSON形式）読込
-    file_path_of_contents_doc = config_doc['builder']['--source']
-    print(f"🔧　read {file_path_of_contents_doc} file")
-    with open(file_path_of_contents_doc, encoding='utf-8') as f:
-        contents_doc = json.load(f)
+    @staticmethod
+    def init():
+        """コンテンツ・ファイルを出力する
+        """
 
-    # 出力ファイル（JSON形式）
-    wb_path_to_write = config_doc['renderer']['--output']
+        canvas_width_var_value = input("""\
+これからキャンバスの横幅を指定してもらいます。
+よくわからないときは 100 を入力してください。
+単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
+例）　100
+> """)
 
-    # コンパイル
-    compile_content(
-            contents_doc_rw=contents_doc,
-            config_doc=config_doc)
+        canvas_width_obj = InningsPitched.from_var_value(var_value=canvas_width_var_value)
 
-    # ワークブックを新規生成
-    wb = xl.Workbook()
+        canvas_height_var_value = input("""\
+これからキャンバスの縦幅を指定してもらいます。
+よくわからないときは 100 を入力してください。
+単位は［大グリッド１マス分］です。これはスプレッドシートのセル３つ分です。
+例）　100
+> """)
+        canvas_height_obj = InningsPitched.from_var_value(var_value=canvas_height_var_value)
 
-    # ワークシート
-    ws = wb['Sheet']
+        json_path_to_write = input("""\
+これから、JSON形式ファイルの書出し先パスを指定してもらいます。
+よくわからないときは ./temp/lesson/hello_world.json と入力してください、
+例）　./temp/lesson/hello_world.json
+# > """)
+        print(f'{json_path_to_write=}')
 
-    # ワークシートへの描画
-    render_to_worksheet(
-            config_doc=config_doc,
-            contents_doc=contents_doc,
-            ws=ws)
+        contents_doc = {
+            "imports": [
+                "./examples/data_of_contents/alias_for_color.json"
+            ],
+            "canvas": {
+                "varBounds": {
+                    "left": 0,
+                    "top": 0,
+                    "width": canvas_width_obj.var_value,
+                    "height": canvas_height_obj.var_value
+                }
+            },
+            "ruler": {
+                "visible": True,
+                "foreground": {
+                    "varColors": [
+                        "xlPale.xlWhite",
+                        "xlDeep.xlWhite"
+                    ]
+                },
+                "background": {
+                    "varColors": [
+                        "xlDeep.xlWhite",
+                        "xlPale.xlWhite"
+                    ]
+                }
+            }
+        }
 
-    # ワークブックの保存
-    print(f"🔧　write {wb_path_to_write} file")
-    wb.save(wb_path_to_write)
+        print(f"🔧　write {json_path_to_write} file")
+        with open(json_path_to_write, mode='w', encoding='utf-8') as f:
+            f.write(json.dumps(contents_doc, indent=4, ensure_ascii=False))
 
-    print(f"Finished. Please look {wb_path_to_write} file.")
+        print(f"""\
+{json_path_to_write} ファイルを書き出しました。確認してください。
+""")
+
+
+    def build(
+            config,
+            content,
+            workbook,
+            temp_dir):
+        """ビルド
+
+        Parameters
+        ----------
+        config : str
+            コンフィグ・ファイル（読取用）へのパス。
+        content : str
+            コンテント・ファイル（読取用）へのパス。
+        workbook : str
+            ワークブック（書込用）へのパス。拡張子が `.xlsx` のファイルを想定しています。
+        temp_dir : str
+            消してもいいファイルだけが入っているディレクトリー
+        """
+
+        if not config:
+            print(f"""ERROR: build() の config 引数には、トレリスワークの設定が書かれた JSON ファイルへのパスを指定してください""")
+            return
+
+        if not content:
+            print(f"""ERROR: build() の content 引数には、描画の設定が書かれた JSON ファイルへのパスを指定してください""")
+            return
+
+        if not workbook:
+            print(f"""ERROR: build() の workbook 引数には、保存先のワークブック・ファイル（.xslx）へのパスを指定してください""")
+            return
+
+        if not temp_dir:
+            print(f"""ERROR: build() の temp_dir 引数には、（消えても構わないファイルを入れておくための）テンポラリー・ディレクトリーのパスを指定してください""")
+            return
+
+
+        # ソースファイル（JSON形式）を読込
+        print(f"🔧　read {config_doc_path_to_read} file")
+        with open(config_doc_path_to_read, encoding='utf-8') as f:
+            config_doc = json.load(f)
+
+
+        # コマンドライン引数で設定を上書き
+        if 'builder' not in config_doc:
+            config_doc['builder'] = {}
+        
+        config_doc['builder']['--source'] = content
+        config_doc['builder']['--temp'] = temp_dir
+
+        if 'compiler' not in config_doc:
+            config_doc['compiler'] = {}
+
+        if 'renderer' not in config_doc:
+            config_doc['renderer'] = {}
+
+        config_doc['renderer']['--output'] = workbook
+
+
+        # ビルド
+        tl.Trellis.build_by_config_doc(
+                config_doc=config_doc)
+
+
+    @staticmethod
+    def build_by_config_doc(config_doc):
+        """ビルド
+
+        compile_content と render_to_worksheet を呼び出します。
+        """
+
+        # ソースファイル（JSON形式）読込
+        file_path_of_contents_doc = config_doc['builder']['--source']
+        print(f"🔧　read {file_path_of_contents_doc} file")
+        with open(file_path_of_contents_doc, encoding='utf-8') as f:
+            contents_doc = json.load(f)
+
+        # 出力ファイル（JSON形式）
+        wb_path_to_write = config_doc['renderer']['--output']
+
+        # コンパイル
+        compile_content(
+                contents_doc_rw=contents_doc,
+                config_doc=config_doc)
+
+        # ワークブックを新規生成
+        wb = xl.Workbook()
+
+        # ワークシート
+        ws = wb['Sheet']
+
+        # ワークシートへの描画
+        render_to_worksheet(
+                config_doc=config_doc,
+                contents_doc=contents_doc,
+                ws=ws)
+
+        # ワークブックの保存
+        print(f"🔧　write {wb_path_to_write} file")
+        wb.save(wb_path_to_write)
+
+        print(f"Finished. Please look {wb_path_to_write} file.")
