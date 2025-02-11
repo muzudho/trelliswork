@@ -198,11 +198,11 @@ class Trellis():
         if 'builder' not in config_dict:
             config_dict['builder'] = {}
         
-        config_dict['builder']['--source'] = content
         config_dict['builder']['--temp'] = temp_dir
 
         if 'compiler' not in config_dict:
             config_dict['compiler'] = {}
+            config_dict['compiler']['source'] = content
 
         if 'renderer' not in config_dict:
             config_dict['renderer'] = {}
@@ -223,7 +223,7 @@ class Trellis():
         """
 
         # ソースファイル（JSON形式）読込
-        file_path_of_contents_doc = config_dict['builder']['--source']
+        file_path_of_contents_doc = config_dict['compiler']['source']
         print(f"🔧　read {file_path_of_contents_doc} file")
         with open(file_path_of_contents_doc, encoding='utf-8') as f:
             contents_dict = json.load(f)
@@ -259,7 +259,8 @@ class Trellis():
     def compile(config, source):
         """コンパイル
 
-        出力ファイルは、一時ファイルという形で出力される。  
+        出力は、オブジェクト（中間）ファイルという形で出力される。
+        オブジェクト・ファイルへのパスは、設定ファイルの方に書かれる。
 
         Parameters
         ----------
@@ -276,8 +277,11 @@ class Trellis():
         if 'builder' not in config_dict:
             config_dict['builder'] = {}
 
-        if '--source' not in config_dict['builder']:
-            config_dict['builder']['--source'] = source
+        if 'compiler' not in config_dict:
+            config_dict['compiler'] = {}
+
+        if 'source' not in config_dict['compiler']:
+            config_dict['compiler']['source'] = source
 
         print(f"🔧　read {source} source file")
         with open(source, encoding='utf-8') as f:
@@ -291,7 +295,6 @@ class Trellis():
     @staticmethod
     def compile_by_dict(config_dict, source_dict_rw):
         """コンパイル
-        TODO 出力ファイルも指定したい
 
         Parameters
         ----------
@@ -301,7 +304,7 @@ class Trellis():
             読み書き両用
         """
 
-        source_fp = FilePath(config_dict['builder']['--source'])
+        source_fp = FilePath(config_dict['compiler']['source'])
 
         if 'compiler' in config_dict and (compiler_dict := config_dict['compiler']):
 
