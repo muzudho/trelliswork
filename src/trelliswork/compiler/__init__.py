@@ -14,7 +14,7 @@ class Compiler():
         pass
 
 
-    def compile(self, config, source):
+    def compile(self, config, source=None):
         """コンパイル
 
         staticmethod の方が適切だが
@@ -44,7 +44,8 @@ class Compiler():
         if 'compiler' not in config_dict:
             config_dict['compiler'] = {}
 
-        if 'source' not in config_dict['compiler']:
+        # 引数が指定されていれば、設定ファイルの記述より、引数を優先します
+        if source is not None:
             config_dict['compiler']['source'] = source
 
         print(f"🔧　read {source} source file.")
