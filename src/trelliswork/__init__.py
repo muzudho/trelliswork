@@ -256,16 +256,17 @@ class Trellis():
 
 
     @staticmethod
-    def compile(config, content):
+    def compile(config, source):
         """コンパイル
-        TODO 出力ファイルも指定したい
+
+        出力ファイルは、一時ファイルという形で出力される。  
 
         Parameters
         ----------
         config : str
-            設定ファイルへのパス
-        content : str
-            内容ファイル（読み書き両用）へのパス
+            設定ファイル（読取専用）へのパス
+        source : str
+            内容ファイル（読取専用）へのパス
         """
 
         print(f"🔧　read {config} config file")
@@ -276,19 +277,19 @@ class Trellis():
             config_dict['builder'] = {}
 
         if '--source' not in config_dict['builder']:
-            config_dict['builder']['--source'] = content
+            config_dict['builder']['--source'] = source
 
-        print(f"🔧　read {content} content file")
-        with open(content, encoding='utf-8') as f:
-            content_dict = json.load(f)
+        print(f"🔧　read {source} source file")
+        with open(source, encoding='utf-8') as f:
+            source_dict_rw = json.load(f)
 
         Trellis.compile_by_dict(
                 config_dict=config_dict,
-                content_dict=content_dict)
+                source_dict_rw=source_dict_rw)
 
 
     @staticmethod
-    def compile_by_dict(config_dict, content_dict):
+    def compile_by_dict(config_dict, source_dict_rw):
         """コンパイル
         TODO 出力ファイルも指定したい
 
@@ -296,7 +297,7 @@ class Trellis():
         ----------
         config_dict : dict
             設定
-        content_dict : dict
+        source_dict_rw : dict
             読み書き両用
         """
 
@@ -345,7 +346,7 @@ class Trellis():
 
                         print(f"🔧　write {file_path_of_contents_doc_object} file")
                         with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
-                            f.write(json.dumps(content_dict, indent=4, ensure_ascii=False))
+                            f.write(json.dumps(source_dict_rw, indent=4, ensure_ascii=False))
 
 
                 # ［翻訳者一覧］
@@ -364,7 +365,7 @@ class Trellis():
 
                         # 各［翻訳者］
                         #
-                        #   翻訳者は translate_document(content_dict) というインスタンス・メソッドを持つ
+                        #   翻訳者は translate_document(source_dict_rw) というインスタンス・メソッドを持つ
                         #
                         translator_dict = translators_dict[translation_key]
 
@@ -374,7 +375,7 @@ class Trellis():
                             if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
                                 # ドキュメントに対して、自動ピラー分割の編集を行います
                                 translator_obj.translate_document(
-                                        contents_dict_rw=content_dict)
+                                        contents_dict_rw=source_dict_rw)
 
                             # （場合により）中間ファイルの書出し
                             write_object_file(comment=translation_key)
