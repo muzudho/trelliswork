@@ -3,7 +3,7 @@ import openpyxl as xl
 import json
 
 from .compiler import Compiler # Compiler クラスはパッケージ利用者のために公開します
-from .compiler.translators import AutoShadow, AutoSplitSegmentByPillar, Imports, ResolveAliasOfColor, ResolveVarBounds
+from .compiler_parts import AutoShadow, AutoSplitSegmentByPillar, Imports, ResolveAliasOfColor, ResolveVarBounds
 from .renderer.features import render_canvas, render_all_cards, render_all_line_tapes, render_all_pillar_rugs, render_all_rectangles, render_ruler, render_shadow_of_all_cards, render_shadow_of_all_line_tapes, render_shadow_of_all_terminals, render_all_terminals, render_all_xl_texts
 from .shared_models import FilePath, InningsPitched
 

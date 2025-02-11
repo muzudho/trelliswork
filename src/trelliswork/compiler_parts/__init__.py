@@ -1,0 +1,21 @@
+# parts というディレクトリー名は .gitignore の `Distribution / packaging` で指定されているので、避けた
+#
+# このファイルの意味：
+#       from .compiler.translators.auto_shadow import AutoShadow
+#       from .compiler.translators.auto_split_pillar import AutoSplitSegmentByPillar
+#       と書くのがめんどくさいので、
+#       from .compiler.translators import AutoShadow, AutoSplitSegmentByPillar と書けばよいようにする仕組み
+from .auto_shadow import AutoShadow
+from .auto_split_pillar import AutoSplitSegmentByPillar
+from .imports import Imports
+from .resolve_alias_of_color import ResolveAliasOfColor
+from .resolve_var_bounds import ResolveVarBounds
+
+
+class Part():
+    """コンパイラーの部品の基底
+    """
+
+
+    def compile_document(self, contents_dict_rw):
+        pass

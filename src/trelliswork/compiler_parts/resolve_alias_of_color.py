@@ -1,14 +1,13 @@
-from ...shared_models import ColorSystem, VarColor
+from ..shared_models import ColorSystem, VarColor
+from . import Part
 
-from ..translator import Translator
 
-
-class ResolveAliasOfColor(Translator):
+class ResolveAliasOfColor(Part):
     """［影色の対応表］が色の別名で指定されていれば、ウェブ・セーフ・カラー・コードに翻訳します
     """
 
 
-    def translate_document(self, contents_dict_rw):
+    def compile_document(self, contents_dict_rw):
 
         if 'colorSystem' in contents_dict_rw and (color_system_dict_rw := contents_dict_rw['colorSystem']):
 

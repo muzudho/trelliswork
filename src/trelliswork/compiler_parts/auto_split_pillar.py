@@ -1,13 +1,13 @@
 import copy
 
-from ...shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
-from ..translator import Translator
+from ..shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
+from . import Part
 
 
-class AutoSplitSegmentByPillar(Translator):
+class AutoSplitSegmentByPillar(Part):
 
 
-    def translate_document(self, contents_dict_rw):
+    def compile_document(self, contents_dict_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         Parameters

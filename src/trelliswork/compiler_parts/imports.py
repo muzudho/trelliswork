@@ -1,12 +1,12 @@
 import json
 
-from ..translator import Translator
+from . import Part
 
 
-class Imports(Translator):
+class Imports(Part):
 
 
-    def translate_document(self, contents_dict_rw):
+    def compile_document(self, contents_dict_rw):
 
         if 'imports' in contents_dict_rw and (imports_list := contents_dict_rw['imports']):
 

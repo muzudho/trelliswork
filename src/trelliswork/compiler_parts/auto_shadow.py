@@ -1,11 +1,11 @@
-from ...shared_models import Card, Pillar, Rectangle, Share, Terminal
-from ..translator import Translator
+from ..shared_models import Card, Pillar, Rectangle, Share, Terminal
+from . import Part
 
 
-class AutoShadow(Translator):
+class AutoShadow(Part):
 
 
-    def translate_document(self, contents_dict_rw):
+    def compile_document(self, contents_dict_rw):
         """ドキュメントに対して、影の自動設定の編集を行います
 
         ['pillars']['cards']['shadow']['varColor] の値が 'auto' なら、

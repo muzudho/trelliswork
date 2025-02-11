@@ -1,16 +1,15 @@
 import copy
 
-from ...shared_models import InningsPitched
+from ..shared_models import InningsPitched
+from . import Part
 
-from ..translator import Translator
 
-
-class ResolveVarBounds(Translator):
+class ResolveVarBounds(Part):
     """varBounds を bounds へ翻訳します
     """
 
 
-    def translate_document(self, contents_dict_rw):
+    def compile_document(self, contents_dict_rw):
 
         # 再帰的に更新
         ResolveVarBounds.search_dict(

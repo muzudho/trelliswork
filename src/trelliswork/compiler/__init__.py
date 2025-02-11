@@ -2,7 +2,7 @@ import os
 import json
 
 from ..shared_models import FilePath
-from .translators import AutoShadow, AutoSplitSegmentByPillar, Imports, ResolveAliasOfColor, ResolveVarBounds
+from ..compiler_parts import AutoShadow, AutoSplitSegmentByPillar, Imports, ResolveAliasOfColor, ResolveVarBounds
 
 
 class Compiler():
@@ -74,51 +74,55 @@ class Compiler():
         if 'compiler' in config_dict and (compiler_dict := config_dict['compiler']):
 
             def get_object_folder():
-                if 'objectFolder' not in compiler_dict:
-                    raise ValueError("""設定ファイルでコンパイラーの処理結果を中間ファイルとして出力する設定にした場合は、['compiler']['objectFolder']が必要です。""")
+                if 'folderForObjects' not in compiler_dict:
+                    raise ValueError("""設定ファイルでコンパイラーの処理結果を中間ファイルとして出力する設定にした場合は、['compiler']['folderForObjects']が必要です。""")
 
-                return compiler_dict['objectFolder']
+                return compiler_dict['folderForObjects']
 
 
-            if 'objectFilePrefix' in compiler_dict and (object_file_prefix := compiler_dict['objectFilePrefix']) and object_file_prefix is not None:
+            if 'prefixForObjectFiles' in compiler_dict and (prefix_for_object_files := compiler_dict['prefixForObjectFiles']) and prefix_for_object_files is not None:
                 pass
             else:
-                object_file_prefix = ''
+                prefix_for_object_files = ''
 
 
-            if 'tlanslators' in compiler_dict and (translators_dict := compiler_dict['tlanslators']):
+            if 'parts' in compiler_dict and (parts_dict := compiler_dict['parts']):
 
 
-                def create_file_path_of_contents_doc_object(source_fp, object_file_dict):
+                def create_filepath_of_object_file(source_fp, object_file_dict):
                     """中間ファイルのパス作成"""
+
+                    prefix = ''
+                    if prefix_for_object_files:
+                        prefix = f'{prefix_for_object_files}__'
+
                     object_suffix = object_file_dict['suffix']
-                    basename = f'{object_file_prefix}__{source_fp.basename_without_ext}__{object_suffix}.json'
+                    basename = f'{prefix}{source_fp.basename_without_ext}__{object_suffix}.json'
                     return os.path.join(get_object_folder(), basename)
 
 
                 def write_object_file(comment):
                     """中間ファイルの書出し
                     """
-                    if 'objectFile' in translator_dict and (object_file_dict := translator_dict['objectFile']):
-                        file_path_of_contents_doc_object = create_file_path_of_contents_doc_object(
+                    if 'objectFile' in compiler_part_dict and (object_file_dict := compiler_part_dict['objectFile']):
+                        filepath_of_object_file = create_filepath_of_object_file(
                                 source_fp=source_fp,
                                 object_file_dict=object_file_dict)
 
-                        print(f"""\
-🔧　write {file_path_of_contents_doc_object} object file.
-    {comment=}""")
-
                         # ディレクトリーが存在しなければ作成する
-                        directory_path = os.path.split(file_path_of_contents_doc_object)[0]
+                        directory_path = os.path.split(filepath_of_object_file)[0]
                         os.makedirs(directory_path, exist_ok=True)
 
-                        print(f"🔧　write {file_path_of_contents_doc_object} file.")
-                        with open(file_path_of_contents_doc_object, mode='w', encoding='utf-8') as f:
+                        print(f"""\
+🔧　write {filepath_of_object_file} object file.
+    {comment=}""")
+
+                        with open(filepath_of_object_file, mode='w', encoding='utf-8') as f:
                             f.write(json.dumps(source_dict_rw, indent=4, ensure_ascii=False))
 
 
-                # ［翻訳者一覧］
-                translator_object_dict = {
+                # ［コンパイラーの部品一覧］
+                compiler_part_instance_dict = {
                     'autoSplitSegmentByPillar': AutoSplitSegmentByPillar(),
                     'autoShadow': AutoShadow(),
                     'imports': Imports(),
@@ -126,24 +130,24 @@ class Compiler():
                     'resolveVarBounds': ResolveVarBounds(),
                 }
 
-                # 翻訳の実行順序
-                if 'translationOrder' in compiler_dict and (translation_order_list := compiler_dict['translationOrder']):
+                # コンパイラーの部品の実行順序
+                if 'orderOfParts' in compiler_dict and (order_of_parts_list := compiler_dict['orderOfParts']):
 
-                    for translation_key in translation_order_list:
+                    for compiler_part_key in order_of_parts_list:
 
-                        # 各［翻訳者］
+                        # 各［コンパイラーの部品］
                         #
-                        #   翻訳者は translate_document(source_dict_rw) というインスタンス・メソッドを持つ
+                        #   ［コンパイラーの部品］は compile_document(source_dict_rw) というインスタンス・メソッドを持つ
                         #
-                        translator_dict = translators_dict[translation_key]
+                        compiler_part_dict = parts_dict[compiler_part_key]
 
-                        if translation_key in translator_object_dict:
-                            translator_obj = translator_object_dict[translation_key]
+                        if compiler_part_key in compiler_part_instance_dict:
+                            compiler_part_obj = compiler_part_instance_dict[compiler_part_key]
 
-                            if 'enabled' in translator_dict and (enabled := translator_dict['enabled']) and enabled:
+                            if 'enabled' in compiler_part_dict and (enabled := compiler_part_dict['enabled']) and enabled:
                                 # ドキュメントに対して、自動ピラー分割の編集を行います
-                                translator_obj.translate_document(
+                                compiler_part_obj.compile_document(
                                         contents_dict_rw=source_dict_rw)
 
                             # （場合により）中間ファイルの書出し
-                            write_object_file(comment=translation_key)
+                            write_object_file(comment=compiler_part_key)
