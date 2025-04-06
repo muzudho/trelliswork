@@ -1,7 +1,7 @@
 import copy
 
+from ..compiler.part import Part
 from ..shared_models import InningsPitched
-from . import Part
 
 
 class ResolveVarBounds(Part):

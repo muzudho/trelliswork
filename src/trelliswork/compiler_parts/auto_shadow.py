@@ -1,5 +1,5 @@
+from ..compiler.part import Part
 from ..shared_models import Card, Pillar, Rectangle, Share, Terminal
-from . import Part
 
 
 class AutoShadow(Part):

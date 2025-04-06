@@ -1,5 +1,5 @@
+from ..compiler.part import Part
 from ..shared_models import ColorSystem, VarColor
-from . import Part
 
 
 class ResolveAliasOfColor(Part):

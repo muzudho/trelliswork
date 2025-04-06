@@ -1,6 +1,6 @@
 import json
 
-from . import Part
+from ..compiler.part import Part
 
 
 class Imports(Part):

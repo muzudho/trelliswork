@@ -1,7 +1,7 @@
 import copy
 
+from ..compiler.part import Part
 from ..shared_models import InningsPitched, InningsPitched, Pillar, Rectangle, Share
-from . import Part
 
 
 class AutoSplitSegmentByPillar(Part):

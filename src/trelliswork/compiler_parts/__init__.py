@@ -10,12 +10,3 @@ from .auto_split_pillar import AutoSplitSegmentByPillar
 from .imports import Imports
 from .resolve_alias_of_color import ResolveAliasOfColor
 from .resolve_var_bounds import ResolveVarBounds
-
-
-class Part():
-    """コンパイラーの部品の基底
-    """
-
-
-    def compile_document(self, contents_dict_rw):
-        pass
